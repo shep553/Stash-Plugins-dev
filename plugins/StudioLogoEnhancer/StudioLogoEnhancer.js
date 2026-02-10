@@ -122,10 +122,10 @@
             
             const svg = `
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${LOGO_SIZE} ${LOGO_SIZE}">
-                    <rect width="100%" height="100%" fill="${color}" rx="4" ry="4"/>
-                    <text x="50%" y="50%" 
+                    <rect width="90%" height="90%" fill="${color}" rx="4" ry="4"/>
+                    <text x="45%" y="45%" 
                           font-family="sans-serif" 
-                          font-size="${Math.floor(LOGO_SIZE * 0.6)}" 
+                          font-size="${Math.floor(LOGO_SIZE * 0.45)}" 
                           fill="white" 
                           text-anchor="middle" 
                           dominant-baseline="central">${initials}</text>
