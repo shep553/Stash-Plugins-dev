@@ -1,0 +1,10 @@
+name:  Performer Card
+description: Performer Card
+version: 1.0
+ui:
+    javascript:
+        -  Performer Card.js
+    css:
+        -  Performer Card.css
+    assets:
+        /: .

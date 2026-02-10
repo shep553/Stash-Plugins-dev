@@ -1,0 +1,10 @@
+.group-card,
+.scene-card,
+.gallery-card,
+.performer-card,
+.studio-card,
+.tag-card,
+.image-card,
+.scene-marker-card {
+	border-radius: var(--card-radius-size, 3px) !important;
+}

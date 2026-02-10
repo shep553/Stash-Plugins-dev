@@ -1,0 +1,22 @@
+.scene-card .thumbnail-section {
+  position: relative;
+}
+
+/* Rating overlay */
+.scene-card .thumbnail-section .rating-overlay {
+  font-family: inherit;
+  cursor: default;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Fade-out effect */
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+/* Fade out when hovering the card */
+.scene-card:hover .thumbnail-section .rating-overlay {
+  opacity: 0;
+}

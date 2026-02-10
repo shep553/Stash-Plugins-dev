@@ -1,0 +1,12 @@
+[
+  {
+    "name": "CMD",
+    "file": "CMD.css",
+    "schemes": ["CMD", "DarkBlueOrange", "DarkBlueGreen", "Dracula", "BlueDark", "h!anime"]
+  },
+  {
+    "name": "Test",
+    "file": "Test.css",
+    "schemes": ["Test", "blue"]
+  }
+]

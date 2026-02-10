@@ -1,0 +1,2545 @@
+
+																/* ============== ROOT ============== */
+
+:root {
+		
+	/*-----CMD-----*/
+	/*--body: #191919;
+	--card: #2a2a2a;
+	--nav: #212121;
+	--nav-grey: #555555;
+	--nav-grey-dark: #3e3e3e;
+	--tags: #a1a1a1;
+	--accent: #cc7b19;
+	--accent-transparent: #e5a00db8;
+	--red: #db3737;
+	--bright-red: #f00;
+	--description: #1f1f22
+}
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: #1e1e1e !important;
+}
+	/*-----DarkBlue Orange-----*/
+  	/*--body: #0e0d11;
+	--card: #1b1c22;
+	--nav: #282A36;
+	--nav-grey: #44475A;
+	--nav-grey-dark: #303343;
+	--tags: #a6a1a0;
+	--accent: #c1500a;
+	--accent-transparent: #c1500ab0;
+	--red: #FF5555;
+	--bright-red: #f00;
+	--description: #131318
+}	
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: #131217 !important;
+}
+
+	/*-----DarkBlueGreen-----*/
+  	/*--body: #151c17;
+	--card: #2b3d37;
+	--nav: #202926;
+	--nav-grey: #40544c;
+	--nav-grey-dark: #2b3633;
+	--tags: #8d8989;
+	--accent: #0f9b8e;
+	--accent-transparent: #0f9b8ec9;
+	--red: #FF5555;
+	--bright-red: #f00;
+	--description: #292c2c
+}	
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: #272929 !important;
+}
+
+	/*-----Dracula-----*/
+  	/*--body: #161820;
+	--card: #303241;
+	--nav: #252833;
+	--nav-grey: #4b4f61;
+	--nav-grey-dark: #3e4153;
+	--tags: #a6a1a0;
+	--accent: #BD93F9;
+	--accent-transparent: rgba(189, 147, 249, .75);
+	--red: #FF5555;
+	--bright-red: #f00;
+	--description: #22242f
+}	
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: #1f212b !important;
+}
+
+	/*-----BlueDark-----*/
+  	/*--body: #171d26;
+	--card: #2f3448;
+	--nav: #28303e;
+	--nav-grey: #394055;
+	--nav-grey-dark: #212733;
+	--tags: #8d8989;
+	--accent: #016795;
+	--accent-transparent: #016795d1;
+	--red: #FF5555;
+	--bright-red: #f00;
+	--description: #212835
+}	
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: #1f2532 !important;
+}
+
+	/*-----h!anime-----*/
+  	/*--body: #11101a;
+	--card: #2b2a3c;
+	--nav: #191826;
+	--nav-grey: #201f31;
+	--nav-grey-dark: #21202f;
+	--tags: #8d8989;
+	--accent: #ffbade;
+	--accent-transparent: #ffbaded4;
+	--red: #FF5555;
+	--bright-red: #f00;
+	--description: #1d1b29
+}	
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: #1a1926 !important;
+
+}*/
+
+}
+																/* ============== GLOBAL CHANGES ============== */
+
+
+			/*====== Change the order of navigation bar buttons ======*/
+
+
+/*div.nav-link[data-rb-event-key = "/groups"] {
+	order: -8;
+}
+div.nav-link[data-rb-event-key = "/scenes"] {
+	order: -7;
+}
+div.nav-link[data-rb-event-key = "/performers"] {
+	order: -6;
+}
+div.nav-link[data-rb-event-key = "/studios"] {
+	order: -5;
+}
+div.nav-link[data-rb-event-key = "/galleries"] {
+	order: -6;
+}
+div.nav-link[data-rb-event-key = "/images"] {
+	order: -2;
+}
+div.nav-link[data-rb-event-key = "/tags"] {
+	order: -3;
+}
+
+			/*======  Moves the popup when finished editing/deleting etc to bottom right ====== */
+
+
+.toast-container {
+	position: fixed;
+	right: 2rem;
+	bottom: 1rem;
+	top: initial;
+	left: initial;
+}
+
+			/*======  Hide Donate Button ====== */
+
+
+.top-nav .btn-primary.btn.donate.minimal {
+	display: none;
+}
+a:hover {
+	text-decoration: none;
+	/* Remove on-hover underline */
+}
+.popover {
+	background-color: var(--card)
+}
+
+																/* ============== GLOBAL COLOR CHANGES ============== */
+body {
+	background-color: var(--body);
+	color: #ffffffeb;
+}
+.bg-secondary {
+	background-color: var(--nav-grey-dark) !important;
+}
+.bg-dark {
+	background-color: var(--nav) !important;
+}
+.card {
+	background-color: var(--card);
+}
+* {
+	scrollbar-color: var(--nav-grey) transparent;
+}
+a {
+	/*-	color: #ffffffa6;  */
+	transition: ease-in-out 0.5s;
+}
+a:hover {
+	color: var(--accent);
+}
+/*h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {   
+    line-height: 1.5;
+	color: #ffffffeb !important;
+}*/
+.sub-heading {			/*settings page*/
+	color: #ffffffa6 !important;
+}
+.scene-card__details, .gallery-card__details {
+	color: #ffffffc9;
+}
+pre, code, kbd, samp, p {
+	color: #ffffffc9 !important;
+}
+.nav-link {
+	color: #ffffffc9;
+}
+.text-white {			/*toolbar dropdowns*/
+	color: #ffffffc9 !important;
+}
+.scene-card.fileless.grid-card.card .minimal.btn.btn-primary, .scene-card.fileless.grid-card.card .scene-card__date, .scene-card.fileless.grid-card.card .TruncatedText {
+	color: var(--red);
+}	
+.delete-dialog.alert.alert-danger.text-break p.font-weight-bold {			/*delete file warning text*/
+	color: var(--red) !important;
+}
+
+
+			/*======  Navbar/Sidebar  ======*/
+
+
+
+a.minimal {										/*Groups/Scenes etc buttons*/
+	color: #ffffffa6;
+	transition: ease-in-out 0.5s;
+}
+.minimal.p-4.p-xl-2.d-flex.d-xl-inline-block.flex-column.justify-content-between.align-items-center.btn.btn-primary:hover {
+	background-color: transparent;
+	color: var(--accent);
+}
+/*svg.svg-inline--fa.fa-tag.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, /*tags icon*/
+/*svg.svg-inline--fa.fa-user.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, /*performers icon*/
+/*svg.svg-inline--fa.fa-location-dot.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, /*markers icon*/
+/*svg.svg-inline--fa.fa-images.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, /*galleries icon*/
+/*svg.svg-inline--fa.fa-circle-play.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, /*scenes icon*/
+/*svg.svg-inline--fa.fa-image.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, /*images icon*/
+/*svg.svg-inline--fa.fa-film.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, /*movies icon*/
+/*svg.svg-inline--fa.fa-video.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path { /*studios icon*/
+.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path {
+	fill: var(--accent);
+}
+.filtered-list-toolbar {
+	background-color: var(--body)
+}
+/*.scene-list-toolbar.filtered-list-toolbar.btn-toolbar, .list-results-header.btn-toolbar {
+	background: var(--body)
+}
+.scene-list-toolbar.filtered-list-toolbar.btn-toolbar .filter-section {
+	border: 1px solid var(--nav-grey-dark)
+}*/
+.minimal.sidebar-toggle-button.ignore-sidebar-outside-click.btn.btn-secondary {
+	background: var(--nav)
+}
+/*.scene-list-toolbar.filtered-list-toolbar .search-container {
+	border-right: none;
+	margin-right: -1rem;
+	min-width: 450px;
+}
+.display-mode-menu .zoom-slider-container {
+	margin-bottom: 0rem;
+}*/
+.sidebar-pane .sidebar {
+	background: var(--nav);
+	border-right: 1px solid var(--card);
+	scrollbar-color: transparent transparent;
+	padding-top: 0.7rem;
+	margin-left: -14px;
+	padding-left: 2rem;
+	padding-right: 0.2rem;
+}
+/*#tag-page.row .sidebar-pane .sidebar, #group-page.row .sidebar-pane .sidebar, #performer-page.row .sidebar-pane .sidebar, #studio-page.row .sidebar-pane .sidebar {
+	padding-top: 1.4rem;
+	padding-left: 1rem;
+}*/
+.sidebar-section {
+	border-color: var(--card);
+}
+/*.scene-list-toolbar.filtered-list-toolbar.has-selection.btn-toolbar .scene-list-operations .btn-group {
+	right: -62.5rem;  
+	gap: 1px
+}
+.scene-list-toolbar.filtered-list-toolbar.has-selection.btn-toolbar .scene-list-operations.dropdown.btn-group {
+   right: 9.8rem;
+ }
+.scene-list-toolbar.filtered-list-toolbar .toolbar-selection-section {	
+  border: 1px solid var(--nav-grey-dark);
+}
+.scene-list-toolbar.filtered-list-toolbar.has-selection.btn-toolbar {
+	margin-right: 0px;
+}
+.scene-list-toolbar.filtered-list-toolbar.has-selection.btn-toolbar .btn-danger-minimal.btn.btn-danger {
+	top: -1px;
+}*/
+.sidebar-saved-filter-list-container ul.saved-filter-list li.saved-filter-item a:hover,			/*sidebar buttons*/
+.sidebar-list-filter ul .selected-object a:hover,
+.sidebar-list-filter ul .unselected-object a:hover {
+	background: transparent;
+	color:var(--accent);
+}
+button.minimal.set-as-default-button.btn.btn-secondary.btn-sm {
+	color: white;
+}
+button.minimal.set-as-default-button.btn.btn-secondary.btn-sm:hover {
+	color: var(--accent);
+}
+.duration-label-input:hover,
+.age-label-input:hover {
+	border-color: var(--accent-transparent);
+}
+.duration-label-input:focus,
+.age-label-input:focus {
+	border-color: var(--accent);
+}
+.sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button {
+	margin-left: -1.5rem;
+}
+#root div.main.container-fluid div#group-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button,
+#root div.main.container-fluid div#performer-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button,
+#root div.main.container-fluid div#tag-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button,
+#root div.main.container-fluid div#studio-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button {
+	margin-left: -.5rem;
+}
+
+			/*======  Selection  ======*/
+
+
+::selection {
+	/*main container*/
+	background-color: rgba(173, 173, 173, .74);
+	color: #fff;
+}
+textarea::selection, /*text boxes/query*/
+input::selection {
+	background-color: rgba(173, 173, 173, .74);
+	color: #fff;
+}
+
+
+			/*======  Outline when selecting card  ====== */
+
+
+.grid-card.card:has(input:checked) {
+	box-shadow: 0 0 2px 4px var(--accent);
+}
+
+
+			/*======  Organized Button  ======*/
+
+
+button.minimal.btn.btn-primary svg.svg-inline--fa.fa-box.fa-icon path,											/*on cards*/
+button.minimal.organized-button.organized.btn.btn-secondary svg.svg-inline--fa.fa-box.fa-icon path {			/*on scene/galleries detail/edit*/
+	fill: var(--accent);
+}
+button.minimal.organized-button.organized.btn.btn-secondary svg.svg-inline--fa.fa-box.fa-icon path:hover {
+	fill: var(--accent-transparent);
+
+}
+
+			/*======  StashDB/ThePornDB ids  ======*/
+
+
+.stash-id-pill span {
+	background-color: var(--accent);
+}
+.stash-id-pill a {
+	background-color: transparent;
+}
+
+			/*======  Modals ====== */
+
+
+.modal-header, .modal-body, .modal-footer {
+	background-color: var(--card);
+	border-color: transparent;
+}
+/*.modal-footer button.btn.btn-secondary:hover {			/*???????????????specifically for modals???????????*/
+/*color: var(--red);   
+	border-color: var(--red);
+}*/
+
+
+			/*======  Rating Sstars  ======*/
+
+
+.scene-toolbar-group .rating-stars .set, 					/*other scene toolbar buttons get accent color*/
+.scene-toolbar-group .rating-stars .setting, .scene-toolbar-group .rating-stars .unset, .scene-toolbar-group .rating-stars .unsetting {
+	color: #fff;
+}
+.rating-stars .set, .rating-stars .setting, .rating-stars .unset, .rating-stars .unsetting {
+	color: #fff;
+}
+.rating-stars:has([title = "0.5"]) .set {
+	color: #000;
+}
+.rating-stars:has([title = "1"]) .set {
+	color: #ff7800;
+}
+.rating-stars:has([title = "1.5"]) .set {
+	color: #e0db03;
+}
+.rating-stars:has([title = "2"]) .set {
+	color: #92e60b;
+}
+.rating-stars:has([title = "2.5"]) .set {
+	color: #136916;
+}
+.rating-stars:has([title = "3"]) .set {
+	color: #08e2e6;
+}
+.rating-stars:has([title = "3.5"]) .set {
+	color: #02f;
+}
+.rating-stars:has([title = "4"]) .set {
+	color: #cd00f3;
+}
+.rating-stars:has([title = "4.5"]) .set {
+	color: #f00;
+}
+.rating-stars:has([title = "5"]) .set {
+	color: var(--accent);
+}
+
+
+			/*======  Favorite Button  ======*/
+
+
+#studio-tabs-tabpane-childstudios .minimal.mousetrap.favorite-button.hide-not-favorite.not-favorite.btn.btn-primary {
+	transition: all 1s ease-in-out;
+}
+.card .minimal.mousetrap.favorite-button.hide-not-favorite.favorite.btn.btn-primary,
+.studio-card .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary,
+.studio-card .minimal.mousetrap.favorite-button.favorite.btn.btn-primary,
+.performer-card .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary,
+.performer-card .minimal.mousetrap.favorite-button.favorite.btn.btn-primary {										
+	opacity: 0;
+	transition: all 1s ease-in-out;
+}
+.studio-card:hover #studio-tabs-tabpane-childstudios .minimal.mousetrap.favorite-button.hide-not-favorite.not-favorite.btn.btn-primarybtn-primary,
+.studio-card:hover .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary,
+.performer-card:hover .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary {
+	opacity: 1;
+}
+.studio-card:hover .minimal.mousetrap.favorite-button.favorite.btn.btn-primary, 
+.performer-card:hover .minimal.mousetrap.favorite-button.favorite.btn.btn-primary {
+	opacity: 1;
+}
+#performer-page .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary,
+#studio-page .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary,
+.minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary,
+#performer-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary,
+#studio-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary,
+.minimal.mousetrap.favorite-button.favorite.btn.btn-primary {
+	transition: color 1s ease-in-out;
+}
+#tag-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary,
+#performer-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary,
+#studio-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary,
+.minimal.mousetrap.favorite-button.favorite.btn.btn-primary {
+	color: var(--accent);	
+}
+#tag-page .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary:hover,
+#performer-page .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary:hover,
+#studio-page .minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary:hover,
+.minimal.mousetrap.favorite-button.not-favorite.btn.btn-primary:hover {
+	color: var(--accent);
+}
+#tag-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary:hover,
+#performer-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary:hover,
+#studio-page .minimal.mousetrap.favorite-button.favorite.btn.btn-primary:hover,
+.minimal.mousetrap.favorite-button.favorite.btn.btn-primary:hover {
+	color: var(--accent-transparent);
+}
+
+
+			/*=====  List View  =====*/
+
+
+.table.table-striped.table-bordered tbody tr:nth-child(odd) {
+	background-color: var(--nav-grey-dark);
+}
+.table.table-striped.table-bordered tbody tr:nth-child(even) {
+	background-color: var(--nav-grey);
+}
+.table.table-striped.table-bordered thead tr th.border-row {
+	background-color: var(--nav)
+}
+.table-list.scene-table {
+	scrollbar-color: var(--tags) var(--nav);
+	scrollbar-width: thin;
+}
+.table-list .comma-list.overflowable:hover {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+.table-list a:hover {
+	color: var(--accent);
+}
+/*list view icon and menu top left*/
+.svg-inline--fa.fa-table-columns.fa-icon.column-select:hover {
+	color: var(--accent)
+}
+.css-1vmiv {
+	background-color: var(--nav);
+	width: 15rem;
+}
+.css-11lrfd-option, .css-xa9f71-option, .css-1a4kl9e-option, .css-g4rbeg-option {
+	background-color: var(--nav-grey-dark);
+}
+.css-11lrfd-option, .css-gg1jaf-option {
+	background-color: var(--nav-grey-dark);
+	color: var(--accent);
+}
+
+
+			/*======  Tags  =====*/
+
+
+.tag-item.badge.badge-secondary {
+	/*background: transparent;*/
+	/*background-color: var(--nav-grey);*/
+	background-color: transparent;
+	color: #fff;
+}
+.tag-item.badge.badge-secondary:hover {
+	color: var(--accent);
+}
+.tag-item.badge.badge-secondary {
+	padding: .4em .6em .45em .6em;
+	font-weight: 700;
+	border-radius: .25rem;
+}
+
+														/* ==================== SETTINGS ==================== */
+
+
+			/*======  Tasks page  ======*/
+
+#tasks-panel .tasks-panel-queue {
+	/*task queue colors*/
+	background: var(--body);
+}
+.job-table.card {
+	height: 11em;
+	background-color: var(--card);
+}
+.progress {
+	background-color: var(--tags);
+	border-radius: .25rem
+}
+.progress-bar {
+	color: #fff;
+	background-color: var(--accent);
+}
+svg.svg-inline--fa.fa-gear.fa-spin {
+	/*changes color of gear icon when spinning*/
+	color: var(--accent);
+}
+.nav-pills .nav-link.active, /*left menu links*/
+.nav-pills .show > .nav-link {
+	background: none;
+	color: var(--accent);
+}
+.row .nav-link:hover, .nav-link:focus {
+	/*hover background on left menu*/
+	color: var(--accent);
+	/*background: linear-gradient(90deg, var(--card), var(--body));*/
+}
+.setting-section .setting:not(:last-child), .setting-section .setting-group:not(:last-child) {
+	border-bottom: 2px solid var(--nav-grey-dark);
+	/*solid lines between options in the cards*/
+}
+
+
+			/*====== Medata Providers page ======*/
+
+.markdown table thead, table.table thead {
+	background-color: var(--nav);
+	/*package manager - parser results*/
+}
+.package-manager .package-manager-toolbar {
+	/*package manager*/
+	padding-bottom: 1rem;
+}
+.package-manager-table-container .table .border-row {
+	background-color: var(--nav-grey-dark);
+	height: 5px;
+}
+.package-manager .package-manager-table-container {
+	max-height: 365px;
+	overflow-y: auto;
+}
+.package-manager-table-container {
+	border-radius: 5px;
+	background-color: var(--nav-grey-dark);
+}
+.package-manager div.available-packages div.package-manager-table-container table.table tbody tr td div.form-check, .package-manager div.available-packages div.package-manager-table-container table.table tbody tr.package-source td div.form-check, .package-manager div.installed-packages div.package-manager-table-container table.table tbody tr td div.form-check, .package-manager div.installed-packages div.package-manager-table-container table.table thead tr th.check-cell div.form-check {
+	padding-left: 1.5rem;
+}
+.package-manager-table-container {
+	scrollbar-width: none;
+}
+.collapse.show table.scraper-table thead tr, /*scraper tables*/
+.collapsing table.scraper-table thead tr {
+	background-color: var(--nav);
+}
+.markdown table tbody tr:nth-child(1n), .scraper-table tr:nth-child(1n) {
+	background-color: var(--nav-grey-dark);
+}
+.markdown table tbody tr:nth-child(2n), .scraper-table tr:nth-child(2n) {
+	background-color: var(--nav-grey);
+}
+.scraper-table th, .scraper-table td {
+	border: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: var(--nav-grey);
+}
+.package-source:hover {
+	/*hovering over scraper-plugin depositories in package manager*/
+	color: var(--accent);
+}
+
+
+			/*====== Duplicate checker ======*/
+
+.duplicate-checker .w-auto {
+	width: 3.5rem !important;
+	/*scenes per page dropdown menu*/
+}
+.duplicate-checker .table-responsive table.duplicate-checker-table.table.table-striped tbody tr.duplicate-group {
+	background-color: var(--nav-grey-dark);
+}
+.duplicate-checker .table-responsive table.duplicate-checker-table.table.table-striped tbody tr {
+	background-color: var(--nav-grey);
+}
+.table-striped tr:nth-child(2n+1) td {
+	background: transparent
+}
+.duplicate-checker div.table-responsive table.duplicate-checker-table.table.table-striped tbody tr td {
+	padding: 1rem 0.5rem;
+}
+#scene-duplicate-checker.col.col-xl-12.mx-auto.card div.duplicate-checker div.table-responsive table.duplicate-checker-table.table.table-striped tbody tr.separator {
+	border-top: none;
+}
+.duplicate-checker form div.form-group small.form-text {
+	padding-top: 0.5rem;
+}
+.duplicate-checker form div.form-group div.row.no-gutters div.form-check {
+	/*checkbox row below select options button*/
+	padding-top: 1rem;
+	padding-left: 1.9rem;
+}
+.duplicate-checker div.d-flex.mt-2.mb-2 h6.mr-auto.align-self-center {
+	color: var(--accent);
+}
+.duplicate-checker form div.form-group div.row.no-gutters div.col-12 div.dropdown button.dropdown-toggle.btn.btn-secondary {
+	box-shadow: none;
+	background-color: var(--nav-grey);
+}
+.duplicate-checker form div.form-group div.row.no-gutters div.col-12 div.dropdown button.dropdown-toggle.btn.btn-secondary:focus {
+	background-color: var(--nav-grey);
+}
+.duplicate-checker div.table-responsive table.duplicate-checker-table.table.table-striped tbody tr td {
+	vertical-align: middle
+}
+.fa-icon.text-warning {
+	color: var(--bright-red) !important;
+}
+
+
+			/*====== Parser ======*/
+
+.table thead th {
+	background-color: var(--nav);
+	border-bottom: 1px solid var(--card);
+}
+.scene-parser-results {
+	background-color: var(--card);
+}
+
+
+			/*====== Changelog ======*/
+
+.changelog-version-body {
+	background-color: var(--nav-grey-dark)
+}
+/*.btn.btn-link svg.svg-inline--fa.fa-angle-down.fa-icon.mr-3 {
+	color: var(--accent)
+}*/
+.markdown blockquote, .markdown pre {
+	background-color: var(--nav-grey-dark);
+	/*help menu stuff also the table colors for markown are changed together with all the other table stuff */
+}
+html body.modal-open div.fade.modal.show div.modal-dialog.modal-dialog-scrollable.manual.modal-xl div.modal-content div.modal-header {
+	background-color: var(--nav-grey-dark);
+}
+div.markdown code {
+	background-color: var(--nav-grey);
+}
+#tasks-panel .tasks-panel-tasks .form-group .setting-section .card .setting .sub-heading {
+	/*tidies up sub-heading only on tasks page*/
+	margin-right: 5em
+}
+
+
+													/* ==================== BUTTONS-SWITCHES ==================== */
+
+.btn-danger-minimal.btn.btn-danger,
+.btn {
+    border-radius: 0.4rem;
+}
+
+
+			/*======  Primary buttons  ======*/
+
+
+.btn-primary {
+	color: #fff;
+	background-color: var(--accent);
+	border-color: var(--accent);
+	font-weight: bold;
+	box-shadow: none;
+}
+.btn-primary:hover {
+	color: var(--accent);
+	background-color: var(--nav);
+	border-color: var(--accent);
+	transition-duration: 0.3s;
+}
+.btn-primary:active {
+	color: var(--accent);
+	background-color: var(--nav);
+	border-color: var(--accent);
+	transition-duration: 0.3s;
+	box-shadow: none;
+}
+.btn-primary:focus {
+	color: #fff;
+	background-color: var(--accent);
+	border-color: var(--accent);
+	transition-duration: 0.3s;
+	box-shadow: none;
+}
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active, 
+.show > .btn-primary.dropdown-toggle, 
+.btn-primary:not(:disabled):not(.disabled).active:focus, 
+.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.show > .btn-primary.dropdown-toggle:focus {
+	color: var(--accent);
+	border-color: var(--accent);
+	background-color: var(--nav);
+	box-shadow: none;
+}
+.btn-primary:disabled, .btn-primary:disabled:hover {
+	color: #fff;
+	background-color: var(--accent);
+	border-color: var(--accent);
+	font-weight: bold;
+}
+
+.pagination .btn {
+	border-left: none;
+	border-right: none;
+}
+	
+			/*======  Secondary buttons  ======*/
+
+
+.btn-secondary {
+	color: #fff;
+	background-color: var(--nav-grey-dark);
+	border-color: transparent;
+	box-shadow: none;
+}
+.btn-secondary:hover {
+	color: var(--accent);
+	background-color: var(--nav-grey-dark);
+	border-color: transparent;
+}
+.btn-secondary:active {
+	color: var(--accent);
+	border-color: transparent;
+	background-color: var(--nav-grey-dark);
+	box-shadow: none;
+}
+.btn-secondary:focus {
+	color: var(--accent);
+	background-color: var(--nav-grey-dark);
+	border-color: transparent;
+	box-shadow: none;
+}
+.btn-secondary:not(:disabled):not(.disabled).active, 
+.btn-secondary:not(:disabled):not(.disabled):active, 
+.show > .btn-secondary.dropdown-toggle, 
+.btn-secondary:not(:disabled):not(.disabled).active:focus, 
+.btn-secondary:not(:disabled):not(.disabled):active:focus, 
+.show > .btn-secondary.dropdown-toggle:focus {
+	color: var(--accent);
+	background-color: var(--nav-grey-dark);
+	border-color: transparent;
+	box-shadow: none;
+}
+.btn-secondary:disabled, .btn-secondary:disabled:hover {
+	color: #fff;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.page-size-selector .btn-secondary.form-control:focus {
+	box-shadow:none;
+}
+
+
+			/*======  Settings Secondary buttons  ======*/
+
+
+#configuration-tabs-tabpane-system .btn-secondary,     /*download ffmpeg button*/
+#tasks-panel .btn-secondary {
+	color: #fff;
+	background-color: var(--accent);
+	border-color: var(--accent);
+	font-weight: bold;
+	box-shadow: none;
+}
+#configuration-tabs-tabpane-system .btn-secondary:hover,
+#tasks-panel .btn-secondary:hover {
+	color: var(--accent);
+	background-color: var(--nav);
+	border-color: var(--accent);
+	transition-duration: 0.3s;
+}
+#configuration-tabs-tabpane-system .btn-secondary:active,
+#tasks-panel .btn-secondary:active {
+	color: var(--accent);
+	background-color: var(--nav);
+	border-color: var(--accent);
+	transition-duration: 0.3s;
+	box-shadow: none;
+}
+#configuration-tabs-tabpane-system .btn-secondary:focus,
+#tasks-panel .btn-secondary:focus {
+	color: var(--accent);
+	background-color: var(--nav);
+	border-color: var(--accent);
+	transition-duration: 0.3s;
+	box-shadow: none;
+}
+#tasks-panel .btn-secondary:not(:disabled):not(.disabled).active, 
+#tasks-panel .btn-secondary:not(:disabled):not(.disabled):active, 
+#tasks-panel .show > .btn-secondary.dropdown-toggle, 
+#tasks-panel .btn-secondary:not(:disabled):not(.disabled).active:focus, 
+#tasks-panel .btn-secondary:not(:disabled):not(.disabled):active:focus, 
+#tasks-panel .show > .btn-secondary.dropdown-toggle:focus {
+	color: var(--accent);
+	border-color: var(--accent);
+	background-color: var(--nav);
+	box-shadow: none;
+}
+#tasks-panel .btn-secondary:disabled, #settings-container .btn-secondary:disabled:hover {
+	color: #fff;
+	background-color: var(--accent);
+	border-color: var(--accent);
+	font-weight: bold;
+}
+
+
+			/*======  Minimal buttons  ======*/
+
+
+.minimal.btn.btn-primary, .minimal.expand-collapse.btn.btn-primary, .minimal.btn.btn-secondary {
+	border-color: transparent;
+	background-color: transparent;
+	box-shadow: none;
+}
+.minimal.dropdown-toggle.btn.btn-secondary:focus, 
+button.minimal.collapse-button.btn.btn-primary:hover, /*eg scraper table dropdown in Metadata Providers settings page*/
+button.minimal.collapse-button.btn.btn-primary:focus, 
+.minimal.btn.btn-primary:hover, 
+.btn.btn-minimal.btn-sm:hover, 	/*eg chevron in package manager*/
+.btn.btn-minimal:hover, 
+.minimal.expand-collapse.btn.btn-primary:hover, 
+.minimal.btn.btn-secondary:hover {
+	color: var(--accent);
+	background-color: transparent;
+	border-color: transparent;
+	box-shadow: none;
+}
+.minimal.btn.btn-primary:not(:disabled):not(.disabled).active, .minimal.btn.btn-primary:not(:disabled):not(.disabled):active {
+	color: var(--accent);
+	background-color: transparent;
+	box-shadow: none;
+}
+.btn.btn-minimal {		/*chevrons in tasks page*/
+	box-shadow: none;
+}
+.btn.btn-link, .btn.btn-link:focus {		/*eg [more] button link in scraper tables - changelog headings*/
+	text-decoration: none;
+	box-shadow: none;
+}
+.btn.btn-link:hover {
+	color: var(--accent);
+	text-decoration: none;
+}
+#parser-container.col.col-sm-9.mx-auto.card .fa-xmark {		/*"Display fields" in parser tool*/
+	color: var(--red);
+}
+#parser-container.col.col-sm-9.mx-auto.card .fa-check {
+	color: var(--green);
+}
+
+
+			/*======  [X] / [Clear] buttons  ======*/
+
+
+.clearable-text-field-clear.btn.btn-secondary,
+.selected-items-info button.minimal.btn.btn-secondary,      /*[x] icon when selecting scenes in main*/ 
+.tag-item.badge.badge-secondary .btn.btn-secondary, 
+.clear-all-button.btn.btn-minimal,                          /*when more than 2 filter categories selected from sidebar*/
+.manual .close {											/*Help modal [X] top right*/	
+	color: var(--red);
+	background-color: transparent;
+	border: none;
+	text-shadow: none;
+	opacity: 1
+}
+.clearable-text-field-clear.btn.btn-secondary:hover,
+.selected-items-info button.minimal.btn.btn-secondary:hover, 
+.sidebar-saved-filter-list-container .saved-filter-item .delete-button:hover,
+.saved-filter-list .dropdown-item-container .delete-button:hover, 
+.edit-filter-dialog .criterion-list .remove-criterion-button:hover,
+.tag-item.badge.badge-secondary .btn.btn-secondary:hover,
+.clear-all-button.btn.btn-minimal:hover, 
+.manual .close:hover {                                 
+	color: var(--bright-red);
+	background-color: transparent;
+	border-color: transparent;
+	opacity:1
+}
+.clear-all-button.btn.btn-minimal {
+/*	border: 1px solid red;*/
+	padding-bottom: 4px
+} 
+.search-container div.clearable-input-group.search-term-input button.clearable-text-field-clear.btn.btn-secondary,
+.sidebar-search-container div.clearable-input-group.search-term-input button.clearable-text-field-clear.btn.btn-secondary {         /*[x] button foe main top search field only*/
+	background-color: var(--nav-grey) !important;
+    padding: 0px 8px 3px 8px;
+	right: -5px;
+}
+.search-container div.clearable-input-group.search-term-input button.clearable-text-field-clear.btn.btn-secondary:hover,
+.sidebar-search-container div.clearable-input-group.search-term-input button.clearable-text-field-clear.btn.btn-secondary:hover {
+	background-color: var(--body) !important;
+
+}
+/*React-select containers*/
+div.react-select__indicator.react-select__clear-indicator.css-1xc3v61-indicatorContainer svg.css-8mmkcg, div.react-select__indicator.react-select__clear-indicator.css-15lsz6c-indicatorContainer svg.css-8mmkcg {
+	color: var(--red);
+}
+div.react-select__indicator.react-select__clear-indicator.css-1xc3v61-indicatorContainer svg.css-8mmkcg:hover, div.react-select__indicator.react-select__clear-indicator.css-15lsz6c-indicatorContainer svg.css-8mmkcg:hover {
+	color: var(--bright-red);
+}
+
+
+			/*======  Text Fields  ======*/
+
+
+.form-control, .form-control:focus {
+	background-color: var(--nav-grey-dark);
+	color: #fff;
+	border: none;
+}
+.StudioTagger-details div.input-group input.text-input.form-control,
+.PerformerTagger-details div.input-group input.text-input.form-control {  /*specific*/
+	background-color: var(--nav-grey);
+}
+.form-control:hover, .text-input.form-control:focus, .text-input.form-control:hover {
+	background-color: var(--nav-grey-dark);
+}
+.form-control:focus, .form-control:active {
+	box-shadow: 0 0 0 .18rem var(--accent);
+	color: #fff
+}
+.parser-field-title .input-control .text-input .form-control {          /*parser results*/
+	color: #fff
+}
+.form-control:disabled, .form-control[readonly], .form-control:disabled, .form-control[readonly]:focus, .form-control:disabled, .form-control[readonly]:hover {
+	/*where does this happen?  -------> filename parser results*/
+	background-color: var(--nav-grey);
+	color: #fff;
+	box-shadow: none;
+}
+/*Edit Filters accordion specifically*/
+.criterion-list.accordion .form-control, .criterion-list.accordion .form-control:focus {
+	background-color: var(--nav-grey);
+	color: #fff;
+	border: none;
+}
+.criterion-list.accordion .form-control:hover, .criterion-list.accordion .text-input.form-control:focus, .criterion-list.accordion .text-input.form-control:hover {
+	background-color: var(--nav-grey);
+}
+
+
+		/*======  Switches-Radio Buttons  ======*/
+
+
+input[type = "checkbox"] {                        /*Scenes/Performer grid view selection checkboxes*/
+	accent-color: var(--accent);
+}
+.form-check-input {									
+	accent-color: var(--accent);
+}
+.custom-control-label:before {						/*Radio switches*/
+	background-color: var(--nav-grey);
+	border: none;
+}
+.custom-control-input:checked ~ .custom-control-label:before {
+	border-color: var(--accent-transparent);
+	background-color: var(--accent-transparent);
+}
+.custom-control-input:focus ~ .custom-control-label:before {
+	box-shadow: 0 0 0 .2rem var(--accent-transparent);
+}
+.custom-control-input:focus:not(:checked) ~ .custom-control-label:before {
+	border-color: var(--accent-transparent);
+}
+.custom-control-input:not(:disabled):active ~ .custom-control-label:before {
+	background-color: var(--accent);
+	border-color: var(--accent-transparent);
+}
+/*affects circle button inside the radio switch track*/
+/*.custom-switch .custom-control-label:after {
+	background-color: var(--comment);
+}
+.custom-switch .custom-control-input:checked~.custom-control-label:after {
+    background-color: var(--background);
+}
+.custom-switch .custom-control-input:disabled:checked~.custom-control-label:before {
+    background-color: var(--50pct_purple);
+}*/
+
+
+			/*======  Dropdowns  ======*/
+  
+
+a.bg-secondary:hover {
+	color: var(--accent) !important;    	          /*selection hover color for menus like sort order in main toolbar*/
+	Background-color: transparent !important; 		/*background-color comes from .bg-secondary in main elements*/						
+}
+.dropdown-menu.show {						          /*eg saved filters in main toolbar or [Add Field] buttonj in parser*/
+	background-color: var(--nav-grey-dark);
+	padding-left: 2px;
+}
+.dropdown-item.active, div.dropdown-menu .dropdown-item:hover {
+	background-color: transparent;
+	color: var(--accent);
+}
+.saved-filter-list .dropdown-item-container .dropdown-item:hover {
+    background-color: transparent;
+}
+html body div.fade.popover.show {
+	background-color: var(--nav-grey-dark);
+}
+.display-mode-menu .dropdown-item:hover {
+    background-color: transparent;
+    color: var(--accent);
+}
+
+		
+			/*======  Zoom Slider  ======*/		
+
+
+/* Remove the default background entirely */
+input[type="range"].zoom-slider {
+  background: none !important;
+}
+/* Firefox left side (filled) */
+input[type="range"].zoom-slider::-moz-range-progress {
+  background: var(--accent-transparent) !important;
+  height: 6px;
+  border-radius: 3px;
+}
+/* Firefox right side (unfilled) */
+input[type="range"].zoom-slider::-moz-range-track {
+  background: var(--nav-grey) !important;
+  height: 6px;
+  border-radius: 3px;
+}
+/* Chrome / Safari / Edge track */
+input[type="range"].zoom-slider::-webkit-slider-runnable-track {
+  background: var(--accent) !important;
+  height: 6px;
+  border-radius: 3px;
+}
+/* Thumbs */
+input[type="range"].zoom-slider::-moz-range-thumb,
+input[type="range"].zoom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+/* Prevent Firefox focus outline jump */
+input[type="range"].zoom-slider::-moz-focus-outer {
+  border: 0;
+}
+
+
+input[type="range"]::-moz-range-track {
+	background: var(--nav-grey);
+}
+input[type="range"]::-moz-range-thumb {
+	background: var(--accent);
+}
+
+
+
+													/* ==================== EDIT FILTERS ==================== */
+
+
+.criterion-list.accordion .card {
+	background-color: var(--nav);
+}
+.criterion-list.accordion .card .collapse.show, .criterion-list.accordion .card .collapsing {          /*affects color during close open animation*/
+	background-color: var(--nav-grey-dark);
+}
+.dialog-content.criterion-selected .criterion-list.accordion .card .filter-item-header:focus, .dialog-content.criterion-selected .criterion-list.accordion .card .filter-item-header:hover, .dialog-content .criterion-list.accordion .card .filter-item-header:hover {
+	box-shadow: inset 0 0 0 .1rem transparent;
+	color: var(--accent);
+}
+.dialog-content div.criterion-list.accordion div.card button.filter-item-header {    /*accordion items border or sth*/
+	border-color: transparent;
+	box-shadow: none;
+}
+.svg-inline--fa.fa-thumbtack.fa-icon, .edit-filter-dialog .criterion-list .pin-criterion-button:hover svg {
+	color: var(--accent)
+}
+.svg-inline--fa.fa-thumbtack.fa-icon.tilted {
+	color: #ffffffa1;
+}
+.modifier-options .modifier-option {
+	background-color: var(--nav-grey-dark);
+}
+.modifier-options .modifier-option:hover {
+	background-color: var(--nav-grey-dark);
+	color: var(--accent);
+}
+.modifier-options .modifier-option.selected {
+	background-color: transparent;
+	color: var(--accent);
+}
+.modifier-options .modifier-option.selected:hover {
+	color: var(--accent);
+}
+.edit-filter-dialog .criterion-list .card {
+	border: none;
+	box-shadow: none;
+	margin: 0 0 -1px;
+	padding: 0;
+}
+.input-group-append {
+	/*search fields with a date picker*/
+	margin-left: 5px;
+}
+.edit-filter-dialog.modal.show .react-datepicker__input-container .btn.btn-secondary {    /*specifically to change calendar button backgrounds in accordion*/
+	background: var(--nav-grey)
+}
+
+			/*======  Date Picker ====== */
+
+
+.react-datepicker__input-container.btn.btn-secondary:not(:disabled):not(.disabled).active, .react-datepicker__input-container.btn.btn-secondary:not(:disabled):not(.disabled):active, /*when clicking button*/
+.react-datepicker__input-container button.btn.btn-secondary:focus {
+	color: var(--accent);
+	background-color: var(--nav);
+}
+div.react-datepicker__tab-loop div.react-datepicker-popper div div.react-datepicker {
+	border-color: var(--nav);
+}
+#date-picker-portal .react-datepicker__header.react-datepicker__header--has-time-select, #date-picker-portal .react-datepicker__header.react-datepicker__header--time, #date-picker-portal .react-datepicker-time__header, div.react-datepicker__tab-loop div.react-datepicker-popper div div.react-datepicker {
+	/*colors extra space for months with extra rows*/
+	background-color: var(--nav);
+}
+.react-datepicker__month-container, .react-datepicker__time-box, div.react-datepicker .react-datepicker__header {
+	background-color: var(--card);
+}
+#date-picker-portal .react-datepicker__day--today {
+	color: var(--accent);
+}
+#date-picker-portal .react-datepicker__day:hover {
+	background-color: var(--accent-transparent);
+}
+#date-picker-portal .react-datepicker__time-list-item:hover {
+	background-color: var(--accent-transparent);
+}
+#date-picker-portal .react-datepicker__time-list-item--selected, #date-picker-portal .react-datepicker__day--selected, #date-picker-portal .react-datepicker__day--keyboard-selected {
+	background-color: var(--accent);
+	color: #fff !important;
+}
+div.react-datepicker__month-dropdown-container.react-datepicker__month-dropdown-container--scroll div.react-datepicker__month-dropdown, div.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable {
+	background-color: var(--card);
+}
+.react-datepicker__year-option--selected, .react-datepicker__month-option--selected, .react-datepicker__month-year-option--selected {
+	color: var(--accent);
+}
+
+
+													/* ==================== REACT-SELECT ==================== */
+
+
+/*Dropdown selection menus to add movie/gallery etc*/
+/*can change on hover behavior for groups/peformers/galleries dropdowns*/
+.react-select__option--is-focused.css-3993q7-option span.gallery-select-option span.gallery-select-row span.gallery-select-details span.gallery-select-date, .react-select__option--is-focused.css-3993q7-option span.gallery-select-option span.gallery-select-row span.gallery-select-details span.gallery-select-studio, .react-select__option--is-focused.css-3993q7-option span.group-select-option span.group-select-row span.group-select-details span.group-select-date, .react-select__option--is-focused.css-3993q7-option span.group-select-option span.group-select-row span.group-select-details span.group-select-studio, div.react-select__menu .react-select__option--is-focused {
+	/*background-color: var(--accent);*/
+	background-color: transparent;
+	color: var(--accent);
+}
+div.react-select__control {
+	background-color: var(--nav-grey);
+	border-color: transparent;
+}
+div.react-select__control:hover {
+	border-color: transparent;
+	box-shadow: 0 0 0 .2rem var(--accent-transparent);
+}
+div.react-select__menu {
+	background-color: var(--nav-grey-dark);
+}
+div.react-select__control.react-select__control--is-focused.react-select__control--menu-is-open.css-t3ipsp-control {
+	border-color: transparent;
+	box-shadow: 0 0 0 .2rem var(--accent-transparent);
+}
+div.react-select__control.react-select__control--is-focused.css-t3ipsp-control {
+	border-color: transparent;
+	box-shadow: 0 0 0 .2rem var(--accent-transparent);
+}
+div.react-select__control.react-select__control--is-focused.react-select__control--menu-is-open.css-t3ipsp-control, div.react-select__indicators.css-1wy0on6, div.react-select__indicator.react-select__dropdown-indicator.css-15lsz6c-indicatorContainer svg.css-8mmkcg {
+	/*down arrow*/
+	color: var(--accent);
+}
+div.react-select__control .react-select__multi-value {
+	/*tag chips in container*/
+	background-color: var(--tags);
+}
+.css-1h0qd4 {
+	color: var(--red);
+}
+.css-1h0qd4:hover {
+	background-color: transparent;
+	color: var(--bright-red);
+}
+.react-select__option--is-selected.css-o3khks-option {
+	background-color: var(--accent);
+}
+.react-select__control.css-13cymwt-control:hover .css-8mmkcg {
+	color: var(--accent)
+}
+
+
+														/* ==================== TAGGER / SCRAPERS ================ */
+
+
+.tagger-container.mx-md-auto .mt-3.search-item {
+	background-color: var(--card);
+}
+.tagger-container.mx-md-auto .mt-3.search-item .pl-0.mt-3.mb-0 .row.mx-0.mt-2.search-result.selected-result.active {
+	/*selected result*/
+	background-color: var(--nav);
+}
+.mt-3 .search-result {
+	/*other results*/
+	background-color: var(--nav-grey-dark);
+}
+.search-result:hover {
+	background-color: var(--nav-grey);
+}
+.search-result .performer-select-active .react-select__control, .search-result .studio-select-active .react-select__control {
+	/*in tagger when performer or studio is not yet tagged*/
+	background-color: var(--nav-grey);
+}
+.tagger-container.mx-md-auto .btn.btn-secondary {
+	background-color: var(--nav-grey-dark);
+	/*eg tagger when a studio or performer is not tagged*/
+}
+.react-select.studio-select.css-b62m3t-container, .react-select.studio-select.studio-select-active.css-b62m3t-container {
+	/*tagger when a studio or performer is not tagged spacing floppy button*/
+	margin-right: 3px;
+}
+.scene-path {
+	/*margin from description to scene path and duration for scene to be scraped in tagger*/
+	margin-top: .5rem;
+}
+/*====== studio/performer tagger changes ======*/
+.PerformerTagger-performer, .StudioTagger-studio {
+	background-color: var(--nav-grey-dark);
+}
+.StudioTagger-studio .studio-card img {
+	background-color: var(--nav-grey-dark);
+}
+.PerformerTagger-box-link.input-group span.input-group-text, .StudioTagger-box-link.input-group span.input-group-text {
+	background-color: var(--nav-grey-dark);
+	border: 0px;
+}
+.PerformerTagger-box-link.input-group .input-group-append .btn.btn-primary, .StudioTagger-box-link.input-group .input-group-append .btn.btn-primary {
+	border-top-left-radius: 0.4rem;
+	border-bottom-left-radius: 0.4rem;
+}
+.row.mb-2.no-gutters .btn-link {
+	color: #ffffffc9/*show configuration / help links*/
+}
+html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom {
+	background-color: var(--nav-grey-dark)
+}
+.mt-3.search-item {
+	background-color: var(--nav-grey-dark);
+	/*performer edit "scrape with" results*/
+}
+.mt-3.search-item:hover .performer-name {
+	color: var(--accent) !important
+}
+
+
+															/* ================== VIDEO JS ================== */
+
+
+.video-js {
+	background-color: transparent;
+	/*background: linear-gradient(0deg, var(--card) -5%, var(--body) 25%);*/
+}
+.vjs-poster {
+	background-color: transparent;
+}
+.video-js .vjs-control-bar {
+	font-size: 12px;
+}
+.video-js .vjs-control-bar::before {
+	background: transparent;
+	bottom: 0;
+	content: "";
+	height: 10rem;
+	pointer-events: none;
+	position: absolute;
+	width: 100%;
+}
+.vjs-menu li.vjs-selected, .vjs-menu li.vjs-selected:focus, .vjs-menu li.vjs-selected:hover, .js-focus-visible .vjs-menu li.vjs-selected:hover {
+	background-color: var(--accent);
+}
+.vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+	background-color: var(--nav-grey-dark);
+}
+.video-js .vjs-play-progress {
+	background-color: var(--accent);
+}
+.video-js .vjs-load-progress {
+	background: var(--accent);
+}
+.video-js .vjs-load-progress div {
+	/*background: #87725975;*/
+	background: var(--tags)
+}
+.vjs-volume-control.vjs-control.vjs-volume-vertical .vjs-volume-bar.vjs-slider-bar.vjs-slider.vjs-slider-vertical .vjs-volume-level {
+	background-color: var(--accent);
+}
+.VideoPlayer {
+	background: linear-gradient(0deg, var(--card) 0%, #0000) var(--body) 45%;
+}
+
+
+																/* ============== PLUGINS / SCRIPTS ============== */
+
+
+			/*====== Quick Edit ======*/
+
+#configModal {
+	background: var(--card);
+	max-width: 68%
+}
+#configModal > h3:nth-child(1) {
+	margin-top: -1rem;
+	margin-bottom: 1.5rem
+}
+#configModal .minimal {
+	color: var(--red);
+}
+#configModal .minimal:hover {
+	color: var(--bright-red);
+	background: transparent;
+}
+#configModal .minimal:focus {
+	box-shadow: none;
+}
+#configModalClose.btn.btn-secondary {
+	color: var(--red);
+	margin-top: 1rem !important;
+}
+#configModalClose.btn.btn-secondary:hover {
+	color: var(--bright-red)
+}
+.float-right.mr-5 {
+	margin-right: 2rem !important;
+	margin-top: 1rem !important;
+}
+.card.card-sm {
+	box-shadow: 0 0 0 1px var(--nav-grey), 0 0 rgba(16, 22, 26, 0), 0 0 rgba(16, 22, 26, 0);
+}
+#buttons-container.col-12 div#btnContainerGROUP\ MAKEUP.form-group.row, #buttons-container.col-12 div#btnContainerSHOT\ TYPE.form-group.row, #buttons-container.col-12 div#btnContainerLOCATIONS.form-group.row, #buttons-container.col-12 div#btnContainerSURFACES.form-group.row, #buttons-container.col-12 div#btnContainerTHEME.form-group.row, #buttons-container.col-12 div#btnContainerRACE.form-group.row, #buttons-container.col-12 div#btnContainerAGE\ GROUP.form-group.row, #buttons-container.col-12 div#btnContainerGENITALS.form-group.row, #buttons-container.col-12 div#btnContainerCLOTHING.form-group.row, #buttons-container.col-12 div#btnContainerACCESORIES.form-group.row, #buttons-container.col-12 div#btnContainerACTS.form-group.row, #buttons-container.col-12 div#btnContainerFINISHERS.form-group.row, #buttons-container.col-12 div#btnContainerNOTABLES.form-group.row {
+	flex-wrap: wrap;
+	margin-left: -16rem;
+	padding-left: 3rem;
+}
+.mt-2 {
+	margin-bottom: 1rem
+}
+.btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus, .show > .btn-success.dropdown-toggle:focus {
+	box-shadow: none;
+}
+.btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active, .show > .btn-success.dropdown-toggle {
+	color: #fff;
+	background-color: var(--accent);
+	border-color: var(--accent);
+}
+
+			/*======  Main page animations  ======*/
+
+
+/* "Customize" bottom right of main page */
+html body div#root div.main.container-fluid div.recommendations-container.recommendations-container-edit div div div.recommendation-row, html body div#root div.main.container-fluid div.recommendations-container.recommendations-container-edit div div.recommendation-row.recommendation-row-add {
+	background-color: var(--card)
+}
+html body div#root div.main.container-fluid div.recommendations-container div div.recommendation-row.performer-recommendations div.slick-slider.slick-initialized div.slick-list div.slick-track div.slick-slide.slick-cloned div div.performer-card.zoom-undefined.grid-card.card {
+	background-color: var(--card)
+}
+/*Target the Specific Slick Tracks to Animate and Include a Pause on Hover*/
+.scene-recommendations .slick-track {
+	animation: scrollLeftToRight 9000s linear infinite;
+	white-space: nowrap;
+	overflow: hidden;
+	animation-play-state: running;
+}
+.gallery-recommendations .slick-track, .group-recommendations .slick-track, .performer-recommendations .slick-track, .studio-recommendations .slick-track {
+	animation: scrollLeftToRight 2000s linear infinite;
+	white-space: nowrap;
+	overflow: hidden;
+	animation-play-state: running;
+}
+.gallery-recommendations .slick-track:hover, .group-recommendations .slick-track:hover, .scene-recommendations .slick-track:hover, .performer-recommendations .slick-track:hover, .studio-recommendations .slick-track:hover {
+	animation-play-state: paused;
+}
+/*Main Page - Blur Other Cards That Are Not Moused Over*/
+.gallery-recommendations .slick-track:hover .gallery-card.zoom-1.grid-card.card:not(:hover), .group-recommendations .slick-track:hover .movie-card.grid-card.card:not(:hover), .scene-recommendations .slick-track:hover .scene-card.zoom-1.grid-card.card:not(:hover), .performer-recommendations .slick-track:hover .performer-card.grid-card.card:not(:hover), .studio-recommendations .slick-track:hover .studio-card.grid-card.card:not(:hover) {
+	filter: blur(2px);
+}
+/* Animation for Scene, Performer, and Studio Cards on Main Page */
+@keyframes scrollLeftToRight {
+	0%, 100% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(-200%);
+	}
+}
+/* Hide slick-dots element on Main Page - Less Clutter */
+.slick-dots {
+	display: none !important;
+}
+/*Hide the Prev-Next Arrows on Main Page*/
+.slick-arrow.slick-prev, .slick-arrow.slick-next {
+	display: none !important;
+	width: 0 !important;
+	margin: 0 !important;
+}
+/* Media query for mobile devices */
+@media only screen and (max-width: 767px) {
+	/* Disable animations and hover effects on mobile */
+	.gallery-recommendations .slick-track, .movie-recommendations .slick-track, .scene-recommendations .slick-track, .performer-recommendations .slick-track, .studio-recommendations .slick-track, .gallery-recommendations .slick-track:hover, .movie-recommendations .slick-track:hover, .scene-recommendations .slick-track:hover, .performer-recommendations .slick-track:hover, .studio-recommendations .slick-track:hover {
+		animation: none;
+		animation-play-state: running;
+		/* Ensure animations are not paused on hover on mobile */
+	}
+}
+
+
+														/* [Global changes] Blur NSFW images and unblur on mouse over */
+
+
+			/* === MORE BLUR === */
+
+/*.scene-card-preview,
+.vjs-poster,
+video,
+.scene-cover,
+.scrubber-item,
+.image-card-preview,
+.image-image,
+.gallery-image,
+.group-card-image,
+.group-images,
+.gallery-card-image,
+table > tbody > tr > td > a > img.w-100,
+.performer-card-image,
+img.performer,
+.studio-card-image,
+#tag-page.row .detail-header.full-width .detail-container .detail-header-image .logo,
+.tag-card-image
+{
+ filter: blur(30px);
+}
+
+			/* === LESS BLUR === */
+
+/*.TruncatedText,
+.scene-studio-overlay,
+.scene-header > h3,
+h3.scene-header,
+.studio-logo,
+.image-thumbnail,
+h3.image-header,
+.group-details > div > h2,
+h3.gallery-header,
+.studio-details .logo,
+.studio-details > div > h2,
+.detail-container > .logo,
+.detail-container > h2
+{
+ filter: blur(5px);
+}
+
+			/* === UNBLUR ON HOVER === */
+
+/*.TruncatedText:hover,
+.thumbnail-section:hover *,
+.card:hover .card-section-title,
+.card:hover .scene-studio-overlay,
+.video-js:hover .vjs-poster,
+video:hover,
+.scene-header:hover > h3,
+div:hover > .scene-header,
+.studio-logo:hover,
+.scene-cover:hover,
+.image-thumbnail:hover,
+.scene-card-preview:hover,
+.scrubber-item:hover,
+.image-image:hover,
+div:hover > .image-header,
+.gallery-image:hover,
+.group-images:hover,
+.group-details > div > h2:hover,
+div:hover > .gallery-header,
+table > tbody > tr > td:hover > a > img.w-100,
+img.performer:hover,
+.studio-details .logo:hover,
+.studio-details:hover > div > h2,
+html body div#root div.main.container-fluid div#tag-page.row div.detail-header.full-width div.detail-container div.detail-header-image img.logo:hover,
+.logo-container > .logo:hover,
+.logo-container:hover > h2
+{
+ filter: blur(0px);
+}
+
+
+													/* ==================== DETAILS / EDIT PAGES =================== */
+
+
+			/*========== Scene/Galleries ==========*/
+
+
+html body div#root div.main.container-fluid div.row div.scene-divider.d-none.d-xl-block button.btn.btn-primary, html body div#root div.main.container-fluid div.row div.gallery-divider.d-none.d-xl-block button.btn.btn-primary, html body div#root div.main.container-fluid div.row div.gallery-container, .gallery-tabs, /*left tab next to video player background*/
+.scene-tabs.order-xl-first.order-last {
+	background: linear-gradient(0deg, var(--card) 0%, #0000) var(--body) 45%;
+}
+.tab-content, /*Hides scrollbar for the left side tab in scenes and galleries when description is too long and hovered to expand*/
+.gallery-tabs {
+	scrollbar-width: none;
+}
+.col-9.col-12.scene-details, /*Hides director, updated at/created at lines*/
+.fade.tab-pane.active.show div.row div.col-12 h6, .fade.tab-pane.active.show div.row div.col-12 h6 {
+	display: none;
+}
+.row.justify-content-center.scene-performers {
+	/*Margin between tags performer*/
+	margin-top: 1.5rem;
+}
+.image-header, .tag-name, .studio-name, .performer-name, .group-name, .gallery-header, .scene-header {
+	/*title top of page*/
+	font-weight: 600;
+}
+.mr-auto.nav.nav-tabs {
+	/*space between details edit lines*/
+	line-height: .8;
+}
+span.resolution {
+	margin-right: 0.6rem;
+	/*moves to the left framerate/resolution*/
+}
+.gallery-divider button, .scene-divider button {
+	color: #fff;
+}
+/**/
+/*nav tabs below rating stars*/
+.nav-tabs .nav-link:hover {
+	border: none;
+}
+.nav-tabs .nav-link:focus {
+	color: var(--accent);
+	background-color: transparent;
+	border-color: transparent;
+}
+.nav-tabs .nav-link:not(:disabled):not(.disabled).active, .nav-tabs .nav-link:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+	color: var(--accent);
+	border: none;
+	background-color: transparent;
+}
+/**/
+.scene-toolbar-group svg:hover, /*some of the extra plugin buttons in the toolbar*/
+.scene-toolbar-group .btn-group:hover {
+	fill: var(--accent);
+	color: var(--accent);
+	background-color: transparent;
+}
+#scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
+	/*edit tab header*/
+	/*background-color: var(--body);*/
+	background-color: #1f1f22;
+	margin-bottom: .2rem;
+}
+#scene-edit-details .scraper-group.btn-group {
+	margin-right: 13px;
+}
+/**/
+/*scrape with dropdown*/
+#scene-edit-details .scraper-filter-container {
+	background-color: var(--nav-grey-dark);
+	border-bottom: none;
+}
+#scene-edit-details .dropdown-divider {
+	border-top-color: var(--nav);
+	margin: 6px;
+}
+/**/
+.scene-file-card.card .card-header, /*more than 1 file for scene at file info tab*/
+.scene-file-card.card {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+
+			/*======  Wide Scraper View ======*/
+
+/**//*manual url scrape in scene edit page*/
+.modal-dialog.scrape-dialog.modal-lg {
+	max-width: 1024px;
+}
+.modal-dialog.scrape-dialog.modal-lg .offset-lg-3 {
+	margin-left: 15%;
+}
+.modal-dialog.scrape-dialog.modal-lg .col-lg-3 {
+	flex: 0 0 15%;
+	max-width: 15%;
+}
+.modal-dialog.scrape-dialog.modal-lg .col-lg-9 {
+	flex: 0 0 85%;
+	max-width: 85%;
+}
+.string-list-input {
+	width: inherit;
+}
+/**/
+
+			/*======  Queue Viewer ======*/
+
+#queue-viewer .queue-controls {
+	/*queue controls header*/
+	background-color: var(--body);
+}
+#queue-viewer .current {
+	background-color: var(--nav-grey-dark);
+	color: var(--accent);
+}
+/*#queue-viewer .my-2.current a {
+	color: var(--accent)
+}*/
+#queue-viewer .my-2:hover {
+	background-color: var(--nav-grey-dark);
+}
+#queue-content .my-2 .ml-1.d-flex.align-items-center, #queue-content .my-2.current .ml-1.d-flex.align-items-center {
+	margin-top: -20px;
+}
+/*queue is messed up when switching to it but changing theme from tampermonkey and changing back fixes it*/
+
+
+			/*========== Movie/Performer/Tag/Studio Details ==========*/
+
+.detail-header {
+	background: linear-gradient(0deg, var(--nav-grey-dark) 5%, #0000) var(--nav) 100%;  
+	/*background-color: var(--nav);*/
+}
+.detail-body nav {
+	border-bottom: solid 2px var(--card);
+}
+.sticky.detail-header {
+	background-color: var(--nav-grey-dark);
+}
+.sticky.detail-header .sticky.detail-header-group .group-name:hover, .sticky.detail-header .sticky.detail-header-group .studio-name:hover, .sticky.detail-header .sticky.detail-header-group .tag-name:hover, .sticky.detail-header .sticky.detail-header-group .performer-name:hover {
+	color: var(--accent);
+}
+.tag-head.col .details-edit.mb-2 .btn.btn-secondary, /*auto tag and submit to stashdb buttons*/
+#studio-page.row .studio-head.col .details-edit div button.btn.btn-secondary, .performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-primary, .performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-secondary {
+	display: none;
+}
+.details-edit.mb-2,
+.details-edit {
+	position: absolute;
+	top: 0rem;
+	right: 0em;
+}
+#performer-page.row .details-edit.mb-2,
+#performer-page.row .details-edit {
+	position: relative;
+}
+/**/ /*performer page specifically*/  /*only works for "compact expanded details" in interface settings 
+html body div#root div.main.container-fluid div#performer-page.row div.detail-header div.detail-container div.row div.performer-head.col div.col div.row.row-cols-8 div.details-edit.mb-2 {
+	position: absolute;
+	top: -15.8rem;
+	right: -1em;
+}
+html body div#root div.main.container-fluid div#performer-page.row div.detail-header.collapsed div.detail-container div.row div.performer-head.col div.col div.row.row-cols-8 div.details-edit.mb-2 {
+	position: absolute;
+	top: -11rem;
+	right: -1em;
+}
+/**/
+.details-edit.col-xl-9.mb-3,     /*restores btn group in movie/studio/performer edit to default position because the previous selector messes it up*/
+.details-edit.col-xl-9.mt-3 {
+	position: relative
+}
+.popover-body .image-input.form-label button.btn.btn-secondary, #set-image-popover.fade.show.popover.bs-popover-top div.popover-body {
+	background-color: var(--nav-grey-dark);
+	/*eg performer edit set image*/
+}
+span.detail-item-value.synopsis {
+	-webkit-line-clamp: 5;
+}
+
+
+			/*========== Performer ==========*/
+
+
+#performer-page .detail-header-image img {
+	margin-bottom: -1.5rem;
+}
+/*#performer-page .detail-header-image .btn {
+	padding-bottom: 0rem;
+	padding-left: 0rem;
+	padding-right: 0rem;
+}*/
+#performer-page .full-width .detail-item {
+	width: 50%;
+}
+/*#performer-page .full-width .detail-header-image img {
+	max-width: 18.5rem;
+}*/
+#performer-scraper-popover.dropdown-menu.show {
+	max-height: 850px;
+}
+
+			/*========== Movies ==========*/
+
+form#group-edit #synopsis {
+	/*Makes the details/synopsis text area in movie edit bigger*/
+	min-height: 37ex;
+}
+
+
+																	/* ==================== CARDS ==================== */
+
+
+.card {						/*Shows up when using lighter colors*/
+	box-shadow: none;
+}
+.card > hr {
+	display: none;
+}
+/**/	/*Card titles Hover effect*/
+.card-section-title .TruncatedText {	
+	font-weight: bold; 
+	font-size: 17px;
+	transition: ease-in-out 0.5s;
+	z-index: 1;
+}
+.card-section-title .TruncatedText:hover {
+	color: var(--accent);
+	cursor:pointer
+}
+.group-card .card-section-title .TruncatedText {	
+	-webkit-line-clamp: 1 !important;            
+}
+/**/
+.card-section-title.flex-aligned {		/*Distance title to date*/
+	line-height: 1.5rem;
+	margin-bottom: -1px;
+	margin-top: 0.1rem;
+}
+.group-card__date,			
+.gallery-card__date,
+.scene-card__date {
+	font-size: 12px;
+}
+html body div#scene-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,			/*remove tooltips from popover buttons*/
+html body div#group-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,
+html body div#image-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,
+html body div#gallery-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,
+html body div#organised-tooltip.fade.show.tooltip.bs-tooltip-bottom,
+html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
+	display:none;
+}
+
+
+														/* ==================== SCENE/GALLERY CARDS ==================== */
+
+/*.scene-card-preview-image {
+  object-position: center;
+}*/
+.scene-card.grid-card.card {
+	background: linear-gradient(0deg, var(--card) 15%, var(--body) 45%);
+}
+.image-card.grid-card.card,
+.gallery-card.grid-card.card {
+	background: linear-gradient(0deg, var(--card) 15%, var(--body) 100%);
+}
+.scene-card .card-section {							/*Bottom of preview to title*/
+	margin-top: -0.5rem;
+}
+.gallery-card.grid-card.card .card-section {		/*title for galleries with no description stays at top*/
+	margin-top: -0.1px;
+}
+.TruncatedText.gallery-card__description,
+.TruncatedText.scene-card__description{
+	margin-top: 0.3rem;
+	margin-bottom: -0.7rem;
+	font-size: 13px;
+}
+.gallery-card.card {
+	padding-bottom: 0.3rem;
+}
+/*.gallery-card .btn-group,
+.scene-card .btn-group {
+	bottom: -0.2em
+}*/
+.gallery-card .card-popovers.btn-group,			/*btn-group stays at bottom of card when there is no description*/
+.scene-card .card-popovers.btn-group {
+	margin-top: auto;															
+	margin-bottom: 5px;
+}
+.performer-tag-container {					/*Make the performer tags in popover take up less width */
+  	margin-left: -5px;
+  	margin-right: -1px;
+	padding-bottom: 0rem;
+  	background: transparent;
+}	
+.tag-item.d-block.badge.badge-secondary {      /*performer tag names popover*/  
+	padding: .2em .6em 0em .6em;
+	font-weight: 700;
+	border-radius: .25rem;
+}
+#popover .performer-disambiguation {    
+	display: none; 
+}
+.image-card .studio-overlay,			/**removes title from image cards*/
+.image-card .TruncatedText {
+	display: none;
+}
+.scene-specs-overlay {						
+	filter: drop-shadow(.2px .2px 2px #000);		/*add drop shadow to scene specs overlay*/
+    /*background-color: #0000005c;					 /*adds background to scene specs overlay*/
+    /*border-radius: 3px;
+    padding: 0 3px;*/
+}
+/**/	/*fileless scenes*/
+.fileless .scene-card-preview-image {
+    background-color: var(--red);
+}
+/**/
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,					
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
+   -webkit-line-clamp: 1 !important;
+}
+.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,					
+.scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
+.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,					
+.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
+   -webkit-line-clamp: 3 !important;
+}
+.gallery-card .card-section-title .TruncatedText,
+.scene-card .card-section-title .TruncatedText {
+  -webkit-line-clamp: 3 !important;
+}
+.GalleryWallCard-footer:hover .GalleryWallCard-title {		/*removes underline from gallery wall img title cards*/
+	text-decoration: none;
+}
+/**/
+/* Make the image capable of holding a positioned overlay */
+.GalleryWallCard.GalleryWallCard-landscape,
+.GalleryWallCard.GalleryWallCard-portrait {
+ 	position: relative;
+ 	display: block;
+}
+/* Gradient overlay (initially hidden) */
+.GalleryWallCard.GalleryWallCard-landscape::after,
+.GalleryWallCard.GalleryWallCard-portrait::after {
+ 	content: "";
+ 	position: absolute;
+ 	inset: 0;
+ 	background: linear-gradient(to bottom, rgba(0,0,0,0) 25%, rgba(0, 0, 0, .75));
+ 	opacity: 0;
+ 	pointer-events: none;
+ 	transition: opacity 1s ease;
+}
+/* Show gradient when hovering the image itself */
+.GalleryWallCard.GalleryWallCard-landscape:hover::after,
+.GalleryWallCard.GalleryWallCard-portrait:hover::after {
+ 	opacity: 1;
+}
+/* Show gradient when hovering the footer / scrubber */
+.lineargradient:hover ~ html body .GalleryWallCard.GalleryWallCard-landscape::after,
+.lineargradient:hover + html body .GalleryWallCard.GalleryWallCard-portrait::after {
+	opacity: 1;
+}
+/* Smooth filter animation */
+.GalleryWallCard.GalleryWallCard-landscape,
+.GalleryWallCard.GalleryWallCard-portrait {
+	transition: filter 1s ease;
+}
+/* Apply saturation/brightness on hover */
+.GalleryWallCard.GalleryWallCard-landscape:hover,
+.GalleryWallCard.GalleryWallCard-portrait:hover {
+ 	filter: saturate(120%) brightness(120%);
+}
+/**/
+.GalleryWallCard-footer {
+  transition: 1s;
+}
+.GalleryWallCard:hover .GalleryWallCard-footer {
+  opacity:1;
+  transition: all 1s ease;
+  transition-delay: 0.2s
+}
+
+
+														/* ==================== MOVIE CARDS ==================== */
+
+.group-card.grid-card.card {
+	background: linear-gradient(0deg, var(--card) 0%, var(--body) 10%);
+}
+.group-card.zoom-undefined.grid-card.card {
+	background:  linear-gradient(0deg, var(--card) 0%, var(--body) 15%);
+}
+.slick-slide .group-card.zoom-undefined.grid-card.card {
+	background: linear-gradient(0deg, var(--card) 0%, var(--body) 10%);
+}
+/* Moves + fades in button group */
+.group-card .btn-group {
+  display: flex;
+  position: absolute;
+  bottom: 3.5rem;
+  left: 0rem;
+  opacity: 0;
+  transition: all 1s;
+}
+.group-card:hover .btn-group {
+  opacity: 1;
+}
+/* Image wrapper for gradient overlay */
+.group-card-header {
+  position: relative;
+  display: block;
+}
+/* Gradient overlay layer */
+.group-card-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 25%, rgba(0, 0, 0, .75));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+/* 🔥 Apply overlay when card hovered (NOT just when image hovered) */
+.group-card:hover .group-card-header::after {
+  opacity: 1;
+}
+/* Smooth filter */
+.group-card-image {
+  transition: all 1s ease;
+}
+/* 🔥 Apply saturation when card hovered (NOT just when image hovered) */
+.group-card:hover .group-card-image {
+  filter: saturate(120%) brightness(110%) contrast(120%);
+}
+/**/ /*Styles button like primary-button*/ 
+/*
+.group-card .card-popovers .minimal.btn.btn-primary {
+	color: var(--body);
+	background-color: var(--accent);
+	border: 2px solid;
+	border-color: var(--accent);
+    border-radius: 10px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	margin-left: 0px;
+	width: 100%;
+	padding-right: 6px;
+	padding-left: 0px;  
+}
+.group-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
+	background-color: var(--nav);
+	color: var(--accent);
+	border: 2px solid;
+	border-color: var(--accent);
+}
+/**/
+.group-card .card-section .group-card__description {  		/*Remove description from movie card*/
+	display: none;										    
+}
+/**/	/*Tidying up bottom of card*/
+.group-card__details {					
+	margin-bottom: 0px;										
+}
+.group-card.card {
+	padding: 0 0 .5rem;
+}
+.group-card .card-section {
+   padding: .3rem 1rem 0;
+}
+/**/
+.scene-card.zoom-1.grid-card.card .scene-group-scene-number {
+	display: none;
+	font-size: 12px;
+	position: relative;				/*scene # on movie card left of video player when a scene is numbered in a movie*/ /*specificaly for movie details view*/
+	bottom: -1.8rem;
+	right: 7.5rem;
+}
+.group-card .group-scene-number {
+	font-size: 13px;
+	position: absolute;				/*scene # on movie card left of video player when a scene is numbered in a movie*/ /*this affects scenes video player*/
+	bottom: 0.5rem;
+	right: 1.0rem;
+}
+
+/**/ /*not perfecr solution cuts of edges of posters*/
+/*.item-list-container .row.justify-content-center .group-card.grid-card.card .thumbnail-section .group-card-header .group-card-image{
+  height: 317px;				
+  width: 222px;						/*thumbnails all same size*/ /*only affects images in movies page not for example in scenes video player*/
+/*}*/
+
+/* Fixed uniform thumbnail area */
+div.row.justify-content-center div.group-card.zoom-1.grid-card.card .thumbnail-section {
+  width: 218.5px;
+  height: 310px; /* pick the height you want */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7000000; /* background behind letterboxing */
+  overflow: hidden;
+}
+/* Make every image fit exactly, keep aspect ratio, no cropping */
+div.row.justify-content-center div.group-card.zoom-1.grid-card.card .thumbnail-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/**/
+
+
+													/* ==================== PERFORMER CARDS ==================== */
+
+
+.performer-card .btn-group {
+	opacity: 0;
+	transition: all 1s ease-in-out;
+	
+}
+.performer-card:hover .btn-group {
+	opacity: 1;
+}
+
+.performer-card .card-popovers .minimal.btn.btn-primary {
+	color: #ffffffc2;
+	background-color: transparent;
+	border: none;
+    border-radius: 0;
+	/*text-shadow: 1px 1px 3px black;*/
+	filter:drop-shadow(1px 1px 3px black);
+	transition: color 0.3s ease-in-out;
+}
+.performer-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
+	background-color: transparent;
+	color: var(--accent);
+	/*color: white;*/
+	border: none;
+}
+/**/	/*Moves-Hides flag icon*/
+.performer-card .fi {      		
+	opacity: 0;
+	transition: all 1s ease-in-out;
+}
+.performer-card:hover .fi {
+	opacity: 1;
+}
+.performer-card__age {				/*remove performer age*/
+	display: none;
+}
+.performer-card .gender-icon {		/*remove gender icon*/		
+	display: none;				
+}
+/**/	/*Tidying up bottom of card*/
+.performer-card .card-section {
+   padding: .3rem 1rem 0;
+}
+.performer-card .card-section h5 {
+	margin-bottom: -0.6rem;
+}
+/**/
+.performer-card .performer-disambiguation {			/*hides disambiguation on cards*/
+	display: none;
+}
+.performer-card .card-controls {
+	z-index: 101
+}
+
+		/*====== Performer card background ======*/
+
+
+/*CHAT GPT simplification*/
+/**//* --- Base overlay build --- */
+.performer-card .thumbnail-section {
+  position: relative;
+  z-index: 2;
+}
+.performer-card .thumbnail-section::before,
+.performer-card .thumbnail-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  transition: opacity 1s ease-in-out;
+}
+/* Base gradient background layer */
+.performer-card .thumbnail-section::before {
+  z-index: -101;
+  background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;
+}
+/* Hover color overlay (controlled via --rating-color variable) */
+.performer-card .thumbnail-section::after {
+  z-index: -100;
+  opacity: 0;
+  background: linear-gradient(0deg, var(--card) 5%, #0000) var(--rating-color, transparent) 100%;
+}
+/* Hover fade-in */
+.performer-card .thumbnail-section:hover::after {
+  opacity: 1;
+}
+/* --- Per-rating color assignments --- */
+.performer-card:has(.rating-banner.rating-100-2)  { --rating-color: #ffffff; }
+.performer-card:has(.rating-banner.rating-100-4)  { --rating-color: #ff8025; }
+.performer-card:has(.rating-banner.rating-100-6)  { --rating-color: #fff42e; }
+.performer-card:has(.rating-banner.rating-100-8)  { --rating-color: #9eff1f; }
+.performer-card:has(.rating-banner.rating-100-10) { --rating-color: #21e31d; }
+.performer-card:has(.rating-banner.rating-100-12) { --rating-color: #23ffcf; }
+.performer-card:has(.rating-banner.rating-100-14) { --rating-color: #3180ff; }
+.performer-card:has(.rating-banner.rating-100-16) { --rating-color: #ff23fb; }
+.performer-card:has(.rating-banner.rating-100-18) { --rating-color: #ff3434; }
+.performer-card:has(.rating-banner.rating-100-20) { --rating-color: var(--accent); }
+/**/
+.tagger-container.mx-md-auto .performer-card.p-0.m-0.card img,						/*dark diffuse drop filter around performer image*/
+.performer-card-image {
+	filter: drop-shadow(0px -15px 35px var(--card));
+	transition: all 2s; 
+	box-shadow:  0px 0px 0px 0px var(--red) inset;	
+}
+.PerformerTagger-performer .performer-card.p-0.m-0.card {
+	background: linear-gradient(0deg, var(--nav-grey-dark) 5%, #0000) #bdbdbd 100%;  
+	transition: background 1s ease-in-out;
+}	
+.PerformerTagger-performer .performer-card.p-0.m-0.card:hover {
+	background: linear-gradient(0deg, var(--nav-grey-dark) 5%, #0000) rgb(255, 255, 255) 100%  
+}
+/* img.performer-select-image,			/*background for react select list*/
+/*.performer-select-image-link,*/
+img.performer-image,
+img.performer-image {
+	background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;						/*background for performer img scraper*/
+}
+.performer-card.zoom-undefined.grid-card.card {
+	background-color: var(--card);
+}
+.performer-card.zoom-undefined.grid-card.card .thumbnail-section:before {
+	 background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;  
+}
+
+/*					Cards and images blend into background									
+.performer-card{
+	background: var(--body)
+}
+.performer-tag-container .image-thumbnail,
+.PerformerTagger-performer .performer-card.p-0.m-0.card,
+.performer-card-image {
+	background: linear-gradient(0deg, var(--body) 5%, #0000) rgb(171, 171, 171) 100%;
+	transition: background 1.5s;
+}	
+.performer-tag-container .image-thumbnail:hover,
+.performer-card-image:hover {
+	background: linear-gradient(0deg, var(--body) 0%, #0000) rgb(255, 255, 255) 100%;	
+}
+*/
+/*
+#performer-page.row .detail-header.full-width .detail-container .detail-header-image {
+	background: transparent;
+}	
+#performer-page.row .detail-header.collapsed .detail-container .detail-header-image .btn.btn-link img.performer,
+#performer-page.row .detail-header.full-width .detail-container .detail-header-image .btn.btn-link .performer {
+	background: linear-gradient(0deg, var(--body) 0%, #0000) #bdbdbd 100%;
+	transition: all 1s;   																
+}
+#performer-page.row .detail-header.collapsed .detail-container .detail-header-image .btn.btn-link img.performer:hover,
+#performer-page.row .detail-header.full-width .detail-container .detail-header-image .btn.btn-link .performer:hover{
+	background: linear-gradient(0deg, var(--body) 0%, #0000) rgb(255, 255, 255) 100%;
+}*/
+.PerformerTagger-performer .performer-card.p-0.m-0.card,            /*botom edges of cards show white fringe when square*/
+#performer-page.row div.detail-header.full-width div.detail-container div.detail-header-image button.btn.btn-link img.performer,
+#performer-page.row div.detail-header.collapsed div.detail-container div.detail-header-image button.btn.btn-link img.performer {
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+
+													/* ====================<< STUDIO CARDS >>================ */
+
+
+
+.studio-card .card-popovers .minimal.btn.btn-primary {
+	color: #ffffffc2;
+	background-color: var(--body);
+	border: 2px;
+    border-radius: 10px;
+	/*text-shadow: 1px 1px 3px black;
+	filter:drop-shadow(5px 5px 5px black);*/
+	transition: color .2s ease-in-out;
+}
+.studio-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
+	background-color: var(--body);
+	color: var(--accent);
+	/*color: white;*/
+	border: none;
+}
+.studio-card .btn-group {
+	opacity: 0;
+	transition: all 1s ease-in-out;
+}
+.studio-card:hover .btn-group {
+	opacity: 1;
+}
+.studio-card.grid-card.card {
+	background: linear-gradient(0deg, var(--card) 20%, #0000) var(--body) 100%;
+}
+.studio-child-studios > a:nth-child(1),
+.studio-parent-studios > a:nth-child(1) {
+	font-weight: 600
+}
+.tag-card .card-section > .tag-parent-tags,
+.studio-card__details > .studio-parent-studios {
+    margin-bottom: -4px; /* space between parent and child */
+}
+/*
+.studio-card-image {
+ filter: drop-shadow(.1px .1px .1px #ffffffab);
+}*/
+
+
+												/* ====================<< TAG CARDS >>================ */
+
+
+.tag-card .card-popovers .minimal.btn.btn-primary {
+	color: #ffffffc2;
+	background-color: transparent;
+	border: 2px;
+    border-radius: 10px;
+	text-shadow: 0px 1px 1px black;
+	/*filter:drop-shadow(5px 5px 5px black);*/
+	transition: all .2s ease-in-out;
+}
+.tag-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
+	background-color: transparent;
+	color: var(--accent);
+	/*color: white;*/
+	border: none;
+	text-shadow: none;
+}
+.tag-card .btn-group {
+	opacity: 0;
+	transition: all 1s ease-in-out;
+}
+.tag-card:hover .btn-group {
+	opacity: 1;
+}
+.tag-card.grid-card.card,
+#tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
+#tag-page.row .detail-header .detail-container .detail-header-image .logo,
+.tag-popover-card .tag-card.zoom-0.grid-card.card .thumbnail-section .tag-card-header .tag-card-image,
+.tag-card.zoom-0.grid-card.card .thumbnail-section .tag-card-header .tag-card-image  {
+	background: linear-gradient(0deg, var(--card) 20%, #0000) var(--body) 100%;
+	/*background: linear-gradient(0deg, var(--card) 0%, #0000) rgb(171, 171, 171) 100%;*/
+	/*transition: background 2s;*/
+}
+.tag-sub-tags a,
+.tag-parent-tags a {
+	font-weight:600;
+}
+.tag-card.card {
+	padding: 0;
+	height: 210px;
+	width: 350px !important
+}
+.tag-card .card-popovers.btn-group {
+	top: 3px !important
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+.bs-popover-top > .arrow::after, .bs-popover-auto[x-placement^="top"] > .arrow::after,			/*tiny arrow pointing up from the text input*/
+.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^="bottom"] > .arrow::after {    	/*also in movie or performer edit set image popover*/		
+    border-bottom-color: var(--tags);
+	border-top-color: var(--tags);
+}
+
+#create-scene-page.row.new-view.justify-content-center div.col-md-8 div#scene-edit-details form div.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: var(--body) !important;
+}
+
+html body div#root div.main.container-fluid div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.list-results-header.btn-toolbar div div.page-size-selector select.btn-secondary.form-control {
+  height: calc(1.5em + .75rem + 3px);
+  padding: .375rem .75rem;
+  border-radius: .4rem;
+  
+}
+html body div#root div.main.container-fluid div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.list-results-header.btn-toolbar div button.display-mode-select {
+ padding-top: 6px;
+}
+ 
+html body div#root div.main.container-fluid div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.list-results-header.btn-toolbar div button.display-mode-select.btn.btn-secondary svg.svg-inline--fa.fa-table-cells-large.fa-icon {
+
+  margin: 0 .4rem 2px;
+}
+html body div#root div.main.container-fluid div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.list-results-header.btn-toolbar div button.display-mode-select.btn.btn-secondary svg.svg-inline--fa.fa-chevron-down.fa-xs.fa-icon {
+	 margin: 0 .2rem 2px 1px;
+}
+
+
+.badge-info, 						/*eg in performer details number of scenes galleries etc or scrapers count in settings*/
+.badge-secondary {
+	background-color: var(--accent);
+}
+.Lightbox .fade.popover.show .popover-header {			/*lightbox options*/
+	background-color: var(--nav);
+	border-bottom: 1px solid var(--nav-grey);
+}
+
+
+
+
+
+/*PAGINATION*/
+
+/*Main Pages*/
+
+/*main pages without sidebar*/
+#root div.main.container-fluid div.item-list-container div.pagination.btn-group:nth-child(3),  /*with filter active*/
+#root div.main.container-fluid div.item-list-container div.pagination.btn-group:nth-child(2) {
+	position: absolute;
+	top: 0.4rem;
+	left: 95rem;
+}
+/*main pages with sidebar (basically only scenes page)*/
+#root div.main.container-fluid div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group,
+#root div.main.container-fluid div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group {
+	position: absolute;
+	top: .4rem;
+	left: 97rem;
+}
+.text-muted.paginationIndex.center-text {
+	font-size: 12px;
+}
+#root div.main.container-fluid div.item-list-container span.filter-container.text-muted.paginationIndex.center-text {
+	position: absolute;
+	top: 1.01rem;
+	right: 96rem
+}
+
+
+
+
+
+.selected-items-info {
+	border:none
+}
+.svg-inline--fa.fa-square-check.fa-icon {
+	color: white
+}
+.svg-inline--fa.fa-square-check.fa-icon:hover {
+	color: var(--accent)
+}
+
+
+#group-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group,
+#group-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group{
+	position: absolute;
+	top: -.1rem;
+	left: 97rem;
+}
+#studio-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group,
+#tag-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group,
+#performer-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group,
+#studio-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group,
+#tag-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group,
+#performer-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container div.pagination.btn-group {
+	position: absolute;
+	top: -.2rem;
+	left: 95rem;
+}
+
+
+#group-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+#group-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text{
+	position: absolute;
+	top: .5rem;
+	right: 97rem
+}
+
+#studio-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+#tag-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+#performer-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+#studio-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+#tag-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+#performer-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text {
+	position: absolute;
+	top: .5rem;
+	right: 95rem
+}
+
+
+#tag-tabs-tabpane-studios.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#tag-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#tag-tabs-tabpane-markers.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#tag-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#tag-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#tag-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#studio-tabs-tabpane-childstudios.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#studio-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#studio-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#studio-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#studio-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#performer-tabs-tabpane-appearswith.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#performer-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#performer-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#performer-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text,
+#group-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text{
+	top: 1.5rem;
+	right: 97rem
+}
+
+
+
+#tag-tabs-tabpane-studios.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#tag-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#tag-tabs-tabpane-markers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#tag-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#tag-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#tag-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#studio-tabs-tabpane-childstudios.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#studio-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#studio-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#studio-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#studio-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#performer-tabs-tabpane-appearswith.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#performer-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#performer-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#performer-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+#group-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3),
+
+#tag-tabs-tabpane-studios.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#tag-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#tag-tabs-tabpane-markers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#tag-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#tag-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#tag-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#studio-tabs-tabpane-childstudios.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#studio-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#studio-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#studio-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#studio-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#performer-tabs-tabpane-appearswith.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#performer-tabs-tabpane-groups.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#performer-tabs-tabpane-images.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#performer-tabs-tabpane-galleries.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2),
+#group-tabs-tabpane-performers.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2) {
+	top: .9rem;
+}
+
+
+
+
+/*gallery details*/
+#root div.main.container-fluid div.row div.gallery-container div.tab-content div.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(3), 
+#root div.main.container-fluid div.row div.gallery-container div.tab-content div.fade.tab-pane.active.show div.item-list-container div.pagination.btn-group:nth-child(2) {
+	position: absolute;
+	top: 0.3rem;
+	left: 74rem;
+}
+.gallery-container .pagination.btn-group:nth-last-of-type(1) {
+	/*position: relative;*/
+	bottom: -.5rem;
+	/*left: -40.5rem;*/
+}
+#root div.main.container-fluid div.row div.gallery-container div.tab-content div.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text:nth-child(3) {
+	position: absolute;
+	top: 1rem;
+	right: 75rem;
+}
+#root div.main.container-fluid div.row div.gallery-container div.tab-content div.fade.tab-pane.active.show div.item-list-container span.filter-container.text-muted.paginationIndex.center-text:nth-child(5) {
+	position: absolute;
+	top: 1rem;
+	right: 75rem;
+}
+.row .item-list-container {		
+	position: relative;
+}
+#root div.main.container-fluid div.row div.gallery-container div.tab-content div.fade.tab-pane.active.show div.item-list-container div.filtered-list-toolbar.has-selection.btn-toolbar{
+	top: 40.75px;
+}
+
+

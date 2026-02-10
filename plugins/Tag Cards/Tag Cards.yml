@@ -1,0 +1,10 @@
+name:  Tag Cards
+description: Changes tag cards layout
+version: 1.0
+ui:
+    javascript:
+        -  Tag Cards.js
+    css:
+        -  Tag Cards.css
+    assets:
+        /: .

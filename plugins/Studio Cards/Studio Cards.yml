@@ -1,0 +1,10 @@
+name:  Studio Cards
+description: Changes studio cards layout
+version: 1.0
+ui:
+    javascript:
+        -  Studio Cards.js
+    css:
+        -  Studio Cards.css
+    assets:
+        /: .

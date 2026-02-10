@@ -1,0 +1,12 @@
+.scene-divider.d-none.d-xl-block button.btn.btn-primary, 
+.gallery-divider.d-none.d-xl-block button.btn.btn-primary, 
+.gallery-container,
+.gallery-tabs,
+.scene-tabs,
+.VideoPlayer,
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background:  var(--body) !important;
+}
+.pre-fade {
+		background: linear-gradient(to bottom, rgba(255,255,255,0), var(--body) 90%) !important;
+}

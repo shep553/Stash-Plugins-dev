@@ -1,0 +1,35 @@
+/* === UNBLUR ON HOVER === */
+.TruncatedText:hover,
+.thumbnail-section:hover *,
+.card:hover .card-section-title,
+.card:hover .scene-studio-overlay,
+.video-js:hover .vjs-poster,
+video:hover,
+.scene-header:hover > h3,
+div:hover > .scene-header,
+.studio-logo:hover,
+.scene-cover:hover,
+.image-thumbnail:hover,
+.scene-card-preview:hover,
+.scrubber-item:hover,
+.image-image:hover,
+div:hover > .image-header,
+.gallery-image:hover,
+.group-images:hover,
+.group-details > div > h2:hover,
+div:hover > .gallery-header,
+table > tbody > tr > td:hover > a > img.w-100,
+img.performer:hover,
+.studio-details .logo:hover,
+.studio-details:hover > div > h2,
+html body div#root div.main.container-fluid div#tag-page.row div.detail-header.full-width div.detail-container div.detail-header-image img.logo:hover,
+.logo-container > .logo:hover,
+.logo-container:hover > h2,
+.react-photo-gallery--gallery div img:hover,
+.Lightbox-carousel-image:hover,
+.group-card:hover .group-card-image,
+.GalleryWallCard-img:hover
+{
+    filter: blur(0px) !important;
+    transition: all 0.5s ease;
+}

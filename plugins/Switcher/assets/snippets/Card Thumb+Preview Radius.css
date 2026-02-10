@@ -1,0 +1,13 @@
+.scene-marker-card .scene-marker-card-preview-video,
+.scene-card .scene-card-preview-video,  
+.scene-marker-card .scene-marker-card-preview-image,
+.scene-card .scene-card-preview-image,
+.performer-card .performer-card-image,
+.performer-card .thumbnail-section::before,
+.performer-card .thumbnail-section::after,
+.group-card .group-card-image {
+	border-radius: var(--card-image-radius, 0px) !important;
+}
+.performer-card:not(:has(.rating-inline)) .performer-card-image {
+	filter: none;
+}

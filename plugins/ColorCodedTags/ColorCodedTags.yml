@@ -1,0 +1,14 @@
+name: ColorCodedTags
+description: Changes the colors of tag labels based on naming convention.
+version: 0.3
+ui:
+  requires:
+    - CommunityScriptsUILibrary
+  javascript:
+    - onElementReady.js
+    - ColorCodedTags.js
+settings:
+  showCategoryCode:
+    displayName: Show category code.
+    description: (Default=false) Enable to show the category code along with tag colors.
+    type: BOOLEAN
