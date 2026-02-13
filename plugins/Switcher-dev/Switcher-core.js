@@ -843,6 +843,7 @@
             if (!themeName || themeName === 'no-theme') {
                 UIManager.highlightActiveTheme('no-theme');
                 UIManager.hideThemeElements();
+                UIManager.updateButtonLabel('Themes');
                 return;
             }
             
@@ -874,6 +875,12 @@
             CSSVariableManager.loadAllThemeVars();
             SnippetManager.loadAll();
             UIManager.highlightActiveScheme(schemeName);
+
+            // Update button label to show scheme name
+            if (schemeName) {
+                const displayName = schemeName.charAt(0).toUpperCase() + schemeName.slice(1);
+                UIManager.updateButtonLabel(displayName);
+            }
             
             setTimeout(() => {
                 UIManager.updateAllColorInputs();
