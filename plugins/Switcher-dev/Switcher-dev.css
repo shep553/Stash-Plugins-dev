@@ -1,0 +1,528 @@
+/* ============================================================================
+   THEME SWITCHER - REFACTORED WITH BEM METHODOLOGY
+   ============================================================================ */
+
+/* ROOT VARIABLES - Custom properties for the component */
+:root {
+  --ts-bg-panel: var(--card);
+  --ts-bg-button: var(--nav);
+  --ts-bg-button-hover: var(--nav-grey);
+  --ts-border-color: rgba(0, 0, 0, 0.2);
+  --ts-text-primary: #fff;
+  --ts-text-accent: var(--accent);
+  --ts-text-error: var(--red);
+  --ts-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  --ts-transition-speed: 0.3s;
+  --ts-border-radius: 6px;
+  --ts-spacing-unit: 8px;
+}
+
+/* ============================================================================
+   DROPDOWN PANEL - Main container
+   ============================================================================ */
+
+.theme-switcher {
+  position: relative;
+}
+
+.theme-switcher__panel {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  
+  width: 260px;
+  padding: var(--ts-spacing-unit);
+  
+  background: var(--ts-bg-panel);
+  border: 1px solid var(--ts-border-color);
+  border-radius: var(--ts-border-radius);
+  box-shadow: var(--ts-shadow);
+  
+  z-index: 9999;
+  
+  /* Hidden by default */
+  display: none;
+}
+
+.theme-switcher__panel[data-open="true"] {
+  display: block;
+}
+
+
+/* ============================================================================
+   THEME OPTIONS - Dropdown items for theme selection
+   ============================================================================ */
+
+.theme-switcher__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.theme-switcher__option {
+  padding: 6px 0 6px 16px;
+  color: var(--ts-text-primary) !important;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.theme-switcher__option:hover {
+  color: var(--ts-text-accent) !important;
+  background: transparent;
+}
+
+.theme-switcher__option[data-active="true"] {
+  color: var(--ts-text-accent) !important;
+  font-weight: bold;
+}
+
+/* Nested color schemes */
+.theme-switcher__schemes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.theme-switcher__schemes[data-expanded="true"] {
+  display: block;
+}
+
+.theme-switcher__scheme {
+  padding: 4px 0 4px 24px;
+  color: var(--ts-text-primary);
+  font-weight: normal;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.theme-switcher__scheme:hover {
+  color: var(--ts-text-accent);
+}
+
+.theme-switcher__scheme[data-active="true"] {
+  color: var(--ts-text-accent);
+}
+
+/* ============================================================================
+   SECTION - Reusable collapsible section component
+   ============================================================================ */
+
+.theme-switcher__section {
+  margin-top: calc(var(--ts-spacing-unit) * 2);
+}
+
+.theme-switcher__section-header {
+  display: block;
+  width: 100%;
+  padding: 6px var(--ts-spacing-unit) 10px;
+  
+  background: var(--ts-bg-button);
+  color: var(--ts-text-primary);
+  border: none;
+  border-radius: var(--ts-border-radius);
+  
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.theme-switcher__section-header:hover {
+  color: var(--ts-text-accent);
+}
+
+/* Optional chevron indicator */
+/*.theme-switcher__section-header::after {
+  content: '▼';
+  float: right;
+  font-size: 0.75rem;
+  transform: rotate(-90deg);
+  transition: transform var(--ts-transition-speed);
+}
+
+.theme-switcher__section-header[data-expanded="true"]::after {
+  transform: rotate(0deg);
+}*/
+
+.theme-switcher__section-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--ts-transition-speed) ease-out;
+}
+
+.theme-switcher__section-content[data-expanded="true"] {
+  max-height: 1000px; /* Large enough value for content */
+}
+
+/* ============================================================================
+   COLOR EDITOR - Custom color input section
+   ============================================================================ */
+
+.theme-switcher__colors {
+  padding: var(--ts-spacing-unit) 0;
+}
+
+.theme-switcher__color-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ts-spacing-unit);
+  margin-bottom: 6px;
+  padding: 2px;
+  transition: background-color 0.15s;
+}
+
+.theme-switcher__color-row[data-modified="true"] {
+  border-left: 3px solid var(--ts-text-accent);
+  padding-left: 5px;
+}
+
+.theme-switcher__color-label {
+  flex: 0 0 120px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;	
+  
+  font-size: 0.8125rem;
+  text-align: center;
+  color: var(--ts-text-primary);
+  transition: color 0.15s, font-weight 0.15s;
+}
+
+.theme-switcher__color-row[data-modified="true"] .theme-switcher__color-label {
+  color: var(--ts-text-accent);
+  font-weight: 600;
+}
+
+.theme-switcher__color-controls {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Color picker input */
+.theme-switcher__color-input {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  
+  border: none;
+  border-radius: 0;
+  
+  background-size: cover;
+  cursor: pointer;
+  outline: none;
+}
+
+.theme-switcher__color-input:not(:focus) {
+  color: transparent;
+  text-shadow: none;
+}
+
+/* Reset button for individual colors */
+.theme-switcher__color-reset {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  
+  background: transparent;
+  color: var(--ts-text-primary);
+  border: none;
+  border-radius: 3px;
+  
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.theme-switcher__color-reset:hover {
+  color: var(--ts-text-error);
+  background: transparent;
+  border: none;
+}
+
+/* Reset all modified button */
+.theme-switcher__reset-all {
+  display: block;
+  width: 80%;
+  margin: calc(var(--ts-spacing-unit) * 2) auto calc(var(--ts-spacing-unit) / 2);
+  padding: 6px 0 10px;
+  
+  background: var(--ts-bg-button);
+  color: var(--ts-text-primary);
+  border: none;
+  border-radius: var(--ts-border-radius);
+  
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.theme-switcher__reset-all:hover {
+  color: var(--ts-text-error);
+}
+
+/* ============================================================================
+   SNIPPETS - CSS snippet management
+   ============================================================================ */
+
+.theme-switcher__snippets {
+  padding: var(--ts-spacing-unit) 0;
+}
+
+.theme-switcher__snippet {
+  margin-bottom: 4px;
+}
+
+/* Snippet header row */
+.theme-switcher__snippet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px var(--ts-spacing-unit);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.theme-switcher__snippet-header:hover {
+  background: transparent;
+  color: var(--accent);
+  transition: 0.2s ease-in-out;
+}
+.theme-switcher__snippet-header:hover .theme-switcher__snippet-name {
+  color: var(--accent);
+  transition: 0.2s ease-in-out;
+}
+
+
+.theme-switcher__snippet-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.theme-switcher__snippet-name {
+  color: var(--ts-text-primary);
+  font-size: 0.875rem;
+}
+
+.theme-switcher__snippet-chevron {
+  margin-left: -3px;
+  transition: transform 0.2s;
+}
+
+.theme-switcher__snippet-chevron[data-expanded="true"] {
+  transform: rotate(90deg);
+}
+
+/* Toggle switch for snippets */
+.theme-switcher__toggle {
+  position: relative;
+  width: 20px;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--tags);
+  cursor: pointer;
+  transition: background 0.25s;
+  flex-shrink: 0;
+}
+
+
+.theme-switcher__toggle-checkbox {
+  margin-right: 3px;
+}
+
+.theme-switcher__toggle[data-active="true"] {
+  background: var(--ts-text-accent);
+}
+
+.theme-switcher__toggle-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  
+  transition: left 0.2s;
+}
+
+.theme-switcher__toggle[data-active="true"] .theme-switcher__toggle-thumb {
+  left: 10px;
+}
+
+/* Snippet expandable panels */
+.theme-switcher__snippet-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--ts-transition-speed) ease-out;
+}
+
+.theme-switcher__snippet-panel[data-expanded="true"] {
+  max-height: 500px;
+}
+
+/* Scope selection panel */
+.theme-switcher__scope-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  margin: 4px 0;
+  background: var(--nav-grey);
+  border-radius: 4px;
+}
+
+.theme-switcher__scope-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 25px;
+  margin-bottom: 2px;
+}
+
+.theme-switcher__scope-label {
+  color: var(--ts-text-primary);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.theme-switcher__scope-checkbox {
+  margin-right: -19px;	
+  cursor: pointer;
+}
+
+/* Variables panel */
+.theme-switcher__vars-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 10px;
+  background: var(--nav-grey);
+  border-radius: 4px;
+}
+
+.theme-switcher__var-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.theme-switcher__var-label {
+  color: var(--ts-text-primary);
+  font-size: 0.875rem;
+}
+
+.theme-switcher__var-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.theme-switcher__var-input {
+  width: 55px;
+  padding: 2px 4px;
+  border: 1px solid var(--ts-border-color);
+  border-radius: 3px;
+  background: white;
+  color: #000;
+}
+
+.theme-switcher__var-select {
+  padding: 2px 6px 2px 4px;
+  border: 1px solid var(--ts-border-color);
+  border-radius: 3px;
+  background: white;
+  color: #000;
+  cursor: pointer;
+}
+
+/* Disable all snippets button */
+.theme-switcher__disable-all {
+  display: block;
+  width: 80%;
+  margin: var(--ts-spacing-unit) auto calc(var(--ts-spacing-unit) / 2);
+  padding: 6px 0 10px;
+  
+  background: var(--ts-bg-button);
+  color: var(--ts-text-primary);
+  border: none;
+  border-radius: var(--ts-border-radius);
+  
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.theme-switcher__disable-all:hover {
+  color: var(--ts-text-error);
+}
+
+/* ============================================================================
+   DIVIDER - Visual separator
+   ============================================================================ */
+
+.theme-switcher__divider {
+  margin: calc(var(--ts-spacing-unit) * 1.5) 0;
+  border: 0;
+  border-top: 1px solid var(--ts-border-color);
+}
+
+/* ============================================================================
+   COLORIS PICKER - Override positioning
+   ============================================================================ */
+
+.clr-picker.clr-left.clr-open {
+  position: absolute;
+  background-color: var(--nav-grey-dark);
+  z-index: 999999;
+  left: 980px;
+  top: 220px;
+}
+
+/* Coloris field wrapper */
+.clr-field {
+  width: 24.5px !important;
+}
+
+.clr-field button {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  border-radius: 0;
+  border: 1px dotted !important;
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+.theme-switcher--hidden {
+  display: none;
+}
+
+/* Smooth transitions */
+.theme-switcher__section-content,
+.theme-switcher__snippet-panel {
+  will-change: max-height;
+}
+
+/* Focus styles for accessibility */
+.theme-switcher__section-header:focus,
+.theme-switcher__color-reset:focus,
+.theme-switcher__reset-all:focus,
+.theme-switcher__disable-all:focus {
+  outline: 2px solid var(--ts-text-accent);
+  outline-offset: 2px;
+}

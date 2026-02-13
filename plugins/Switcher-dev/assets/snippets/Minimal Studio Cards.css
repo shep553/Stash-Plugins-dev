@@ -1,0 +1,17 @@
+.studio-card.card.card.card .studio-card__details,
+.studio-card.card .card-check.mousetrap.form-control,
+.studio-card.card .favorite-button.hide-not-favorite.not-favorite.btn.btn-primary,
+.studio-card.card .card-popovers.btn-group,
+.studio-card.card .card-section {
+	opacity: 0 !important;
+	transition: all 1s ease !important;
+	transition-delay: 0.5s !important;
+}
+.studio-card.card.card.card:hover .studio-card__details,
+.studio-card.card.card:hover .card-check.mousetrap.form-control,
+.studio-card.card.card:hover .favorite-button.hide-not-favorite.not-favorite.btn.btn-primary,
+.studio-card.card.card:hover .card-popovers.btn-group,
+.studio-card.card.card:hover .card-section {
+	opacity: 1 !important;
+}
+

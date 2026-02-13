@@ -1,0 +1,27 @@
+/* === MORE BLUR === */
+.TruncatedText,
+.scene-card-preview,
+.vjs-poster,
+video,
+.scene-cover,
+.scrubber-item,
+.image-card-preview,
+.image-image,
+.gallery-image,
+.group-card-image,
+.group-images,
+.gallery-card-image,
+table > tbody > tr > td > a > img.w-100,
+.performer-card-image,
+img.performer,
+.studio-card-image,
+#tag-page.row .detail-header.full-width .detail-container .detail-header-image .logo,
+.tag-card-image,
+.react-photo-gallery--gallery div img,
+.Lightbox-carousel-image,
+.group-card:hover .group-card-image3,
+.GalleryWallCard-img,
+.image-thumbnail
+{
+ filter: blur(30px) !important;
+}

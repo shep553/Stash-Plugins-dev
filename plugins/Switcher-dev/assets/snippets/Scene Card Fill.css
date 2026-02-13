@@ -1,0 +1,6 @@
+.scene-card-preview-image,
+.scene-card-preview-video,
+.scene-marker-card-preview-image,
+.scene-marker-card-preview-video {
+	object-fit: unset;
+}
