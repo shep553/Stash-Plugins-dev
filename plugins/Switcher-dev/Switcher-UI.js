@@ -10,7 +10,8 @@
         ThemeManager, 
         SnippetManager,
         UIController,
-        EventHandlers 
+        EventHandlers,
+        crossTabSync
     } = window.ThemeSwitcherCore;
 
     // =========================================================================
@@ -271,6 +272,9 @@
                 await SnippetManager.disableAll();
                 this.buildSnippetUI();
                 this.applyDropdownStyles();
+
+                // Broadcast to other tabs
+                window.ThemeSwitcherCore.crossTabSync.broadcast('all-snippets-disabled', {});
             });
             fragment.appendChild(disableBtn);
 
@@ -399,6 +403,15 @@
                     
                     // Update toggle visual state
                     toggle.setAttribute('data-active', newState.toString());
+
+                    // Broadcast to other tabs with theme/scheme context
+                    window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
+                        theme: window.ThemeSwitcherCore.state.currentTheme,
+                        scheme: window.ThemeSwitcherCore.state.currentScheme,
+                        snippetName: snippet.name,
+                        enabled: newState,
+                        scopes: selectedScopes
+                    });
                 });
             } else {
                 // Single scope - use checkbox
@@ -415,6 +428,8 @@
                     );
                     if (!snippetContainer) return;
                     
+                    let selectedScopes = [];
+                    
                     const scopePanel = snippetContainer.querySelector('.theme-switcher__scope-panel');
                     if (scopePanel) {
                         const checkboxes = scopePanel.querySelectorAll('input[type="checkbox"]');
@@ -423,7 +438,7 @@
                         checkboxes.forEach(cb => cb.checked = toggle.checked);
                         
                         // Gather selected scopes
-                        const selectedScopes = toggle.checked 
+                        selectedScopes = toggle.checked 
                             ? Array.from(checkboxes).map(cb => cb.dataset.scope)
                             : [];
                         
@@ -434,13 +449,22 @@
                     } else {
                         // No scope panel - just use default scope
                         const defaultScope = Object.keys(snippet.scopes)[0] || 'all';
-                        const selectedScopes = toggle.checked ? [defaultScope] : [];
+                        selectedScopes = toggle.checked ? [defaultScope] : [];
                         
                         // Update storage and apply
                         await SnippetManager.setEnabled(snippet.name, toggle.checked);
                         await SnippetManager.setScopes(snippet.name, selectedScopes);
                         await SnippetManager.apply(snippet, toggle.checked, selectedScopes);
                     }
+
+                    // Broadcast to other tabs with theme/scheme context
+                    window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
+                        theme: window.ThemeSwitcherCore.state.currentTheme,
+                        scheme: window.ThemeSwitcherCore.state.currentScheme,
+                        snippetName: snippet.name,
+                        enabled: toggle.checked,
+                        scopes: selectedScopes
+                    });
                 });
             }
 
@@ -499,6 +523,15 @@
                     if (toggle) {
                         toggle.setAttribute('data-active', newEnabled.toString());
                     }
+
+                    // Broadcast to other tabs with theme/scheme context
+                    window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
+                        theme: window.ThemeSwitcherCore.state.currentTheme,
+                        scheme: window.ThemeSwitcherCore.state.currentScheme,
+                        snippetName: snippet.name,
+                        enabled: newEnabled,
+                        scopes: selectedScopes
+                    });
                 });
 
                 label.appendChild(text);
@@ -549,6 +582,8 @@
             if (meta.type === 'select') {
                 input = document.createElement('select');
                 input.className = 'theme-switcher__var-select';
+                input.dataset.snippet = snippet.name;
+                input.dataset.varName = varName;
                 meta.options.forEach(opt => {
                     const option = document.createElement('option');
                     option.value = opt;
@@ -560,6 +595,8 @@
                 input = document.createElement('input');
                 input.type = meta.type || 'number';
                 input.className = 'theme-switcher__var-input';
+                input.dataset.snippet = snippet.name;
+                input.dataset.varName = varName;
                 
                 if (savedValue) {
                     input.value = savedValue.replace(meta.unit || '', '');
@@ -576,6 +613,16 @@
                 
                 await SnippetManager.setVar(snippet.name, varName, value);
                 CSSVariableManager.setVar(varName, value);
+                
+                // Broadcast to other tabs with theme/scheme context
+                window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-var-change', {
+                    theme: window.ThemeSwitcherCore.state.currentTheme,
+                    scheme: window.ThemeSwitcherCore.state.currentScheme,
+                    snippetName: snippet.name,
+                    varName: varName,
+                    value: value,
+                    meta: meta
+                });
             });
 
             return input;
@@ -672,11 +719,7 @@
                         item.style.background = "transparent";
                     }, 0);
                 });
-            });
-            
-            document.querySelectorAll('.theme-switcher__color-input').forEach(inp => {
-                inp.style.outline = `2px solid ${colors.accent}22`;
-            });
+            });         
         }
 
         // Show/hide theme-specific elements
@@ -762,6 +805,8 @@
 
     await storage.initialize();
     console.log('[Switcher] Storage initialized');
+
+    crossTabSync.initialize();
 
     UIController.initialize();
 

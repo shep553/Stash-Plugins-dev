@@ -2,6 +2,7 @@
 
 :root {
 		
+	/*-----CMD-----*/
 	/*--body: #191919;
 	--card: #2a2a2a;
 	--nav: #212121;
@@ -333,27 +334,24 @@ svg.svg-inline--fa.fa-video.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl
 .sidebar-section button.minimal.collapse-button.btn.btn-primary {
 	transition: all 0.3s ease-in-out;
 }
-
-
-html body div#root div.main.container-fluid div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.filtered-list-toolbar.btn-toolbar div.btn-group div.saved-filter-dropdown.show.dropdown.btn-group div.saved-filter-list-menu.dropdown-menu.show ul.saved-filter-list div.dropdown-item-container div.btn-group button.delete-button.btn.btn-secondary.btn-sm,
-html body div#root div.main.container-fluid div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.filtered-list-toolbar.btn-toolbar div.btn-group div.saved-filter-dropdown.show.dropdown.btn-group div.saved-filter-list-menu.dropdown-menu.show ul.saved-filter-list div.dropdown-item-container div.btn-group button.save-button.btn.btn-secondary.btn-sm,
-.saved-filter-list-menu.dropdown-menu {
-	background: var(--nav-grey-dark)
-}
-html body div#root div.main.container-fluid div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.filtered-list-toolbar.btn-toolbar div.btn-group div.saved-filter-dropdown.show.dropdown.btn-group div.saved-filter-list-menu.dropdown-menu.show div.input-group input.bg-secondary.text-white.border-secondary.form-control {
-	background: var(--nav-grey) !important;
-	margin-left: 5px;
-}
 /*main container specific*/
 .item-list-container .filtered-list-toolbar.btn-toolbar .clearable-text-field.form-control,
 .item-list-container .filtered-list-toolbar .btn-secondary {
 	background: var(--nav-grey-dark) !important;
 }
-.navbar-nav .nav-link a {
-	color: #ffffffa6 !important; 
+.filtered-list-toolbar.has-selection .minimal.btn.btn-secondary {
+	background: transparent !important;
 }
-
-
+.saved-filter-list-menu .form-control {
+	background: var(--nav-grey) !important;
+	margin-left: 5px;
+}
+.saved-filter-list-menu .set-as-default-button.dropdown-item.btn.btn-secondary.btn-sm {
+	background: var(--nav-grey) !important;
+}
+.navbar-nav .nav-link a {
+	color: #ffffffa6; 
+}
 
 			/*======  Selection  ======*/
 
@@ -999,7 +997,7 @@ html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-firs
 	color:unset 
 }
 .react-select__control.css-13cymwt-control:hover div.react-select__indicators.css-1wy0on6 div.react-select__indicator.react-select__dropdown-indicator.css-1xc3v61-indicatorContainer {
-	color: var(--accent) 
+	color: var(--accent-transparent) 
 }
 
 			/*======  Text Fields  ======*/
@@ -1021,7 +1019,7 @@ html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-firs
 }
 .form-control:focus, .form-control:active {
 	box-shadow: 0 0 0 .18rem var(--accent);
-	color: #fff
+	color: #fff !important
 }
 /*parser results*/
 .parser-field-title .input-control .text-input .form-control {          
@@ -1265,15 +1263,14 @@ div.react-select__control {
 	border-color: transparent;
 }
 div.react-select__control:hover {
-	border-color: transparent;
-	box-shadow: 0 0 0 .2rem var(--accent-transparent);
+	border-color: var(--accent-transparent);
 }
 div.react-select__menu {
 	background-color: var(--nav-grey-dark);
 }
 div.react-select__control.react-select__control--is-focused.react-select__control--menu-is-open.css-t3ipsp-control {
-	border-color: transparent;
-	box-shadow: 0 0 0 .2rem var(--accent-transparent);
+	border:none;
+	box-shadow: 0 0 0 .2rem var(--accent);
 }
 div.react-select__control.react-select__control--is-focused.css-t3ipsp-control {
 	border-color: transparent;
@@ -1556,9 +1553,6 @@ html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-firs
 /*allow top form control outline in edit and markers to show better*/
 #scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
 	margin-bottom: .2rem
-}
-html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div.tab-content {
-	padding-top: 2px;
 }
 .scene-divider.d-none.d-xl-block button.btn.btn-primary, 
 .gallery-divider.d-none.d-xl-block button.btn.btn-primary, 
@@ -1875,14 +1869,17 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 .scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
    -webkit-line-clamp: 1 !important;
 }
-.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,					
+.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,
 .scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
-.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,					
-.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
+.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
+.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
    -webkit-line-clamp: 3 !important;
 }
 .card .card-section-title .TruncatedText {
   -webkit-line-clamp: 3 !important;
+}
+.scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
+  -webkit-line-clamp: 1 !important;
 }
 /*removes underline from gallery wall img title cards*/
 .GalleryWallCard-footer:hover .GalleryWallCard-title {		

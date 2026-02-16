@@ -99,7 +99,6 @@
             }, this.saveDelay);
         }
 
-        // Force immediate save (for important operations)    
         async forceSave() {
             if (this.pendingSave) {
                 clearTimeout(this.pendingSave);
@@ -124,6 +123,254 @@
     const storage = new StorageManager();
 
     // =========================================================================
+    // CROSS-TAB SYNC VIA BROADCAST CHANNEL
+    // =========================================================================
+
+    class CrossTabSync {
+        constructor() {
+            this.channel = null;
+            this.enabled = false;
+        }
+
+        initialize() {
+            if (typeof BroadcastChannel === 'undefined') {
+                console.log('[Switcher] BroadcastChannel not supported, cross-tab sync disabled');
+                return;
+            }
+
+            try {
+                this.channel = new BroadcastChannel('theme-switcher-sync');
+                this.enabled = true;
+
+                this.channel.addEventListener('message', (event) => {
+                    this.handleMessage(event.data);
+                });
+
+                console.log('[Switcher] Cross-tab sync enabled');
+            } catch (err) {
+                console.error('[Switcher] Failed to initialize BroadcastChannel:', err);
+            }
+        }
+
+        broadcast(type, data) {
+            if (!this.enabled || !this.channel) return;
+
+            this.channel.postMessage({ type, data });
+        }
+
+        async handleMessage(message) {
+            const { type, data } = message;
+
+            switch (type) {
+                case 'theme-change':
+                    // Only apply if this is a newer theme change than what we have locally
+                    if (data.sequence && data.sequence <= state.themeSequence) {
+                        console.log(`[Switcher] Ignoring stale theme sync [seq: ${data.sequence}], current [seq: ${state.themeSequence}]`);
+                        return;
+                    }
+                    
+                    // Update our sequence to match
+                    if (data.sequence) {
+                        state.themeSequence = data.sequence;
+                    }
+                    
+                    if (data.theme === 'no-theme') {
+                        console.log('[Switcher] Syncing no-theme from other tab:', data);
+                        ThemeManager.applyNoTheme(true); // fromSync = true
+                    } else if (state.currentTheme !== data.theme || state.currentScheme !== data.scheme) {
+                        console.log('[Switcher] Syncing theme from other tab:', data);
+                        ThemeManager.apply(data.theme, data.scheme, true); // fromSync = true
+                    }
+                    break;
+
+                case 'color-var-change':
+                    console.log('[Switcher] Syncing color var from other tab:', data);
+                    
+                    // Save to storage so it persists across theme/scheme changes
+                    await state.setThemeVar(data.varName, data.value);
+                    
+                    CSSVariableManager.setVar(data.varName, data.value);
+                    
+                    const input = document.querySelector(
+                        `.theme-switcher__color-input[data-var-name='${data.varName}']`
+                    );
+                    if (input) {
+                        ColorisManager.updateInput(input, data.value);
+                        ColorisManager.markModified(input, true);
+                    }
+                    break;
+
+                case 'color-var-reset':
+                    console.log('[Switcher] Syncing color var reset from other tab:', data);
+                    
+                    // Remove from storage
+                    await state.removeThemeVar(data.varName);
+                    
+                    // Get the reset value and apply it
+                    const val = CSSVariableManager.resolveValue(data.varName);
+                    CSSVariableManager.setVar(data.varName, val);
+                    
+                    const resetInput = document.querySelector(
+                        `.theme-switcher__color-input[data-var-name='${data.varName}']`
+                    );
+                    if (resetInput) {
+                        ColorisManager.resetInput(resetInput, val);
+                        ColorisManager.markModified(resetInput, false);
+                    }
+                    break;
+
+                case 'all-colors-reset':
+                    console.log('[Switcher] Syncing all colors reset from other tab');
+                    
+                    // Clear storage keys
+                    const keysToRemove = [];
+                    for (const v of CONFIG.editableVars) {
+                        const key = state.getKey('cssVar', state.currentTheme, state.currentScheme, v.name);
+                        keysToRemove.push(key);
+                    }
+                    await storage.batchRemove(keysToRemove);
+                    
+                    // Update CSS variables and UI
+                    for (const v of CONFIG.editableVars) {
+                        const schemeDefault = state.colorSchemes[state.currentTheme]?.[state.currentScheme]?.[v.name];
+                        
+                        if (schemeDefault) {
+                            CSSVariableManager.setVar(v.name, schemeDefault);
+                        } else {
+                            const cssDefault = CSSVariableManager.getComputedVar(v.name);
+                            if (cssDefault) {
+                                CSSVariableManager.setVar(v.name, cssDefault);
+                            }
+                        }
+
+                        const input = document.querySelector(
+                            `.theme-switcher__color-input[data-var-name='${v.name}']`
+                        );
+                        if (input) {
+                            const val = CSSVariableManager.resolveValue(v.name);
+                            ColorisManager.resetInput(input, val);
+                            ColorisManager.markModified(input, false);
+                        }
+                    }
+                    
+                    setTimeout(() => {
+                        if (window.UIManager) {
+                            UIManager.applyDropdownStyles();
+                        }
+                    }, 150);
+                    break;
+
+                case 'snippet-change':
+                    console.log('[Switcher] Syncing snippet from other tab:', data);
+                    
+                    // Only apply if we're on the same theme+scheme combination
+                    if (data.theme !== state.currentTheme || data.scheme !== state.currentScheme) {
+                        console.log('[Switcher] Ignoring snippet change - different theme/scheme');
+                        return;
+                    }
+                    
+                    const snippet = state.snippets.find(s => s.name === data.snippetName || 
+                        SnippetManager.normalizeSnippet(s)?.name === data.snippetName);
+                    
+                    if (snippet) {
+                        const normalized = SnippetManager.normalizeSnippet(snippet);
+                        if (normalized) {
+                            // Update storage
+                            await SnippetManager.setEnabled(data.snippetName, data.enabled);
+                            await SnippetManager.setScopes(data.snippetName, data.scopes);
+                            
+                            // Apply the snippet
+                            SnippetManager.apply(normalized, data.enabled, data.scopes);
+                            
+                            // Update UI if snippet panel is visible
+                            const snippetEl = document.querySelector(
+                                `.theme-switcher__snippet[data-snippet-id="${data.snippetName}"]`
+                            );
+                            if (snippetEl) {
+                                const toggle = snippetEl.querySelector('.theme-switcher__toggle');
+                                if (toggle) {
+                                    toggle.setAttribute('data-active', data.enabled.toString());
+                                }
+                                
+                                const checkboxToggle = snippetEl.querySelector('.theme-switcher__toggle-checkbox');
+                                if (checkboxToggle) {
+                                    checkboxToggle.checked = data.enabled;
+                                }
+                                
+                                const scopeCheckboxes = snippetEl.querySelectorAll('.theme-switcher__scope-checkbox');
+                                scopeCheckboxes.forEach(cb => {
+                                    cb.checked = data.scopes.includes(cb.dataset.scope);
+                                });
+                            }
+                        }
+                    }
+                    break;
+
+                case 'all-snippets-disabled':
+                    console.log('[Switcher] Syncing all snippets disabled from other tab');
+                    
+                    // Call disableAll to properly clear storage and styles
+                    await SnippetManager.disableAll();
+                    
+                    // Rebuild UI to reflect disabled state
+                    if (window.UIManager) {
+                        UIManager.buildSnippetUI();
+                        UIManager.applyDropdownStyles();
+                    }
+                    break;
+
+                case 'snippet-var-change':
+                    console.log('[Switcher] Syncing snippet var change from other tab:', data);
+                    if (!state.currentTheme || !state.currentScheme) return;
+                    
+                    // Only apply if we're on the same theme+scheme combination
+                    if (data.theme !== state.currentTheme || data.scheme !== state.currentScheme) {
+                        console.log('[Switcher] Ignoring snippet var change - different theme/scheme');
+                        return;
+                    }
+                    
+                    // Update storage
+                    await SnippetManager.setVar(data.snippetName, data.varName, data.value);
+                    
+                    // Apply CSS variable
+                    CSSVariableManager.setVar(data.varName, data.value);
+                    
+                    // Update UI input if visible
+                    const snippetContainer = document.querySelector(
+                        `.theme-switcher__snippet[data-snippet-id="${data.snippetName}"]`
+                    );
+                    
+                    if (snippetContainer) {
+                        const varInput = snippetContainer.querySelector(
+                            `.theme-switcher__var-input[data-var-name="${data.varName}"]`
+                        );
+                        const varSelect = snippetContainer.querySelector(
+                            `.theme-switcher__var-select[data-var-name="${data.varName}"]`
+                        );
+                        
+                        if (varInput && data.meta) {
+                            // Remove unit for display
+                            const unit = data.meta.unit || '';
+                            varInput.value = data.value.replace(unit, '');
+                        } else if (varSelect) {
+                            varSelect.value = data.value;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        close() {
+            if (this.channel) {
+                this.channel.close();
+                this.enabled = false;
+            }
+        }
+    }
+
+    const crossTabSync = new CrossTabSync();
+
+    // =========================================================================
     // STATE MANAGER
     // =========================================================================
 
@@ -141,6 +388,9 @@
             this.snippetUpdateTimeouts = new Map();
             
             this.listeners = new Map();
+            
+            // Sequence tracking to prevent race conditions
+            this.themeSequence = 0;
         }
         
         subscribe(key, callback) {
@@ -357,8 +607,18 @@
                 Coloris.set(input, value);
             }
 
-            const swatch = input.parentElement.querySelector('.clr-picker');
-            if (swatch) swatch.style.background = value;
+            // Update the clr-field wrapper and button
+            const field = input.closest('.clr-field');
+            if (field) {
+                // Update the wrapper's color style
+                field.style.color = value;
+                
+                // Update the button's background
+                //const button = field.querySelector('button');
+                //if (button) {
+                    //button.style.background = value;
+                //}
+            }
         }
 
         static resetInput(input, value = "") {
@@ -390,15 +650,20 @@
             if (window.Coloris) {
                 Coloris({ el: input });
                 
-                requestAnimationFrame(() => {
+                // Wait longer for Coloris to create the wrapper and button
+                setTimeout(() => {
                     const field = input.closest('.clr-field');
-                    if (field) {
-                        const swatch = field.querySelector('.clr-picker');
-                        if (swatch && value) {
-                            swatch.style.background = value;
-                        }
+                    if (field && value) {
+                        // Update the wrapper's color style
+                        field.style.color = value;
+                        
+                        // Update the button's background
+                        //const button = field.querySelector('button');
+                        //if (button) {
+                            //button.style.background = value;
+                        //}
                     }
-                });
+                }, 100);
             }
         }
 
@@ -419,16 +684,41 @@
             if (window.Coloris) {
                 Coloris({
                     el: ".theme-switcher__color-input",
+                    inline: false,      // Ensures picker is a popup, not inline with input
+                    parent: 'body',     // Attach picker to body element for proper positioning
                     theme: "polaroid",
                     themeMode: "dark",
                     formatToggle: true,
-                    alpha: false,
-                    swatches: [
-                        "#1a1a1a", "#242424", "#2e2e2e", "#383838",
-                        "#4a4a4a", "#5c5c5c", "#6e6e6e", "#808080",
-                        "#007bff", "#28a745", "#dc3545", "#ffc107",
-                        "#17a2b8", "#6f42c1", "#e83e8c", "#fd7e14"
-                    ]
+                    alpha: true,
+                    swatches: false,
+                    //swatches: [
+                      //  "#1a1a1a", "#242424", "#2e2e2e", "#383838",
+                      //  "#4a4a4a", "#5c5c5c", "#6e6e6e", "#808080",
+                      //  "#007bff", "#28a745", "#dc3545", "#ffc107",
+                      //  "#17a2b8", "#6f42c1", "#e83e8c", "#fd7e14"
+                    //]
+                    
+                    // Real-time color updates while dragging/selecting
+                    onChange: (color, input) => {
+                        if (!input || !input.dataset.varName) return;
+                        
+                        const varName = input.dataset.varName;
+                        
+                        // Apply color immediately to CSS for live preview
+                        CSSVariableManager.setVar(varName, color);
+                        
+                        // Update the input's visual appearance
+                        input.value = color;
+                        input.style.background = color;
+                        
+                        // Update the clr-field wrapper
+                        const field = input.closest('.clr-field');
+                        if (field) {
+                            field.style.color = color;
+                        }
+                        
+                        console.log(`[Switcher] Live preview: ${varName} = ${color}`);
+                    }
                 });
             }
         }
@@ -518,9 +808,9 @@
     // =========================================================================
 
     class ThemeManager {
-        static async apply(themeName, schemeName = null) {
+        static async apply(themeName, schemeName = null, fromSync = false) {
             if (!themeName || themeName === "no-theme") {
-                return this.applyNoTheme();
+                return this.applyNoTheme(fromSync);
             }
 
             const theme = state.getTheme(themeName);
@@ -533,40 +823,102 @@
                 schemeName = theme.schemes[0];
             }
 
-            console.log(`[Switcher] Applying theme: ${themeName} (${schemeName})`);
+            // Only increment sequence if this is a local action, not from sync
+            let sequence;
+            if (!fromSync) {
+                sequence = ++state.themeSequence;
+                console.log(`[Switcher] Applying theme: ${themeName} (${schemeName}) [seq: ${sequence}]`);
+            } else {
+                console.log(`[Switcher] Applying theme: ${themeName} (${schemeName}) [from sync]`);
+            }
 
             await state.set(state.getKey('theme'), themeName);
             await state.set(state.getKey('colorScheme'), schemeName);
 
             await this.loadThemeCSS(theme.file);
 
+            // Check if a newer theme was requested while we were loading (only for local changes)
+            if (!fromSync && sequence !== state.themeSequence) {
+                console.log(`[Switcher] Skipping theme application [seq: ${sequence}], newer request in progress [seq: ${state.themeSequence}]`);
+                return;
+            }
+
             state.currentTheme = themeName;
+            state.currentScheme = schemeName;
             
             CSSVariableManager.loadAllThemeVars();
+            
+            // Clear all snippet styles from previous theme before loading new ones
+            SnippetManager.clearAllStyles();
             SnippetManager.loadAll();
 
-            state.currentScheme = schemeName;
+            // Only broadcast if this was a local action
+            if (!fromSync) {
+                crossTabSync.broadcast('theme-change', { 
+                    theme: themeName, 
+                    scheme: schemeName,
+                    sequence: sequence
+                });
+            }
 
             console.log('[Switcher] Theme applied successfully');
         }
 
         static async loadThemeCSS(filename) {
             return new Promise((resolve) => {
+                const oldLink = document.getElementById('theme-switcher-css');
+                const isFromDefault = !oldLink; // Coming from default if no existing theme CSS
+                
+                let overlay = null;
+                
+                // Only add overlay when switching from default
+                if (isFromDefault) {
+                    overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: var(--body, #394b59);
+                        z-index: 999999;
+                        opacity: 1;
+                        transition: opacity 0.15s;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(overlay);
+                }
+                
                 const link = document.createElement('link');
                 link.rel = 'stylesheet';
                 link.href = `${CONFIG.dirs.themes}${filename}`;
                 
                 link.onload = () => {
-                    const oldLink = document.getElementById('theme-switcher-css');
-                    if (oldLink) oldLink.remove();
-                    
-                    link.id = 'theme-switcher-css';
-                    
-                    requestAnimationFrame(resolve);
+                    // Give the browser a moment to apply the new styles
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            // Remove old theme CSS after new one is loaded and applied
+                            if (oldLink && oldLink !== link) {
+                                oldLink.remove();
+                            }
+                            
+                            // Set ID on new link
+                            link.id = 'theme-switcher-css';
+                            
+                            // Fade out overlay if it exists
+                            if (overlay) {
+                                overlay.style.opacity = '0';
+                                setTimeout(() => overlay.remove(), 150);
+                            }
+                            
+                            resolve();
+                        });
+                    });
                 };
                 
                 link.onerror = () => {
                     console.warn('[Switcher] Theme CSS failed to load:', link.href);
+                    if (overlay) overlay.remove();
                     resolve();
                 };
                 
@@ -574,21 +926,38 @@
             });
         }
 
-        static async applyNoTheme() {
-            console.log('[Switcher] Applying default (no theme)');
+        static async applyNoTheme(fromSync = false) {
+            // Only increment sequence if this is a local action, not from sync
+            let sequence;
+            if (!fromSync) {
+                sequence = ++state.themeSequence;
+                console.log(`[Switcher] Applying default (no theme) [seq: ${sequence}]`);
+            } else {
+                console.log('[Switcher] Applying default (no theme) [from sync]');
+            }
 
             const existingLink = document.getElementById('theme-switcher-css');
             if (existingLink) existingLink.remove();
 
             CSSVariableManager.clearAllThemeVars();
-
-            SnippetManager.disableAll();
+                        
+            // Clear any remaining snippet styles from all themes/schemes
+            SnippetManager.clearAllStyles();
 
             await state.set(state.getKey('theme'), 'no-theme');
             await state.remove(state.getKey('colorScheme'));
 
             state.currentTheme = null;
             state.currentScheme = null;
+
+            // Only broadcast if this was a local action
+            if (!fromSync) {
+                crossTabSync.broadcast('theme-change', { 
+                    theme: 'no-theme', 
+                    scheme: null,
+                    sequence: sequence
+                });
+            }
 
             console.log('[Switcher] Default theme applied');
         }
@@ -626,6 +995,12 @@
         static clearVars(snippet) {
             if (!snippet.vars) return;
             Object.keys(snippet.vars).forEach(v => CSSVariableManager.removeVar(v));
+        }
+
+        static clearAllStyles() {
+            // Remove all snippet style elements from any theme/scheme
+            document.querySelectorAll('style[id^="snippet-css-"]').forEach(el => el.remove());
+            console.log('[Switcher] Cleared all snippet styles');
         }
 
         static async apply(snippet, enabled, scopes = []) {
@@ -859,6 +1234,13 @@
                 }
             }
             
+            // Rebuild snippet UI to reflect the new theme's snippet states
+            if (window.UIManager && state.snippets.length > 0) {
+                setTimeout(() => {
+                    UIManager.buildSnippetUI();
+                }, 50);
+            }
+            
             requestAnimationFrame(() => {
                 UIManager.applyDropdownStyles();
             });
@@ -873,9 +1255,18 @@
             }
             
             CSSVariableManager.loadAllThemeVars();
+            
+            // Clear all snippet styles from previous scheme before loading new ones
+            SnippetManager.clearAllStyles();
             SnippetManager.loadAll();
+            
             UIManager.highlightActiveScheme(schemeName);
-
+            
+            // Rebuild snippet UI to reflect the new scheme's snippet states
+            if (window.UIManager && state.snippets.length > 0) {
+                UIManager.buildSnippetUI();
+            }
+            
             // Update button label to show scheme name
             if (schemeName) {
                 const displayName = schemeName.charAt(0).toUpperCase() + schemeName.slice(1);
@@ -907,7 +1298,13 @@
 
                 CSSVariableManager.setVar(varName, value);
                 await state.setThemeVar(varName, value);
+                
+                // Update the button/field in this tab (Tab A)
+                ColorisManager.updateInput(e.target, value);
                 ColorisManager.markModified(e.target, true);
+
+                // Broadcast to other tabs
+                crossTabSync.broadcast('color-var-change', { varName, value });
 
                 console.log(`[Switcher] CSS var updated: ${varName} = ${value}`);
             });
@@ -956,6 +1353,9 @@
                     UIManager.applyDropdownStyles();
                 });
 
+                // Broadcast to other tabs
+                crossTabSync.broadcast('all-colors-reset', {});
+
                 console.log('[Switcher] All customizations reset');
             })();
         }
@@ -979,6 +1379,9 @@
             }
             
             ColorisManager.markModified(input, false);
+
+            // Broadcast to other tabs
+            crossTabSync.broadcast('color-var-reset', { varName });
         }
 
         static setupResetButton() {
@@ -997,7 +1400,8 @@
         ThemeManager,
         SnippetManager,
         UIController,
-        EventHandlers
+        EventHandlers,
+        crossTabSync
     };
 
 })();

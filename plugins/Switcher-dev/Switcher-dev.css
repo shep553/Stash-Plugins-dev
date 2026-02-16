@@ -42,6 +42,7 @@
   
   /* Hidden by default */
   display: none;
+  opacity: .95;
 }
 
 .theme-switcher__panel[data-open="true"] {
@@ -62,9 +63,9 @@
 .theme-switcher__option {
   padding: 6px 0 6px 16px;
   color: var(--ts-text-primary) !important;
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color 0.3s;
 }
 
 .theme-switcher__option:hover {
@@ -82,20 +83,22 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--ts-transition-speed) ease-out;
 }
 
 .theme-switcher__schemes[data-expanded="true"] {
-  display: block;
+  max-height: 500px; /* Large enough for nested schemes */
 }
 
 .theme-switcher__scheme {
   padding: 4px 0 4px 24px;
   color: var(--ts-text-primary);
-  font-weight: normal;
+  font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color 0.3s;
 }
 
 .theme-switcher__scheme:hover {
@@ -104,6 +107,7 @@
 
 .theme-switcher__scheme[data-active="true"] {
   color: var(--ts-text-accent);
+  font-weight: 800;	
 }
 
 /* ============================================================================
@@ -127,7 +131,7 @@
   font-weight: 600;
   text-align: center;
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color 0.3s;
 }
 
 .theme-switcher__section-header:hover {
@@ -171,7 +175,7 @@
   gap: var(--ts-spacing-unit);
   margin-bottom: 6px;
   padding: 2px;
-  transition: background-color 0.15s;
+  transition: background-color 0.3s;
 }
 
 .theme-switcher__color-row[data-modified="true"] {
@@ -190,7 +194,7 @@
   font-size: 0.8125rem;
   text-align: center;
   color: var(--ts-text-primary);
-  transition: color 0.15s, font-weight 0.15s;
+  transition: color 0.3s, font-weight 0.3s;
 }
 
 .theme-switcher__color-row[data-modified="true"] .theme-switcher__color-label {
@@ -204,25 +208,6 @@
   justify-content: flex-end;
   align-items: center;
   gap: 6px;
-}
-
-/* Color picker input */
-.theme-switcher__color-input {
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  
-  border: none;
-  border-radius: 0;
-  
-  background-size: cover;
-  cursor: pointer;
-  outline: none;
-}
-
-.theme-switcher__color-input:not(:focus) {
-  color: transparent;
-  text-shadow: none;
 }
 
 /* Reset button for individual colors */
@@ -239,11 +224,11 @@
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.3;
 }
 
 .theme-switcher__color-reset:hover {
-  color: var(--ts-text-error);
+  color: var(--accent);
   background: transparent;
   border: none;
 }
@@ -255,14 +240,14 @@
   margin: calc(var(--ts-spacing-unit) * 2) auto calc(var(--ts-spacing-unit) / 2);
   padding: 6px 0 10px;
   
-  background: var(--ts-bg-button);
+  background: var(--nav-grey);
   color: var(--ts-text-primary);
   border: none;
   border-radius: var(--ts-border-radius);
   
   font-weight: 600;
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color 0.3s;
 }
 
 .theme-switcher__reset-all:hover {
@@ -288,7 +273,7 @@
   justify-content: space-between;
   padding: 4px var(--ts-spacing-unit);
   cursor: pointer;
-  transition: background-color 0.15s;
+  transition: background-color 0.3s;
 }
 
 .theme-switcher__snippet-header:hover {
@@ -454,14 +439,14 @@
   margin: var(--ts-spacing-unit) auto calc(var(--ts-spacing-unit) / 2);
   padding: 6px 0 10px;
   
-  background: var(--ts-bg-button);
+  background: var(--nav-grey);
   color: var(--ts-text-primary);
   border: none;
   border-radius: var(--ts-border-radius);
   
   font-weight: 600;
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color 0.3s;
 }
 
 .theme-switcher__disable-all:hover {
@@ -475,7 +460,7 @@
 .theme-switcher__divider {
   margin: calc(var(--ts-spacing-unit) * 1.5) 0;
   border: 0;
-  border-top: 1px solid var(--ts-border-color);
+  border-top: 0px solid var(--ts-border-color);
 }
 
 /* ============================================================================
@@ -483,11 +468,24 @@
    ============================================================================ */
 
 .clr-picker.clr-left.clr-open {
-  position: absolute;
   background-color: var(--nav-grey-dark);
-  z-index: 999999;
-  left: 980px;
-  top: 220px;
+  opacity: .95;
+  z-index: 10000;
+  position: fixed !important;
+  left: 98rem !important;
+  top: 220px !important;
+}
+
+/* Color picker input */
+.theme-switcher__color-input {
+  width: 24px;
+  height: 24px;
+  border: none;	
+}
+
+.theme-switcher__color-input:not(:focus) {
+  color: transparent;
+  text-shadow: none;
 }
 
 /* Coloris field wrapper */
@@ -501,24 +499,28 @@
   min-width: 24px !important;
   min-height: 24px !important;
   border-radius: 0;
-  border: 1px dotted !important;
+  border: 1px dotted white !important;
+}
+.clr-field button::after {
+  box-shadow: none !important;
 }
 
 /* ============================================================================
    UTILITY CLASSES
    ============================================================================ */
 
-.theme-switcher--hidden {
+/*.theme-switcher--hidden {
   display: none;
 }
 
-/* Smooth transitions */
+/* Smooth transitions 
 .theme-switcher__section-content,
-.theme-switcher__snippet-panel {
+.theme-switcher__snippet-panel,
+.theme-switcher__schemes {
   will-change: max-height;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility 
 .theme-switcher__section-header:focus,
 .theme-switcher__color-reset:focus,
 .theme-switcher__reset-all:focus,
