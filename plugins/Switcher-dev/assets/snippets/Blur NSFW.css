@@ -11,7 +11,7 @@ video,
 .group-card-image,
 .group-images,
 .gallery-card-image,
-table > tbody > tr > td > a > img.w-100,
+table>tbody>tr>td>a>img.w-100,
 .performer-card-image,
 img.performer,
 .studio-card-image,
@@ -21,7 +21,6 @@ img.performer,
 .Lightbox-carousel-image,
 .group-card:hover .group-card-image3,
 .GalleryWallCard-img,
-.image-thumbnail
-{
- filter: blur(30px) !important;
+.image-thumbnail {
+    filter: blur(30px) !important;
 }

@@ -1,4 +1,4 @@
-.scene-card .scene-card__date, 
-.gallery-card .gallery-card__date  {	
+.scene-card .scene-card__date,
+.gallery-card .gallery-card__date {
 	display: none !important;
 }

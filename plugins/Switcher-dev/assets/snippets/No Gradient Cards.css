@@ -5,9 +5,10 @@
 .studio-card,
 .tag-card,
 .image-card,
-.scene-marker-card  {
+.scene-marker-card {
 	background: var(--card) !important;
 }
-.tag-card .tag-card-image{
+
+.tag-card .tag-card-image {
 	background: var(--card) !important;
 }
