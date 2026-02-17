@@ -18,3 +18,8 @@
 	border: 3px var(--card) solid !important;
 	border-radius: var(--card-image-radius, 0px) !important;
 }
+
+.performer-card .thumbnail-section::before,
+.performer-card .thumbnail-section::after {
+   height: 100.1% !important;
+ }
