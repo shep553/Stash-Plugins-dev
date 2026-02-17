@@ -1,0 +1,10 @@
+name:  PerformerCardsEnhanced-dev
+description: PerformerCardsEnhanced
+version: 2.0
+ui:
+    javascript:
+        -  PerformerCardsEnhanced.js
+    css:
+        -  PerformerCardsEnhanced.css
+    assets:
+        /: .

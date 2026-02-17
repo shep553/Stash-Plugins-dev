@@ -1,7 +1,7 @@
 name:  Switcher-dev
 description: Adds a dropdown to the navbar enabling theme, color and various css customization.
              Requires theme files, snippets and local Coloris instance from custom served folders.
-version: 1.0
+version: 2.0
 ui:
     javascript:
         -  Switcher-core.js
