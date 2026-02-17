@@ -11,8 +11,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 3em;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--description, #222020) 90%);
+    height: 8em;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, var(--description) 105%);
     pointer-events: none;
     opacity: 1;
 }
