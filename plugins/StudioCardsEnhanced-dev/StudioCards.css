@@ -1,0 +1,25 @@
+.studio-card button.btn.favorite-button {
+  padding: 0;
+  position: absolute;
+  right: -10px;
+  top: -12px;
+}
+.card-section.expanded {					/*studios only*/
+    padding-bottom: 0px !important;
+}
+.studio-card .card-section {
+  padding: 0px 0px 0px 10px !important;
+
+}
+html body div#root div.main.container-fluid div.item-list-container div.row.justify-content-center div.studio-card.zoom-1.grid-card.card div.card-section div.studio-card__details div.studio-parent-studios {
+	padding: 0px 0px 4px 0px !important;
+}
+	
+
+
+
+
+
+
+
+
