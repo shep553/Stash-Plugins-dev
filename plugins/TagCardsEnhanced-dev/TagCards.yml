@@ -1,0 +1,10 @@
+name:  TagCardsEnhanced-dev
+description: Changes tag cards layout
+version: 1.0
+ui:
+    javascript:
+        -  TagCards.js
+    css:
+        -  TagCards.css
+    assets:
+        /: .
