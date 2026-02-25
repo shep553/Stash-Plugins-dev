@@ -1,0 +1,29 @@
+#configuration-tabs-tabpane-system .btn-secondary,
+#tasks-panel .btn-secondary,
+.btn.btn-primary,
+.btn-primary, 
+.stash-id-pill,
+.badge-secondary,
+.badge-info {
+	color: var(--nav)
+}
+#theme-switcher-button.btn.btn-primary.minimal.d-flex.align-items-center.h-100:hover,
+.btn.btn-primary:hover, 
+.btn-primary:hover,
+.modifier-option.btn.btn-primary:hover {
+	color: var(--accent)
+}
+.minimal.btn.btn-primary,
+#theme-switcher-button.btn.btn-primary.minimal.d-flex.align-items-center.h-100,
+.nav-utility.minimal.btn-primary,
+.nav-utility .btn.btn-primary,
+.brand-link.btn-primary,
+.modifier-option.btn.btn-primary {
+	color: #fff
+}
+.navbar-nav .nav-link a {
+	color: #ffffffa6 !important;
+}
+.navbar-nav .nav-link a:hover {
+	color: var(--accent) !important;
+}

@@ -1,11 +1,22 @@
+.gallery-card .organized-indicator,
+.scene-card .organized-indicator,
 .gallery-card .btn-group,
 .scene-card .btn-group,
 .scene-marker-card .btn-group {
 	display: none !important;
 }
 
-.gallery-card .card .gallery-card__details,
-.scene-card .scene-card__details,
-.scene-marker-card .scene-marker-card__details {
-	margin-bottom: 1.5rem;
+.scene-card .card-date-separator,
+.gallery-card .card-date-separator,
+.gallery-card .organized-indicator,
+.scene-card .organized-indicator,
+.gallery-card .card-popovers.btn-group.inline-popovers,
+.scene-card .card-popovers.btn-group.inline-popovers {
+	display: none !important;
+}
+
+.gallery-card .gallery-card__date,
+.gallery-card .gallery-card__details,
+.scene-card .scene-card__details {
+	padding-top: 1.5px
 }

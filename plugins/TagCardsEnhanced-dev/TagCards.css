@@ -10,6 +10,9 @@
 .tag-card .card-section {
   padding: 0px 0px 6px 10px;
 }
+.tag-parent-tags {
+  padding-bottom: 3px !important
+}
 .tag-card .card-popovers.btn-group {
 	top: 3px !important
 }
@@ -40,15 +43,3 @@ html body div#root div.main.container-fluid div.item-list-container div.row.just
 .tag-popover-card .card-popovers.btn-group {
 	left: 0px !important
 }
-
-
-
-
-
-
-
-
-
-
-
-

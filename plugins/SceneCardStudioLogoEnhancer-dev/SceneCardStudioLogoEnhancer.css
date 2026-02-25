@@ -1,0 +1,319 @@
+/* Studio Logo Enhancer Styles */
+
+/* Card header layout */
+.card-header-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Studio thumbnail container */
+.studio-thumb {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  margin-right: 22px;
+  display: flex;
+}
+.studio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.image-thumbnail {
+  object-position: center;
+}
+.studio-thumb img.logo-square.logo-fat {
+  padding: 3px;
+}
+.studio-thumb img.logo-wide.logo-fat {
+  padding: 4px 4px;
+}
+.studio-thumb img.placeholder-studio.logo-square.logo-fat {
+  padding: 1px;
+}
+
+/* Thickness modifiers 
+.studio-thumb img.logo-wide.logo-skinny {
+    padding: 10px 4px;
+}
+.studio-thumb img.logo-wide.logo-fat {
+    padding: 4px 4px;
+}
+.studio-thumb img.logo-tall.logo-skinny {
+    padding: 4px 10px;
+}
+.studio-thumb img.logo-tall.logo-fat {
+    padding: 4px 6px;
+}
+.studio-thumb img.logo-square.logo-skinny {
+    padding: 6px;
+}
+.studio-thumb img.logo-square.logo-fat {
+    padding: 3px;
+}
+*/
+
+/* Placeholder styling */
+.placeholder-studio {
+  opacity: 0.9;
+}
+.placeholder-studio.logo-square {
+  width: unset;
+}
+.placeholder-studio.logo-square {
+  margin-top: 5px;
+  margin-left: 8px;
+}
+/* Animates studio logo on hover*/
+.studio-thumb a {
+  transition: transform 0.5s;
+}
+.studio-thumb a:hover {
+  transform: scale(108%);
+  /*filter: drop-shadow(.2px .2px 2px #fff)*/
+}
+.scene-card div.video-section.thumbnail-section div.studio-overlay:hover {
+  transform: scale(108%);
+  /*filter: drop-shadow(.2px .2px 2px #fff)*/
+}
+/*details page*/
+.scene-header-container .studio-logo.placeholder-studio.logo-square,
+.gallery-header-container .studio-logo.placeholder-studio.logo-square {
+  margin-top: 1rem;
+}
+
+/* LEGACY
+.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-skinny {
+  margin-top: -6px;
+}
+.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-fat {
+  margin-top: -2px;
+}
+.no-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 2px;
+}
+.no-date.lines-actual-1 img.image-thumbnail.logo-wide {
+  margin-top: -4px;
+}
+.no-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-skinny {
+  margin-top: 5px;
+}
+.no-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-fat {
+  margin-top: 3px;
+}
+.no-date.lines-actual-2 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 2px;
+}
+.no-date.lines-actual-2 img.image-thumbnail.logo-wide {
+  margin-top: 3px;
+}
+.no-description.has-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 4px;
+}
+.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 4px;
+}
+.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 4px;
+}
+.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-fat {
+  margin-top: 5px;
+}
+.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-wide.logo-fat {
+  margin-top: 5px;
+}
+.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-wide {
+  margin-top: 5px;
+}
+.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-wide {
+  margin-top: 5px;
+}
+.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-tall.logo-fat {
+  margin-top: 5px;
+}
+.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-tall.logo-fat {
+  margin-top: 5px;
+}
+.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 4px;
+}
+.no-description.no-date.lines-actual-2 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 4px;
+}
+.no-description.no-date.lines-actual-3 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 4px;
+}
+.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-skinny {
+  margin-top: -7px;
+}
+.no-description.no-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-skinny {
+  margin-top: 3px;
+}
+.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-wide {
+  margin-top: -6px;
+}
+.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-fat {
+  margin-top: -5px;
+}
+.has-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-skinny {
+  margin-top: 2px;
+}
+.has-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-skinny {
+  margin-top: 3px;
+}
+.has-date.lines-actual-1 img.image-thumbnail.logo-wide {
+  margin-top: 3px;
+}
+.has-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
+  margin-top: 3px;
+}
+
+
+/* Date + popovers sit side-by-side inside .title-date (with-studio path) */
+.scene-card .title-date,
+.gallery-card .title-date {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.gallery-card.no-date .organized-indicator, 
+.gallery-card.no-date .card-date-separator,
+.gallery-card.no-date .inline-popovers,
+.scene-card.no-date .organized-indicator, 
+.scene-card.no-date .card-date-separator,
+.scene-card.no-date .inline-popovers {
+	margin-top: -2px !important;
+}
+.gallery-card .gallery-card__details .organized-indicator, 
+.gallery-card .gallery-card__details .card-date-separator,
+.gallery-card .gallery-card__details .inline-popovers,
+.scene-card .scene-card__details .organized-indicator, 
+.scene-card .scene-card__details .card-date-separator,
+.scene-card .scene-card__details .inline-popovers {
+	margin-top: 0px !important;
+}
+
+/* Date row used for both with-studio and no-studio paths */
+.scene-card .card-date-row,
+.gallery-card .card-date-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-height: 1.4em;
+  flex-wrap: nowrap;
+  margin-top: -2px !important;
+}
+
+/* Separator pipe between date text and buttons */
+.scene-card .card-date-separator,
+.gallery-card .card-date-separator {
+  color: var(--tags);
+  margin: 0 3px;
+  font-size: 0.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-left: 3px !important;
+}
+
+/* Condensed inline btn-group */
+.scene-card .card-popovers.btn-group.inline-popovers,
+.gallery-card .card-popovers.btn-group.inline-popovers {
+  display: inline-flex !important;
+  flex-shrink: 0;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  bottom: -1px;
+  margin-left: -3px;
+}
+.scene-card .card-popovers.btn-group.inline-popovers .btn,
+.gallery-card .card-popovers.btn-group.inline-popovers .btn {
+  padding: 2px 2px !important;
+  font-size: 0.75rem !important;
+  line-height: 1 !important;
+  min-width: unset !important;
+  height: auto !important;
+	margin-bottom: 3px;
+	margin-top: -3px;	
+}
+.scene-card .card-popovers.btn-group.inline-popovers .fa-icon,
+.gallery-card .card-popovers.btn-group.inline-popovers .fa-icon {
+  font-size: 0.72rem !important;
+  width: 0.72rem !important;
+  height: 0.72rem !important;
+  margin-right: 2px !important;
+}
+.scene-card .card-popovers.btn-group.inline-popovers span,
+.gallery-card .card-popovers.btn-group.inline-popovers span {
+  font-size: 0.75rem !important;
+}
+
+/* Hide the organized toggle button */
+.scene-card .card-popovers.btn-group.inline-popovers .organized,
+.gallery-card .card-popovers.btn-group.inline-popovers .organized {
+  display: none !important;
+}
+.organized-indicator {
+  position: absolute;
+  margin-top: 1px;	
+  margin-left: 73px;
+  width: 150px;	
+  height: 15px;
+  background: linear-gradient(270deg,
+      rgba(255, 255, 255, 0) 0%,
+      var(--accent) 300%);
+  align-self: center;
+  flex-shrink: 0;
+  z-index: 1;	
+}
+.card.no-date .organized-indicator,
+.card.no-description.no-date .organized-indicator {
+  margin-left: 12px;
+}
+.card-popovers.btn-group.inline-popovers {
+	z-index: 5
+}
+.organized-indicator{
+	transition: 0.5s ease-in-out	
+}
+.card-date-row:hover .organized-indicator {
+	opacity:0;
+}
+.card-popovers.btn-group.inline-popovers .fa-icon {
+  vertical-align: -0.115em !important;
+}
+
+/**//*Duplicated from CMD*//**/
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,	
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {	
+   -webkit-line-clamp: 1 !important;
+}
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,	
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
+   -webkit-line-clamp: 1 !important;
+}
+.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,
+.scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
+.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
+.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
+   -webkit-line-clamp: 3 !important;
+}
+.card .card-section-title .TruncatedText {
+  -webkit-line-clamp: 3 !important;
+}
+.scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
+  -webkit-line-clamp: 1 !important;
+}
+.TruncatedText.gallery-card__description,
+.TruncatedText.scene-card__description{
+	margin-top: 0.3rem;
+	margin-bottom: -0.5rem;
+	font-size: 13px;
+}
+.scene-card .card-section-title.flex-aligned,
+.gallery-card .card-section-title.flex-aligned {		
+	margin-bottom: 0px;
+}
+.scene-card .card-section {
+	padding-top: .1rem;
+}

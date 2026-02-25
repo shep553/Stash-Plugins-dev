@@ -107,8 +107,23 @@
     "file": "Remove Buttons.css",
     "scopes": {
       "Scenes": ".scene-card",
-      "Galleries": ".gallery-card",
-      "Markers": ".scene-marker-card"
+      "Galleries": ".gallery-card"
+    }
+  },
+  {
+    "name": "Remove Studio",
+    "file": "Remove Studio.css",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
+    }
+  },
+  {
+    "name": "Shorten Card",
+    "file": "Shorten Card.css",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
     }
   },
   {
@@ -128,6 +143,10 @@
         }
       }
     }
+  },
+    {
+    "name": "Dark Button Text",
+    "file": "Dark Button Text.css"
   },
   {
     "name": "No Details Gradient",

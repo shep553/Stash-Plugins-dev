@@ -131,6 +131,17 @@
 																/* ============== GLOBAL CHANGES ============== */
 
 
+/*
+.card-popovers.btn-group  button.minimal.btn.btn-primary {
+	font-weight: unset !important;
+}
+.card-popovers .btn {
+	padding-bottom: 0px;
+	padding-top: 0px;
+	font-size: .7rem
+}
+
+
 /*easier for me to find to debug Switcher*/
 #queue-viewer .queue-controls {
 	background-color: var(--queue-edit-header) !important;
@@ -493,7 +504,6 @@ input::selection {
 	color: #ffffffa6 !important;
 	opacity: .5 !important;	
 }
-
 
 			/*======  Tasks page  ======*/
 
@@ -1264,6 +1274,7 @@ div.react-select__control {
 }
 div.react-select__control:hover {
 	border-color: var(--accent-transparent);
+	/*box-shadow: 0 0 0 .2rem var(--accent-transparent);*/
 }
 div.react-select__menu {
 	background-color: var(--nav-grey-dark);
@@ -1546,7 +1557,9 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 
 			/*========== Scene/Galleries ==========*/
 
-
+#gallery-edit-details form div.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: transparent !important
+}
 html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div div.mr-auto.nav.nav-tabs {
 	margin-bottom: 1rem
 }
@@ -1780,17 +1793,20 @@ form#group-edit #synopsis {
 	color: var(--accent);
 	cursor:pointer
 }
-/**/
-/*Distance title to date*/
-.card-section-title.flex-aligned {		
-	line-height: 1.5rem;
-	margin-bottom: -1px;
-	margin-top: 0.1rem;
-}
 .group-card__date,			
 .gallery-card__date,
 .scene-card__date {
 	font-size: 12px;
+}
+.scene-card .card-section-title.flex-aligned,
+.gallery-card .card-section-title.flex-aligned {		
+	margin-bottom: 0px;
+}
+.group-card .card-section-title.flex-aligned {		
+	margin-bottom: 0px;
+}
+.scene-marker-card .card-section-title.flex-aligned {		
+	margin-top: -0.5rem;
 }
 /*remove tooltips from popover buttons*/
 html body div#scene-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,			
@@ -1813,8 +1829,11 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 	background: linear-gradient(0deg, var(--card) 15%, var(--body) 100%);
 }
 /*Bottom of preview to title*/
-.scene-card .card-section {						
+/*.scene-card .card-section {						
 	margin-top: -0.5rem;
+}*/
+.scene-card .card-section {
+	padding-top: .1rem;
 }
 /*title for galleries with no description stays at top*/
 .gallery-card.grid-card.card .card-section {		
@@ -1823,7 +1842,7 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 .TruncatedText.gallery-card__description,
 .TruncatedText.scene-card__description{
 	margin-top: 0.3rem;
-	margin-bottom: -0.7rem;
+	margin-bottom: -0.5rem;
 	font-size: 13px;
 }
 .gallery-card.card {
@@ -1865,14 +1884,18 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 .fileless .scene-card-preview-image {
     background-color: var(--red);
 }
-.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,					
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,	
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {	
+   -webkit-line-clamp: 1 !important;
+}
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,	
 .scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
    -webkit-line-clamp: 1 !important;
 }
 .gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,
 .scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
 .gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
-.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
+.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
    -webkit-line-clamp: 3 !important;
 }
 .card .card-section-title .TruncatedText {
@@ -2717,6 +2740,5 @@ html body div#root div.main.container-fluid div.item-list-container.scene-list d
 }
 
 /*------------------- CHROME END-----------------------------*/
-
 
 

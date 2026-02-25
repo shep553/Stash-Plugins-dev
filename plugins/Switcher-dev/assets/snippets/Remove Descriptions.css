@@ -2,3 +2,12 @@
 .gallery-card .gallery-card__description {
 	display: none !important;
 }
+
+.gallery-card .card-section,
+.scene-card .card-section {
+	margin-bottom: -.5rem;
+}
+
+.scene-card .card-section {
+	padding-top: .1rem;
+}

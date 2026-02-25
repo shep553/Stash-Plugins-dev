@@ -1,0 +1,6 @@
+.scene-card .studio-thumb,
+.gallery-card .studio-thumb {
+	display: none !important;
+}
+
+

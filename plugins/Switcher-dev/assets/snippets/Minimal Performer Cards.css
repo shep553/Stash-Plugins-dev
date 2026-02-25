@@ -28,3 +28,10 @@ img.performer-image,
 .performer-card .thumbnail-section:hover::after {
 	opacity: 0;
 }
+
+.item-list-container .performer-card:hover .thumbnail-section::after,
+.item-list-container .performer-card:hover .thumbnail-section::before,
+.item-list-container .performer-card .thumbnail-section::after,
+.item-list-container .performer-card .thumbnail-section::before {
+	border: none!important;
+}

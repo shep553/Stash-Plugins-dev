@@ -1,10 +1,9 @@
 (function () {
     'use strict';
 
-    const PLUGIN_ID = 'StudioLogoEnhancer';
+    const PLUGIN_ID = 'SceneCardStudioLogoEnhancer';
     const LOGO_SIZE = 40;
     const LOGO_GAP = 22;
-    
     const defaultStudioOverrides = {
         "giorgio grandi": { 
             force: ["logo-wide", "logo-skinny"], 
@@ -38,12 +37,13 @@
     
     const studioColorCache = new Map();
 
+    // =====================================================================
+    // INITIALIZATION
+    // =====================================================================
     async function init() {
-        // Load configuration from Stash's config.yml
         await reloadConfig();
         console.log('[Studio Logo Enhancer] Starting with config:', config);
         
-        // Save studio overrides to config.yml if not already present
         const savedConfig = await csLib.getConfiguration(PLUGIN_ID, {});
         if (!savedConfig.studioOverrides) {
             await csLib.setConfiguration(PLUGIN_ID, {
@@ -54,10 +54,7 @@
             console.log('[Studio Logo Enhancer] Initialized default studio overrides');
         }
         
-        // Process all cards visible on page
         processExistingCards();
-        
-        // Setup event listeners for navigation and mutations
         setupPageListeners();
         
         console.log('[Studio Logo Enhancer] Initialized successfully');
@@ -66,11 +63,9 @@
     async function reloadConfig() {
         const savedConfig = await csLib.getConfiguration(PLUGIN_ID, {});
         
-        // Load boolean settings with fallbacks
         config.useInitials = savedConfig.useInitials ?? defaultConfig.useInitials;
         config.persistentColors = savedConfig.persistentColors ?? defaultConfig.persistentColors;
         
-        // Parse studioOverrides from JSON string
         try {
             config.studioOverrides = savedConfig.studioOverrides 
                 ? JSON.parse(savedConfig.studioOverrides)
@@ -81,28 +76,22 @@
         }
     }
 
+    // =====================================================================
+    // COLOR / PLACEHOLDER HELPERS
+    // =====================================================================
     function colorForStudio(name) {
-        // Return random color if persistent colors disabled
         if (!config.persistentColors) {
             return `hsl(${Math.random() * 360}, 68%, 55%)`;
         }
-
-        // Return cached color if exists
         if (studioColorCache.has(name)) {
             return studioColorCache.get(name);
         }
-        
-        // Generate hash from studio name
         let hash = 0;
         for (let i = 0; i < name.length; i++) {
             hash = (hash * 31 + name.charCodeAt(i)) | 0;
         }
-        
-        // Convert hash to HSL color
         const hue = Math.abs(hash) % 360;
         const color = `hsl(${hue}, 68%, 55%)`;
-        
-        // Cache and return
         studioColorCache.set(name, color);
         return color;
     }
@@ -111,7 +100,6 @@
         const text = (name || "Unknown").trim();
         
         if (config.useInitials) {
-            // ===== INITIALS MODE: Colored background with studio initials =====
             const color = colorForStudio(text);
             const initials = text
                 .split(/\s+/)
@@ -135,12 +123,10 @@
             return "data:image/svg+xml;base64," + btoa(svg);
             
         } else {
-            // ===== TEXT MODE: Full studio name with word wrapping =====
             const words = text.split(/\s+/);
             let lines = [];
             let current = "";
             
-            // Word wrapping logic
             for (const w of words) {
                 const test = current ? current + " " + w : w;
                 if (test.length > 8 && current) {
@@ -152,12 +138,10 @@
             }
             if (current) lines.push(current);
             
-            // Limit to 3 lines
             if (lines.length > 3) {
                 lines = [lines[0], lines[1], lines.slice(2).join(" ")];
             }
 
-            // Dynamic font sizing based on content
             const maxLen = Math.max(...lines.map(l => l.length));
             const fontSize = maxLen <= 6 ? 10 : 
                            maxLen <= 11 ? 7 : 
@@ -169,7 +153,6 @@
             const totalHeight = lines.length * lineHeight;
             const startY = (LOGO_SIZE - totalHeight) / 2 + fontSize;
 
-            // Generate SVG text elements
             const textSvg = lines.map((line, i) => 
                 `<text x="50%" y="${startY + i * lineHeight}" 
                        font-family="sans-serif" 
@@ -189,6 +172,9 @@
         }
     }
 
+    // =====================================================================
+    // LOGO CLASSIFICATION
+    // =====================================================================
     function normalizeStudioName(name) {
         return (name || "")
             .toLowerCase()
@@ -202,21 +188,11 @@
             img.getAttribute('alt') || 
             img.closest('a')?.getAttribute('title')
         );
-        
         if (!studio) return;
-        
         const override = config.studioOverrides[studio];
         if (!override) return;
-        
-        // Remove classes specified in override
-        if (override.remove) {
-            img.classList.remove(...override.remove);
-        }
-        
-        // Add classes specified in override
-        if (override.force) {
-            img.classList.add(...override.force);
-        }
+        if (override.remove) img.classList.remove(...override.remove);
+        if (override.force) img.classList.add(...override.force);
     }
 
     function classifyLogo(img) {
@@ -226,13 +202,11 @@
             const ratio = w / h;
             const fill = Math.min(w, h) / Math.max(w, h);
 
-            // Remove existing classification classes
             img.classList.remove(
                 'logo-wide', 'logo-tall', 'logo-square', 
                 'logo-skinny', 'logo-fat'
             );
 
-            // Primary shape classification
             if (ratio > 1.1) {
                 img.classList.add('logo-wide');
             } else if (ratio < 0.75) {
@@ -241,50 +215,114 @@
                 img.classList.add('logo-square');
             }
             
-            // Secondary thickness classification
             if (fill < 0.28) {
                 img.classList.add('logo-skinny');
             } else if (fill > 0.4) {
                 img.classList.add('logo-fat');
             }
             
-            // Apply any studio-specific overrides
             applyStudioOverride(img);
         };
         
-        // Handle cached images
         if (img.complete && img.naturalWidth) {
             img.onload();
         }
     }
 
+    // =====================================================================
+    // LINE COUNTING
+    // =====================================================================
     function tagActualLines(card, el) {
         requestAnimationFrame(() => {
             const lh = parseFloat(getComputedStyle(el).lineHeight) || 16;
-            
-            // Measure width
             const w = el.getBoundingClientRect().width;
             el.style.width = `${w}px`;
-            
-            // Measure height
             const h = el.getBoundingClientRect().height;
             el.style.width = '';
-            
-            // Calculate actual line count
             const lines = Math.max(1, Math.round(h / lh));
-            
-            // Remove old line count classes
             [...card.classList].forEach(c => {
-                if (c.startsWith('lines-actual-')) {
-                    card.classList.remove(c);
-                }
+                if (c.startsWith('lines-actual-')) card.classList.remove(c);
             });
-            
-            // Add new line count class
             card.classList.add(`lines-actual-${lines}`);
         });
     }
 
+    // =====================================================================
+    // POPOVER INTEGRATION
+    // Works for both scene and gallery cards, with or without a studio.
+    //
+    // With studio:    titleDate is the .title-date div built by the enhancer.
+    //                 The date element is already inside it.
+    // Without studio: titleDate is null. We locate the date in .card-section
+    //                 and insert the row there instead.
+    // =====================================================================
+    function processCardPopovers(card, type, titleDate, cardSection) {
+        const btnGroup = card.querySelector('.card-popovers.btn-group');
+        if (!btnGroup) return;
+
+        // Hide the <hr> that originally preceded the btn-group
+        const hr = btnGroup.previousElementSibling;
+        if (hr && hr.tagName === 'HR') {
+            hr.classList.add('card-popovers-hr-removed');
+        }
+
+        // Mark group as inline so CSS condenses it
+        btnGroup.classList.add('inline-popovers');
+
+        // Resolve the container and date element depending on whether a
+        // studio header was built.
+        const dateSel = type === 'scene' ? '.scene-card__date' : '.gallery-card__date';
+        let container  = titleDate;   // may be null for no-studio cards
+        let existingDate = null;
+
+        if (container) {
+            // With-studio path: date was moved into titleDate already
+            existingDate = container.querySelector(dateSel);
+        } else {
+            // No-studio path: date is still inside .card-section
+            existingDate = cardSection?.querySelector(dateSel) || null;
+            container = cardSection;
+        }
+
+        if (!container) return;
+
+        // Build the flex row: [date?] [|] [btn-group]
+        const dateRow = document.createElement('div');
+        dateRow.className = 'card-date-row';
+
+        if (existingDate) {
+            // Insert the row in place of the date element, then move the
+            // date inside it. Always use existingDate.parentNode as the
+            // reference parent so insertBefore works regardless of how
+            // deeply the date is nested within the container.
+            existingDate.parentNode.insertBefore(dateRow, existingDate);
+            dateRow.appendChild(existingDate);
+
+            const sep = document.createElement('span');
+            sep.className = 'card-date-separator';
+            sep.textContent = '|';
+            dateRow.appendChild(sep);
+        } else {
+            // No date — prepend the row so buttons appear at the top
+            container.prepend(dateRow);
+        }
+
+        dateRow.appendChild(btnGroup);
+
+        // If the card is organized, append a small indicator into the same
+        // dateRow flex container as the buttons — guaranteed co-location,
+        // no absolute positioning or anchor required.
+        const organizedEl = card.querySelector('.organized');
+        if (organizedEl) {
+            const indicator = document.createElement('span');
+            indicator.className = 'organized-indicator';
+            dateRow.appendChild(indicator);
+        }
+    }
+
+    // =====================================================================
+    // CARD ENHANCEMENT (logo + popovers combined)
+    // =====================================================================
     function enhanceSceneOrGallery(card, type) {
         if (card.dataset.studioLogoProcessed) return;
         card.dataset.studioLogoProcessed = "true";
@@ -293,8 +331,9 @@
         if (!section) return;
 
         const overlay = card.querySelector('.studio-overlay');
+        let titleDate = null;
+
         if (overlay) {
-            // Extract studio information
             let link = overlay.querySelector('a');
             let studioName = link?.getAttribute('title')?.trim() || 
                            link?.textContent?.trim() || 
@@ -304,7 +343,6 @@
             let img = overlay.querySelector('img')?.cloneNode(true);
             overlay.remove();
 
-            // Create placeholder if no image exists
             if (!img) {
                 img = document.createElement('img');
                 img.src = createPlaceholder(studioName);
@@ -314,7 +352,6 @@
             
             classifyLogo(img);
 
-            // Build header structure
             const header = document.createElement('div');
             header.className = 'card-header-row';
             
@@ -326,7 +363,7 @@
             linkElem.appendChild(img);
             thumb.appendChild(linkElem);
 
-            const titleDate = document.createElement('div');
+            titleDate = document.createElement('div');
             titleDate.className = 'title-date';
             
             const title = section.querySelector('.card-section-title');
@@ -342,7 +379,7 @@
             section.prepend(header);
         }
 
-        // Add utility classes for styling hooks
+        // Utility classes for CSS hooks
         const desc = section.querySelector(
             '.scene-card__description, .gallery-card__description'
         );
@@ -357,7 +394,7 @@
             date && date.textContent.trim() ? 'has-date' : 'no-date'
         );
 
-        // Track actual line count of titles
+        // Line-count tracking for titles
         const titleEl = section.querySelector('.card-section-title .TruncatedText') || 
                        section.querySelector('.card-section-title');
         if (titleEl) {
@@ -368,8 +405,14 @@
                 // ResizeObserver not supported
             }
         }
+
+        // Inline popovers — scene and gallery, with or without a studio
+        processCardPopovers(card, type, titleDate, section);
     }
 
+    // =====================================================================
+    // STUDIO PAGE / SCENE PAGE / GALLERY PAGE LOGO REPLACEMENTS
+    // =====================================================================
     function replaceMissingStudioImages(scope = document) {
         scope.querySelectorAll('.studio-card-image').forEach(img => {
             if (img.dataset.studioLogoProcessed) return;
@@ -443,18 +486,16 @@
         classifyLogo(img);
     }
 
+    // =====================================================================
+    // BULK PROCESSING & OBSERVERS
+    // =====================================================================
     function processExistingCards() {
-        // Process all scene cards
         document.querySelectorAll('.scene-card').forEach(n => {
             enhanceSceneOrGallery(n, 'scene');
         });
-        
-        // Process all gallery cards
         document.querySelectorAll('.gallery-card').forEach(n => {
             enhanceSceneOrGallery(n, 'gallery');
         });
-        
-        // Replace missing studio logos
         replaceMissingStudioImages();
         replaceStudioPageLogo();
         replaceScenePageStudioLogo();
@@ -462,17 +503,14 @@
     }
 
     function setupPageListeners() {
-        // Scene cards listener
         csLib.PathElementListener('/scenes', '.scene-card', (card) => {
             enhanceSceneOrGallery(card, 'scene');
         });
 
-        // Gallery cards listener
         csLib.PathElementListener('/galleries', '.gallery-card', (card) => {
             enhanceSceneOrGallery(card, 'gallery');
         });
 
-        // Studio page logo listener
         csLib.PathElementListener('/studios/', '#studio-page', () => {
             csLib.waitForElement(
                 '#studio-page .detail-header-image img.logo', 
@@ -480,7 +518,6 @@
             );
         });
 
-        // Scene page studio logo listener
         csLib.PathElementListener('/scenes/', '.scene-studio-image', () => {
             csLib.waitForElement(
                 '.scene-studio-image img.studio-logo', 
@@ -488,7 +525,6 @@
             );
         });
 
-        // Gallery page studio logo listener
         csLib.PathElementListener('/galleries/', '.gallery-studio-image', () => {
             csLib.waitForElement(
                 '.gallery-studio-image img.studio-logo', 
@@ -502,7 +538,6 @@
                 m.addedNodes.forEach(node => {
                     if (node.nodeType !== 1) return;
                     
-                    // Check if node is a card
                     if (node.classList?.contains('scene-card')) {
                         enhanceSceneOrGallery(node, 'scene');
                     }
@@ -510,7 +545,6 @@
                         enhanceSceneOrGallery(node, 'gallery');
                     }
                     
-                    // Check children for cards
                     if (node.querySelectorAll) {
                         node.querySelectorAll('.scene-card').forEach(n => {
                             enhanceSceneOrGallery(n, 'scene');
@@ -528,69 +562,9 @@
         });
     }
 
-    function reprocessAll() {
-        console.log('[Studio Logo Enhancer] Reprocessing all cards...');
-        
-        // Clear all processed flags
-        document.querySelectorAll('[data-studio-logo-processed]').forEach(el => {
-            delete el.dataset.studioLogoProcessed;
-        });
-        
-        // Reprocess everything
-        processExistingCards();
-    }
-
-    // ===== Public API =====
-    // Console API for advanced users to manage studio overrides
-    window.StudioLogoEnhancer = {
-        version: '2.0.0',
-        
-        /**
-         * Add or update a studio logo classification override
-         * @param {string} studioName - Studio name (case-insensitive)
-         * @param {Object} override - Override config { force: [...], remove: [...] }
-         * @example StudioLogoEnhancer.addStudioOverride("Brazzers", { force: ["logo-wide"] })
-         */
-        addStudioOverride: async (studioName, override) => {
-            const normalized = normalizeStudioName(studioName);
-            config.studioOverrides[normalized] = override;
-            
-            await csLib.setConfiguration(PLUGIN_ID, { 
-                studioOverrides: JSON.stringify(config.studioOverrides) 
-            });
-            
-            console.log(`[Studio Logo Enhancer] Added override for "${normalized}":`, override);
-        },
-        
-        /**
-         * Remove a studio logo classification override
-         * @param {string} studioName - Studio name (case-insensitive)
-         * @example StudioLogoEnhancer.removeStudioOverride("Brazzers")
-         */
-        removeStudioOverride: async (studioName) => {
-            const normalized = normalizeStudioName(studioName);
-            delete config.studioOverrides[normalized];
-            
-            await csLib.setConfiguration(PLUGIN_ID, { 
-                studioOverrides: JSON.stringify(config.studioOverrides) 
-            });
-            
-            console.log(`[Studio Logo Enhancer] Removed override for "${normalized}"`);
-        },
-        
-        /**
-         * List all studio overrides
-         * @returns {Object} All studio overrides
-         */
-        listOverrides: () => config.studioOverrides,
-        
-        /**
-         * Force reprocess all cards (useful after adding overrides)
-         */
-        reprocess: reprocessAll
-    };
-
-    // ===== Initialization =====
+    // =====================================================================
+    // BOOTSTRAP
+    // =====================================================================
     function waitForDependencies() {
         if (typeof csLib !== 'undefined') {
             init().catch(err => {

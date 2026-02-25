@@ -1,4 +1,4 @@
-name: SceneCard/StudioLogoEnhancer-dev
+name: SceneCardStudioLogoEnhancer
 description: Moves studio logos to the left of cards and creates placeholders for missing logos with two display modes.
 version: 2.0.0
 url: https://github.com/stash-community/stash-plugins
