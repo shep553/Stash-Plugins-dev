@@ -30,7 +30,11 @@
   top: calc(100% + 5px);
   right: 0;
   
-  width: 260px;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+  overflow-x: hidden;
+	scrollbar-width: thin;
+  width: 270px;
   padding: var(--ts-spacing-unit);
   
   background: var(--ts-bg-panel);
@@ -253,6 +257,37 @@
 .theme-switcher__reset-all:hover {
   color: var(--ts-text-error);
 }
+
+.theme-switcher__snippet-pin:hover {
+	color: var(--accent)
+}
+
+/* dim the pin button, brighten when pinned */
+.theme-switcher__snippet-pin { 
+	/*opacity: 0.5; */
+	background: none; 
+	border: none; 
+	cursor: pointer; 
+	color: #fff;
+	margin-right: -5px;
+	margin-left: -10px;
+}
+.theme-switcher__snippet-pin[data-pinned="true"] { 
+	/*opacity: 1;*/
+	color: var(--accent-transparent)
+}
+.theme-switcher__snippet-pin[data-pinned="true"]:hover { 
+	color: var(--accent)
+}
+
+
+/* optional: visual separator above the color rows when pinned snippets are present 
+.theme-switcher__pinned-snippets:not(:empty) { 
+	margin-bottom: 8px; 
+	padding-bottom: 8px; 
+	border-top: 1px solid rgba(255,255,255,0.1); 
+}
+*/
 
 /* ============================================================================
    SNIPPETS - CSS snippet management

@@ -12,3 +12,7 @@
 .tag-card .tag-card-image {
 	background: var(--card) !important;
 }
+
+.performer-card.p-0.m-0.card {
+	background: var(--nav-grey-dark) !important;
+}

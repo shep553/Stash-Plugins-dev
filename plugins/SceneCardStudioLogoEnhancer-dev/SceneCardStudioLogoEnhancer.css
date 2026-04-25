@@ -12,6 +12,7 @@
   height: 40px;
   flex: 0 0 40px;
   margin-right: 22px;
+  margin-top: 2px;
   display: flex;
 }
 .studio-thumb img {
@@ -28,7 +29,8 @@
 .studio-thumb img.logo-wide.logo-fat {
   padding: 4px 4px;
 }
-.studio-thumb img.placeholder-studio.logo-square.logo-fat {
+.studio-thumb img.placeholder-studio-name.logo-square.logo-fat,
+.studio-thumb img.placeholder-studio-svg.logo-square.logo-fat {
   padding: 1px;
 }
 
@@ -54,14 +56,20 @@
 */
 
 /* Placeholder styling */
-.placeholder-studio {
+.placeholder-studio-name,
+.placeholder-studio-svg {
   opacity: 0.9;
 }
-.placeholder-studio.logo-square {
+.placeholder-studio-svg.logo-square.logo-fat,
+.placeholder-studio-name.logo-square.logo-fat {
   width: unset;
 }
-.placeholder-studio.logo-square {
-  margin-top: 5px;
+.placeholder-studio-name.logo-square.logo-fat {
+  margin-top: 1px;
+  margin-left: 5px;
+}
+.placeholder-studio-svg.logo-square.logo-fat {
+  margin-top: 2px;
   margin-left: 8px;
 }
 /* Animates studio logo on hover*/
@@ -80,6 +88,18 @@
 .scene-header-container .studio-logo.placeholder-studio.logo-square,
 .gallery-header-container .studio-logo.placeholder-studio.logo-square {
   margin-top: 1rem;
+}
+
+html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div div.scene-header-container h1.text-center.studio-logo a img.placeholder-studio-name,
+html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gallery-header-container h1.text-center.studio-logo a img.placeholder-studio-name {
+  width: 200px;
+  height: 150px;
+}
+html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div div.scene-header-container h1.text-center.studio-logo a img.placeholder-studio-svg,
+html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gallery-header-container h1.text-center.studio-logo a img.placeholder-studio-svg {
+  width: 200px;
+  height: 150px;
+
 }
 
 /* LEGACY
@@ -174,8 +194,17 @@
 .gallery-card .title-date {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
+.gallery-card.no-description.no-date .card-date-row,
+.scene-card.no-description.no-date .card-date-row {
+  margin-top: 2px;
+}
+.gallery-card.no-description.no-date .card-header-row .card-date-row,
+.scene-card.no-description.no-date .card-header-row .card-date-row {
+  margin-top: 0px;
+}
+/*
 .gallery-card.no-date .organized-indicator, 
 .gallery-card.no-date .card-date-separator,
 .gallery-card.no-date .inline-popovers,
@@ -197,55 +226,44 @@
 .scene-card .card-date-row,
 .gallery-card .card-date-row {
   display: flex;
-  align-items: center;
-  gap: 0;
-  min-height: 1.4em;
+  gap: 0.3rem;
   flex-wrap: nowrap;
-  margin-top: -2px !important;
 }
 
 /* Separator pipe between date text and buttons */
 .scene-card .card-date-separator,
 .gallery-card .card-date-separator {
   color: var(--tags);
-  margin: 0 3px;
   font-size: 0.8rem;
-  line-height: 1;
-  flex-shrink: 0;
-  padding-left: 3px !important;
 }
 
 /* Condensed inline btn-group */
 .scene-card .card-popovers.btn-group.inline-popovers,
 .gallery-card .card-popovers.btn-group.inline-popovers {
-  display: inline-flex !important;
-  flex-shrink: 0;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  bottom: -1px;
-  margin-left: -3px;
+  display: inline-flex;
+  gap: 0px;
+  margin-left: -4px;
+  top: -4px 
 }
 .scene-card .card-popovers.btn-group.inline-popovers .btn,
 .gallery-card .card-popovers.btn-group.inline-popovers .btn {
   padding: 2px 2px !important;
-  font-size: 0.75rem !important;
-  line-height: 1 !important;
-  min-width: unset !important;
-  height: auto !important;
-	margin-bottom: 3px;
-	margin-top: -3px;	
+  font-size: 0.72rem !important;
+  
 }
 .scene-card .card-popovers.btn-group.inline-popovers .fa-icon,
 .gallery-card .card-popovers.btn-group.inline-popovers .fa-icon {
   font-size: 0.72rem !important;
   width: 0.72rem !important;
   height: 0.72rem !important;
-  margin-right: 2px !important;
+  margin-right: 1px !important;
 }
-.scene-card .card-popovers.btn-group.inline-popovers span,
+/*.scene-card .card-popovers.btn-group.inline-popovers span,
 .gallery-card .card-popovers.btn-group.inline-popovers span {
   font-size: 0.75rem !important;
+}
+.card-popovers.btn-group.inline-popovers .fa-icon {
+  vertical-align: -0.115em !important;
 }
 
 /* Hide the organized toggle button */
@@ -253,9 +271,11 @@
 .gallery-card .card-popovers.btn-group.inline-popovers .organized {
   display: none !important;
 }
+
+
 .organized-indicator {
   position: absolute;
-  margin-top: 1px;	
+  margin-top: -9px;	
   margin-left: 73px;
   width: 150px;	
   height: 15px;
@@ -277,13 +297,10 @@
 	transition: 0.5s ease-in-out	
 }
 .card-date-row:hover .organized-indicator {
-	opacity:0;
-}
-.card-popovers.btn-group.inline-popovers .fa-icon {
-  vertical-align: -0.115em !important;
+	opacity:0.6;
 }
 
-/**//*Duplicated from CMD*//**/
+/**//*Duplicated from CMD*//*
 .gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,	
 .scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {	
    -webkit-line-clamp: 1 !important;
@@ -306,13 +323,25 @@
 }
 .TruncatedText.gallery-card__description,
 .TruncatedText.scene-card__description{
-	margin-top: 0.3rem;
+	margin-top: -0.3rem;
 	margin-bottom: -0.5rem;
 	font-size: 13px;
 }
 .scene-card .card-section-title.flex-aligned,
 .gallery-card .card-section-title.flex-aligned {		
-	margin-bottom: 0px;
+	line-height: 1.1;
+}
+.scene-card .card-header-row .card-section-title.flex-aligned,
+.gallery-card .card-header-row .card-section-title.flex-aligned {		
+	margin-bottom: -2px;
+}
+.scene-card.no-description.no-date .card-header-row .card-section-title.flex-aligned,
+.gallery-card .no-description.no-date .card-header-row .card-section-title.flex-aligned {		
+	margin-bottom: -2px;
+}
+.scene-card.no-description.no-date .card-section-title.flex-aligned,
+.gallery-card .no-description.no-date .card-section-title.flex-aligned {		
+	margin-bottom: 2px;
 }
 .scene-card .card-section {
 	padding-top: .1rem;

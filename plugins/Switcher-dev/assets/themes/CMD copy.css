@@ -1838,7 +1838,7 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 }
 .TruncatedText.gallery-card__description,
 .TruncatedText.scene-card__description{
-	margin-top: -0.3rem;
+	margin-top: -0.2rem;
 	margin-bottom: -0.5rem;
 	font-size: 13px;
 }
@@ -1984,9 +1984,14 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 	display: none;										    
 }
 /**/	/*Tidying up bottom of card*/
+.group-card__details {					
+	margin-bottom: 0px;										
+}
+.group-card.card {
+	padding: 0 0 .5rem;
+}
 .group-card .card-section {
-	margin-bottom: -1.5rem;
-	margin-top: -.2rem		
+   padding: .3rem 1rem 0;
 }
 .group-card .card-section-title .TruncatedText {
 	-webkit-line-clamp: 1 !important
@@ -2073,7 +2078,7 @@ div.row.justify-content-center div.group-card.zoom-1.grid-card.card .thumbnail-s
 }
 /**/	/*Tidying up bottom of card*/
 .performer-card .card-section {
-   padding: .4rem .1rem .1rem;
+	padding: .4rem .1rem .1rem;
 }
 .performer-card .card-section h5 {
 	margin-bottom: -0.6rem;
@@ -2466,12 +2471,13 @@ html body div#root div.main.container-fluid div.item-list-container div.sidebar-
 	left: 107rem;
 }
 
-html body div#root div.main.container-fluid div.item-list-container.group-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
-html body div#root div.main.container-fluid div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
-html body div#root div.main.container-fluid div.item-list-container.gallery-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
-html body div#root div.main.container-fluid div.item-list-container.studio-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
-html body div#root div.main.container-fluid div.item-list-container.tag-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
-html body div#root div.main.container-fluid div.item-list-container.image-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+
+.item-list-container.group-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+.item-list-container.gallery-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+.item-list-container.studio-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+.item-list-container.tag-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
+.item-list-container.image-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
 
 #group-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list.hide-sidebar div.sidebar-pane.hide-sidebar div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,
 #group-tabs-tabpane-scenes.fade.tab-pane.active.show div.item-list-container.scene-list div.sidebar-pane div.sidebar-pane-content div.pagination-index-container span.filter-container.text-muted.paginationIndex.center-text,

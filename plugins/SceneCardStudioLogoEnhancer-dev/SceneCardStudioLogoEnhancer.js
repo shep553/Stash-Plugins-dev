@@ -96,6 +96,10 @@
         return color;
     }
 
+    function placeholderClass() {
+        return config.useInitials ? 'placeholder-studio-svg' : 'placeholder-studio-name';
+    }
+
     function createPlaceholder(name) {
         const text = (name || "Unknown").trim();
         
@@ -347,7 +351,7 @@
                 img = document.createElement('img');
                 img.src = createPlaceholder(studioName);
                 img.alt = studioName;
-                img.classList.add('placeholder-studio');
+                img.classList.add(placeholderClass());
             }
             
             classifyLogo(img);
@@ -446,43 +450,61 @@
 
         img.src = createPlaceholder(name);
         img.removeAttribute('srcset');
-        img.classList.add('placeholder-studio');
+        img.classList.add(placeholderClass());
         img.dataset.studioLogoProcessed = "true";
     }
 
     function replaceScenePageStudioLogo() {
-        const img = document.querySelector('.scene-studio-image img.studio-logo');
-        if (!img || img.dataset.studioLogoProcessed) return;
+        const h1 = document.querySelector('.scene-header-container h1.studio-logo');
+        if (!h1 || h1.dataset.studioLogoProcessed) return;
 
-        const src = img.getAttribute('src') || "";
-        if (!src.includes("default=true")) return;
+        // A real logo img (not injected by us) means a studio has an actual image
+        const existingImg = h1.querySelector('img');
+        if (existingImg && !existingImg.getAttribute('src')?.includes("default=true")) return;
 
-        const name = img.getAttribute('alt')?.replace(/logo$/i, '').trim() || 
-                    document.querySelector('.scene-studio-image a')?.getAttribute('title') || 
-                    "Unknown";
+        const nameEl = document.querySelector('.scene-header-container .studio-name');
+        const name = nameEl?.textContent.trim() || "Unknown";
 
+        const anchor = h1.querySelector('a');
+        if (!anchor) return;
+
+        // Clear entire anchor contents and inject our placeholder img
+        anchor.innerHTML = '';
+
+        const img = document.createElement('img');
         img.src = createPlaceholder(name);
-        img.removeAttribute('srcset');
-        img.classList.add('placeholder-studio');
-        img.dataset.studioLogoProcessed = "true";
+        img.alt = name;
+        img.classList.add(placeholderClass());
+        anchor.appendChild(img);
+
+        h1.dataset.studioLogoProcessed = "true";
         classifyLogo(img);
     }
 
     function replaceGalleryPageStudioLogo() {
-        const img = document.querySelector('.gallery-studio-image img.studio-logo');
-        if (!img || img.dataset.studioLogoProcessed) return;
+        const h1 = document.querySelector('.gallery-header-container h1.studio-logo');
+        if (!h1 || h1.dataset.studioLogoProcessed) return;
 
-        const src = img.getAttribute('src') || "";
-        if (!src.includes("default=true")) return;
+        // A real logo img (not injected by us) means a studio has an actual image
+        const existingImg = h1.querySelector('img');
+        if (existingImg && !existingImg.getAttribute('src')?.includes("default=true")) return;
 
-        const name = img.getAttribute('alt')?.replace(/logo$/i, '').trim() || 
-                    document.querySelector('.gallery-studio-image a')?.getAttribute('title') || 
-                    "Unknown";
+        const nameEl = document.querySelector('.gallery-header-container .studio-name');
+        const name = nameEl?.textContent.trim() || "Unknown";
 
+        const anchor = h1.querySelector('a');
+        if (!anchor) return;
+
+        // Clear entire anchor contents and inject our placeholder img
+        anchor.innerHTML = '';
+
+        const img = document.createElement('img');
         img.src = createPlaceholder(name);
-        img.removeAttribute('srcset');
-        img.classList.add('placeholder-studio');
-        img.dataset.studioLogoProcessed = "true";
+        img.alt = name;
+        img.classList.add(placeholderClass());
+        anchor.appendChild(img);
+
+        h1.dataset.studioLogoProcessed = "true";
         classifyLogo(img);
     }
 
@@ -518,16 +540,16 @@
             );
         });
 
-        csLib.PathElementListener('/scenes/', '.scene-studio-image', () => {
+        csLib.PathElementListener('/scenes/', '.scene-header-container', () => {
             csLib.waitForElement(
-                '.scene-studio-image img.studio-logo', 
+                '.scene-header-container h1.studio-logo', 
                 replaceScenePageStudioLogo
             );
         });
 
-        csLib.PathElementListener('/galleries/', '.gallery-studio-image', () => {
+        csLib.PathElementListener('/galleries/', '.gallery-header-container', () => {
             csLib.waitForElement(
-                '.gallery-studio-image img.studio-logo', 
+                '.gallery-header-container h1.studio-logo', 
                 replaceGalleryPageStudioLogo
             );
         });

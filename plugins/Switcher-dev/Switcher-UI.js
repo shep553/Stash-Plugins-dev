@@ -179,6 +179,16 @@
             resetAllBtn.textContent = 'Reset All Modified';
             resetAllBtn.addEventListener('click', () => EventHandlers.handleResetAllColors());
             colorsWrapper.appendChild(resetAllBtn);
+
+            // Separator + area for snippets pinned to this section (at the bottom)
+            const pinnedSeparator = document.createElement('hr');
+            pinnedSeparator.className = 'theme-switcher__pinned-separator';
+            pinnedSeparator.style.display = 'none';
+            colorsWrapper.appendChild(pinnedSeparator);
+
+            const pinnedArea = document.createElement('div');
+            pinnedArea.className = 'theme-switcher__pinned-snippets';
+            colorsWrapper.appendChild(pinnedArea);
             
             content.appendChild(colorsWrapper);
             
@@ -234,6 +244,65 @@
             return section;
         }
 
+        // Toggle pin state for a snippet (move between Snippets and Custom Colors sections)
+        static async toggleSnippetPin(snippet, snippetEl, pinBtn) {
+            const key = `pinned-snippet-${snippet.name}`;
+            const isPinned = storage.config[key] === true;
+            const newPinned = !isPinned;
+
+            if (newPinned) {
+                await storage.set(key, true);
+                pinBtn.setAttribute('data-pinned', 'true');
+                pinBtn.title = 'Unpin from Custom Colors';
+                snippetEl.classList.add('theme-switcher__snippet--pinned');
+                const pinnedArea = document.querySelector('.theme-switcher__pinned-snippets');
+                if (pinnedArea) pinnedArea.appendChild(snippetEl);
+            } else {
+                await storage.remove(key);
+                pinBtn.setAttribute('data-pinned', 'false');
+                pinBtn.title = 'Pin to Custom Colors';
+                snippetEl.classList.remove('theme-switcher__snippet--pinned');
+
+                // Restore to original position based on order in state.snippets
+                const snippetsContainer = document.querySelector('.theme-switcher__snippets');
+                if (snippetsContainer) {
+                    const originalIndex = state.snippets.findIndex(raw => {
+                        const s = SnippetManager.normalizeSnippet(raw);
+                        return s && s.name === snippet.name;
+                    });
+                    const presentEls = Array.from(
+                        snippetsContainer.querySelectorAll('.theme-switcher__snippet')
+                    );
+                    let insertBefore = null;
+                    for (const el of presentEls) {
+                        const elIdx = state.snippets.findIndex(raw => {
+                            const s = SnippetManager.normalizeSnippet(raw);
+                            return s && s.name === el.getAttribute('data-snippet-id');
+                        });
+                        if (elIdx > originalIndex) { insertBefore = el; break; }
+                    }
+                    if (insertBefore) {
+                        snippetsContainer.insertBefore(snippetEl, insertBefore);
+                    } else {
+                        const disableBtn = snippetsContainer.querySelector('.theme-switcher__disable-all');
+                        snippetsContainer.insertBefore(snippetEl, disableBtn || null);
+                    }
+                }
+            }
+
+            // Show/hide the separator based on whether any snippets are pinned
+            UIManager.updatePinnedSeparator();
+        }
+
+        // Show the pinned separator only when there are pinned snippets
+        static updatePinnedSeparator() {
+            const pinnedArea = document.querySelector('.theme-switcher__pinned-snippets');
+            const separator = document.querySelector('.theme-switcher__pinned-separator');
+            if (!separator) return;
+            const hasPinned = pinnedArea && pinnedArea.children.length > 0;
+            separator.style.display = hasPinned ? 'block' : 'none';
+        }
+
         // Build snippet UI dynamically
         static buildSnippetUI() {
             state.clearElementCache();
@@ -279,6 +348,24 @@
             fragment.appendChild(disableBtn);
 
             container.appendChild(fragment);
+
+            // Move any pinned snippets into the Custom Colors section
+            const pinnedArea = document.querySelector('.theme-switcher__pinned-snippets');
+            if (pinnedArea) {
+                pinnedArea.innerHTML = '';
+                state.snippets.forEach(raw => {
+                    const snippet = SnippetManager.normalizeSnippet(raw);
+                    if (!snippet) return;
+                    if (storage.config[`pinned-snippet-${snippet.name}`] === true) {
+                        const snippetEl = container.querySelector(`.theme-switcher__snippet[data-snippet-id="${snippet.name}"]`);
+                        if (snippetEl) {
+                            snippetEl.classList.add('theme-switcher__snippet--pinned');
+                            pinnedArea.appendChild(snippetEl);
+                        }
+                    }
+                });
+            }
+            UIManager.updatePinnedSeparator();
         }
 
         // Create a snippet element
@@ -297,6 +384,19 @@
             
             const info = document.createElement('div');
             info.className = 'theme-switcher__snippet-info';
+
+            // Pin button (move snippet to/from Custom Colors section)
+            const isPinned = storage.config[`pinned-snippet-${snippet.name}`] === true;
+            const pinBtn = document.createElement('button');
+            pinBtn.className = 'theme-switcher__snippet-pin';
+            pinBtn.title = isPinned ? 'Unpin from Custom Colors' : 'Pin to Custom Colors';
+            pinBtn.setAttribute('data-pinned', isPinned.toString());
+            pinBtn.textContent = '🖈';
+            pinBtn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                await UIManager.toggleSnippetPin(snippet, container, pinBtn);
+            });
+            info.appendChild(pinBtn);
             
             // Name - use the actual snippet name from the data
             const name = document.createElement('span');

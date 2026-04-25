@@ -36,6 +36,7 @@
 
 .performer-card .rating-inline {
   margin-left: auto;
+  margin-right: 10px;
   font-size: 0.8em;
   font-weight: bold;
   text-shadow: 0 0 2px rgba(0,0,0,0.4);
@@ -73,27 +74,6 @@
 }
 
 
-
-
-
-
-/* Performer Cards Enhanced Styles */
-
-/* Rating inline display */
-.rating-inline {
-    display: flex;
-    align-items: center;
-    margin-left: 8px;
-}
-
-.rating-inline .star {
-    margin-right: 2px;
-}
-
-.rating-inline .number {
-    color: inherit;
-}
-
 /* Rating color classes for star */
 .rating-star-2 { color: #fff; }
 .rating-star-4 { color: #f90; }
@@ -105,5 +85,3 @@
 .rating-star-16 { color: #d800ff; }
 .rating-star-18 { color: #f00; }
 .rating-star-20 { color: var(--accent); }
-
-

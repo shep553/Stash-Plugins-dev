@@ -13,6 +13,7 @@
 .modifier-option.btn.btn-primary:hover {
 	color: var(--accent)
 }
+.scene-divider .btn.btn-primary,
 .minimal.btn.btn-primary,
 #theme-switcher-button.btn.btn-primary.minimal.d-flex.align-items-center.h-100,
 .nav-utility.minimal.btn-primary,
