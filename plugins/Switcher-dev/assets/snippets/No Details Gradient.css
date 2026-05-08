@@ -9,5 +9,9 @@
 }
 
 .pre-fade {
-	background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--body) 90%) !important;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, var(--body) 105%) !important; 
+}
+
+#queue-viewer .queue-controls {
+	background-color: var(--transparent) !important;
 }

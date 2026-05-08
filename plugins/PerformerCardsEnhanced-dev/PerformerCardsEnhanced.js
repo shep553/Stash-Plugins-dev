@@ -5,17 +5,17 @@
 
   // ─── Rating colour map ──────────────────────────────────────────────────────
 
-  const RATING_COLORS = {
-    2:  '#fff',
-    4:  '#f90',
-    6:  '#fcfd00',
-    8:  '#9eff00',
-    10: '#00bf02',
-    12: '#00ffd5',
-    14: '#3100ff',
-    16: '#d800ff',
-    18: '#f00',
-    20: 'var(--accent)',
+   const RATING_COLORS = {
+    2:  'var(--rating-color-2)',
+    4:  'var(--rating-color-4)',
+    6:  'var(--rating-color-6)',
+    8:  'var(--rating-color-8)',
+    10: 'var(--rating-color-10)',
+    12: 'var(--rating-color-12)',
+    14: 'var(--rating-color-14)',
+    16: 'var(--rating-color-16)',
+    18: 'var(--rating-color-18)',
+    20: 'var(--rating-color-20)',
   };
 
   function getRatingColor(ratingBanner) {

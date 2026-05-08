@@ -2,5 +2,11 @@
 .gallery-card .gallery-card__date {
 	display: none !important;
 }
-
-
+.gallery-card .organized-indicator,
+.scene-card .organized-indicator {
+	margin-left: 9px;
+}
+.gallery-card .card-date-row,
+.scene-card .card-date-row {
+	padding-left: 5px
+}

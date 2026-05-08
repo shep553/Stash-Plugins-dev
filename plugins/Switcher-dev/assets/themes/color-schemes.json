@@ -12,7 +12,8 @@
       "--red": "#db3737",
       "--bright-red": "#f00",
       "--description": "#1f1f22",
-      "--queue-edit-header": "#1e1e1e"
+      "--queue-edit-header": "#1e1e1e",
+      "--card-hover": "#805c396b"
     },
     "DarkBlueOrange": {
       "--body": "#0e0d11",
@@ -26,7 +27,8 @@
       "--red": "#ff5555",
       "--bright-red": "#f00",
       "--description": "#131318",
-      "--queue-edit-header": "#131217"
+      "--queue-edit-header": "#131217",
+      "--card-hover": "#6f4c3f82"
     },
     "DarkBlueGreen": {
       "--body": "#151c17",
@@ -40,7 +42,8 @@
       "--red": "#FF5555",
       "--bright-red": "#f00",
       "--description": "#222d25",
-      "--queue-edit-header": "#1c2820"
+      "--queue-edit-header": "#1c2820",
+      "--card-hover": "#2d52577a"
     },
     "Dracula": {
       "--body": "#161820",
@@ -54,7 +57,8 @@
       "--red": "#FF5555",
       "--bright-red": "#f00",
       "--description": "#22242f",
-      "--queue-edit-header": "#1f212b"
+      "--queue-edit-header": "#1f212b",
+      "--card-hover": "#4b3a6f77"
     },
     "BlueDark": {
       "--body": "#171d26",
@@ -68,7 +72,8 @@
       "--red": "#FF5555",
       "--bright-red": "#f00",
       "--description": "#212835",
-      "--queue-edit-header": "#1f2532"
+      "--queue-edit-header": "#1f2532",
+      "--card-hover": "#32475e"
     },
     "h!anime": {
       "--body": "#11101a",
@@ -82,7 +87,8 @@
       "--red": "#FF5555",
       "--bright-red": "#f00",
       "--description": "#1d1b29",
-      "--queue-edit-header": "#1a1926"
+      "--queue-edit-header": "#1a1926",
+      "--card-hover": "#5e324c7a"
     }
   },
   "Test": {
@@ -98,7 +104,8 @@
       "--red": "#FF5555",
       "--bright-red": "#f00",
       "--description": "#22242f",
-      "--queue-edit-header": "#1a1926"
+      "--queue-edit-header": "#1a1926",
+      "--card-hover": "#cc7b19"
     },
     "blue": {
       "--body": "#161820",
@@ -112,7 +119,8 @@
       "--red": "#FF5555",
       "--bright-red": "#f00",
       "--description": "#22242f",
-      "--queue-edit-header": "#1a1926"
+      "--queue-edit-header": "#1a1926",
+      "--card-hover": "#cc7b19"
     }
   }
 }

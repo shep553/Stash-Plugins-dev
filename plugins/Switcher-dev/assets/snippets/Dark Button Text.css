@@ -28,3 +28,9 @@
 .navbar-nav .nav-link a:hover {
 	color: var(--accent) !important;
 }
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active, 
+.btn-primary:not(:disabled):not(.disabled).active:focus, 
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+	color: var(--accent) !important;
+}

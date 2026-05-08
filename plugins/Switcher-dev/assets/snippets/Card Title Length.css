@@ -2,30 +2,30 @@
 .scene-card.no-description.no-date .card-header-row .title-date .card-section-title .TruncatedText,
 .scene-card.no-description.has-date .card-header-row .title-date .card-section-title .TruncatedText,
 .scene-card.no-date .card-header-row .title-date .card-section-title .TruncatedText {
-   -webkit-line-clamp: var(--title-length) !important;
+   -webkit-line-clamp: var(--title-length, 1) !important;
 }
 
 .scene-card.has-date .card-section-title .TruncatedText,
 .scene-card.no-description.no-date .card-section-title .TruncatedText,
 .scene-card.no-description.has-date .card-section-title .TruncatedText,
 .scene-card.no-date .card-section-title .TruncatedText {
-   -webkit-line-clamp: var(--title-length) !important;
+   -webkit-line-clamp: var(--title-length, 1) !important;
 }
 
 .gallery-card.has-date .card-header-row .title-date .card-section-title .TruncatedText,
 .gallery-card.no-description.no-date .card-header-row .title-date .card-section-title .TruncatedText,
 .gallery-card.no-description.has-date .card-header-row .title-date .card-section-title .TruncatedText,
 .gallery-card.no-date .card-header-row .title-date .card-section-title .TruncatedText {
-   -webkit-line-clamp: var(--title-length) !important;
+   -webkit-line-clamp: var(--title-length, 1) !important;
 }
 
 .gallery-card.has-date .card-section-title .TruncatedText,
 .gallery-card.no-description.no-date .card-section-title .TruncatedText,
 .gallery-card.no-description.has-date .card-section-title .TruncatedText,
 .gallery-card.no-date .card-section-title .TruncatedText {
-   -webkit-line-clamp: var(--title-length) !important;
+   -webkit-line-clamp: var(--title-length, 1) !important;
 }
 
 .scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
-   -webkit-line-clamp: var(--title-length) !important;
+   -webkit-line-clamp: var(--title-length, 1) !important;
 }

@@ -11,11 +11,12 @@
 	filter: none;
 }
 
+
+
 .performer-card:hover .thumbnail-section::after,
 .performer-card:hover .thumbnail-section::before,
 .performer-card .thumbnail-section::after,
 .performer-card .thumbnail-section::before {
-	border: 3px var(--card) solid !important;
 	border-radius: var(--card-image-radius, 0px) !important;
 }
 
@@ -23,3 +24,4 @@
 .performer-card.zoom-undefined .thumbnail-section::after {
    height: 100.1% !important;
  }
+   

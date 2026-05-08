@@ -126,20 +126,21 @@
 .form-container.edit-buttons-container.px-3.pt-3.row {
 	background-color: var(--queue-edit-header) !important;
 }*/
+
+--rating-color-2: #fff;
+--rating-color-4: #ff8025;
+--rating-color-6: #fff42e;
+--rating-color-8: #9eff1f;
+--rating-color-10: #21e31d;
+--rating-color-12: #23ffcf;
+--rating-color-14: #3180ff;
+--rating-color-16: #ff23fb;
+--rating-color-18: #ff3434;
+--rating-color-20: var(--accent);
+
 }
 
 																/* ============== GLOBAL CHANGES ============== */
-
-
-/*
-.card-popovers.btn-group  button.minimal.btn.btn-primary {
-	font-weight: unset !important;
-}
-.card-popovers .btn {
-	padding-bottom: 0px;
-	padding-top: 0px;
-	font-size: .7rem
-}
 
 
 /*easier for me to find to debug Switcher*/
@@ -407,31 +408,31 @@ input::selection {
 	color: #fff;
 }
 .rating-stars:has([title = "0.5"]) .set {
-	color: #000;
+	color: var(--rating-color-2);
 }
 .rating-stars:has([title = "1"]) .set {
-	color: #ff7800;
+	color: var(--rating-color-4);
 }
 .rating-stars:has([title = "1.5"]) .set {
-	color: #e0db03;
+	color: var(--rating-color-6);
 }
 .rating-stars:has([title = "2"]) .set {
-	color: #92e60b;
+	color: var(--rating-color-8);
 }
 .rating-stars:has([title = "2.5"]) .set {
-	color: #136916;
+	color: var(--rating-color-10);
 }
 .rating-stars:has([title = "3"]) .set {
-	color: #08e2e6;
+	color: var(--rating-color-12);
 }
 .rating-stars:has([title = "3.5"]) .set {
-	color: #02f;
+	color: var(--rating-color-14);
 }
 .rating-stars:has([title = "4"]) .set {
-	color: #cd00f3;
+	color: var(--rating-color-16);
 }
 .rating-stars:has([title = "4.5"]) .set {
-	color: #f00;
+	color: var(--rating-color-18);
 }
 .rating-stars:has([title = "5"]) .set {
 	color: var(--accent);
@@ -531,9 +532,14 @@ svg.svg-inline--fa.fa-gear.fa-spin {
 	color: var(--accent);
 }
 /*hover background on left menu*/
-.row .nav-link:hover, .nav-link:focus {
+#settings-menu-container .nav-link:hover, 
+#settings-menu-container .nav-link:focus,  
+#settings-menu-container .nav-link.active {
 	color: var(--accent);
-	/*background: linear-gradient(90deg, var(--card), var(--body));*/
+	background: linear-gradient(90deg, var(--nav-grey-dark), var(--body));
+}
+#settings-menu-container .nav-link.active {
+	font-weight:bold;
 }
 /*solid lines between options in the cards*/
 .setting-section .setting:not(:last-child), .setting-section .setting-group:not(:last-child) {
@@ -664,7 +670,7 @@ svg.svg-inline--fa.fa-gear.fa-spin {
 /*.btn.btn-link svg.svg-inline--fa.fa-angle-down.fa-icon.mr-3 {
 	color: var(--accent)
 }*/
-/*help menu stuff also the table colors for markdown are changed together with all the other table stuff */
+/*help menu stuff. the table colors for markdown are changed together with all the other table stuff */
 .markdown blockquote, .markdown pre {
 	background-color: var(--nav-grey-dark);
 }
@@ -783,7 +789,7 @@ div.markdown code {
 .btn-secondary:not(:disabled):not(.disabled):active:focus, 
 .show > .btn-secondary.dropdown-toggle:focus {
 	color: var(--accent);
-	background-color: var(--nav-grey);
+	background-color: transparent;
 	border-color: transparent;
 	box-shadow: none;
 }
@@ -915,7 +921,6 @@ button.minimal.organized-button.organized.btn.btn-secondary svg.svg-inline--fa.f
 }
 button.minimal.organized-button.organized.btn.btn-secondary svg.svg-inline--fa.fa-box.fa-icon path:hover {
 	fill: var(--accent-transparent);
-
 }
 
 			/*======  Favorite Button  ======*/
@@ -1049,7 +1054,7 @@ html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-firs
 	border: none;
 }
 
-		/*======  Switches-Radio Buttons  ======*/
+			/*======  Switches-Radio Buttons  ======*/
 
 /*Scenes/Performer grid view selection checkboxes*/
 input[type = "checkbox"] {
@@ -1212,8 +1217,7 @@ input[type="range"]::-moz-range-thumb {
 	margin-left: 5px;
 }
 
-			/*======  Date Picker ====== */
-
+			/* ======  Date Picker ====== */
 
 .react-datepicker__input-container.btn.btn-secondary:not(:disabled):not(.disabled).active,
 .react-datepicker__input-container.btn.btn-secondary:not(:disabled):not(.disabled):active, 
@@ -1307,7 +1311,6 @@ div.react-select__control .react-select__multi-value {
 
 														/* ==================== TAGGER / SCRAPERS ================ */
 
-
 .tagger-container.mx-md-auto .mt-3.search-item {
 	background-color: var(--card);
 }
@@ -1371,7 +1374,6 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 
 															/* ================== VIDEO JS ================== */
 
-
 .video-js,
 .vjs-tech {
   background-color: transparent;
@@ -1413,10 +1415,40 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 .VideoPlayer {
 	background: linear-gradient(0deg, var(--card) 0%, #0000) var(--body) 45%;
 }
+.vjs-mute-control.vjs-control.vjs-button.vjs-vol-0,
+.video-js .vjs-control:hover,
+.video-js .vjs-control:focus {
+	text-shadow: none !important;
+	color: var(--accent);
+}
+.vjs-mute-control.vjs-control.vjs-button.vjs-vol-0:hover {
+	color: var(--accent-transparent);
+}
+.vjs-menu-item-text,
+.vjs-menu-item.vjs-source-menu-item {
+	color: #fff;
+}
+.vjs-menu li.vjs-menu-item:focus, .vjs-menu li.vjs-menu-item:hover, .js-focus-visible .vjs-menu li.vjs-menu-item:hover {
+	background-color: transparent;
+}
+.vjs-menu-item.vjs-source-menu-item.vjs-selected {
+	background-color: var(--accent);
+}
+.vjs-menu-item:hover .vjs-menu-item-text {
+	color: var(--accent);
+}
+
+#scrubber-forward.scrubber-button.btn.btn-primary,
+#scrubber-back.scrubber-button.btn.btn-primary {
+	background-color: transparent;
+	border: none
+}
+#scrubber-position-indicator {
+background-color: var(--accent-transparent);
+}
 
 
 																/* ============== PLUGINS / SCRIPTS ============== */
-
 
 			/*====== Quick Edit ======*/
 
@@ -1473,6 +1505,7 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 	border-color: var(--accent);
 }
 
+
 			/*======  Main page animations  ======*/
 
 /* "Customize" bottom right of main page */
@@ -1504,11 +1537,11 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 	animation-play-state: paused;
 }
 /*Main Page - Blur Other Cards That Are Not Moused Over*/
-.gallery-recommendations .slick-track:hover .gallery-card.zoom-1.grid-card.card:not(:hover), 
-.group-recommendations .slick-track:hover .movie-card.grid-card.card:not(:hover), 
-.scene-recommendations .slick-track:hover .scene-card.zoom-1.grid-card.card:not(:hover), 
-.performer-recommendations .slick-track:hover .performer-card.grid-card.card:not(:hover), 
-.studio-recommendations .slick-track:hover .studio-card.grid-card.card:not(:hover) {
+.gallery-recommendations .slick-track:hover .gallery-card.card:not(:hover), 
+.group-recommendations .slick-track:hover .group-card.card:not(:hover), 
+.scene-recommendations .slick-track:hover .scene-card.card:not(:hover), 
+.performer-recommendations .slick-track:hover .performer-card.card:not(:hover), 
+.studio-recommendations .slick-track:hover .studio-card.card:not(:hover) {
 	filter: blur(2px);
 }
 /* Animation for Scene, Performer, and Studio Cards on Main Page */
@@ -1549,8 +1582,8 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 	}
 }
 
-													/* ==================== DETAILS / EDIT PAGES =================== */
 
+													/* ==================== DETAILS / EDIT PAGES =================== */
 
 			/*========== Scene/Galleries ==========*/
 
@@ -1559,6 +1592,9 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 }
 html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div div.mr-auto.nav.nav-tabs {
 	margin-bottom: 1rem
+}
+.nav-link:hover, .nav-link:focus {
+	color: var(--accent);
 }
 /*allow top form control outline in edit and markers to show better*/
 #scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
@@ -1666,15 +1702,17 @@ span.resolution {
 .my-2.current .queue-scene-details,
 #queue-content .my-2.current .queue-scene-studio,
 #queue-content .my-2.current .queue-scene-performers,
-#queue-content .my-2.current .queue-scene-date {
+#queue-content .my-2.current .queue-scene-date,
+#queue-content .my-2.current .queue-scene-title {
 	color: var(--accent);
+	transition: ease-in-out all 0s !important;
+	transition-delay: 0s !important;
+	transition-duration: 0s !important;
 }
-#queue-viewer .my-2 a:hover {
+#queue-viewer .my-2 a:hover .queue-scene-title {
 	color: var(--accent);
-}
-#queue-content .my-2 .ml-1.d-flex.align-items-center, 
-#queue-content .my-2.current .ml-1.d-flex.align-items-center {
-	margin-top: -20px;
+	transition: ease-in-out all 0.3s !important;
+	transition-delay: 0s !important;
 }
 
 			/*========== Movie/Performer/Tag/Studio Details ==========*/
@@ -1957,28 +1995,6 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 .group-card:hover .group-card-image {
   filter: saturate(120%) brightness(110%) contrast(120%);
 }
-/**/ /*Styles button like primary-button*/ 
-/*
-.group-card .card-popovers .minimal.btn.btn-primary {
-	color: var(--body);
-	background-color: var(--accent);
-	border: 2px solid;
-	border-color: var(--accent);
-    border-radius: 10px;
-	margin-bottom: 5px;
-	margin-right: 5px;
-	margin-left: 0px;
-	width: 100%;
-	padding-right: 6px;
-	padding-left: 0px;  
-}
-.group-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
-	background-color: var(--nav);
-	color: var(--accent);
-	border: 2px solid;
-	border-color: var(--accent);
-}
-/**/
 /*Remove description from movie card*/
 .group-card .card-section .group-card__description {  		
 	display: none;										    
@@ -2014,7 +2030,7 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 
 /* Fixed uniform thumbnail area */
 div.row.justify-content-center div.group-card.zoom-1.grid-card.card .thumbnail-section {
-  width: 218.5px;
+  width: 222px;
   height: 310px; /* pick the height you want */
   display: flex;
   align-items: center;
@@ -2032,137 +2048,7 @@ div.row.justify-content-center div.group-card.zoom-1.grid-card.card .thumbnail-s
 /**/
 
 
-													/* ==================== PERFORMER CARDS ==================== */
 
-.performer-card .btn-group {
-	opacity: 0;
-	transition: all 1s ease-in-out;
-}
-.performer-card:hover .btn-group {
-	opacity: 1;
-}
-
-.performer-card .card-popovers .minimal.btn.btn-primary {
-	color: #ffffffc2;
-	background-color: transparent;
-	border: none;
-    border-radius: 0;
-	/*text-shadow: 1px 1px 3px black;*/
-	filter:drop-shadow(1px 1px 3px black);
-	transition: color 0.3s ease-in-out;
-}
-.performer-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
-	background-color: transparent;
-	color: var(--accent);
-	/*color: white;*/
-	border: none;
-}
-/**/	/*Moves-Hides flag icon*/
-.performer-card .fi {      		
-	opacity: 0;
-	transition: all 1s ease-in-out;
-}
-.performer-card:hover .fi {
-	opacity: 1;
-}
-.performer-card__age {				/*remove performer age*/
-	display: none;
-}
-.performer-card .gender-icon {		/*remove gender icon*/		
-	display: none;				
-}
-/**/	/*Tidying up bottom of card*/
-.performer-card .card-section {
-   padding: .4rem .1rem .1rem;
-}
-.performer-card .card-section h5 {
-	margin-bottom: -0.6rem;
-}
-/**/
-.performer-card .performer-disambiguation {			/*hides disambiguation on cards*/
-	display: none;
-}
-.performer-card .card-controls {
-	z-index: 101
-}
-.performer-card .card-section-title .TruncatedText {
-	transition: all 0.5s ease-in-out; 
-}
-.performer-card:hover .card-section-title .TruncatedText {
-	color: var(--rating-color);
-}
-
-		/*====== Performer card background ======*/
-
-
-/*CHAT GPT simplification*/
-/**//* --- Base overlay build --- */
-.performer-card .thumbnail-section {
-  position: relative;
-  z-index: 2;
-}
-.performer-card .thumbnail-section::before,
-.performer-card .thumbnail-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  display: block;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  transition: opacity 1s ease-in-out;
-}
-/* Base gradient background layer */
-.performer-card .thumbnail-section::before {
-  z-index: -101;
-  background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;
-}
-/* Hover color overlay (controlled via --rating-color variable) */
-.performer-card .thumbnail-section::after {
-  z-index: -100;
-  opacity: 0;
-  background: linear-gradient(0deg, var(--card) 5%, #0000) var(--rating-color, transparent) 100%;
-}
-/* Hover fade-in */
-.performer-card .thumbnail-section:hover::after {
-  opacity: 1;
-}
-/* --- Per-rating color assignments --- */
-.performer-card:has(.rating-banner.rating-100-2)  { --rating-color: #fff; }
-.performer-card:has(.rating-banner.rating-100-4)  { --rating-color: #ff8025; }
-.performer-card:has(.rating-banner.rating-100-6)  { --rating-color: #fff42e; }
-.performer-card:has(.rating-banner.rating-100-8)  { --rating-color: #9eff1f; }
-.performer-card:has(.rating-banner.rating-100-10) { --rating-color: #21e31d; }
-.performer-card:has(.rating-banner.rating-100-12) { --rating-color: #23ffcf; }
-.performer-card:has(.rating-banner.rating-100-14) { --rating-color: #3180ff; }
-.performer-card:has(.rating-banner.rating-100-16) { --rating-color: #ff23fb; }
-.performer-card:has(.rating-banner.rating-100-18) { --rating-color: #ff3434; }
-.performer-card:has(.rating-banner.rating-100-20) { --rating-color: var(--accent); }
-/**/
-/*dark diffuse drop filter around performer image*/
-.performer-card-image {
-	filter: drop-shadow(0px -15px 35px var(--card));
-	transition: all 2s; 
-	box-shadow:  0px 0px 0px 0px var(--red) inset;	
-}
-/* img.performer-select-image,			/*background for react select list*/
-/*.performer-select-image-link,*/
-img.performer-image,
-img.performer-image {
-	background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;						/*background for performer img scraper*/
-}
-.performer-card.zoom-undefined.grid-card.card {
-	background-color: var(--card);
-}
-.performer-card.zoom-undefined.grid-card.card .thumbnail-section:before {
-	 background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;  
-}
-.PerformerTagger-performer {
-	padding-bottom: 0px
-}
-.PerformerTagger-performer .performer-card.p-0.m-0.card {
-	background: var(--nav-grey-dark);  
-}	
 
 
 /*----------------------- MAKE SNIPPET ----------------------------------*/
@@ -2215,19 +2101,7 @@ img.performer-image {
 
 
 .studio-card .card-popovers .minimal.btn.btn-primary {
-	color: #ffffffc2;
-	background-color: var(--body);
-	border: 2px;
-    border-radius: 10px;
-	/*text-shadow: 1px 1px 3px black;
-	filter:drop-shadow(5px 5px 5px black);*/
-	transition: color .2s ease-in-out;
-}
-.studio-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
-	background-color: var(--body);
-	color: var(--accent);
-	/*color: white;*/
-	border: none;
+	filter:drop-shadow(0px 0px 3px  black);
 }
 .studio-card .btn-group {
 	opacity: 0;
@@ -2395,7 +2269,7 @@ html body.modal-open div.fade.edit-filter-dialog.modal.show div.modal-dialog div
 
 
 						/* ====================<< PAGINATION >>================ */
-
+@media only screen and (min-width: 767px){
 	/*Main Pages*/
 .pagination.btn-group button.btn.btn-secondary {
 	height: 34px;
@@ -2523,4 +2397,5 @@ html body div#root div.main.container-fluid div.row div.gallery-container div.ta
 	position: absolute;
 	top: 4rem;
 	left: 2rem
+}
 }

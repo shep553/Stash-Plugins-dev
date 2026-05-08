@@ -12,3 +12,12 @@
 .tag-card .tag-card-image {
 	background: transparent !important;
 }
+
+
+
+.performer-card .thumbnail-section::before {
+  background: linear-gradient(0deg, var(--body) 0%, var(--body) 10%, #bdbdbd 100%) !important;
+}
+.performer-card .thumbnail-section::after {
+  background: linear-gradient(0deg, var(--body) 0%, var(--body) 10%, var(--rating-color) 100%) !important;
+}

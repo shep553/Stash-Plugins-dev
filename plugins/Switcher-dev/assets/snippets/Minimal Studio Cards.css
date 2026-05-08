@@ -5,7 +5,6 @@
 .studio-card.card .card-section {
 	opacity: 0 !important;
 	transition: all 1s ease !important;
-	transition-delay: 0.5s !important;
 }
 
 .studio-card.card.card.card:hover .studio-card__details,

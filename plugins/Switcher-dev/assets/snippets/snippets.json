@@ -9,7 +9,7 @@
       "Galleries": ".item-list-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
       "Performers": ".item-list-container .performer-card",
-      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
       "Images": ".image-card",
@@ -26,7 +26,7 @@
       "Galleries": ".item-list-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
       "Performers": ".item-list-container .performer-card",
-      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
       "Images": ".image-card",
@@ -34,7 +34,7 @@
     }
   },
   {
-    "name": "Card Radius Size",
+    "name": "Card Radius",
     "file": "Card Radius Size.css",
     "scopes": {
       "Groups": ".item-list-container .group-card",
@@ -44,7 +44,7 @@
       "Galleries": ".item-list-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
       "Performers": ".item-list-container .performer-card",
-      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
       "Images": ".image-card",
@@ -63,7 +63,7 @@
     }
   },
   {
-    "name": "Card Thumb+Preview Radius",
+    "name": "Transparent Card Radius",
     "file": "Card Thumb+Preview Radius.css",
     "scopes": {
       "Groups": ".item-list-container .group-card",
@@ -71,7 +71,7 @@
       "Scenes": ".item-list-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
       "Performers": ".item-list-container .performer-card",
-      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Markers": ".scene-marker-card"
     },
     "vars": {
@@ -84,6 +84,62 @@
         "max": 100,
         "step": 1
       }
+    }
+  },
+  {
+    "name": "Card Hover BG",
+    "file": "Card Hover BG.css",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card",
+      "Images": ".image-card",
+      "Markers": ".scene-marker-card"
+    }
+  },
+  {
+    "name": "Card Title Length",
+    "file": "Card Title Length.css",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
+    },
+    "vars": {
+      "--title-length": {
+        "label": "Title Length",
+        "type": "number",
+        "default": 1,
+        "min": 0,
+        "max": 100,
+        "step": 1
+      }
+    }
+  },
+  {
+    "name": "Scene Card Fill",
+    "file": "Scene Card Fill.css"
+  },
+  {
+    "name": "Scene Card Shadow",
+    "file": "Scene Card Shadow.css"
+  },
+  {
+    "name": "Card Buttons",
+    "file": "Card Buttons.css",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card"
     }
   },
   {
@@ -127,24 +183,6 @@
     }
   },
   {
-    "name": "Card Title Length",
-    "file": "Card Title Length.css",
-    "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
-    },
-    "vars": {
-      "--title-length": {
-        "label": "Title Length",
-        "options": {
-          "1": "1",
-          "2": "2",
-          "3": "3"
-        }
-      }
-    }
-  },
-    {
     "name": "Dark Button Text",
     "file": "Dark Button Text.css"
   },
@@ -154,17 +192,6 @@
     "scopes": {
       "all": "body"
     }
-  },
-  {
-    "name": "Blur NSFW",
-    "file": "Blur NSFW.css",
-    "scopes": {
-      "all": "body"
-    }
-  },
-  {
-    "name": "UnBlur NFSW on Hover",
-    "file": "UnBlur NSFW on Hover.css"
   },
   {
     "name": "Card Btn-Group Position",
@@ -197,14 +224,26 @@
     }
   },
   {
-    "name": "Scene Card Fill",
-    "file": "Scene Card Fill.css"
-  },
-  {
     "file": "Minimal Performer Cards.css",
     "scopes": {
       "all": "body"
     }
   },
-  "Minimal Studio Cards.css"
+  {
+    "file": "Minimal Studio Cards.css",
+    "scopes": {
+      "all": "body"
+    }
+  },
+  {
+    "name": "Blur NSFW",
+    "file": "Blur NSFW.css",
+    "scopes": {
+      "all": "body"
+    }
+  },
+  {
+    "name": "UnBlur NFSW on Hover",
+    "file": "UnBlur NSFW on Hover.css"
+  }
 ]

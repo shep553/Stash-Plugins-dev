@@ -300,7 +300,53 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
 	opacity:0.6;
 }
 
-/**//*Duplicated from CMD*//*
+                                                                /**//*Duplicated from CMD*//*
+
+
+						/* ==================== CARDS ==================== */
+
+.group-card__date,			
+.gallery-card__date,
+.scene-card__date {
+	font-size: 12px;
+}
+.scene-card .card-section-title.flex-aligned,
+.gallery-card .card-section-title.flex-aligned {		
+	margin-bottom: 0px;
+}
+.group-card .card-section-title.flex-aligned {		
+	margin-bottom: 0px;
+}
+.scene-marker-card .card-section-title.flex-aligned {		
+	margin-top: -0.5rem;
+}
+
+
+					/* ==================== SCENE/GALLERY CARDS ==================== */
+
+
+.scene-card .card-section {
+	padding-top: .1rem;
+}
+/*title for galleries with no description stays at top*/
+.gallery-card.grid-card.card .card-section {		
+	margin-top: -0.1px;
+}
+.TruncatedText.gallery-card__description,
+.TruncatedText.scene-card__description{
+	margin-top: -0.3rem;
+	margin-bottom: -0.5rem;
+	font-size: 13px;
+}
+.gallery-card.card {
+	padding-bottom: 0.3rem;
+}
+/*btn-group stays at bottom of card when there is no description*/
+.gallery-card .card-popovers.btn-group,			
+.scene-card .card-popovers.btn-group {
+	margin-top: auto;															
+	margin-bottom: 5px;
+}
 .gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,	
 .scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {	
    -webkit-line-clamp: 1 !important;
@@ -321,28 +367,4 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
 .scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
   -webkit-line-clamp: 1 !important;
 }
-.TruncatedText.gallery-card__description,
-.TruncatedText.scene-card__description{
-	margin-top: -0.3rem;
-	margin-bottom: -0.5rem;
-	font-size: 13px;
-}
-.scene-card .card-section-title.flex-aligned,
-.gallery-card .card-section-title.flex-aligned {		
-	line-height: 1.1;
-}
-.scene-card .card-header-row .card-section-title.flex-aligned,
-.gallery-card .card-header-row .card-section-title.flex-aligned {		
-	margin-bottom: -2px;
-}
-.scene-card.no-description.no-date .card-header-row .card-section-title.flex-aligned,
-.gallery-card .no-description.no-date .card-header-row .card-section-title.flex-aligned {		
-	margin-bottom: -2px;
-}
-.scene-card.no-description.no-date .card-section-title.flex-aligned,
-.gallery-card .no-description.no-date .card-section-title.flex-aligned {		
-	margin-bottom: 2px;
-}
-.scene-card .card-section {
-	padding-top: .1rem;
-}
+
