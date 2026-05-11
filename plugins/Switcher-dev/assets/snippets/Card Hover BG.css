@@ -1,22 +1,19 @@
-.scene-card.grid-card.card:hover,
-.scene-marker-card.grid-card.card:hover,
-.group-card.grid-card.card:hover,
-.studio-card.grid-card.card:hover,
-.image-card.grid-card.card:hover,
-.gallery-card.grid-card.card:hover,
-.performer-card.grid-card.card:hover,
-.tag-card.grid-card.card:hover {
+.scene-card:hover,
+.scene-marker-card.card:hover,
+.group-card.card:hover,
+.studio-card.card:hover,
+.image-card.card:hover,
+.gallery-card.card:hover,
+.performer-card.card:hover,
+.tag-card.card:hover {
 	background: var(--card-hover) !important;
 }
-
 .tag-card .tag-card-image.default-image {
 	background: transparent !important;
 }
 .tag-card:hover .tag-card-image {
 	background: transparent !important;
 }
-
-
 .performer-card:hover .thumbnail-section::after, 
 .performer-card:hover .thumbnail-section::before, 
 .performer-card .thumbnail-section::after, 
@@ -31,19 +28,14 @@
 .performer-card:hover .performer-card-image {
 	 border-bottom-left-radius: 0px !important;
 	 border-bottom-right-radius: 0px !important;
-
 }
-
-
 .group-card:hover,
 .scene-card:hover,
 .performer-card:hover,
 .performer-card {
-	border-radius: var(--card-image-radius, 15px) !important;
+	border-radius: var(--card-radius-size, 0px) !important;
 }	
-
 .group-card-image,
 .group-card-header::after {
   transition: opacity 0s !important;
 }
-

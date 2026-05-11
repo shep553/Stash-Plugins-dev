@@ -63,30 +63,6 @@
     }
   },
   {
-    "name": "Transparent Card Radius",
-    "file": "Card Thumb+Preview Radius.css",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Performers": ".item-list-container .performer-card",
-      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
-      "Markers": ".scene-marker-card"
-    },
-    "vars": {
-      "--card-image-radius": {
-        "label": "Radius Size",
-        "type": "number",
-        "unit": "px",
-        "default": 0,
-        "min": 0,
-        "max": 100,
-        "step": 1
-      }
-    }
-  },
-  {
     "name": "Card Hover BG",
     "file": "Card Hover BG.css",
     "scopes": {
@@ -128,7 +104,11 @@
   },
   {
     "name": "Scene Card Shadow",
-    "file": "Scene Card Shadow.css"
+    "file": "Scene Card Shadow.css",
+     "scopes": {
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
+    }
   },
   {
     "name": "Card Buttons",
@@ -192,6 +172,125 @@
     "scopes": {
       "all": "body"
     }
+  },
+    {
+    "name": "Details Bordered",
+    "file": "Details Bordered.css"
+  },
+
+
+
+
+
+
+  {
+    "file": "Card BG Rating.css",
+    "scopes": {
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "file": "Card BG Rating Solid.css",
+    "scopes": {
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "file": "Card Tranpasrent BG Rating Border.css",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "file": "Card BG Rating Border.css",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "file": "Scene Card Rating Inset.css",
+    "scopes": {
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  {
+    "file": "Rating Banner Transparent.css",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "file": "Rating Banner Square Transparent.css",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "file": "Rating Banner Square.css",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+
+
+
+
+
+
+   {
+    "name": "Toolbar Transparency",
+    "file": "Toolbar Transparency.css"
   },
   {
     "name": "Card Btn-Group Position",

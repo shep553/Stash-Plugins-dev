@@ -140,6 +140,38 @@
 
 }
 
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-2) {
+  --rating-color: var(--rating-color-2);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-4) {
+  --rating-color: var(--rating-color-4);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-6) {
+  --rating-color: var(--rating-color-6);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-8) {
+  --rating-color: var(--rating-color-8);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-10) {
+  --rating-color: var(--rating-color-10);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-12) {
+  --rating-color: var(--rating-color-12);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-14) {
+  --rating-color: var(--rating-color-14);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-16) {
+  --rating-color: var(--rating-color-16);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-18) {
+  --rating-color: var(--rating-color-18);
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner.rating-100-20) {
+  --rating-color: var(--rating-color-20);
+}
+
+
 																/* ============== GLOBAL CHANGES ============== */
 
 
@@ -149,6 +181,124 @@
 }
 .form-container.edit-buttons-container.px-3.pt-3.row {
 	background-color: var(--queue-edit-header) !important;
+}
+
+/* --- Per-rating color assignments for cards not in rating banners .js plugin --- */
+/*
+.rating-banner.rating-100-2 { 
+	background: var(--rating-color-2) !important; 
+	color: var(--nav) !important;
+}
+.rating-banner.rating-100-4 { 
+	background: var(--rating-color-4) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-6 { 
+	background: var(--rating-color-6) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-8 { 
+	background: var(--rating-color-8) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-10 { 
+	background: var(--rating-color-10) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-12 { 
+	background: var(--rating-color-12) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-14 { 
+	background: var(--rating-color-14) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-16 { 
+	background: var(--rating-color-16) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-18 { 
+	background: var(--rating-color-18) !important; 
+	color: var(--body) !important;
+}
+.rating-banner.rating-100-20  { 
+	background: var(--rating-color-20) !important; 
+	color: var(--body) !important;
+}
+*/
+
+.scene-card .rating-banner:after,
+.gallery-card .rating-banner:after,
+.group-card .rating-banner:after {
+	color: black;
+	display: block;
+	padding: 1px 55px;
+	padding-bottom: 2px;
+	position: absolute;
+	top: 0px;
+	left: 17px; 
+}
+.scene-card:has(.rating-banner) .rating-banner:after,
+.gallery-card:has(.rating-banner) .rating-banner:after,
+.group-card:has(.rating-banner) .rating-banner:after {
+	background: var(--rating-color);
+}
+.scene-card:has(.rating-banner.rating-100-2) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-2) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-2) .rating-banner:after {
+	content: "★ 0.5";
+}
+.scene-card:has(.rating-banner.rating-100-4) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-4) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-4) .rating-banner:after {
+	content: "★ 1";
+}
+.scene-card:has(.rating-banner.rating-100-6) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-6) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-6) .rating-banner:after {
+	content: "★ 1.5";
+}
+.scene-card:has(.rating-banner.rating-100-8) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-8) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-8) .rating-banner:after {
+	content: "★ 2";
+}
+.scene-card:has(.rating-banner.rating-100-10) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-10) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-10) .rating-banner:after {
+	content: "★ 2.5";
+}
+.scene-card:has(.rating-banner.rating-100-12) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-12) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-12) .rating-banner:after {
+	content: "★ 3";
+}
+.scene-card:has(.rating-banner.rating-100-14) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-14) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-14) .rating-banner:after {
+	content: "★ 3.5";
+}
+.scene-card:has(.rating-banner.rating-100-16) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-16) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-16) .rating-banner:after {
+	content: "★ 4";
+}
+.scene-card:has(.rating-banner.rating-100-18) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-18) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-18) .rating-banner:after {
+	content: "★ 4.5";
+}
+.scene-card:has(.rating-banner.rating-100-20) .rating-banner:after,
+.gallery-card:has(.rating-banner.rating-100-20) .rating-banner:after,
+.group-card:has(.rating-banner.rating-100-20) .rating-banner:after {
+	content: "★ 5";
+}
+
+.scene-card .rating-banner,
+.group-card .rating-banner,
+.gallery-card .rating-banner {
+	background: transparent !important;
+	color: transparent !important;
 }
 
 /*Change the order of navigation bar buttons*/
@@ -346,7 +496,7 @@ svg.svg-inline--fa.fa-video.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl
 /*main container specific*/
 .item-list-container .filtered-list-toolbar.btn-toolbar .clearable-text-field.form-control,
 .item-list-container .filtered-list-toolbar .btn-secondary {
-	background: var(--nav-grey-dark) !important;
+	background-color: var(--nav-grey-dark) !important;
 }
 .filtered-list-toolbar.has-selection .minimal.btn.btn-secondary {
 	background: transparent !important;
@@ -450,7 +600,7 @@ input::selection {
 	background-color: var(--nav)
 }
 .table-list.scene-table {
-	scrollbar-color: var(--tags) var(--nav);
+	scrollbar-color: var(--accent-transparent) var(--body);
 	scrollbar-width: thin;
 }
 .table-list .comma-list.overflowable:hover {
@@ -579,7 +729,8 @@ svg.svg-inline--fa.fa-gear.fa-spin {
 	padding-left: 1.5rem;
 }
 .package-manager-table-container {
-	scrollbar-width: none;
+	scrollbar-color: var(--accent-transparent) var(--card);
+	scrollbar-width: thin;
 }
 /*scraper tables*/
 .collapse.show table.scraper-table thead tr,
@@ -1599,6 +1750,11 @@ html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-firs
 /*allow top form control outline in edit and markers to show better*/
 #scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
 	margin-bottom: .2rem
+}
+.gallery-divider .btn.btn-primary,
+.scene-divider .btn.btn-primary {
+	border: none; 
+	box-shadow: none;
 }
 .scene-divider.d-none.d-xl-block button.btn.btn-primary, 
 .gallery-divider.d-none.d-xl-block button.btn.btn-primary, 

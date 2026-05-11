@@ -1,0 +1,12 @@
+
+.group-card:has(.rating-banner),  
+.gallery-card:has(.rating-banner),  
+.scene-card:has(.rating-banner)  { 
+	box-shadow: 0 0 2px 3px var(--rating-color);
+}
+
+.group-card:hover, 
+.gallery-card:hover,
+.scene-card:hover {
+   box-shadow: none;
+}

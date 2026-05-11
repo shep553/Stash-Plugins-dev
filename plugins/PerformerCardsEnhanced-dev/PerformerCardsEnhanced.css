@@ -143,10 +143,18 @@
 .performer-card .card-controls {
 	z-index: 101
 }
+/*
 .performer-card .card-section-title .TruncatedText {
 	transition: all 0.5s ease-in-out; 
 }
 .performer-card:hover .card-section-title .TruncatedText {
+	color: var(--rating-color);
+}*/
+
+.performer-card .card-section-title .TruncatedText {
+	transition: all 0.5s ease-in-out; 
+}
+.performer-card:hover .card-section-title .TruncatedText:hover {
 	color: var(--rating-color);
 }
 

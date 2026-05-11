@@ -1,0 +1,8 @@
+.gallery-card:has(.rating-banner),  
+.scene-card:has(.rating-banner)  { 
+	background: color-mix(in srgb, var(--rating-color) 20%, transparent) !important;
+}
+.gallery-card:has(.rating-banner):hover,
+.scene-card:has(.rating-banner):hover {
+	background: color-mix(in srgb, var(--rating-color) 40%, rgba(255, 255, 255, 0)) !important;	
+}	

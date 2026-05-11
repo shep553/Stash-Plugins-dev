@@ -1,0 +1,65 @@
+@media only screen and (min-width: 767px) {
+
+.gallery-tabs,
+.scene-tabs {
+	background: linear-gradient(0deg, var(--card) 70%, var(--body) 100%) !important;
+	background: var(--card) !important;
+	border-right: 0px solid var(--body) !important;
+	border-left: 15px solid var(--body) !important;
+	border-top: 10px solid var(--body) !important;
+	border-bottom: 20px solid var(--body) !important;
+	border-radius: 40px !important;
+	padding: 1rem !important;
+	margin-left: 0px !important;
+}
+
+#queue-viewer .queue-controls {
+	background-color: var(--card) !important;
+}
+.form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: var(--card) !important;
+}
+.pre-fade {
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, var(--card) 105%) !important;
+}
+
+.gallery-tabs .placeholder-studio-name.logo-square.logo-fat,
+.gallery-tabs .placeholder-studio-svg.logo-square.logo-fat,
+.scene-tabs .placeholder-studio-name.logo-square.logo-fat,
+.scene-tabs .placeholder-studio-svg.logo-square.logo-fat {
+	margin-top: -20px;
+	margin-left: 0px;
+}
+
+.gallery-tabs,
+.scene-tabs {
+	flex: 0 0 480px;
+	max-width: 550px;
+}
+.scene-player-container {
+	flex: 0 0 calc(97% - 465px);
+	max-width: calc(97% - 465px);
+	margin-left: 15px;
+}
+.scene-player-container.expanded {
+	flex: 0 0 calc(100% - 15px);
+	max-width: calc(100% - 15px);
+	margin-left: 0px !important;
+}
+.gallery-container {
+	flex: 0 0 calc(98% - 465px);
+	max-width: calc(98% - 465px);
+
+}
+.gallery-tabs .scene-card-preview::after {
+	box-shadow: inset 0 0 25px 10px var(--card);
+}
+.gallery-divider .btn.btn-primary,
+.scene-divider .btn.btn-primary {
+	margin-left: 6px;
+}
+.gallery-divider,
+.scene-divider {
+	padding-right: 5px;
+}
+}

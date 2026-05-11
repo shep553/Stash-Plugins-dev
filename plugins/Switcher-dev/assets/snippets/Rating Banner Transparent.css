@@ -1,0 +1,14 @@
+.scene-card .rating-banner:after,
+.gallery-card .rating-banner:after,
+.group-card .rating-banner:after {
+	filter: drop-shadow(1px 1px 2px #000);
+	background: transparent !important;
+}
+
+.scene-card:has(.rating-banner) .rating-banner:after,
+.gallery-card:has(.rating-banner) .rating-banner:after,
+.group-card:has(.rating-banner) .rating-banner:after {
+	color: var(--rating-color);
+	border-bottom-left-radius: var(--card-radius-size);
+    border-bottom-right-radius: var(--card-radius-size);
+}
