@@ -14,9 +14,3 @@
 .scene-card .card-popovers.btn-group.inline-popovers {
 	display: none !important;
 }
-
-.gallery-card .gallery-card__date,
-.gallery-card .gallery-card__details,
-.scene-card .scene-card__details {
-	padding-top: 1.5px
-}

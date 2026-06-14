@@ -11,6 +11,10 @@ settings:
     displayName: Persistent Colors
     description: Use consistent colors for each studio (based on studio name hash)
     type: BOOLEAN
+  blurredBackground:
+    displayName: Blurred Background
+    description: Shows a blurred version of the preview image behind the card when the image doesn't fill the full area (e.g. portrait scenes in a landscape card).
+    type: BOOLEAN
 ui:
   css:
     - SceneCardStudioLogoEnhancer.css

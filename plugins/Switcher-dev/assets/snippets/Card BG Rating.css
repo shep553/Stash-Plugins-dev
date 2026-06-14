@@ -1,8 +1,0 @@
-.scene-card:has(.rating-banner),
-.gallery-card:has(.rating-banner) { 
-	background: linear-gradient(0deg, color-mix(in srgb, var(--rating-color) 20%, rgba(255, 255, 255, 0)) 0%, var(--body) 100%) !important; 
-}
-.scene-card:has(.rating-banner):hover,
-.gallery-card:has(.rating-banner):hover {
-	background: linear-gradient(0deg, color-mix(in srgb, var(--rating-color) 40%, rgba(255, 255, 255, 0)) 0%, var(--body) 100%) !important;
-}

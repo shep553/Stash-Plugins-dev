@@ -1,6 +1,9 @@
 [
   {
-    "file": "Transparent Cards.css",
+    "name": "Transparent Cards",
+    "file": "001a Transparent Cards.css",
+    "category": "CARD STRUCTURAL",
+    "hasGlobal": true,
     "scopes": {
       "Groups": ".item-list-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
@@ -17,7 +20,9 @@
     }
   },
   {
-    "file": "No Gradient Cards.css",
+    "name": "Radiused Transparent Cards",
+    "file": "001b Radiused Transparent Cards.css",
+    "category": "CARD STRUCTURAL",
     "scopes": {
       "Groups": ".item-list-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
@@ -35,7 +40,9 @@
   },
   {
     "name": "Card Radius",
-    "file": "Card Radius Size.css",
+    "file": "002 Card Radius.css",
+    "category": "CARD STRUCTURAL",
+    "hasGlobal": true,
     "scopes": {
       "Groups": ".item-list-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
@@ -63,8 +70,10 @@
     }
   },
   {
-    "name": "Card Hover BG",
-    "file": "Card Hover BG.css",
+    "name": "Card Outline",
+    "file": "0003 Card Outline.css",
+    "category": "CARD STRUCTURAL",
+    "hasGlobal": true,
     "scopes": {
       "Groups": ".item-list-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
@@ -81,11 +90,33 @@
     }
   },
   {
-    "name": "Card Title Length",
-    "file": "Card Title Length.css",
+    "name": "Card Thumbnail Outline",
+    "file": "0003 Card Thumbnail Outline.css",
+    "category": "CARD STRUCTURAL",
     "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Images": ".image-card",
+      "Markers": ".scene-marker-card"
+    }
+  },
+  {
+    "name": "Card Title Length",
+    "file": "003 Card Title Length.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
     },
     "vars": {
       "--title-length": {
@@ -93,220 +124,24 @@
         "type": "number",
         "default": 1,
         "min": 0,
-        "max": 100,
+        "max": 10,
         "step": 1
       }
     }
   },
   {
-    "name": "Scene Card Fill",
-    "file": "Scene Card Fill.css"
-  },
-  {
-    "name": "Scene Card Shadow",
-    "file": "Scene Card Shadow.css",
-     "scopes": {
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
-    }
-  },
-  {
-    "name": "Card Buttons",
-    "file": "Card Buttons.css",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Performers": ".item-list-container .performer-card",
-      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
-      "Studios": ".studio-card",
-      "Tags": ".tag-card"
-    }
-  },
-  {
-    "name": "Remove Descriptions",
-    "file": "Remove Descriptions.css",
-    "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
-    }
-  },
-  {
-    "name": "Remove Dates",
-    "file": "Remove Dates.css",
-    "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
-    }
-  },
-  {
-    "name": "Remove Buttons",
-    "file": "Remove Buttons.css",
-    "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
-    }
-  },
-  {
-    "name": "Remove Studio",
-    "file": "Remove Studio.css",
-    "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
-    }
-  },
-  {
-    "name": "Shorten Card",
-    "file": "Shorten Card.css",
-    "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
-    }
-  },
-  {
-    "name": "Dark Button Text",
-    "file": "Dark Button Text.css"
-  },
-  {
-    "name": "No Details Gradient",
-    "file": "No Details Gradient.css",
-    "scopes": {
-      "all": "body"
-    }
-  },
-    {
-    "name": "Details Bordered",
-    "file": "Details Bordered.css"
-  },
-
-
-
-
-
-
-  {
-    "file": "Card BG Rating.css",
-    "scopes": {
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    }
-  },
-  {
-    "file": "Card BG Rating Solid.css",
-    "scopes": {
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    }
-  },
-  {
-    "file": "Card Tranpasrent BG Rating Border.css",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    }
-  },
-  {
-    "file": "Card BG Rating Border.css",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    }
-  },
-  {
-    "file": "Scene Card Rating Inset.css",
+    "name": "Scene Card Inset",
+    "file": "004 Scene Card Inset.css",
+    "category": "CARD STRUCTURAL",
     "scopes": {
       "Scenes": ".item-list-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
     }
-  },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  {
-    "file": "Rating Banner Transparent.css",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    }
-  },
-  {
-    "file": "Rating Banner Square Transparent.css",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    }
-  },
-  {
-    "file": "Rating Banner Square.css",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    }
-  },
-
-
-
-
-
-
-   {
-    "name": "Toolbar Transparency",
-    "file": "Toolbar Transparency.css"
-  },
-  {
-    "name": "Card Btn-Group Position",
-    "file": "Card Btn-Group Position.css",
-    "scopes": {
-      "Scenes": ".scene-card",
-      "Galleries": ".gallery-card"
-    }
-  },
-  {
-    "name": "Wide Studio Logo Position",
-    "file": "Wide Studio Logo Position.css"
   },
   {
     "name": "Performer Card Size",
-    "file": "Custom Sized Performer Cards.css",
+    "file": "006 Performer Card Size.css",
+    "category": "CARD STRUCTURAL",
     "scopes": {
       "Performers": ".item-list-container .performer-card"
     },
@@ -321,6 +156,488 @@
         "step": 5
       }
     }
+  },
+  {
+    "name": "Card Buttons",
+    "file": "007 Card Buttons.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card"
+    }
+  },
+  {
+    "name": "Studio Position",
+    "file": "008 Studio Position.css",
+    "category": "CARD STRUCTURAL",
+    "hasGlobal": true,
+    "scopes": {
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "name": "Remove Description",
+    "file": "009 Remove Description.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
+    }
+  },
+  {
+    "name": "Remove Date",
+    "file": "010 Remove Date.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
+    }
+  },
+  {
+    "name": "Remove Buttons",
+    "file": "011 Remove Buttons.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
+    }
+  },
+  {
+    "name": "Remove Studio",
+    "file": "012 Remove Studio.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
+    }
+  },
+  {
+    "name": "Shorten Card",
+    "file": "013 Shorten Card.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Scenes": ".scene-card",
+      "Galleries": ".gallery-card"
+    }
+  },
+  {
+    "name": "Wide Studio Logo Position",
+    "file": "014 Wide Studio Logo Position.css",
+    "category": "CARD STRUCTURAL"
+  },
+  {
+    "name": "Wall View",
+    "file": "015 Wall View.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
+    }
+  },
+  {
+    "name": "Native Preview",
+    "file": "016 Native Preview.css",
+    "category": "CARD STRUCTURAL"
+  },
+  {
+    "name": "Scene Specs Overlay",
+    "file": "017 Scene Specs Overlay.css",
+    "category": "CARD STRUCTURAL",
+    "all": "body",
+    "vars": {
+      "--overlay-radius-size": {
+        "label": "Overlay Radius Size",
+        "type": "number",
+        "unit": "px",
+        "default": 6,
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "--overlay-font-size": {
+        "label": "Font Size",
+        "type": "number",
+        "unit": "px",
+        "default": 12,
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "--overlay-font-weight": {
+        "label": "Font Weight",
+        "type": "number",
+        "default": 400,
+        "min": 0,
+        "max": 800,
+        "step": 50
+      },
+      "--overlay-resolution-font-weight": {
+        "label": "Resolution Font Weight",
+        "type": "number",
+        "default": 750,
+        "min": 0,
+        "max": 800,
+        "step": 50
+      },
+      "--overlay-padding": {
+        "label": "Padding",
+        "type": "text",
+        "default": "2px 4px 3px 4px"
+      },
+      "--overlay-filter": {
+        "label": "Filter",
+        "type": "text",
+        "default": "drop-shadow(.2px .2px 0px #000)"
+      },
+      "--overlay-background": {
+        "label": "Background",
+        "type": "color",
+        "default": "var(--body)"
+      },
+      "--overlay-color": {
+        "label": "Color",
+        "type": "color",
+        "default": "#f5f8fa"
+      }
+    }
+  },
+  {
+    "name": "Card Hover BG",
+    "file": "101 Card Hover BG.css",
+    "category": "CARD COLORS",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card",
+      "Images": ".image-card",
+      "Markers": ".scene-marker-card"
+    }
+  },
+  {
+    "name": "Card Gradient Down",
+    "file": "102a Card Gradient Down.css",
+    "category": "CARD COLORS",
+    "hasGlobal": true,
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card",
+      "Images": ".image-card",
+      "Markers": ".scene-marker-card"
+    }
+  },
+  {
+    "name": "Card Hover Gradient Down",
+    "file": "102b Card Hover Gradient Down.css",
+    "category": "CARD COLORS",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card",
+      "Images": ".image-card",
+      "Markers": ".scene-marker-card"
+    }
+  },
+  {
+    "name": "Card Gradient Up",
+    "file": "103a Card Gradient Up.css",
+    "category": "CARD COLORS",
+    "hasGlobal": true,
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card",
+      "Images": ".image-card",
+      "Markers": ".scene-marker-card"
+    }
+  },
+  {
+    "name": "Card Hover Gradient Up",
+    "file": "103b Card Hover Gradient Up.css",
+    "category": "CARD COLORS",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Tags": ".tag-card",
+      "Images": ".image-card",
+      "Markers": ".scene-marker-card"
+    }
+  },
+  {
+    "name": "Card Rating BG",
+    "file": "201a Card Rating BG.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Card Hover Rating BG",
+    "file": "201b Card Hover Rating BG.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Card BG Rating Gradient Down",
+    "file": "202a Card BG Rating Gradient Down.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Card Hover BG Rating Gradient Down",
+    "file": "202b Card Hover BG Rating Gradient Down.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Card BG Rating Gradient Up",
+    "file": "203a Card BG Rating Gradient Up.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Card Hover BG Rating Gradient Up",
+    "file": "203b Card Hover BG Rating Gradient Up.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Thumbnail Border",
+    "file": "204 Thumbnail Border.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Card Rating Border",
+    "file": "205 Card Rating Border.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Studios": ".studio-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Scene Card Inset",
+    "file": "206 Scene Card Rating Inset.css",
+    "category": "RATING",
+    "scopes": {
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
+    }
+  },
+  {
+    "name": "Default Banner Transparent",
+    "file": "207 Default Banner Transparent.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Square Banner",
+    "file": "208a Square Banner.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Square Banner Transparent",
+    "file": "208b Square Banner Transparent.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Images": ".image-card"
+    }
+  },
+  {
+    "name": "Inline Organized Indicator",
+    "file": "209 Inline Organized Indicator.css",
+    "category": "RATING",
+    "scopes": {
+      "Scenes": ".item-list-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    }
+  },
+  {
+    "name": "Details-Edit Pages Rating Colored",
+    "file": "210 Details-Edit Pages Rating Colored.css",
+    "category": "RATING",
+    "scopes": {
+      "all": "body"
+    }
+  },
+  {
+    "name": "Dark Button Text",
+    "file": "Dark Button Text.css"
+  },
+  {
+    "name": "Remove Details Gradient",
+    "file": "No Details Gradient.css",
+    "scopes": {
+      "all": "body"
+    }
+  },
+  {
+    "name": "Details Bordered",
+    "file": "Details Bordered.css"
+  },
+  {
+    "name": "Toolbar Partially Transparent",
+    "file": "Toolbar Partially Transparent.css"
+  },
+  {
+    "name": "Toolbar Transparent",
+    "file": "Toolbar Transparent.css"
+  },
+  {
+    "name": "Toolbar Transparent-Bordered",
+    "file": "Toolbar Transparent-Bordered.css"
   },
   {
     "file": "Minimal Performer Cards.css",

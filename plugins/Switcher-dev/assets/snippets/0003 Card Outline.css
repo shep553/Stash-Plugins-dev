@@ -1,0 +1,23 @@
+.performer-card,
+.scene-marker-card,
+.image-card,
+.tag-card,
+.studio-card,
+.group-card,
+.gallery-card,
+.scene-card {
+	box-shadow: 0 0 2px 1px var(--tags);
+	transition: box-shadow ease-in-out .3s !important;
+}
+
+/* switcher: global */
+.performer-card:hover,
+.scene-marker-card:hover,
+.image-card:hover,
+.tag-card:hover,
+.studio-card:hover,
+.group-card:hover,
+.gallery-card:hover,
+.scene-card:hover {
+	box-shadow: none !important;
+}

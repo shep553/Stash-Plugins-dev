@@ -125,20 +125,62 @@
 }
 .form-container.edit-buttons-container.px-3.pt-3.row {
 	background-color: var(--queue-edit-header) !important;
-}*/
+}
 
---rating-color-2: #000000;
---rating-color-4: #ff2525;
---rating-color-6: #fff200;
---rating-color-8: #5b1fff;
---rating-color-10: #00ccff;
---rating-color-12: #ff23e2;
---rating-color-14: #0a5e1c;
---rating-color-16: #23f8ff;
---rating-color-18: #ffae34;
---rating-color-20: var(--accent);
+/*--rating-color-2: #fff;
+--rating-color-4: #ff8025;
+--rating-color-6: #fff42e;
+--rating-color-8: #9eff1f;
+--rating-color-10: #21e31d;
+--rating-color-12: #23ffcf;
+--rating-color-14: #3180ff;
+--rating-color-16: #ff23fb;
+--rating-color-18: #ff3434;
+--rating-color-20: var(--accent);*/
 
 }
+
+:is(.scene-card, .gallery-card, .group-card) {
+	&:has(.rating-banner.rating-100-2)  { --rating-color: var(--rating-color-2); }
+	&:has(.rating-banner.rating-100-4)  { --rating-color: var(--rating-color-4); }
+	&:has(.rating-banner.rating-100-6)  { --rating-color: var(--rating-color-6); }
+	&:has(.rating-banner.rating-100-8)  { --rating-color: var(--rating-color-8); }
+	&:has(.rating-banner.rating-100-10) { --rating-color: var(--rating-color-10); }
+	&:has(.rating-banner.rating-100-12) { --rating-color: var(--rating-color-12); }
+	&:has(.rating-banner.rating-100-14) { --rating-color: var(--rating-color-14); }
+	&:has(.rating-banner.rating-100-16) { --rating-color: var(--rating-color-16); }
+	&:has(.rating-banner.rating-100-18) { --rating-color: var(--rating-color-18); }
+	&:has(.rating-banner.rating-100-20) { --rating-color: var(--rating-color-20); }
+}
+
+.rating-banner { --stars: ""; }
+.rating-100-2  { --stars: "★ 0.5"; }
+.rating-100-4  { --stars: "★ 1"; }
+.rating-100-6  { --stars: "★ 1.5"; }
+.rating-100-8  { --stars: "★ 2"; }
+.rating-100-10 { --stars: "★ 2.5"; }
+.rating-100-12 { --stars: "★ 3"; }
+.rating-100-14 { --stars: "★ 3.5"; }
+.rating-100-16 { --stars: "★ 4"; }
+.rating-100-18 { --stars: "★ 4.5"; }
+.rating-100-20 { --stars: "★ 5"; }
+
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner) .rating-banner::after {
+	content: var(--stars);
+	background: var(--rating-color) !important;
+	color: black;
+	display: block;
+	padding: 1px 55px;
+	padding-bottom: 2px;
+	position: absolute;
+	top: 0px;
+	left: 17px; 
+}
+:is(.scene-card, .gallery-card, .group-card):has(.rating-banner) .rating-banner {
+	background: transparent !important;
+	color: transparent !important;
+}
+
 
 																/* ============== GLOBAL CHANGES ============== */
 
@@ -150,6 +192,8 @@
 .form-container.edit-buttons-container.px-3.pt-3.row {
 	background-color: var(--queue-edit-header) !important;
 }
+
+
 
 /*Change the order of navigation bar buttons*/
 div.nav-link[data-rb-event-key = "/groups"] {
@@ -195,7 +239,6 @@ a:hover {
 
 body {
 	background-color: var(--body);
-	color: #ffffffeb;
 }
 .bg-secondary {
 	background-color: var(--nav-grey-dark) !important;
@@ -213,33 +256,15 @@ body {
 	scrollbar-color: var(--nav-grey) transparent;
 }
 a {
-	/*-	color: #ffffffa6;  */
-	transition: ease-in-out 0.5s;
+	transition: ease-in-out 0.3s;
 }
 a:hover {
 	color: var(--accent);
 }
-/*h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {   
-    line-height: 1.5;
-	color: #ffffffeb !important;
-}*/
-/*settings page*/
-.sub-heading {			
-	color: #ffffffa6 !important;
-}
+pre, code, kbd, samp, p,
 .scene-card__details, 
 .gallery-card__details {
 	color: #ffffffc9;
-}
-pre, code, kbd, samp, p {
-	color: #ffffffc9 !important;
-}
-.nav-link {
-	color: #ffffffc9;
-}
-/*toolbar dropdowns*/
-.text-white {	
-	color: #ffffffc9 !important;
 }
 .scene-card.fileless.grid-card.card .minimal.btn.btn-primary, 
 .scene-card.fileless.grid-card.card .scene-card__date, 
@@ -346,7 +371,7 @@ svg.svg-inline--fa.fa-video.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl
 /*main container specific*/
 .item-list-container .filtered-list-toolbar.btn-toolbar .clearable-text-field.form-control,
 .item-list-container .filtered-list-toolbar .btn-secondary {
-	background: var(--nav-grey-dark) !important;
+	background-color: var(--nav-grey-dark) !important;
 }
 .filtered-list-toolbar.has-selection .minimal.btn.btn-secondary {
 	background: transparent !important;
@@ -399,43 +424,20 @@ input::selection {
 
 			/*======  Rating Stars  ======*/
 
-/*other scene toolbar buttons get accent color*/
-.scene-toolbar-group .rating-stars .set, 				
-.scene-toolbar-group .rating-stars .setting, .scene-toolbar-group .rating-stars .unset, .scene-toolbar-group .rating-stars .unsetting {
-	color: #fff;
-}
 .rating-stars .set, .rating-stars .setting, .rating-stars .unset, .rating-stars .unsetting {
 	color: #fff;
 }
-.rating-stars:has([title = "0.5"]) .set {
-	color: #000;
-}
-.rating-stars:has([title = "1"]) .set {
-	color: #ff7800;
-}
-.rating-stars:has([title = "1.5"]) .set {
-	color: #e0db03;
-}
-.rating-stars:has([title = "2"]) .set {
-	color: #92e60b;
-}
-.rating-stars:has([title = "2.5"]) .set {
-	color: #136916;
-}
-.rating-stars:has([title = "3"]) .set {
-	color: #08e2e6;
-}
-.rating-stars:has([title = "3.5"]) .set {
-	color: #02f;
-}
-.rating-stars:has([title = "4"]) .set {
-	color: #cd00f3;
-}
-.rating-stars:has([title = "4.5"]) .set {
-	color: #f00;
-}
-.rating-stars:has([title = "5"]) .set {
-	color: var(--accent);
+.rating-stars {
+	&:has([title="0.5"]) .set { color: var(--rating-color-2); }
+	&:has([title="1"])   .set { color: var(--rating-color-4); }
+	&:has([title="1.5"]) .set { color: var(--rating-color-6); }
+	&:has([title="2"])   .set { color: var(--rating-color-8); }
+	&:has([title="2.5"]) .set { color: var(--rating-color-10); }
+	&:has([title="3"])   .set { color: var(--rating-color-12); }
+	&:has([title="3.5"]) .set { color: var(--rating-color-14); }
+	&:has([title="4"])   .set { color: var(--rating-color-16); }
+	&:has([title="4.5"]) .set { color: var(--rating-color-18); }
+	&:has([title="5"])   .set { color: var(--accent); }
 }
 
 			/*=====  List View  =====*/
@@ -450,7 +452,7 @@ input::selection {
 	background-color: var(--nav)
 }
 .table-list.scene-table {
-	scrollbar-color: var(--tags) var(--nav);
+	scrollbar-color: var(--accent-transparent) var(--body);
 	scrollbar-width: thin;
 }
 .table-list .comma-list.overflowable:hover {
@@ -462,6 +464,9 @@ input::selection {
 	color: var(--accent);
 }
 /*list view icon and menu top left*/
+.css-1t8bdmy-indicatorContainer {
+	background: var(--nav-grey)
+}
 .svg-inline--fa.fa-table-columns.fa-icon.column-select:hover {
 	color: var(--accent)
 }
@@ -579,7 +584,8 @@ svg.svg-inline--fa.fa-gear.fa-spin {
 	padding-left: 1.5rem;
 }
 .package-manager-table-container {
-	scrollbar-width: none;
+	scrollbar-color: var(--accent-transparent) var(--card);
+	scrollbar-width: thin;
 }
 /*scraper tables*/
 .collapse.show table.scraper-table thead tr,
@@ -1415,6 +1421,37 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 .VideoPlayer {
 	background: linear-gradient(0deg, var(--card) 0%, #0000) var(--body) 45%;
 }
+.vjs-mute-control.vjs-control.vjs-button.vjs-vol-0,
+.video-js .vjs-control:hover,
+.video-js .vjs-control:focus {
+	text-shadow: none !important;
+	color: var(--accent);
+}
+.vjs-mute-control.vjs-control.vjs-button.vjs-vol-0:hover {
+	color: var(--accent-transparent);
+}
+.vjs-menu-item-text,
+.vjs-menu-item.vjs-source-menu-item {
+	color: #fff;
+}
+.vjs-menu li.vjs-menu-item:focus, .vjs-menu li.vjs-menu-item:hover, .js-focus-visible .vjs-menu li.vjs-menu-item:hover {
+	background-color: transparent;
+}
+.vjs-menu-item.vjs-source-menu-item.vjs-selected {
+	background-color: var(--accent);
+}
+.vjs-menu-item:hover .vjs-menu-item-text {
+	color: var(--accent);
+}
+
+#scrubber-forward.scrubber-button.btn.btn-primary,
+#scrubber-back.scrubber-button.btn.btn-primary {
+	background-color: transparent;
+	border: none
+}
+#scrubber-position-indicator {
+background-color: var(--accent-transparent);
+}
 
 
 																/* ============== PLUGINS / SCRIPTS ============== */
@@ -1568,6 +1605,11 @@ html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-firs
 /*allow top form control outline in edit and markers to show better*/
 #scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
 	margin-bottom: .2rem
+}
+.gallery-divider .btn.btn-primary,
+.scene-divider .btn.btn-primary {
+	border: none; 
+	box-shadow: none;
 }
 .scene-divider.d-none.d-xl-block button.btn.btn-primary, 
 .gallery-divider.d-none.d-xl-block button.btn.btn-primary, 
@@ -1802,10 +1844,6 @@ form#group-edit #synopsis {
 .scene-card__date {
 	font-size: 12px;
 }
-.scene-card .card-section-title.flex-aligned,
-.gallery-card .card-section-title.flex-aligned {		
-	margin-bottom: 0px;
-}
 .group-card .card-section-title.flex-aligned {		
 	margin-bottom: 0px;
 }
@@ -1836,21 +1874,14 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 /*.scene-card .card-section {						
 	margin-top: -0.5rem;
 }*/
-.scene-card .card-section {
-	padding-top: .1rem;
-}
+
 /*title for galleries with no description stays at top*/
 .gallery-card.grid-card.card .card-section {		
-	margin-top: -0.1px;
+	margin-top: 0px;
 }
 .TruncatedText.gallery-card__description,
 .TruncatedText.scene-card__description{
-	margin-top: -0.3rem;
-	margin-bottom: -0.5rem;
 	font-size: 13px;
-}
-.gallery-card.card {
-	padding-bottom: 0.3rem;
 }
 /*btn-group stays at bottom of card when there is no description*/
 .gallery-card .card-popovers.btn-group,			
@@ -1999,7 +2030,7 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom{
 
 /* Fixed uniform thumbnail area */
 div.row.justify-content-center div.group-card.zoom-1.grid-card.card .thumbnail-section {
-  width: 221px;
+  width: 222px;
   height: 310px; /* pick the height you want */
   display: flex;
   align-items: center;
@@ -2128,8 +2159,8 @@ div.row.justify-content-center div.group-card.zoom-1.grid-card.card .thumbnail-s
 .tag-popover-card .tag-card.zoom-0.grid-card.card .thumbnail-section .tag-card-header .tag-card-image,
 .tag-card.zoom-0.grid-card.card .thumbnail-section .tag-card-header .tag-card-image  {
 	background: linear-gradient(0deg, var(--card) 20%, #0000) var(--body) 100%;
-												/*background: linear-gradient(0deg, var(--card) 0%, #0000) rgb(171, 171, 171) 100%;*/
-												/*transition: background 2s;*/
+	/*background: linear-gradient(0deg, var(--card) 0%, #0000) rgb(171, 171, 171) 100%;*/
+	/*transition: background 2s;*/
 }
 .tag-sub-tags a,
 .tag-parent-tags a {
@@ -2238,7 +2269,7 @@ html body.modal-open div.fade.edit-filter-dialog.modal.show div.modal-dialog div
 
 
 						/* ====================<< PAGINATION >>================ */
-
+@media only screen and (min-width: 767px){
 	/*Main Pages*/
 .pagination.btn-group button.btn.btn-secondary {
 	height: 34px;
@@ -2366,4 +2397,5 @@ html body div#root div.main.container-fluid div.row div.gallery-container div.ta
 	position: absolute;
 	top: 4rem;
 	left: 2rem
+}
 }

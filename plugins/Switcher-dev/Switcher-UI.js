@@ -171,16 +171,28 @@
             const input = row.querySelector('.theme-switcher__color-input');
             const pinBtn = row.querySelector('.theme-switcher__color-pin');
             if (!input || !pinBtn) return;
+
             const color = input.value || CSSVariableManager.resolveValue(varName);
             const pinned = color ? SwatchPinManager.isColorPinned(color) : false;
             pinBtn.setAttribute('data-pinned', pinned.toString());
             pinBtn.title = pinned ? 'Unpin from color picker swatches' : 'Pin to color picker swatches';
+
+            // The CSS gates pin visibility on [data-modified="true"], but a pinned color
+            // should surface even on unmodified vars (e.g. --rating-color-20 following --accent).
+            // When pinned, override visibility inline; when not, let CSS take back control.
+            if (pinned) {
+                pinBtn.style.visibility = 'visible';
+                pinBtn.style.pointerEvents = 'auto';
+            } else {
+                pinBtn.style.removeProperty('visibility');
+                pinBtn.style.removeProperty('pointer-events');
+            }
         }
 
         // Refresh pin state for all rows (e.g. after pin/unpin, since two vars can share a value)
         static refreshAllPinStates() {
             CONFIG.editableVars.forEach(v => this.updatePinState(v.name));
-            CONFIG.globalEditableVars.forEach(v => this.updatePinState(v.name));
+            CONFIG.globalVarGroups.flatMap(g => g.vars).forEach(v => this.updatePinState(v.name));
         }
 
         // Create color section
@@ -201,10 +213,11 @@
             resetAllBtn.addEventListener('click', () => EventHandlers.handleResetAllColors());
             colorsWrapper.appendChild(resetAllBtn);
 
-            // Rating Colors collapsible group
-            colorsWrapper.appendChild(this.createRatingColorsGroup());
+            CONFIG.globalVarGroups.forEach(group => {
+                colorsWrapper.appendChild(this.createVarGroup(group));
+            });
 
-            // Separator + area for snippets pinned to this section (at the bottom)
+            // Separator shown only when snippets are pinned into this section
             const pinnedSeparator = document.createElement('hr');
             pinnedSeparator.className = 'theme-switcher__pinned-separator';
             pinnedSeparator.style.display = 'none';
@@ -218,6 +231,7 @@
 
             return section;
         }
+
 
         // Create color row
         static createColorRow(varConfig) {
@@ -240,6 +254,8 @@
             pinBtn.title = 'Pin to color picker swatches';
             pinBtn.addEventListener('click', async (e) => {
                 e.stopPropagation();
+                // input.value is always a concrete hex now (global vars are initialised
+                // from JSON defaults, never left as raw var() strings)
                 const color = input.value || CSSVariableManager.resolveValue(varConfig.name);
                 if (!color) return;
                 if (SwatchPinManager.isColorPinned(color)) {
@@ -276,12 +292,10 @@
             return row;
         }
 
-        // Create collapsible Rating Colors group (global vars, CSS-only, no JSON)
-        static createRatingColorsGroup() {
+        static createVarGroup(groupDef) {
             const group = document.createElement('div');
             group.className = 'theme-switcher__rating-colors-group';
 
-            // Header — mimics snippet header style
             const header = document.createElement('div');
             header.className = 'theme-switcher__snippet-header theme-switcher__rating-colors-header';
 
@@ -290,7 +304,7 @@
 
             const name = document.createElement('span');
             name.className = 'theme-switcher__snippet-name';
-            name.textContent = 'Rating Colors';
+            name.textContent = groupDef.label;
             info.appendChild(name);
 
             const chevron = document.createElement('span');
@@ -302,28 +316,24 @@
             header.appendChild(info);
             group.appendChild(header);
 
-            // Expandable panel
             const panel = document.createElement('div');
             panel.className = 'theme-switcher__snippet-panel theme-switcher__rating-colors-panel';
             panel.setAttribute('data-expanded', 'false');
 
-            // Color rows — identical to scheme rows but with data-scope="global"
-            CONFIG.globalEditableVars.forEach(varConfig => {
+            groupDef.vars.forEach(varConfig => {
                 const row = this.createColorRow(varConfig);
-                row.setAttribute('data-scope', 'global');
+                row.setAttribute('data-scope', groupDef.scope);
                 panel.appendChild(row);
             });
 
-            // Reset Rating Colors button
-            const resetGlobalBtn = document.createElement('button');
-            resetGlobalBtn.className = 'theme-switcher__reset-all theme-switcher__reset-global';
-            resetGlobalBtn.textContent = 'Reset Rating Colors';
-            resetGlobalBtn.addEventListener('click', () => EventHandlers.handleResetAllGlobalColors());
-            panel.appendChild(resetGlobalBtn);
+            const resetBtn = document.createElement('button');
+            resetBtn.className = 'theme-switcher__reset-all theme-switcher__reset-global';
+            resetBtn.textContent = groupDef.resetLabel;
+            resetBtn.addEventListener('click', () => EventHandlers.handleResetGroup(groupDef.id));
+            panel.appendChild(resetBtn);
 
             group.appendChild(panel);
 
-            // Toggle expand/collapse on header click
             header.addEventListener('click', () => {
                 const isExpanded = panel.getAttribute('data-expanded') === 'true';
                 panel.setAttribute('data-expanded', (!isExpanded).toString());
@@ -333,12 +343,27 @@
             return group;
         }
 
-        // Create snippets section
+        // Create snippets section with search input and a separate list container
         static createSnippetsSection() {
             const { section, content } = this.createSection('CSS Snippets', 'snippets', 'snippets');
 
             const snippetsWrapper = document.createElement('div');
             snippetsWrapper.className = 'theme-switcher__snippets';
+
+            // Search input — lives outside the list so it survives buildSnippetUI rebuilds
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.className = 'theme-switcher__snippet-search';
+            searchInput.placeholder = 'Search snippets…';
+            searchInput.addEventListener('input', () => {
+                UIManager.filterSnippets(searchInput.value.trim().toLowerCase());
+            });
+            snippetsWrapper.appendChild(searchInput);
+
+            // List container — this is what buildSnippetUI clears and rebuilds
+            const list = document.createElement('div');
+            list.className = 'theme-switcher__snippets-list';
+            snippetsWrapper.appendChild(list);
 
             content.appendChild(snippetsWrapper);
 
@@ -452,7 +477,9 @@
             });
         }
 
-        // Toggle pin state for a snippet (move between Snippets and Custom Colors sections)
+        // Toggle pin state for a snippet (move between Snippets and Custom Colors sections).
+        // Simplified: just toggle storage and rebuild — avoids fragile DOM surgery that
+        // breaks when snippets are nested inside category groups.
         static async toggleSnippetPin(snippet, snippetEl, pinBtn) {
             const key = `pinned-snippet-${snippet.name}`;
             const isPinned = storage.config[key] === true;
@@ -460,45 +487,11 @@
 
             if (newPinned) {
                 await storage.set(key, true);
-                pinBtn.setAttribute('data-pinned', 'true');
-                pinBtn.title = 'Unpin from Custom Colors';
-                snippetEl.classList.add('theme-switcher__snippet--pinned');
-                const pinnedArea = document.querySelector('.theme-switcher__pinned-snippets');
-                if (pinnedArea) pinnedArea.appendChild(snippetEl);
             } else {
                 await storage.remove(key);
-                pinBtn.setAttribute('data-pinned', 'false');
-                pinBtn.title = 'Pin to Custom Colors';
-                snippetEl.classList.remove('theme-switcher__snippet--pinned');
-
-                // Restore to original position based on order in state.snippets
-                const snippetsContainer = document.querySelector('.theme-switcher__snippets');
-                if (snippetsContainer) {
-                    const originalIndex = state.snippets.findIndex(raw => {
-                        const s = SnippetManager.normalizeSnippet(raw);
-                        return s && s.name === snippet.name;
-                    });
-                    const presentEls = Array.from(
-                        snippetsContainer.querySelectorAll('.theme-switcher__snippet')
-                    );
-                    let insertBefore = null;
-                    for (const el of presentEls) {
-                        const elIdx = state.snippets.findIndex(raw => {
-                            const s = SnippetManager.normalizeSnippet(raw);
-                            return s && s.name === el.getAttribute('data-snippet-id');
-                        });
-                        if (elIdx > originalIndex) { insertBefore = el; break; }
-                    }
-                    if (insertBefore) {
-                        snippetsContainer.insertBefore(snippetEl, insertBefore);
-                    } else {
-                        const disableBtn = snippetsContainer.querySelector('.theme-switcher__disable-all');
-                        snippetsContainer.insertBefore(snippetEl, disableBtn || null);
-                    }
-                }
             }
 
-            // Show/hide the separator based on whether any snippets are pinned
+            UIManager.buildSnippetUI();
             UIManager.updatePinnedSeparator();
 
             // Broadcast to other tabs
@@ -517,12 +510,12 @@
             separator.style.display = hasPinned ? 'block' : 'none';
         }
 
-        // Build snippet UI dynamically
+        // Build snippet UI dynamically, grouped by category when present
         static buildSnippetUI() {
             state.clearElementCache();
-            const container = document.querySelector('.theme-switcher__snippets');
+            const container = document.querySelector('.theme-switcher__snippets-list');
             if (!container) {
-                console.warn('Snippet container not found');
+                console.warn('Snippet list container not found');
                 return;
             }
 
@@ -535,17 +528,37 @@
 
             const fragment = document.createDocumentFragment();
 
-            state.snippets.forEach(raw => {
-                const snippet = SnippetManager.normalizeSnippet(raw);
+            // Normalize all snippets up front
+            const normalized = state.snippets
+                .map(raw => SnippetManager.normalizeSnippet(raw))
+                .filter(Boolean);
 
-                // Skip if normalization failed
-                if (!snippet) {
-                    return;
-                }
+            // Decide whether to group: only if at least one snippet has a category
+            const hasCategories = normalized.some(s => s.category);
 
-                const snippetEl = this.createSnippet(snippet);
-                fragment.appendChild(snippetEl);
-            });
+            if (hasCategories) {
+                // Group snippets by category, preserving order of first appearance
+                const groups = new Map();
+                normalized.forEach(snippet => {
+                    const cat = snippet.category || 'MISC';
+                    if (!groups.has(cat)) groups.set(cat, []);
+                    groups.get(cat).push(snippet);
+                });
+
+                // Render named categories first, then "MISC" last
+                const orderedKeys = [...groups.keys()].filter(k => k !== 'MISC');
+                if (groups.has('MISC')) orderedKeys.push('MISC');
+
+                orderedKeys.forEach(categoryName => {
+                    const groupEl = this.createSnippetCategoryGroup(categoryName, groups.get(categoryName));
+                    fragment.appendChild(groupEl);
+                });
+            } else {
+                // Flat list — original behaviour when no categories are defined
+                normalized.forEach(snippet => {
+                    fragment.appendChild(this.createSnippet(snippet));
+                });
+            }
 
             // Disable all button
             const disableBtn = document.createElement("button");
@@ -555,8 +568,6 @@
                 await SnippetManager.disableAll();
                 this.buildSnippetUI();
                 this.applyDropdownStyles();
-
-                // Broadcast to other tabs
                 window.ThemeSwitcherCore.crossTabSync.broadcast('all-snippets-disabled', {});
             });
             fragment.appendChild(disableBtn);
@@ -567,11 +578,11 @@
             const pinnedArea = document.querySelector('.theme-switcher__pinned-snippets');
             if (pinnedArea) {
                 pinnedArea.innerHTML = '';
-                state.snippets.forEach(raw => {
-                    const snippet = SnippetManager.normalizeSnippet(raw);
-                    if (!snippet) return;
+                normalized.forEach(snippet => {
                     if (storage.config[`pinned-snippet-${snippet.name}`] === true) {
-                        const snippetEl = container.querySelector(`.theme-switcher__snippet[data-snippet-id="${snippet.name}"]`);
+                        const snippetEl = container.querySelector(
+                            `.theme-switcher__snippet[data-snippet-id="${snippet.name}"]`
+                        );
                         if (snippetEl) {
                             snippetEl.classList.add('theme-switcher__snippet--pinned');
                             pinnedArea.appendChild(snippetEl);
@@ -580,13 +591,120 @@
                 });
             }
             UIManager.updatePinnedSeparator();
+
+            // Re-apply any active search filter so results stay consistent after a rebuild
+            const searchInput = document.querySelector('.theme-switcher__snippet-search');
+            if (searchInput && searchInput.value.trim()) {
+                this.filterSnippets(searchInput.value.trim().toLowerCase());
+            }
+        }
+
+        // Create a collapsible category group containing the given snippet elements
+        static createSnippetCategoryGroup(categoryName, snippets) {
+            const group = document.createElement('div');
+            group.className = 'theme-switcher__snippet-category';
+            group.setAttribute('data-category', categoryName);
+
+            const header = document.createElement('div');
+            header.className = 'theme-switcher__snippet-category-header';
+
+            const chevron = document.createElement('span');
+            chevron.className = 'theme-switcher__snippet-chevron';
+            chevron.textContent = '▸';
+            chevron.setAttribute('data-expanded', 'false');
+
+            const label = document.createElement('span');
+            label.className = 'theme-switcher__snippet-category-name';
+            label.textContent = categoryName;
+
+            header.appendChild(chevron);
+            header.appendChild(label);
+            group.appendChild(header);
+
+            const body = document.createElement('div');
+            body.className = 'theme-switcher__snippet-category-body';
+            body.setAttribute('data-expanded', 'false');
+
+            snippets.forEach(snippet => {
+                body.appendChild(this.createSnippet(snippet));
+            });
+
+            group.appendChild(body);
+
+            header.addEventListener('click', () => {
+                const isExpanded = body.getAttribute('data-expanded') === 'true';
+                body.setAttribute('data-expanded', (!isExpanded).toString());
+                chevron.setAttribute('data-expanded', (!isExpanded).toString());
+            });
+
+            return group;
+        }
+
+        // Filter visible snippets by query string.
+        // Hides non-matching snippets; hides/shows category groups based on whether
+        // they have any visible children; auto-expands matching groups while searching.
+        static filterSnippets(query) {
+            const container = document.querySelector('.theme-switcher__snippets-list');
+            if (!container) return;
+
+            const categoryGroups = container.querySelectorAll('.theme-switcher__snippet-category');
+
+            // On the first keystroke (empty → non-empty), snapshot which groups are open
+            if (query && !UIManager._searchSnapshot) {
+                UIManager._searchSnapshot = new Set();
+                categoryGroups.forEach(group => {
+                    const body = group.querySelector('.theme-switcher__snippet-category-body');
+                    if (body?.getAttribute('data-expanded') === 'true') {
+                        UIManager._searchSnapshot.add(group.getAttribute('data-category'));
+                    }
+                });
+            }
+
+            // Show/hide individual snippet rows
+            container.querySelectorAll('.theme-switcher__snippet').forEach(el => {
+                const id = el.getAttribute('data-snippet-id') || '';
+                const displayName = id.replace(/[-_]/g, ' ').toLowerCase();
+                el.style.display = (!query || displayName.includes(query)) ? '' : 'none';
+            });
+
+            // Update category group visibility and expansion
+            categoryGroups.forEach(group => {
+                const snippets = group.querySelectorAll('.theme-switcher__snippet');
+                const anyVisible = Array.from(snippets).some(el => el.style.display !== 'none');
+                const body = group.querySelector('.theme-switcher__snippet-category-body');
+                const chevron = group.querySelector('.theme-switcher__snippet-chevron');
+
+                group.style.display = anyVisible ? '' : 'none';
+
+                if (!body || !chevron) return;
+
+                if (query) {
+                    // While searching: expand groups that have matches
+                    if (anyVisible) {
+                        body.setAttribute('data-expanded', 'true');
+                        chevron.setAttribute('data-expanded', 'true');
+                    }
+                } else {
+                    // Search cleared: restore pre-search snapshot
+                    const categoryName = group.getAttribute('data-category');
+                    const wasOpen = UIManager._searchSnapshot?.has(categoryName) ?? false;
+                    body.setAttribute('data-expanded', wasOpen.toString());
+                    chevron.setAttribute('data-expanded', wasOpen.toString());
+                }
+            });
+
+            // Discard snapshot once search is fully cleared
+            if (!query) {
+                UIManager._searchSnapshot = null;
+            }
         }
 
         // Create a snippet element
         static createSnippet(snippet) {
             const hasScopes = Object.keys(snippet.scopes).length > 1;
             const hasVars = snippet.vars && Object.keys(snippet.vars).length > 0;
-            const hasOptions = hasVars || hasScopes;
+            const hasScopePanel = hasScopes || snippet.hasGlobal;
+            const hasOptions = hasVars || hasScopePanel;
 
             const container = document.createElement('div');
             container.className = 'theme-switcher__snippet';
@@ -599,7 +717,7 @@
             const info = document.createElement('div');
             info.className = 'theme-switcher__snippet-info';
 
-            // Pin button (move snippet to/from Custom Colors section)
+            // Pin button
             const isPinned = storage.config[`pinned-snippet-${snippet.name}`] === true;
             const pinBtn = document.createElement('button');
             pinBtn.className = 'theme-switcher__snippet-pin';
@@ -612,17 +730,16 @@
             });
             info.appendChild(pinBtn);
 
-            // Name - use the actual snippet name from the data
+            // Name
             const name = document.createElement('span');
             name.className = 'theme-switcher__snippet-name';
-            // Display the name with better formatting (replace dashes/underscores with spaces and capitalize)
             const displayName = snippet.name
-                .replace(/[-_]/g, ' ')
+                .replace(/[_]/g, ' ')
                 .split(' ')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(' ');
             name.textContent = displayName;
-            name.title = snippet.name; // Keep original as tooltip
+            name.title = snippet.name;
             info.appendChild(name);
 
             // Chevron
@@ -637,7 +754,7 @@
 
             header.appendChild(info);
 
-            // Toggle switch (on the far right)
+            // Toggle switch
             const enabled = SnippetManager.getEnabled(snippet.name);
             const toggle = this.createSnippetToggle(snippet, enabled, hasScopes);
             header.appendChild(toggle);
@@ -650,7 +767,7 @@
                 panelsContainer.className = 'theme-switcher__snippet-panel';
                 panelsContainer.setAttribute('data-expanded', 'false');
 
-                if (hasScopes) {
+                if (hasScopePanel) {
                     const scopePanel = this.createScopePanel(snippet);
                     panelsContainer.appendChild(scopePanel);
                 }
@@ -662,10 +779,8 @@
 
                 container.appendChild(panelsContainer);
 
-                // Click to expand
                 header.addEventListener('click', (e) => {
                     if (e.target.closest('.theme-switcher__toggle')) return;
-
                     const isExpanded = panelsContainer.getAttribute('data-expanded') === 'true';
                     panelsContainer.setAttribute('data-expanded', (!isExpanded).toString());
                     if (chevron) {
@@ -676,6 +791,7 @@
 
             return container;
         }
+
 
         // Create snippet toggle switch
         static createSnippetToggle(snippet, enabled, isMultiScope) {
@@ -700,35 +816,37 @@
                     if (!snippetContainer) return;
 
                     const scopePanel = snippetContainer.querySelector('.theme-switcher__scope-panel');
-                    const checkboxes = scopePanel.querySelectorAll('input[type="checkbox"]');
-                    const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+                    const allCheckboxes = scopePanel.querySelectorAll('input[type="checkbox"]');
+                    const anyChecked = Array.from(allCheckboxes).some(cb => cb.checked);
                     const newState = !anyChecked;
 
-                    // Toggle all checkboxes
-                    checkboxes.forEach(cb => cb.checked = newState);
+                    // Sweep all checkboxes including global
+                    allCheckboxes.forEach(cb => cb.checked = newState);
 
-                    // Gather selected scopes
-                    const selectedScopes = newState ? Array.from(checkboxes).map(cb => cb.dataset.scope) : [];
+                    // Gather only scope checkboxes (global has no dataset.scope)
+                    const selectedScopes = newState
+                        ? Array.from(scopePanel.querySelectorAll(
+                            '.theme-switcher__scope-checkbox:not(.theme-switcher__scope-checkbox--global)'
+                        )).map(cb => cb.dataset.scope)
+                        : [];
 
-                    // Update storage and apply
                     await SnippetManager.setEnabled(snippet.name, newState);
                     await SnippetManager.setScopes(snippet.name, selectedScopes);
-                    await SnippetManager.apply(snippet, newState, selectedScopes);
+                    await SnippetManager.setGlobal(snippet.name, newState);
+                    await SnippetManager.apply(snippet, newState, selectedScopes, newState);
 
-                    // Update toggle visual state
                     toggle.setAttribute('data-active', newState.toString());
 
-                    // Broadcast to other tabs with theme/scheme context
                     window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
                         theme: window.ThemeSwitcherCore.state.currentTheme,
                         scheme: window.ThemeSwitcherCore.state.currentScheme,
                         snippetName: snippet.name,
                         enabled: newState,
-                        scopes: selectedScopes
+                        scopes: selectedScopes,
+                        global: newState
                     });
                 });
             } else {
-                // Single scope - use checkbox
                 toggle = document.createElement('input');
                 toggle.type = 'checkbox';
                 toggle.className = 'theme-switcher__toggle-checkbox';
@@ -742,43 +860,52 @@
                     );
                     if (!snippetContainer) return;
 
-                    let selectedScopes = [];
-
                     const scopePanel = snippetContainer.querySelector('.theme-switcher__scope-panel');
+
                     if (scopePanel) {
-                        const checkboxes = scopePanel.querySelectorAll('input[type="checkbox"]');
+                        // Sweep all checkboxes including global
+                        scopePanel.querySelectorAll('input[type="checkbox"]')
+                            .forEach(cb => cb.checked = toggle.checked);
 
-                        // Update all scope checkboxes
-                        checkboxes.forEach(cb => cb.checked = toggle.checked);
-
-                        // Gather selected scopes
-                        selectedScopes = toggle.checked
-                            ? Array.from(checkboxes).map(cb => cb.dataset.scope)
+                        // Gather only scope checkboxes
+                        const selectedScopes = toggle.checked
+                            ? Array.from(scopePanel.querySelectorAll(
+                                '.theme-switcher__scope-checkbox:not(.theme-switcher__scope-checkbox--global)'
+                            )).map(cb => cb.dataset.scope)
                             : [];
 
-                        // Update storage and apply
                         await SnippetManager.setEnabled(snippet.name, toggle.checked);
                         await SnippetManager.setScopes(snippet.name, selectedScopes);
-                        await SnippetManager.apply(snippet, toggle.checked, selectedScopes);
+                        await SnippetManager.setGlobal(snippet.name, toggle.checked);
+                        await SnippetManager.apply(snippet, toggle.checked, selectedScopes, toggle.checked);
+
+                        window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
+                            theme: window.ThemeSwitcherCore.state.currentTheme,
+                            scheme: window.ThemeSwitcherCore.state.currentScheme,
+                            snippetName: snippet.name,
+                            enabled: toggle.checked,
+                            scopes: selectedScopes,
+                            global: toggle.checked
+                        });
                     } else {
-                        // No scope panel - just use default scope
+                        // No scope panel — use default scope and current global state
                         const defaultScope = Object.keys(snippet.scopes)[0] || 'all';
-                        selectedScopes = toggle.checked ? [defaultScope] : [];
+                        const selectedScopes = toggle.checked ? [defaultScope] : [];
+                        const currentGlobal = SnippetManager.getGlobal(snippet.name);
 
-                        // Update storage and apply
                         await SnippetManager.setEnabled(snippet.name, toggle.checked);
                         await SnippetManager.setScopes(snippet.name, selectedScopes);
-                        await SnippetManager.apply(snippet, toggle.checked, selectedScopes);
-                    }
+                        await SnippetManager.apply(snippet, toggle.checked, selectedScopes, currentGlobal);
 
-                    // Broadcast to other tabs with theme/scheme context
-                    window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
-                        theme: window.ThemeSwitcherCore.state.currentTheme,
-                        scheme: window.ThemeSwitcherCore.state.currentScheme,
-                        snippetName: snippet.name,
-                        enabled: toggle.checked,
-                        scopes: selectedScopes
-                    });
+                        window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
+                            theme: window.ThemeSwitcherCore.state.currentTheme,
+                            scheme: window.ThemeSwitcherCore.state.currentScheme,
+                            snippetName: snippet.name,
+                            enabled: toggle.checked,
+                            scopes: selectedScopes,
+                            global: currentGlobal
+                        });
+                    }
                 });
             }
 
@@ -790,68 +917,129 @@
             const panel = document.createElement('div');
             panel.className = 'theme-switcher__scope-panel';
 
+            const hasScopes = Object.keys(snippet.scopes).length > 1;
             const enabled = SnippetManager.getEnabled(snippet.name);
             const scopes = SnippetManager.getScopes(snippet.name);
 
-            Object.keys(snippet.scopes).forEach(scopeName => {
+            // Global styles checkbox
+            if (snippet.hasGlobal) {
+                const globalEnabled = SnippetManager.getGlobal(snippet.name);
+
                 const label = document.createElement('label');
-                label.className = 'theme-switcher__scope-option';
+                label.className = 'theme-switcher__scope-option theme-switcher__scope-option--global';
 
                 const text = document.createElement('span');
                 text.className = 'theme-switcher__scope-label';
-                text.textContent = scopeName;
+                text.textContent = 'Global styles / Hover behavior';
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
-                checkbox.className = 'theme-switcher__scope-checkbox';
+                checkbox.className = 'theme-switcher__scope-checkbox theme-switcher__scope-checkbox--global';
                 checkbox.dataset.snippet = snippet.name;
-                checkbox.dataset.scope = scopeName;
-                checkbox.checked = enabled && scopes.includes(scopeName);
+                checkbox.checked = enabled && globalEnabled;
 
-                checkbox.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-
+                checkbox.addEventListener('click', e => e.stopPropagation());
                 checkbox.addEventListener('change', async () => {
-                    // Gather all checked scopes
                     const snippetContainer = document.querySelector(
                         `.theme-switcher__snippet[data-snippet-id="${snippet.name}"]`
                     );
                     if (!snippetContainer) return;
 
                     const scopePanel = snippetContainer.querySelector('.theme-switcher__scope-panel');
-                    const allCheckboxes = scopePanel.querySelectorAll('input[type="checkbox"]');
-                    const selectedScopes = Array.from(allCheckboxes)
-                        .filter(cb => cb.checked)
-                        .map(cb => cb.dataset.scope);
 
-                    const newEnabled = selectedScopes.length > 0;
+                    const selectedScopes = Array.from(scopePanel.querySelectorAll(
+                        '.theme-switcher__scope-checkbox:not(.theme-switcher__scope-checkbox--global)'
+                    )).filter(cb => cb.checked).map(cb => cb.dataset.scope);
 
-                    // Update storage and apply
+                    const newEnabled = selectedScopes.length > 0 || checkbox.checked;
+
                     await SnippetManager.setEnabled(snippet.name, newEnabled);
                     await SnippetManager.setScopes(snippet.name, selectedScopes);
-                    await SnippetManager.apply(snippet, newEnabled, selectedScopes);
+                    await SnippetManager.setGlobal(snippet.name, checkbox.checked);
+                    await SnippetManager.apply(snippet, newEnabled, selectedScopes, checkbox.checked);
 
-                    // Update toggle visual state
                     const toggle = snippetContainer.querySelector('.theme-switcher__toggle');
-                    if (toggle) {
-                        toggle.setAttribute('data-active', newEnabled.toString());
-                    }
+                    if (toggle) toggle.setAttribute('data-active', newEnabled.toString());
 
-                    // Broadcast to other tabs with theme/scheme context
+                    const checkboxToggle = snippetContainer.querySelector('.theme-switcher__toggle-checkbox');
+                    if (checkboxToggle) checkboxToggle.checked = newEnabled;
+
                     window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
                         theme: window.ThemeSwitcherCore.state.currentTheme,
                         scheme: window.ThemeSwitcherCore.state.currentScheme,
                         snippetName: snippet.name,
                         enabled: newEnabled,
-                        scopes: selectedScopes
+                        scopes: selectedScopes,
+                        global: checkbox.checked
                     });
                 });
 
                 label.appendChild(text);
                 label.appendChild(checkbox);
                 panel.appendChild(label);
-            });
+            }
+
+            // Scope checkboxes
+            if (hasScopes) {
+                Object.keys(snippet.scopes).forEach(scopeName => {
+                    const label = document.createElement('label');
+                    label.className = 'theme-switcher__scope-option';
+
+                    const text = document.createElement('span');
+                    text.className = 'theme-switcher__scope-label';
+                    text.textContent = scopeName;
+
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.className = 'theme-switcher__scope-checkbox';
+                    checkbox.dataset.snippet = snippet.name;
+                    checkbox.dataset.scope = scopeName;
+                    checkbox.checked = enabled && scopes.includes(scopeName);
+
+                    checkbox.addEventListener('click', e => e.stopPropagation());
+                    checkbox.addEventListener('change', async () => {
+                        const snippetContainer = document.querySelector(
+                            `.theme-switcher__snippet[data-snippet-id="${snippet.name}"]`
+                        );
+                        if (!snippetContainer) return;
+
+                        const scopePanel = snippetContainer.querySelector('.theme-switcher__scope-panel');
+
+                        const selectedScopes = Array.from(scopePanel.querySelectorAll(
+                            '.theme-switcher__scope-checkbox:not(.theme-switcher__scope-checkbox--global)'
+                        )).filter(cb => cb.checked).map(cb => cb.dataset.scope);
+
+                        const globalCheckbox = scopePanel.querySelector('.theme-switcher__scope-checkbox--global');
+                        const globalChecked = globalCheckbox ? globalCheckbox.checked : false;
+                        const currentGlobal = SnippetManager.getGlobal(snippet.name);
+
+                        const newEnabled = selectedScopes.length > 0 || globalChecked;
+
+                        await SnippetManager.setEnabled(snippet.name, newEnabled);
+                        await SnippetManager.setScopes(snippet.name, selectedScopes);
+                        await SnippetManager.apply(snippet, newEnabled, selectedScopes, currentGlobal);
+
+                        const toggle = snippetContainer.querySelector('.theme-switcher__toggle');
+                        if (toggle) toggle.setAttribute('data-active', newEnabled.toString());
+
+                        const checkboxToggle = snippetContainer.querySelector('.theme-switcher__toggle-checkbox');
+                        if (checkboxToggle) checkboxToggle.checked = newEnabled;
+
+                        window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-change', {
+                            theme: window.ThemeSwitcherCore.state.currentTheme,
+                            scheme: window.ThemeSwitcherCore.state.currentScheme,
+                            snippetName: snippet.name,
+                            enabled: newEnabled,
+                            scopes: selectedScopes,
+                            global: currentGlobal
+                        });
+                    });
+
+                    label.appendChild(text);
+                    label.appendChild(checkbox);
+                    panel.appendChild(label);
+                });
+            }
 
             return panel;
         }
@@ -880,6 +1068,10 @@
                 panel.appendChild(row);
             });
 
+            if (window.Coloris) {
+                panel.querySelectorAll('[data-coloris]').forEach(el => Coloris({ el }));
+            }
+
             return panel;
         }
 
@@ -905,12 +1097,68 @@
                     input.appendChild(option);
                 });
                 input.value = savedValue || meta.default || meta.options[0];
+            } else if (meta.type === 'color') {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'theme-switcher__color-input theme-switcher__var-input';
+                input.setAttribute('data-coloris', '');
+                input.dataset.snippet = snippet.name;
+                input.dataset.varName = varName;
+
+                const rawValue = savedValue || meta.default || '';
+                const varRef = rawValue.match(/^var\(\s*(--[^,\s)]+)/);
+                const initialValue = varRef
+                    ? CSSVariableManager.resolveValue(varRef[1]) || rawValue
+                    : rawValue;
+
+                if (initialValue) {
+                    input.value = initialValue;
+                    input.style.background = initialValue;
+                }
+
+                const resetBtn = document.createElement('button');
+                resetBtn.className = 'theme-switcher__color-reset';
+                resetBtn.textContent = '↺';
+                resetBtn.title = 'Reset to default';
+                resetBtn.addEventListener('click', async () => {
+                    const val = meta.default || '';
+                    await SnippetManager.setVar(snippet.name, varName, val);
+                    CSSVariableManager.setVar(varName, val);
+                    ColorisManager.resetInput(input, val);
+                });
+
+                // coloris:pick fires once on final pick — use for persistence + broadcast
+                input.addEventListener('coloris:pick', async (e) => {
+                    const color = e.detail.color;
+                    await SnippetManager.setVar(snippet.name, varName, color);
+                    window.ThemeSwitcherCore.crossTabSync.broadcast('snippet-var-change', {
+                        theme: window.ThemeSwitcherCore.state.currentTheme,
+                        scheme: window.ThemeSwitcherCore.state.currentScheme,
+                        snippetName: snippet.name,
+                        varName: varName,
+                        value: color,
+                        meta: meta
+                    });
+                });
+
+                // Return a wrapper so the reset button travels with the input
+                const wrapper = document.createElement('div');
+                wrapper.className = 'theme-switcher__var-color-wrapper';
+                wrapper.appendChild(input);
+                wrapper.appendChild(resetBtn);
+                return wrapper;
             } else {
                 input = document.createElement('input');
                 input.type = meta.type || 'number';
                 input.className = 'theme-switcher__var-input';
                 input.dataset.snippet = snippet.name;
                 input.dataset.varName = varName;
+
+                if (meta.type === 'number' || !meta.type) {
+                    if (meta.min !== undefined) input.min = meta.min;
+                    if (meta.max !== undefined) input.max = meta.max;
+                    input.step = meta.step ?? 1;
+                }
 
                 if (savedValue) {
                     input.value = savedValue.replace(meta.unit || '', '');
@@ -984,7 +1232,9 @@
         // Update all color inputs
         static updateAllColorInputs() {
             for (const v of CONFIG.editableVars) {
-                const input = document.querySelector(`.theme-switcher__color-input[data-var-name='${v.name}']`);
+                const input = document.querySelector(
+                    `.theme-switcher__color-input[data-var-name='${v.name}']`
+                );
                 if (input) {
                     const val = CSSVariableManager.resolveValue(v.name);
                     const saved = state.getThemeVar(v.name);
@@ -996,22 +1246,33 @@
                             `.theme-switcher__color-input[data-var-name='${v.name}']`
                         );
                         if (updatedInput) {
-                            ColorisManager.markModified(updatedInput, !!saved);
+                            // Explicit user override, OR derived var following a modified parent
+                            const { isModified: derivedModified } =
+                                CSSVariableManager.resolveDerivedSchemeVar(v.name);
+                            ColorisManager.markModified(updatedInput, !!saved || derivedModified);
                         }
                     }, 50);
+
                     setTimeout(() => {
                         UIManager.refreshAllPinStates();
                     }, 100);
                 }
             }
 
-            // Global vars: resolved from CSS + any saved user customization
-            // These are intentionally not re-read on scheme change — CSS value stays stable
-            for (const v of CONFIG.globalEditableVars) {
-                const input = document.querySelector(`.theme-switcher__color-input[data-var-name='${v.name}']`);
-                if (input) {
-                    const val = CSSVariableManager.resolveGlobalValue(v.name);
-                    const saved = state.getGlobalVar(v.name);
+            for (const group of CONFIG.globalVarGroups) {
+                for (const v of group.vars) {
+                    const input = document.querySelector(
+                        `.theme-switcher__color-input[data-var-name='${v.name}']`
+                    );
+                    if (!input) continue;
+
+                    const isGlobal = group.scope === 'global';
+                    const val = isGlobal
+                        ? CSSVariableManager.resolveGlobalValue(v.name)
+                        : CSSVariableManager.resolveValue(v.name);
+                    const saved = isGlobal
+                        ? state.getGlobalVar(v.name)
+                        : state.getThemeVar(v.name);
 
                     ColorisManager.resetInput(input, val);
 
@@ -1020,7 +1281,10 @@
                             `.theme-switcher__color-input[data-var-name='${v.name}']`
                         );
                         if (updatedInput) {
-                            ColorisManager.markModified(updatedInput, !!saved);
+                            const { isModified: derivedModified } = isGlobal
+                                ? CSSVariableManager.resolveDerivedGlobalVar(v.name)
+                                : CSSVariableManager.resolveDerivedSchemeVar(v.name);
+                            ColorisManager.markModified(updatedInput, !!saved || derivedModified);
                         }
                     }, 50);
                 }
@@ -1036,17 +1300,28 @@
             const isNoTheme = !state.currentTheme || state.currentTheme === 'no-theme';
             const cs = getComputedStyle(document.documentElement);
 
+            //Claude responded: The only active line left is hoverBg, and it's still doing the same no-theme conditional pattern as everything else.
+            //The only active line left is hoverBg, and it's still doing the same no-theme conditional pattern as everything else. Since your CSS already handles theming 
+            //dynamically via CSS variables, hoverBg could move there too — add a --ts-bg-option-hover variable to :root with a fallback for the no-theme case, 
+            //set it to var(--hover-bg, #137cbd) in the theme context, and replace the inline item.style.background with a CSS hover rule.
+            //If you do that, applyDropdownStyles reduces to just the event listeners for resetting background on click and mouseleave — at which point those 
+            //could also be replaced with pure CSS (:hover selector). The whole method could be deleted.
+            //The one reason to keep some JS hover handling is the click reset (setTimeout background = transparent) — that's working around a browser quirk where 
+            //the hover state can persist briefly after click. But even that can be handled in CSS with :active.
+            //So yes, fully simplifiable — move hoverBg to CSS and the method goes away entirely. Whether that's worth doing depends on how much you want to keep 
+            //in CSS vs JS. The current state works fine, it's just slightly inconsistent with the direction you've already taken by moving panel background to CSS.
+
             const colors = {
-                navBg: isNoTheme ? "#394b59" : cs.getPropertyValue('--nav-grey-dark').trim() || "#394b59",
-                navBtBg: isNoTheme ? "#394b59" : cs.getPropertyValue('--nav').trim() || "#394b59",
-                text: isNoTheme ? "#fff" : cs.getPropertyValue('--tags').trim() || "#ffffff",
-                accent: isNoTheme ? "#cc7b19" : cs.getPropertyValue('--accent').trim() || "#cc7b19",
+                //navBg: isNoTheme ? "#394b59" : cs.getPropertyValue('--nav-grey-dark').trim() || "#394b59",
+                //navBtBg: isNoTheme ? "#394b59" : cs.getPropertyValue('--nav').trim() || "#394b59",
+                //text: isNoTheme ? "#fff" : cs.getPropertyValue('--tags').trim() || "#ffffff",
+                //accent: isNoTheme ? "#cc7b19" : cs.getPropertyValue('--accent').trim() || "#cc7b19",
                 hoverBg: isNoTheme ? "#137cbd" : cs.getPropertyValue('--hover-bg').trim() || "transparent",
-                hoverText: isNoTheme ? "#fff" : cs.getPropertyValue('--hover-text').trim() || "#fff"
+                //hoverText: isNoTheme ? "#fff" : cs.getPropertyValue('--hover-text').trim() || "#fff"
             };
 
-            panel.style.background = colors.navBg;
-            button.style.background = colors.navBtBg;
+            //panel.style.background = colors.navBg;
+            //button.style.background = colors.navBtBg;
 
             panel.querySelectorAll('.theme-switcher__option').forEach(item => {
                 item.style.color = colors.text;

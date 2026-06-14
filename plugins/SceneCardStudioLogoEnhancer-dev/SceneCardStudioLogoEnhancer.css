@@ -1,4 +1,105 @@
-/* Studio Logo Enhancer Styles */
+
+/*=============================================================================================================================================================
+originally in CMD.css						                                          SCENE/GALLERY CARDS																		   
+=============================================================================================================================================================*/
+
+/*title for galleries with no description stays at top
+.gallery-card.grid-card.card .card-section {
+	margin-top: 5px;
+	margin-bottom: -20px;
+}
+.scene-card.grid-card.card .card-section {
+	margin-bottom: -5px;
+}
+.card-date-row,
+.card-header-row {
+	margin-top: -5px;
+}
+.TruncatedText.gallery-card__description,
+.TruncatedText.scene-card__description {
+	font-size: 13px;
+}
+/*btn-group stays at bottom of card when there is no description
+.gallery-card .card-popovers.btn-group,
+.scene-card .card-popovers.btn-group {
+	margin-top: auto;
+	margin-bottom: 5px;
+}
+*/
+
+
+
+.card-header-row {
+	margin-top: -5px;
+}
+.card-date-row {
+	margin-top: -5px;
+}
+.gallery-card__description,
+.scene-card__description {
+	margin-top: 5px;
+}
+.gallery-card.grid-card.card .card-section {
+	margin-top: 5px;
+	margin-bottom: -15px;
+}
+
+
+/*Make the performer tags in popover take up less width */
+.performer-tag-container {
+	margin-left: -5px;
+	margin-right: -1px;
+	padding-bottom: 0rem;
+	background: transparent;
+}
+#popover.fade.hover-popover-content.show.popover.bs-popover-bottom {
+	border: 3px var(--accent-transparent) solid;
+}
+/*performer tag names popover*/
+.tag-item.d-block.badge.badge-secondary {
+	padding: .2em .6em 0em .6em;
+	font-weight: 700;
+	border-radius: .25rem;
+}
+#popover .performer-disambiguation {
+	display: none;
+}
+.scene-specs-overlay {
+	filter: drop-shadow(.2px .2px 2px #000);
+	/*background-color: #0000005c;					 
+    /*border-radius: 3px;
+    padding: 0 3px;*/
+}
+.fileless .scene-card-preview-image {
+	background-color: var(--red);
+}
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {
+	-webkit-line-clamp: 1 !important;
+}
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
+	-webkit-line-clamp: 1 !important;
+}
+.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,
+.scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
+.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
+.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
+	-webkit-line-clamp: 3 !important;
+}
+.card .card-section-title .TruncatedText {
+	-webkit-line-clamp: 3 !important;
+}
+.scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
+	-webkit-line-clamp: 1 !important;
+}
+/*removes underline from gallery wall, img title cards*/
+.GalleryWallCard-footer:hover .GalleryWallCard-title {
+	text-decoration: none;
+}
+
+
+/* Studio Logo Enhancer Styles  */
 
 /* Card header layout */
 .card-header-row {
@@ -33,8 +134,8 @@
 .studio-thumb img.placeholder-studio-svg.logo-square.logo-fat {
   padding: 1px;
 }
-
-/* Thickness modifiers 
+ 
+/* Thickness modifiers
 .studio-thumb img.logo-wide.logo-skinny {
     padding: 10px 4px;
 }
@@ -54,7 +155,7 @@
     padding: 3px;
 }
 */
-
+ 
 /* Placeholder styling */
 .placeholder-studio-name,
 .placeholder-studio-svg {
@@ -72,7 +173,8 @@
   margin-top: 2px;
   margin-left: 8px;
 }
-/* Animates studio logo on hover*/
+ 
+/* Animates studio logo on hover */
 .studio-thumb a {
   transition: transform 0.5s;
 }
@@ -84,12 +186,13 @@
   transform: scale(108%);
   /*filter: drop-shadow(.2px .2px 2px #fff)*/
 }
-/*details page*/
+ 
+/* Details page */
 .scene-header-container .studio-logo.placeholder-studio.logo-square,
 .gallery-header-container .studio-logo.placeholder-studio.logo-square {
   margin-top: 1rem;
 }
-
+ 
 html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div div.scene-header-container h1.text-center.studio-logo a img.placeholder-studio-name,
 html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gallery-header-container h1.text-center.studio-logo a img.placeholder-studio-name {
   width: 200px;
@@ -99,97 +202,17 @@ html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-firs
 html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gallery-header-container h1.text-center.studio-logo a img.placeholder-studio-svg {
   width: 200px;
   height: 150px;
-
 }
-
-/* LEGACY
-.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-skinny {
-  margin-top: -6px;
+#studio-page .logo.placeholder-studio-svg {
+  padding-left: 20px;
+  padding-top: 10px;
 }
-.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-fat {
-  margin-top: -2px;
-}
-.no-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 2px;
-}
-.no-date.lines-actual-1 img.image-thumbnail.logo-wide {
-  margin-top: -4px;
-}
-.no-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-skinny {
-  margin-top: 5px;
-}
-.no-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-fat {
-  margin-top: 3px;
-}
-.no-date.lines-actual-2 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 2px;
-}
-.no-date.lines-actual-2 img.image-thumbnail.logo-wide {
-  margin-top: 3px;
-}
-.no-description.has-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 4px;
-}
-.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 4px;
-}
-.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 4px;
-}
-.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-fat {
-  margin-top: 5px;
-}
-.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-wide.logo-fat {
-  margin-top: 5px;
-}
-.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-wide {
-  margin-top: 5px;
-}
-.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-wide {
-  margin-top: 5px;
-}
-.no-description.has-date.lines-actual-2 img.image-thumbnail.logo-tall.logo-fat {
-  margin-top: 5px;
-}
-.no-description.has-date.lines-actual-3 img.image-thumbnail.logo-tall.logo-fat {
-  margin-top: 5px;
-}
-.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 4px;
-}
-.no-description.no-date.lines-actual-2 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 4px;
-}
-.no-description.no-date.lines-actual-3 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 4px;
-}
-.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-skinny {
-  margin-top: -7px;
-}
-.no-description.no-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-skinny {
-  margin-top: 3px;
-}
-.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-wide {
-  margin-top: -6px;
-}
-.no-description.no-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-fat {
-  margin-top: -5px;
-}
-.has-date.lines-actual-1 img.image-thumbnail.logo-wide.logo-skinny {
-  margin-top: 2px;
-}
-.has-date.lines-actual-2 img.image-thumbnail.logo-wide.logo-skinny {
-  margin-top: 3px;
-}
-.has-date.lines-actual-1 img.image-thumbnail.logo-wide {
-  margin-top: 3px;
-}
-.has-date.lines-actual-1 img.image-thumbnail.logo-square.logo-fat {
-  margin-top: 3px;
+#studio-page .logo.placeholder-studio-name {
+  padding-bottom: 15px;
 }
 
 
-/* Date + popovers sit side-by-side inside .title-date (with-studio path) */
+/* Date + popovers sit side-by-side inside .title-date (with-studio path) *//*
 .scene-card .title-date,
 .gallery-card .title-date {
   display: flex;
@@ -198,29 +221,14 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
 }
 .gallery-card.no-description.no-date .card-date-row,
 .scene-card.no-description.no-date .card-date-row {
-  margin-top: 2px;
+  margin-top: 0px;
 }
 .gallery-card.no-description.no-date .card-header-row .card-date-row,
 .scene-card.no-description.no-date .card-header-row .card-date-row {
-  margin-top: 0px;
+  margin-top: -5px;
 }
-/*
-.gallery-card.no-date .organized-indicator, 
-.gallery-card.no-date .card-date-separator,
-.gallery-card.no-date .inline-popovers,
-.scene-card.no-date .organized-indicator, 
-.scene-card.no-date .card-date-separator,
-.scene-card.no-date .inline-popovers {
-	margin-top: -2px !important;
-}
-.gallery-card .gallery-card__details .organized-indicator, 
-.gallery-card .gallery-card__details .card-date-separator,
-.gallery-card .gallery-card__details .inline-popovers,
-.scene-card .scene-card__details .organized-indicator, 
-.scene-card .scene-card__details .card-date-separator,
-.scene-card .scene-card__details .inline-popovers {
-	margin-top: 0px !important;
-}
+*/
+
 
 /* Date row used for both with-studio and no-studio paths */
 .scene-card .card-date-row,
@@ -229,7 +237,7 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
   gap: 0.3rem;
   flex-wrap: nowrap;
 }
-
+ 
 /* Separator pipe between date text and buttons */
 .scene-card .card-date-separator,
 .gallery-card .card-date-separator {
@@ -237,134 +245,78 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
   font-size: 0.8rem;
 }
 
+
 /* Condensed inline btn-group */
 .scene-card .card-popovers.btn-group.inline-popovers,
 .gallery-card .card-popovers.btn-group.inline-popovers {
-  display: inline-flex;
-  gap: 0px;
-  margin-left: -4px;
-  top: -4px 
+  margin-left: 0px;
+}
+.card-popovers.inline-popovers {
+	margin-bottom: 0px;
+	margin-top: -5px
 }
 .scene-card .card-popovers.btn-group.inline-popovers .btn,
 .gallery-card .card-popovers.btn-group.inline-popovers .btn {
-  padding: 2px 2px !important;
-  font-size: 0.72rem !important;
-  
+  padding: 0 0 0px 0px !important;
+  /*font-size: 0.72rem !important;*/
+	 transform: scale(0.7);
+	margin-left: -8px
 }
 .scene-card .card-popovers.btn-group.inline-popovers .fa-icon,
 .gallery-card .card-popovers.btn-group.inline-popovers .fa-icon {
-  font-size: 0.72rem !important;
-  width: 0.72rem !important;
-  height: 0.72rem !important;
   margin-right: 1px !important;
 }
-/*.scene-card .card-popovers.btn-group.inline-popovers span,
-.gallery-card .card-popovers.btn-group.inline-popovers span {
-  font-size: 0.75rem !important;
-}
-.card-popovers.btn-group.inline-popovers .fa-icon {
-  vertical-align: -0.115em !important;
-}
-
+ 
 /* Hide the organized toggle button */
 .scene-card .card-popovers.btn-group.inline-popovers .organized,
 .gallery-card .card-popovers.btn-group.inline-popovers .organized {
   display: none !important;
 }
 
-
-.organized-indicator {
+.gallery-card .card-popovers.btn-group:has(.organized button),
+.scene-card .card-popovers.btn-group:has(.organized button) {
+  position: relative;
+  z-index: 5;
+}
+.gallery-card .card-popovers.btn-group:has(.organized button)::before,
+.scene-card .card-popovers.btn-group:has(.organized button)::before {
+  content: '';
   position: absolute;
-  margin-top: -9px;	
-  margin-left: 73px;
-  width: 150px;	
+  z-index: -1;
+  pointer-events: none;
+  top: 58%;
+  transform: translateY(-50%);
+  left: -2px;
   height: 15px;
-  background: linear-gradient(270deg,
-      rgba(255, 255, 255, 0) 0%,
-      var(--accent) 300%);
-  align-self: center;
-  flex-shrink: 0;
-  z-index: 1;	
+  width: 150px;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, var(--accent) 280%);
+  /*background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, var(--card) 280%);*/
+  border-radius: 4px;
+  /*filter: drop-shadow(1px 3px 0px #000);*/
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
 }
-.card.no-date .organized-indicator,
-.card.no-description.no-date .organized-indicator {
-  margin-left: 12px;
-}
-.card-popovers.btn-group.inline-popovers {
-	z-index: 5
-}
-.organized-indicator{
-	transition: 0.5s ease-in-out	
-}
-.card-date-row:hover .organized-indicator {
-	opacity:0.6;
-}
-
-                                                                /**//*Duplicated from CMD*//*
-
-
-						/* ==================== CARDS ==================== */
-
-.group-card__date,			
-.gallery-card__date,
-.scene-card__date {
-	font-size: 12px;
-}
-.scene-card .card-section-title.flex-aligned,
-.gallery-card .card-section-title.flex-aligned {		
-	margin-bottom: 0px;
-}
-.group-card .card-section-title.flex-aligned {		
-	margin-bottom: 0px;
-}
-.scene-marker-card .card-section-title.flex-aligned {		
-	margin-top: -0.5rem;
+.card-date-row:hover .card-popovers.btn-group:has(.organized button)::before {
+  opacity: 0.6;
 }
 
 
-					/* ==================== SCENE/GALLERY CARDS ==================== */
-
-
-.scene-card .card-section {
-	padding-top: .1rem;
+/* Blurred background for scene/marker cards
+   object-fit: contain on the image and video is injected by JS only when
+   the blurredBackground setting is enabled, so turning it off fully restores
+   default cover behaviour with no leftover CSS side-effects. */
+.scene-card-preview {
+  overflow: hidden;
 }
-/*title for galleries with no description stays at top*/
-.gallery-card.grid-card.card .card-section {		
-	margin-top: -0.1px;
+.scene-card-blurred-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(5px);
+  transform: scale(1.1); /* prevents blur from fading at edges */
+  pointer-events: none;
+  user-select: none;
 }
-.TruncatedText.gallery-card__description,
-.TruncatedText.scene-card__description{
-	margin-top: -0.3rem;
-	margin-bottom: -0.5rem;
-	font-size: 13px;
-}
-.gallery-card.card {
-	padding-bottom: 0.3rem;
-}
-/*btn-group stays at bottom of card when there is no description*/
-.gallery-card .card-popovers.btn-group,			
-.scene-card .card-popovers.btn-group {
-	margin-top: auto;															
-	margin-bottom: 5px;
-}
-.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,	
-.scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {	
-   -webkit-line-clamp: 1 !important;
-}
-.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,	
-.scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
-   -webkit-line-clamp: 1 !important;
-}
-.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,
-.scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
-.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
-.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {	
-   -webkit-line-clamp: 3 !important;
-}
-.card .card-section-title .TruncatedText {
-  -webkit-line-clamp: 3 !important;
-}
-.scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
-  -webkit-line-clamp: 1 !important;
-}
-
+ 

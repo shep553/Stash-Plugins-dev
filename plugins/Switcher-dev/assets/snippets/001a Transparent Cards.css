@@ -1,0 +1,26 @@
+.group-card,
+.scene-card,
+.gallery-card,
+.performer-card,
+.studio-card,
+.tag-card,
+.image-card,
+.scene-marker-card {
+	background: transparent !important;
+}
+.tag-card .tag-card-image {
+	background: transparent !important;
+}
+.performer-card .thumbnail-section::before {
+	background: linear-gradient(0deg, var(--body) 0%, var(--body) 10%, #bdbdbd 100%) !important;
+}
+.performer-card .thumbnail-section::after {
+	background: linear-gradient(0deg, var(--body) 0%, var(--body) 10%, var(--rating-color) 100%) !important;
+}
+
+/* switcher: global */
+#studio-page.row .detail-header.collapsed .detail-container .detail-header-image,
+#tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
+#tag-page.row .detail-header .detail-container .detail-header-image .logo {
+   background: transparent !important;
+}   

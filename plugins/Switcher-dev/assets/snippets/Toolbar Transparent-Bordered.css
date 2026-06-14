@@ -1,0 +1,50 @@
+.item-list-container .filtered-list-toolbar.btn-toolbar .clearable-text-field.form-control {
+	background-color: transparent !important; 
+	border: 1px solid var(--nav-grey);
+	font-weight: normal	
+}
+
+.filtered-list-toolbar.btn-toolbar .btn.btn-secondary,
+.filtered-list-toolbar.btn-toolbar .btn-secondary.form-control {
+	background-color: transparent !important;
+	border: none
+}
+
+.filtered-list-toolbar.btn-toolbar .btn-group,
+.filtered-list-toolbar.btn-toolbar .page-size-selector,
+.filtered-list-toolbar.btn-toolbar .sort-by-select.dropdown.btn-group {
+	border: 1px solid var(--nav-grey);
+	border-radius: .4rem	
+}
+
+.item-list-container .list-operations.dropdown.btn-group,
+.item-list-container .saved-filter-dropdown.dropdown.btn-group {
+	border: none 
+}
+
+.filtered-list-toolbar.btn-toolbar .btn-secondary:not(:disabled):not(.disabled):active,
+.filtered-list-toolbar.btn-toolbar .btn-secondary:not(:disabled):not(.disabled).active,
+.filtered-list-toolbar.btn-toolbar .show > .btn-secondary.dropdown-toggle {
+	border: none 
+}
+
+.pagination-index-container div.pagination.btn-group {
+	border: 1px solid var(--nav-grey);
+		border-radius: .4rem
+}
+.pagination .btn.btn-secondary {
+  border: none;
+	background: transparent;
+}
+.pagination .btn.btn-secondary:not(:disabled):not(.disabled):active,
+.pagination .btn.btn-secondary:not(:disabled):not(.disabled).active {
+	background: transparent;
+}
+.pagination .btn.btn-secondary.disabled,
+.pagination .btn.btn-secondary:disabled {
+	background: transparent;
+	opacity: .3
+}
+.pagination-footer .pagination.btn-group {
+	box-shadow: 0 0px 10px 2px rgba(0, 0, 0, .65);
+}

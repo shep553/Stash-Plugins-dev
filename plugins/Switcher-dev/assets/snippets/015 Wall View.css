@@ -1,0 +1,18 @@
+.group-card .card-section,
+.group-card .btn-group,
+.group-card .group-scene-number, 
+.scene-card .studio-thumb, 
+.scene-card .scene-specs-overlay,
+.scene-card .card-section,
+.scene-card .btn-group {
+	display: none
+}
+
+.group-card {
+	background: #fff0 !important;
+	margin-bottom: -10px
+}
+.scene-card {
+	background: #fff0 !important;
+	margin-bottom: -1px
+}

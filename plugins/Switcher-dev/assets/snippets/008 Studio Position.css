@@ -1,0 +1,49 @@
+.gallery-card .studio-thumb,
+.scene-card .studio-thumb {
+	width: 30%;
+	position: absolute;
+	top: 10px;
+	left: 190px;
+	display: block;
+	transition: 0.5s ease-in-out;
+}
+
+.gallery-card .image-thumbnail,
+.scene-card .image-thumbnail {
+	object-position: top;
+	filter: drop-shadow(.2px .2px 2px #000);
+}
+
+.gallery-card.card:hover .studio-thumb,
+.scene-card.card:hover .studio-thumb {
+	opacity: 0;
+}
+
+.gallery-card .studio-thumb:hover,
+.scene-card .studio-thumb:hover {
+	opacity: 1 !important;
+}
+
+.gallery-card .studio-thumb .placeholder-studio-name,
+.scene-card .studio-thumb .placeholder-studio-name {
+	width: 100%;
+  	height: 200%;
+	margin-top: -10px;
+	filter: drop-shadow(.2px .2px 2px #000);
+}
+
+.gallery-card .studio-thumb a img.placeholder-studio-svg,
+.scene-card .studio-thumb a img.placeholder-studio-svg {
+	width: 100%;
+  	height: 100%;
+	margin-left: 15px;
+	margin-top: -5px;
+	filter: drop-shadow(.2px .2px 2px #000);
+}
+
+
+/* switcher: global */
+.tab-content .gallery-card .studio-thumb,
+.tab-content .scene-card .studio-thumb {
+	left: 250px !important;
+}

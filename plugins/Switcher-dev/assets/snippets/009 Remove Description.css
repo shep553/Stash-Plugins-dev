@@ -1,0 +1,9 @@
+.scene-card .scene-card__description,
+.gallery-card .gallery-card__description {
+	display: none !important;
+}
+
+.scene-card .scene-card__details, 
+.gallery-card .gallery-card__details {
+	margin-bottom: .5rem;
+}

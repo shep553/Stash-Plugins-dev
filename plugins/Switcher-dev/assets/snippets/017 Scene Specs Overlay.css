@@ -1,0 +1,17 @@
+.scene-specs-overlay {
+	background: var(--overlay-background); 
+	border-radius: var(--overlay-radius-size);
+  	font-size: var(--overlay-font-size);
+	padding: var(--overlay-padding);
+	filter: var(--overlay-filter);
+	font-weight: var(--overlay-font-weight);
+}
+
+/*file size is a plugin and has inline style */
+.scene-specs-overlay span {
+	color: var(--overlay-color) !important
+}
+
+.overlay-resolution {
+	font-weight: var(--overlay-resolution-font-weight);
+}

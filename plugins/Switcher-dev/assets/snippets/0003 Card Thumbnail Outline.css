@@ -1,0 +1,32 @@
+.group-card .group-card-image {
+	border: 5px solid var(--card-outline);
+	transition: border 0.3s ease-in
+}
+.group-card:hover .group-card-image {
+	border: 5px solid transparent !important;
+}
+
+.gallery-card .gallery-card-image,
+.image-card .image-card-preview-image,
+.performer-card .thumbnail-section,
+.scene-card .scene-card-preview-image {
+	border-top-left-radius: var(--card-radius-size);
+	border-top-right-radius: var(--card-radius-size);
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border: 3px solid var(--card-outline);
+	transition: border 0.3s ease-in
+}
+.gallery-card:hover .gallery-card-image,
+.image-card:hover .image-card-preview-image,
+.performer-card:hover .thumbnail-section,
+.scene-card:hover .scene-card-preview-image {
+	border: 3px solid transparent !important;
+}
+
+.performer-card .performer-card-image {
+	margin-bottom: -2.5px 
+}
+.performer-card .performer-card-image {
+	margin-bottom: 0px 
+}

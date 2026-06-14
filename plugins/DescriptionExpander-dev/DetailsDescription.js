@@ -1,49 +1,68 @@
-(function() {
+(function () {
     'use strict';
 
     const COLLAPSED_LINES = 8;
     const DURATION = 1600; // ms
-    const EASE = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2; // cubic ease
+    const EASE = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // cubic ease
 
     function setupPre(pre) {
-        const lineHeightPx = parseFloat(getComputedStyle(pre).lineHeight) || 16;
-        const collapsedHeight = COLLAPSED_LINES * lineHeightPx;
-        const fullHeight = pre.scrollHeight;
+    const lineHeightPx = parseFloat(getComputedStyle(pre).lineHeight) || 16;
+    const collapsedHeight = COLLAPSED_LINES * lineHeightPx;
+    const fullHeight = pre.scrollHeight;
 
-        if (fullHeight <= collapsedHeight) return; // Nothing to collapse
+    if (fullHeight <= collapsedHeight) return; // Nothing to collapse
 
-        pre.style.maxHeight = collapsedHeight + 'px';
+    pre.classList.add('can-expand'); 
+    pre.style.maxHeight = collapsedHeight + 'px';
+    pre.style.setProperty('--mask-opacity', '1'); 
 
-        const fade = document.createElement('div');
-        fade.className = 'pre-fade';
-        fade.style.transition = `opacity ${DURATION * 0.3 / 1000}s ease`;
-        pre.appendChild(fade);
+    let animFrame;
+    let isHovered = false; // Track the actual intended state
 
-        let animFrame;
+    const animateHeight = (targetHeight, fadeTarget) => {
+        const startTime = performance.now();
+        const startHeight = pre.offsetHeight;
+        
+        // Read current mask opacity dynamically so it interpolates smoothly from where it currently is
+        const startOpacity = parseFloat(pre.style.getPropertyValue('--mask-opacity')) || 0; 
+        
+        cancelAnimationFrame(animFrame);
 
-        const animateHeight = (start, end, fadeTarget) => {
-            const startTime = performance.now();
-            cancelAnimationFrame(animFrame);
+        function step(now) {
+            const t = Math.min(1, (now - startTime) / DURATION);
+            const eased = EASE(t);
+            
+            // Calculate current height based on where the animation started
+            pre.style.maxHeight = (startHeight + (targetHeight - startHeight) * eased) + 'px';
+            
+            // Interpolate mask opacity smoothly from its current exact state
+            const currentOpacity = startOpacity + (fadeTarget - startOpacity) * eased;
+            pre.style.setProperty('--mask-opacity', currentOpacity);
 
-            function step(now) {
-                const t = Math.min(1, (now - startTime) / DURATION);
-                const eased = EASE(t);
-                pre.style.maxHeight = (start + (end - start) * eased) + 'px';
-                fade.style.opacity = fadeTarget === 0 ? (0 - eased) : eased;
-
-                if (t < 1) {
-                    animFrame = requestAnimationFrame(step);
-                } else {
-                    pre.style.maxHeight = end + 'px';
-                }
+            if (t < 1) {
+                animFrame = requestAnimationFrame(step);
+            } else {
+                pre.style.maxHeight = targetHeight === fullHeight ? 'none' : targetHeight + 'px';
+                pre.style.setProperty('--mask-opacity', fadeTarget);
             }
+        }
 
-            animFrame = requestAnimationFrame(step);
-        };
+        animFrame = requestAnimationFrame(step);
+    };
 
-        pre.addEventListener('mouseenter', () => animateHeight(pre.offsetHeight, fullHeight, 0));
-        pre.addEventListener('mouseleave', () => animateHeight(pre.offsetHeight, collapsedHeight, 1));
-    }
+    pre.addEventListener('mouseenter', () => {
+        isHovered = true;
+        // Small timeout ensures a accidental 1-millisecond swipe-by doesn't thrash the DOM
+        setTimeout(() => {
+            if (isHovered) animateHeight(fullHeight, 0);
+        }, 20); 
+    });
+
+    pre.addEventListener('mouseleave', () => {
+        isHovered = false;
+        animateHeight(collapsedHeight, 1);
+    });
+}
 
     function enhancePre(pre) {
         if (pre.dataset.enhanced) return;

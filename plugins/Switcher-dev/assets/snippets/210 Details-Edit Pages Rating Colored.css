@@ -1,0 +1,68 @@
+
+/*Group/Performer/Studio/Tag - Detail/Edit Header*/
+.detail-header:has(.rating-stars [title="0"]) 	{ --active-rating: var(--nav); }
+.detail-header:has(.rating-stars [title="0.5"]) { --active-rating: var(--rating-color-2); }
+.detail-header:has(.rating-stars [title="1"])   { --active-rating: var(--rating-color-4); }
+.detail-header:has(.rating-stars [title="1.5"]) { --active-rating: var(--rating-color-6); }
+.detail-header:has(.rating-stars [title="2"])   { --active-rating: var(--rating-color-8); }
+.detail-header:has(.rating-stars [title="2.5"]) { --active-rating: var(--rating-color-10); }
+.detail-header:has(.rating-stars [title="3"])   { --active-rating: var(--rating-color-12); }
+.detail-header:has(.rating-stars [title="3.5"]) { --active-rating: var(--rating-color-14); }
+.detail-header:has(.rating-stars [title="4"])   { --active-rating: var(--rating-color-16); }
+.detail-header:has(.rating-stars [title="4.5"]) { --active-rating: var(--rating-color-18); }
+.detail-header:has(.rating-stars [title="5"])   { --active-rating: var(--rating-color-20); }
+
+.detail-header:has(.rating-stars [title]) {
+  background-image: linear-gradient(0deg, color-mix(in srgb, var(--active-rating) 20%, transparent) 0%, var(--nav) 100%)!important;
+}
+
+/*Group/Performer/Studio/Tag - Edit*/
+.detail-header.edit.full-width .react-select__control,
+.detail-header.edit.collapsed .react-select__control,
+.detail-header.edit.full-width .form-control,
+.detail-header.edit.collapsed .form-control {
+	background: linear-gradient(0deg, color-mix(in srgb, var(--active-rating) 20%, transparent) 0%, var(--nav) 100%)!important;
+   background-attachment: fixed !important;
+}
+
+
+/*Scene/Gallery/Image Details*/
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="0"])   { --active-rating: var(--nav); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="0.5"]) { --active-rating: var(--rating-color-2); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="1"])   { --active-rating: var(--rating-color-4); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="1.5"]) { --active-rating: var(--rating-color-6); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="2"])   { --active-rating: var(--rating-color-8); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="2.5"]) { --active-rating: var(--rating-color-10); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="3"])   { --active-rating: var(--rating-color-12); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="3.5"]) { --active-rating: var(--rating-color-14); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="4"])   { --active-rating: var(--rating-color-16); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="4.5"]) { --active-rating: var(--rating-color-18); }
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title="5"])   { --active-rating: var(--rating-color-20); }
+
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title]) {
+  /*--current-bg-mix: color-mix(in srgb, var(--active-rating) 20%, rgba(255, 255, 255, 0));
+  /*background: linear-gradient(to bottom, var(--nav) 0%, var(--current-bg-mix) 100%);*/
+	background: linear-gradient(0deg, color-mix(in srgb, var(--active-rating) 20%, rgba(255, 255, 255, 0)) 0%, var(--nav) 100%) !important;
+}
+
+#queue-viewer .queue-controls,
+#scene-edit-details .edit-buttons-container {
+	background-color: var(--nav);
+  background-image: linear-gradient(0deg, color-mix(in srgb, var(--active-rating) 15%, rgba(255, 255, 255, 0)) 0%, var(--nav) 100%)!important;
+}
+
+:is(.scene-tabs, .image-tabs, .gallery-tabs):has(.rating-stars [title]) :is(.react-select__control, .form-control) {
+    background: linear-gradient(0deg, color-mix(in srgb, var(--active-rating) 20%, transparent) 0%, var(--nav) 100%) !important;
+    background-attachment: fixed !important;
+}
+
+/*this applies to both kind of pages eg studio edit and scene edit */
+:is(.scene-tabs, .image-tabs, .gallery-tabs, .detail-header.edit.full-width, .detail-header.edit.collapsed):has(.rating-stars [title="0"]) .react-select__control  {
+	background: var(--nav-grey-dark) !important 
+}
+:is(.scene-tabs, .image-tabs, .gallery-tabs, .detail-header.edit.full-width, .detail-header.edit.collapsed):has(.rating-stars [title="0"]) .form-control {
+	background: var(--nav-grey) !important 
+}
+.gallery-container .filtered-list-toolbar.btn-toolbar {
+	background: transparent;
+}

@@ -1,0 +1,17 @@
+/*preview-image normal (landscape) but preview-video plays at native aspect ratio*/
+/*hover scrubber still always shows video at landscape not native*/
+/*for use with or without blurred bg option in enhancecards plugin*/
+
+.scene-card-preview-video {
+	object-fit: contain !important;
+}
+.scene-card-preview-image {
+	object-fit: cover !important;
+}
+.scene-card:hover .scene-card-preview-image {
+	filter: blur(5px);
+	transition-delay: 0.2s;
+}
+.scene-card .preview-scrubber:hover .scene-card-preview-image {
+	filter: none;
+}

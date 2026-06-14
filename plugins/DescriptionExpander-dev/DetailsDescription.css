@@ -1,5 +1,5 @@
 /* Description Expander Styles */
-
+/*
 .pre {
     position: relative;
     overflow: hidden;
@@ -19,4 +19,34 @@
 
 .pre-fade.hiding {
     opacity: 0;
+}
+*/
+
+
+
+.pre {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0ms;
+    /* Forces the browser to treat the entire bounding box as hoverable, 
+       even the invisible masked parts at the bottom */
+    pointer-events: auto; 
+}
+
+/* Only apply the mask if the page has a rating AND the text is actually long enough to expand */
+.main.container-fluid:has(:is(.scene-tabs, .image-tabs, .gallery-tabs) .rating-stars [title]) .pre.can-expand {
+    --mask-opacity: 1;
+
+    -webkit-mask-image: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 1) 0%, 
+        rgba(0, 0, 0, 1) calc(100% - 8rem), 
+        rgba(0, 0, 0, calc(1 - var(--mask-opacity))) 100%
+    );
+    mask-image: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 1) 0%, 
+        rgba(0, 0, 0, 1) calc(100% - 8rem), 
+        rgba(0, 0, 0, calc(1 - var(--mask-opacity))) 100%
+    );
 }

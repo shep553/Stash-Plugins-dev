@@ -1,0 +1,4 @@
+.gallery-card:has(.rating-banner) .card-popovers.btn-group:has(.organized button)::before,
+.scene-card:has(.rating-banner) .card-popovers.btn-group:has(.organized button)::before {
+   background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, var(--rating-color) 280%) !important;
+}

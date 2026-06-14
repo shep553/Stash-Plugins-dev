@@ -1,3 +1,4 @@
+/* scope: all 
 #configuration-tabs-tabpane-system .btn-secondary,
 #tasks-panel .btn-secondary,
 .btn.btn-primary,
@@ -9,7 +10,6 @@
 }
 #theme-switcher-button.btn.btn-primary.minimal.d-flex.align-items-center.h-100:hover,
 .btn.btn-primary:hover, 
-.btn-primary:hover,
 .modifier-option.btn.btn-primary:hover {
 	color: var(--accent)
 }
@@ -33,4 +33,25 @@
 .btn-primary:not(:disabled):not(.disabled).active:focus, 
 .btn-primary:not(:disabled):not(.disabled):active:focus {
 	color: var(--accent) !important;
+}
+
+
+.btn-primary.disabled:hover,
+.btn-primary.disabled,
+.btn-primary:disabled {
+		color: var(--nav) !important
+}
+*/
+.stash-id-pill,
+.badge-secondary,
+/*.badge-info,*/
+#configuration-tabs-tabpane-system .btn-secondary,
+#tasks-panel .btn-secondary,
+.btn-primary:disabled,
+.btn-primary {
+	color: var(--nav)
+}
+
+.modifier-option.btn.btn-primary {
+	color: var(--btn-text);
 }

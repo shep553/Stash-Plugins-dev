@@ -1,0 +1,110 @@
+/*transiitions dont woek for linear-gradients*/
+/*fake it with this*/
+.scene-marker-card,
+.scene-card {
+  background-image: linear-gradient(to top, #6d8aa000, #0000);
+  z-index: 1;
+}
+.scene-marker-card:after,
+.scene-card:after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 25%);
+  transition: opacity .3s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+}
+.scene-marker-card:hover:after,
+.scene-card:hover:after {
+  opacity: 1;
+}
+
+.performer-card,
+.group-card {
+  background-image: linear-gradient(to top, #6d8aa000, #0000);
+  z-index: 1;
+}
+.performer-card:after,
+.group-card:after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 10%);
+  transition: opacity .3s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+}
+.performer-card:hover:after,
+.group-card:hover:after {
+  opacity: 1;
+}
+
+.image-card,
+.gallery-card {
+  background-image: linear-gradient(to top, #6d8aa000, #0000);
+  z-index: 1;
+}
+.image-card:after,
+.gallery-card:after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 70%);
+  transition: opacity .3s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+}
+.image-card:hover:after,
+.gallery-card:hover:after {
+  opacity: 1;
+}
+
+
+.tag-card.grid-card.card,
+.studio-card {
+  background-image: linear-gradient(to top, #0000, #0000);
+  z-index: 1;
+}
+.tag-card.grid-card.card:after,
+.studio-card:after {
+  position: absolute;
+	right: 0px;
+	top: 0px;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 100%) !important;
+  transition: opacity .3s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+}
+.tag-card.grid-card.card:hover:after,
+.studio-card:hover:after {
+  opacity: 1;
+}
+
+
+.group-card:hover .group-card-image,
+.scene-card.grid-card:hover .scene-card-preview,
+.scene-card.grid-card:hover .scene-card-preview-video,
+.scene-card.grid-card:hover .scene-card-preview-image,
+.scene-marker-card.grid-card:hover .scene-card-preview,
+.scene-marker-card.grid-card:hover .scene-card-preview-video,
+.scene-marker-card.grid-card:hover .scene-card-preview-image,
+.performer-card.grid-card.card:hover .performer-card-image,
+.performer-card.grid-card.card:hover .thumbnail-section::after,
+.performer-card.grid-card.card:hover .thumbnail-section::before,
+.performer-card.grid-card.card .thumbnail-section::after,
+.performer-card.grid-card.card .thumbnail-section::before {
+	border-bottom-left-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
+}
+.performer-card-image,
+.group-card-image,
+.group-card-header::after {
+	transition: opacity 0s !important;
+}

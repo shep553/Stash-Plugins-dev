@@ -1,0 +1,18 @@
+.performer-card:has(.rating-banner),
+.studio-card:has(.rating-banner),
+.group-card:has(.rating-banner),
+.gallery-card:has(.rating-banner),
+.image-card:has(.rating-banner),
+.scene-card:has(.rating-banner) {
+   box-shadow: 0 0 0px 3px var(--rating-color);
+	transition: box-shadow ease-in-out .3s !important;
+}
+
+.performer-card:hover,
+.studio-card:hover,
+.group-card:hover,
+.gallery-card:hover,
+.image-card:hover,
+.scene-card:hover {
+   box-shadow: 0 0 0px 3px transparent;
+}

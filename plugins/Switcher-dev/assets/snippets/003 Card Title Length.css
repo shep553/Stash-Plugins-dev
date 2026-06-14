@@ -29,3 +29,21 @@
 .scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
    -webkit-line-clamp: var(--title-length, 1) !important;
 }
+
+
+.group-card.grid-card.card .btn-group {
+	position: relative;
+ 	bottom: 5.5rem; 
+	left: -5.5rem;
+	margin-bottom: -2rem
+}
+.group-card.grid-card.card.lines-actual-2 .btn-group {
+	position: relative !important;
+ 	bottom: 7rem !important;
+	left: -5.5rem !important;
+}
+.group-card.grid-card.card.lines-actual-3 .btn-group {
+	position: relative !important;
+ 	bottom: 8rem !important;
+	left: -5.5rem !important;
+}

@@ -1,17 +1,13 @@
-.scene-divider.d-none.d-xl-block button.btn.btn-primary,
-.gallery-divider.d-none.d-xl-block button.btn.btn-primary,
-.gallery-container,
-.gallery-tabs,
-.scene-tabs,
-.VideoPlayer,
-.form-container.edit-buttons-container.px-3.pt-3.row {
-	background: var(--body) !important;
+.main.container-fluid:has(.scene-tabs, .image-tabs, .gallery-tabs, #create-scene-page) {
+		background: var(--body);
 }
 
-.pre-fade {
-	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, var(--body) 105%) !important; 
+#queue-viewer .queue-controls,
+#scene-edit-details .edit-buttons-container {
+  background: var(--body);
 }
 
-#queue-viewer .queue-controls {
-	background-color: var(--transparent) !important;
+.detail-header.edit.full-width,
+.detail-header.edit.collapsed {
+	background: var(--body);
 }

@@ -1,0 +1,12 @@
+.scene-card:has(.rating-banner),
+.gallery-card:has(.rating-banner),
+.studio-card:has(.rating-banner),
+.image-card:has(.rating-banner) {
+	background: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, transparent) 0%, var(--rating-color) 180%) !important;
+}
+.group-card:has(.rating-banner) {
+	background: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, transparent) 0%, var(--rating-color) 50%) !important;
+}
+.performer-card:has(.rating-banner) {
+	background: linear-gradient(0deg, color-mix(in srgb, var(--body) 100%, transparent) 1%, var(--rating-color) 20%) !important;
+}

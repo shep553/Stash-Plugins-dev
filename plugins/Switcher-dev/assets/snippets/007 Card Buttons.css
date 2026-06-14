@@ -2,11 +2,11 @@
 .studio-card .card-popovers .minimal.btn.btn-primary,
 .performer-card .card-popovers .minimal.btn.btn-primary,
 .group-card .card-popovers .minimal.btn.btn-primary {
-	color: #fff;
-	background-color: var(--accent);
+	color: var(--btn-text);
+	background-color: var(--btn-bg);
 	border: 2px solid;
-	border-color: var(--accent);
-    border-radius: 10px;
+	border-color: var(--btn-border);
+  border-radius: 10px;
 	margin-bottom: 5px;
 	margin-right: 5px;
 	margin-left: 0px;
@@ -19,10 +19,10 @@
 .studio-card .card-popovers.btn-group .minimal.btn.btn-primary:hover,
 .performer-card .card-popovers.btn-group .minimal.btn.btn-primary:hover,
 .group-card .card-popovers.btn-group .minimal.btn.btn-primary:hover {
-	background-color: var(--nav);
-	color: var(--accent);
-	border: 2px solid;
-	border-color: var(--accent);
+	background-color: var(--btn-hover-bg) !important;
+	color: var(--btn-hover-text) !important;
+	border: 2px solid; 
+	border-color: var(--btn-hover-border) !important;
 }
 .performer-card .btn-group {
   left: 1rem !important;

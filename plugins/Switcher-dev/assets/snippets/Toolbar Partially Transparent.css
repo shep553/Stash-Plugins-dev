@@ -1,11 +1,13 @@
 .filtered-list-toolbar.btn-toolbar div.btn-group button.btn.btn-secondary {
-	background: transparent !important
+	background: transparent !important;
+	border-color: transparent !important;
 }
 .filtered-list-toolbar.btn-toolbar .saved-filter-dropdown.dropdown.btn-group,
 .filtered-list-toolbar.btn-toolbar .btn-group .filter-button.btn.btn-secondary,
 .filtered-list-toolbar.btn-toolbar .dropdown-toggle.btn.btn-secondary,
 .filtered-list-toolbar.btn-toolbar .sort-by-select.dropdown.btn-group .btn.btn-secondary,
 .filtered-list-toolbar.btn-toolbar .list-operations .play-button.btn.btn-secondary,
+.filtered-list-toolbar.has-selection.btn-toolbar .edit-existing-button.btn.btn-secondary,
 #more-menu.dropdown-toggle.btn.btn-secondary {
 	background: var(--nav-grey-dark) !important
 }

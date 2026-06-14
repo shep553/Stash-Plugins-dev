@@ -1,0 +1,21 @@
+.performer-card,
+.group-card {
+    background: linear-gradient(0deg, var(--card) 0%, var(--body) 15%) !important;
+}
+.scene-marker-card,
+.scene-card {
+    background: linear-gradient(0deg, var(--card) 0%, var(--body) 30%) !important;
+}
+.tag-card,
+.studio-card,
+.gallery-card,
+.image-card {
+    background: linear-gradient(0deg, var(--card) 20%, var(--body) 100%) !important;
+}
+
+/* switcher: global */
+#studio-page.row .detail-header.collapsed .detail-container .detail-header-image,
+#tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
+#tag-page.row .detail-header .detail-container .detail-header-image .logo {
+    background: linear-gradient(0deg, var(--card) 20%, var(--body) 100%) !important;
+}

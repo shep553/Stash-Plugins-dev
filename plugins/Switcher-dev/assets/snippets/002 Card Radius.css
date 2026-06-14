@@ -1,0 +1,19 @@
+.group-card.grid-card.card,
+.group-card.group-card-header::after,
+.scene-card.grid-card.card,
+.gallery-card.grid-card.card,
+.performer-card.grid-card.card,
+.performer-card.grid-card.card .performer-card-image,
+.studio-card.grid-card.card,
+.tag-card.grid-card.card,
+.image-card.grid-card.card,
+.scene-marker-card.grid-card.card {
+	border-radius: var(--card-radius-size, 0px) !important;
+}
+
+/* switcher: global */
+#studio-page.row .detail-header.collapsed .detail-container .detail-header-image,
+#tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
+#tag-page.row .detail-header .detail-container .detail-header-image .logo {
+   border-radius: var(--card-radius-size, 0px) !important;
+}   

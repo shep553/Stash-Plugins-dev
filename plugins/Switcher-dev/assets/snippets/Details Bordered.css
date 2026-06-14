@@ -16,8 +16,8 @@
 #queue-viewer .queue-controls {
 	background-color: var(--card) !important;
 }
-.form-container.edit-buttons-container.px-3.pt-3.row {
-	background-color: var(--card) !important;
+#scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
+	background-color: var(--card);
 }
 .pre-fade {
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, var(--card) 105%) !important;

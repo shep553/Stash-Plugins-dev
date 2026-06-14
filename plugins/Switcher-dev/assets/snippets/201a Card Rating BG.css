@@ -1,0 +1,8 @@
+.scene-card:has(.rating-banner),
+.group-card.card:has(.rating-banner),
+.studio-card.card:has(.rating-banner),
+.image-card.card:has(.rating-banner),
+.gallery-card.card:has(.rating-banner),
+.performer-card.card:has(.rating-banner) { 
+	background: color-mix(in srgb, var(--rating-color) 20%, transparent) !important;
+}

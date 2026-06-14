@@ -2,9 +2,13 @@
    THEME SWITCHER - REFACTORED WITH BEM METHODOLOGY
    ============================================================================ */
 
-/* ROOT VARIABLES - Custom properties for the component */
+
+/* ============================================================================
+   ROOT VARIABLES
+   ============================================================================ */
+
 :root {
-  --ts-bg-panel: var(--card);
+  --ts-bg-panel: var(--nav-grey-dark, #394b59);
   --ts-bg-button: var(--nav);
   --ts-bg-button-hover: var(--nav-grey);
   --ts-border-color: rgba(0, 0, 0, 0.2);
@@ -12,13 +16,14 @@
   --ts-text-accent: var(--accent);
   --ts-text-error: var(--red);
   --ts-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  --ts-transition-speed: 0.3s;
+  --ts-transition-speed: .3s;
   --ts-border-radius: 6px;
   --ts-spacing-unit: 8px;
 }
 
+
 /* ============================================================================
-   DROPDOWN PANEL - Main container
+   PANEL - Main dropdown container
    ============================================================================ */
 
 .theme-switcher {
@@ -29,22 +34,17 @@
   position: absolute;
   top: calc(100% + 12px);
   right: -6px;
-  
   max-height: calc(100vh - 70px);
   overflow-y: auto;
   overflow-x: hidden;
-	scrollbar-width: thin;
+  scrollbar-width: none;
   width: 300px;
   padding: var(--ts-spacing-unit);
-  
   background: var(--ts-bg-panel);
   border: 1px solid var(--ts-border-color);
   border-radius: var(--ts-border-radius);
   box-shadow: var(--ts-shadow);
-  
   z-index: 9999;
-  
-  /* Hidden by default */
   display: none;
   opacity: .95;
 }
@@ -55,7 +55,7 @@
 
 
 /* ============================================================================
-   THEME OPTIONS - Dropdown items for theme selection
+   THEME OPTIONS & SCHEMES
    ============================================================================ */
 
 .theme-switcher__options {
@@ -82,18 +82,17 @@
   font-weight: bold;
 }
 
-/* Nested color schemes */
 .theme-switcher__schemes {
   list-style: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   max-height: 0;
-  transition: max-height var(--ts-transition-speed) ease-out;
+  transition: max-height var(--ts-transition-speed) ease-in-out;
 }
 
 .theme-switcher__schemes[data-expanded="true"] {
-  max-height: 500px; /* Large enough for nested schemes */
+  max-height: 500px;
 }
 
 .theme-switcher__scheme {
@@ -111,8 +110,9 @@
 
 .theme-switcher__scheme[data-active="true"] {
   color: var(--ts-text-accent);
-  font-weight: 800;	
+  font-weight: 800;
 }
+
 
 /* ============================================================================
    SECTION - Reusable collapsible section component
@@ -126,12 +126,10 @@
   display: block;
   width: 100%;
   padding: 6px var(--ts-spacing-unit) 10px;
-  
   background: var(--ts-bg-button);
   color: var(--ts-text-primary);
   border: none;
   border-radius: var(--ts-border-radius);
-  
   font-weight: 600;
   text-align: center;
   cursor: pointer;
@@ -142,35 +140,42 @@
   color: var(--ts-text-accent);
 }
 
-/* Optional chevron indicator */
-/*.theme-switcher__section-header::after {
+.theme-switcher__section-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--ts-transition-speed) ease-in-out;
+}
+
+.theme-switcher__section-content[data-expanded="true"] {
+  max-height: 1000px;
+}
+
+/* Optional chevron indicator
+.theme-switcher__section-header::after {
   content: '▼';
   float: right;
   font-size: 0.75rem;
   transform: rotate(-90deg);
   transition: transform var(--ts-transition-speed);
+	margin-top: 3px;
+	margin-left: 5px
 }
 
 .theme-switcher__section-header[data-expanded="true"]::after {
   transform: rotate(0deg);
-}*/
-
-.theme-switcher__section-content {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height var(--ts-transition-speed) ease-out;
 }
 
-.theme-switcher__section-content[data-expanded="true"] {
-  max-height: 1000px; /* Large enough value for content */
-}
 
 /* ============================================================================
-   COLOR EDITOR - Custom color input section
+   COLOR EDITOR - Custom color rows and inputs
    ============================================================================ */
 
 .theme-switcher__colors {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  scrollbar-width: none;
   padding: var(--ts-spacing-unit) 0;
+  margin-bottom: -10px;
 }
 
 .theme-switcher__color-row {
@@ -189,12 +194,10 @@
 
 .theme-switcher__color-label {
   flex: 0 0 120px;
-  
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 30px;	
-  
+  margin-left: 30px;
   font-size: 0.8125rem;
   text-align: center;
   color: var(--ts-text-primary);
@@ -214,21 +217,30 @@
   gap: 6px;
 }
 
-/* Reset button for individual colors */
+.theme-switcher__color-input {
+  width: 24px;
+  height: 24px;
+  border: none;
+}
+
+.theme-switcher__color-input:not(:focus) {
+  color: transparent;
+  text-shadow: none;
+}
+
+/* Individual color reset button */
 .theme-switcher__color-reset {
   width: 24px;
   height: 24px;
   padding: 0;
-  
   background: transparent;
   color: var(--ts-text-primary);
   border: none;
   border-radius: 3px;
-  
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;
-  transition: all 0.3;
+  transition: all 0.3s;
 }
 
 .theme-switcher__color-reset:hover {
@@ -237,18 +249,48 @@
   border: none;
 }
 
+/* Pin button — hidden until row is modified, always visible when pinned */
+.theme-switcher__color-pin {
+  visibility: hidden;
+  pointer-events: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0 2px;
+  opacity: 1;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.theme-switcher__color-row[data-modified="true"] .theme-switcher__color-pin {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.theme-switcher__color-pin[data-pinned="true"] {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px currentColor);
+  color: var(--accent);
+}
+
+.theme-switcher__color-pin:hover {
+  opacity: 1;
+  color: var(--accent-transparent);
+}
+
 /* Reset all modified button */
 .theme-switcher__reset-all {
   display: block;
   width: 80%;
   margin: calc(var(--ts-spacing-unit) * 2) auto calc(var(--ts-spacing-unit) / 2);
+	margin-bottom: 10px;
   padding: 6px 0 10px;
-  
   background: var(--nav-grey);
   color: var(--ts-text-primary);
   border: none;
   border-radius: var(--ts-border-radius);
-  
   font-weight: 600;
   cursor: pointer;
   transition: color 0.3s;
@@ -258,51 +300,103 @@
   color: var(--ts-text-error);
 }
 
-.theme-switcher__snippet-pin:hover {
-	color: var(--accent)
+/* Separator shown only when snippets are pinned into the color section */
+.theme-switcher__pinned-separator {
+  display: none !important;
 }
 
-/* dim the pin button, brighten when pinned */
-.theme-switcher__snippet-pin { 
-	/*opacity: 0.5; */
-	background: none; 
-	border: none; 
-	cursor: pointer; 
-	color: #fff;
-	margin-right: -5px;
-	margin-left: -10px;
+/* optional: visual separator above the color rows when pinned snippets are present */
+.theme-switcher__pinned-snippets:not(:empty) { 
+  margin-top: 10px; 
+	border-top: 1px solid rgba(255,255,255,0.1); 
 }
-.theme-switcher__snippet-pin[data-pinned="true"] { 
-	/*opacity: 1;*/
-	color: var(--accent-transparent)
-}
-.theme-switcher__snippet-pin[data-pinned="true"]:hover { 
-	color: var(--accent)
+
+/* ============================================================================
+   COLOR GROUPS - Collapsible groups within the color section
+   ============================================================================ */
+
+.theme-switcher__rating-colors-group {
+  /* intentionally unstyled — inherits snippet panel layout */
 }
 
 .theme-switcher__rating-colors-header {
-	font-weight: bold;
+  font-weight: bold;
 }
 
-/* optional: visual separator above the color rows when pinned snippets are present 
-.theme-switcher__pinned-snippets:not(:empty) { 
-	margin-bottom: 8px; 
-	padding-bottom: 8px; 
-	border-top: 1px solid rgba(255,255,255,0.1); 
+.theme-switcher__rating-colors-panel[data-expanded="true"] {
+  max-height: 500px;
 }
-*/
+
 
 /* ============================================================================
    SNIPPETS - CSS snippet management
    ============================================================================ */
 
 .theme-switcher__snippets {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  scrollbar-width: none;
   padding: var(--ts-spacing-unit) 0;
+}
+
+.theme-switcher__snippets-list {
+  padding-top: 5px;
+  margin-bottom: -5px;
 }
 
 .theme-switcher__snippet {
   margin-bottom: 4px;
 }
+
+.theme-switcher__snippet--pinned {
+  padding-top: 10px;
+}
+
+.theme-switcher__snippet-search {
+  flex: 1;
+  padding: 6px;
+  font-size: 12px;
+  border: none;
+  background: var(--nav-grey);
+  color: inherit;
+  margin: 4px;
+  border-radius: 5px;
+}
+
+.theme-switcher__snippet-search:focus-visible {
+  box-shadow: 0 0 0 1px var(--accent);
+  outline: none;
+}
+
+.theme-switcher__snippet-category-header {
+  padding: 2px;
+  padding-left: 5px;
+}
+
+.theme-switcher__snippet-category-name {
+  font-weight: bold;
+  font-size: 0.875rem;
+  transition: color 0.2s ease-in-out;
+  padding: 4px;
+}
+
+.theme-switcher__snippet-category-name:hover {
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.theme-switcher__snippet-category-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--ts-transition-speed) ease-in-out;
+  background: var(--nav-grey-dark);
+  border-radius: 6px;
+}
+
+.theme-switcher__snippet-category-body[data-expanded="true"] {
+  max-height: 999px
+}
+
 
 /* Snippet header row */
 .theme-switcher__snippet-header {
@@ -310,6 +404,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 4px var(--ts-spacing-unit);
+  padding-top: 2px;
+  margin-left: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -319,11 +415,11 @@
   color: var(--accent);
   transition: 0.2s ease-in-out;
 }
+
 .theme-switcher__snippet-header:hover .theme-switcher__snippet-name {
   color: var(--accent);
   transition: 0.2s ease-in-out;
 }
-
 
 .theme-switcher__snippet-info {
   display: flex;
@@ -334,7 +430,7 @@
 
 .theme-switcher__snippet-name {
   color: var(--ts-text-primary);
-  font-size: 0.875rem;
+	font-size: 0.950rem;
 }
 
 .theme-switcher__snippet-chevron {
@@ -346,7 +442,29 @@
   transform: rotate(90deg);
 }
 
-/* Toggle switch for snippets */
+/* Pin button for snippets */
+.theme-switcher__snippet-pin {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  margin-right: -5px;
+  margin-left: -10px;
+}
+
+.theme-switcher__snippet-pin:hover {
+  color: var(--accent);
+}
+
+.theme-switcher__snippet-pin[data-pinned="true"] {
+  color: var(--accent-transparent);
+}
+
+.theme-switcher__snippet-pin[data-pinned="true"]:hover {
+  color: var(--accent);
+}
+
+/* Toggle switch */
 .theme-switcher__toggle {
   position: relative;
   width: 20px;
@@ -357,7 +475,6 @@
   transition: background 0.25s;
   flex-shrink: 0;
 }
-
 
 .theme-switcher__toggle-checkbox {
   margin-right: 3px;
@@ -371,12 +488,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: #fff;
-  
   transition: left 0.2s;
 }
 
@@ -384,11 +499,11 @@
   left: 10px;
 }
 
-/* Snippet expandable panels */
+/* Snippet expandable panel */
 .theme-switcher__snippet-panel {
   overflow: hidden;
   max-height: 0;
-  transition: max-height var(--ts-transition-speed) ease-out;
+  transition: max-height var(--ts-transition-speed) ease-in-out;
 }
 
 .theme-switcher__snippet-panel[data-expanded="true"] {
@@ -410,7 +525,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 4px 25px;
+  padding-left: 5px;
   margin-bottom: 2px;
+}
+
+.theme-switcher__scope-option--global {
+	background: var(--nav-grey-dark);
+  /*font-weight: bold;*/
+	box-shadow: 0 0 0px 1px var(--tags);
+  margin-top: 5px;
 }
 
 .theme-switcher__scope-label {
@@ -420,7 +543,7 @@
 }
 
 .theme-switcher__scope-checkbox {
-  margin-right: -19px;	
+  margin-right: -19px;
   cursor: pointer;
 }
 
@@ -470,18 +593,26 @@
   cursor: pointer;
 }
 
+.theme-switcher__color-input.theme-switcher__var-input {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+input.theme-switcher__var-input[type="text"] {
+	width: 150px;
+}
+
+
 /* Disable all snippets button */
 .theme-switcher__disable-all {
   display: block;
   width: 80%;
-  margin: var(--ts-spacing-unit) auto calc(var(--ts-spacing-unit) / 2);
+  margin: 15px auto calc(var(--ts-spacing-unit) / 2);
   padding: 6px 0 10px;
-  
   background: var(--nav-grey);
   color: var(--ts-text-primary);
   border: none;
   border-radius: var(--ts-border-radius);
-  
   font-weight: 600;
   cursor: pointer;
   transition: color 0.3s;
@@ -491,8 +622,111 @@
   color: var(--ts-text-error);
 }
 
+
 /* ============================================================================
-   DIVIDER - Visual separator
+   FAVORITES
+   ============================================================================ */
+
+.theme-switcher__favorites-save-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.theme-switcher__favorites-name-input {
+  flex: 1;
+  padding: 6px;
+  font-size: 12px;
+  border: none;
+  background: var(--nav-grey);
+  color: inherit;
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
+.theme-switcher__favorites-name-input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.theme-switcher__favorites-save-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-transparent);
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.theme-switcher__favorites-save-btn:hover {
+  color: var(--accent);
+}
+
+.theme-switcher__favorites-empty {
+  opacity: 0.6;
+  font-size: 12px;
+  padding: 4px 0;
+}
+
+.theme-switcher__favorite-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  margin-left: 15px;
+}
+
+.theme-switcher__favorite-swatches {
+  display: flex;
+  gap: 2px;
+}
+
+.theme-switcher__favorite-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.theme-switcher__favorite-name {
+  flex: 1;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-switcher__favorite-apply,
+.theme-switcher__favorite-delete {
+  background: transparent;
+  border: none;
+  color: var(--accent-transparent);
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.theme-switcher__favorite-apply:hover {
+  color: var(--accent);
+}
+
+.theme-switcher__favorite-delete {
+  color: var(--red);
+}
+
+.theme-switcher__favorite-delete:hover {
+  color: var(--bright-red);
+}
+
+
+/* ============================================================================
+   DIVIDER
    ============================================================================ */
 
 .theme-switcher__divider {
@@ -501,8 +735,9 @@
   border-top: 0px solid var(--ts-border-color);
 }
 
+
 /* ============================================================================
-   COLORIS PICKER - Override positioning
+   COLORIS PICKER - Overrides
    ============================================================================ */
 
 .clr-picker.clr-left.clr-open {
@@ -514,19 +749,6 @@
   top: 300px !important;
 }
 
-/* Color picker input */
-.theme-switcher__color-input {
-  width: 24px;
-  height: 24px;
-  border: none;	
-}
-
-.theme-switcher__color-input:not(:focus) {
-  color: transparent;
-  text-shadow: none;
-}
-
-/* Coloris field wrapper */
 .clr-field {
   width: 24.5px !important;
 }
@@ -539,148 +761,7 @@
   border-radius: 0;
   border: 1px dotted white !important;
 }
+
 .clr-field button::after {
   box-shadow: none !important;
-}
-
-/* ============================================================================
-   UTILITY CLASSES
-   ============================================================================ */
-
-/*.theme-switcher--hidden {
-  display: none;
-}
-
-/* Smooth transitions 
-.theme-switcher__section-content,
-.theme-switcher__snippet-panel,
-.theme-switcher__schemes {
-  will-change: max-height;
-}
-
-/* Focus styles for accessibility 
-.theme-switcher__section-header:focus,
-.theme-switcher__color-reset:focus,
-.theme-switcher__reset-all:focus,
-.theme-switcher__disable-all:focus {
-  outline: 2px solid var(--ts-text-accent);
-  outline-offset: 2px;
-}
-*/
-
-
-/* Pin hidden until color is modified */
-.theme-switcher__color-pin {
-  visibility: hidden;
-  /* keeps layout stable — no reflow when it appears */
-  pointer-events: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
-  padding: 0 2px;
-  opacity: 1;
-  transition: opacity 0.15s;
-  flex-shrink: 0;
-  color: #fff
-}
-.theme-switcher__color-row[data-modified="true"] .theme-switcher__color-pin {
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.theme-switcher__color-pin[data-pinned="true"] {
-  opacity: 1;
-  filter: drop-shadow(0 0 2px currentColor);
-  color: var(--accent)
-}
-
-.theme-switcher__color-pin:hover {
-  opacity: 1;
-  color: var(--accent-transparent)
-}
-
-
-.theme-switcher__favorites-save-row {
-  display: flex;
-  gap: 6px;
-  margin-top: 10px;
-  margin-bottom: 8px;
-}
-.theme-switcher__favorites-name-input {
-  flex: 1;
-  padding: 5px 6px;
-  font-size: 12px;
-  border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(0, 0, 0, 0.2);
-  color: inherit;
-  margin-left: 5px;
-}
-.theme-switcher__favorites-name-input:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 1px var(--accent);
-}
-.theme-switcher__favorites-save-btn {
-  background: transparent;
-  border: none;
-  color: var(--accent-transparent);
-  padding: 3px 10px;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.theme-switcher__favorites-save-btn:hover {
-  color: var(--accent);
-}
-.theme-switcher__favorites-empty {
-  opacity: 0.6;
-  font-size: 12px;
-  padding: 4px 0;
-}
-.theme-switcher__favorite-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 0;
-  margin-left: 15px
-}
-.theme-switcher__favorite-swatches {
-  display: flex;
-  gap: 2px;
-}
-.theme-switcher__favorite-swatch {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: inline-block;
-  flex-shrink: 0;
-}
-.theme-switcher__favorite-name {
-  flex: 1;
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.theme-switcher__favorite-apply,
-.theme-switcher__favorite-delete {
-  background: transparent;
-  border: none;
-  color: var(--accent-transparent);
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: bold;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-.theme-switcher__favorite-apply:hover {
-  color: var(--accent);
-}
-.theme-switcher__favorite-delete {
-  color: var(--red);
-}
-.theme-switcher__favorite-delete:hover {
-  color: var(--bright-red);
 }

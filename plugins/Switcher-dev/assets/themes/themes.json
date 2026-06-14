@@ -2,7 +2,7 @@
   {
     "name": "CMD",
     "file": "CMD.css",
-    "schemes": ["CMD", "DarkBlueOrange", "DarkBlueGreen", "Dracula", "BlueDark", "h!anime"]
+    "schemes": ["CMD", "DarkBlueOrange", "DarkBlueGreen", "Dracula", "BlueDark", "Grey", "Firefox", "h!anime"]
   },
   {
     "name": "Test",
