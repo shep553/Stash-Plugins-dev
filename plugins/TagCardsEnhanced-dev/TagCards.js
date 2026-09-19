@@ -14,73 +14,7 @@
     transitionDuration:    ".5s",
   };
 
-  // ─── Static styles via stylesheet ────────────────────────────────────────────
 
-  const style = document.createElement("style");
-  style.textContent = `
-    ${CARD_SELECTOR} {
-      aspect-ratio: 16 / 9;
-      position: relative;
-      overflow: hidden;
-    }
-    ${CARD_SELECTOR} .thumbnail-section {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-    }
-    ${CARD_SELECTOR} .thumbnail-section img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    ${CARD_SELECTOR} .thumbnail-section img.default-image {
-      width: 80%;
-      height: 90%;
-      margin: 0 auto;
-    }
-    ${CARD_SELECTOR} .card-section {
-      position: absolute;
-      left: 0; bottom: 0;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      overflow: hidden;
-      z-index: 1;
-      transition: max-height ${CONFIG.transitionDuration} ease-in-out;
-    }
-    ${CARD_SELECTOR} .card-section-title,
-    ${CARD_SELECTOR} .TruncatedText {
-      margin: 0; padding: 0;
-      display: block;
-    }
-    ${CARD_SELECTOR} .card-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 0;
-      transition: opacity ${CONFIG.transitionDuration} ease-in-out;
-    }
-    ${CARD_SELECTOR} .tag-parent-tags,
-    ${CARD_SELECTOR} .TruncatedText.tag-description {
-      display: block;
-      position: relative;
-      z-index: 1;
-      overflow: visible;
-      ${CONFIG.detailsFade ? `opacity: 0; transition: opacity ${CONFIG.transitionDuration} ease-in-out;` : "opacity: 1;"}
-    }
-    ${CARD_SELECTOR} .card-popovers.btn-group[data-moved] {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      gap: ${CONFIG.buttonGap};
-      z-index: 2;
-    }
-  `;
-  document.head.appendChild(style);
 
   // ─── Helpers ─────────────────────────────────────────────────────────────────
 

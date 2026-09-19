@@ -28,8 +28,10 @@
  	--sbtn-hover-border: var(--nav-grey);
  	--sbtn-hover-text: var(--accent);
  	--sbtn-shadow: var(--accent-transparent);
+	--performer-bg-top: #bdbdbd;
+    --performer-bg-bottom: var(--card);
 
-	/*-----DarkBlue Orange-----*/
+	/*-----BlackBlue-----*/
 	/*--body: #0e0d11;
 	--card: #1b1c22;
 	--nav: #282A36;
@@ -42,7 +44,7 @@
 	--bright-red: #f00;
 	--description: #1e1e26;
 
-	/*-----DarkBlueGreen-----*/
+	/*-----DarkGreen-----*/
 	/*--body: #151c17;
 	--card: #2b3d37;
 	--nav: #202926;
@@ -68,7 +70,7 @@
 	--bright-red: #f00;
 	--description: #22242f;
 
-	/*-----BlueDark-----*/
+	/*-----DarkBlue-----*/
 	/*--body: #171d26;
 	--card: #2f3448;
 	--nav: #28303e;
@@ -107,7 +109,7 @@
 	--bright-red: #f00;
 	--description: #212026;
 
-	/*-----h!anime-----*/
+	/*-----DarkMagenta-----*/
 	/*--body: #11101a;
 	--card: #2b2a3c;
 	--nav: #191826;
@@ -190,7 +192,13 @@ a:hover {
 	font-weight: 700;
 	border-radius: .25rem;
 }
-
+.tag-item.tag-link.badge.badge-secondary {
+	opacity: .8;
+	transition: opacity .3s ease-in-out;
+}
+.tag-item.tag-link.badge.badge-secondary:hover {
+	opacity: 1;
+}
 
 
 /* =============================================================================================================================================================
@@ -247,9 +255,9 @@ p,
 }
 .scene-card.fileless.grid-card.card .minimal.btn.btn-primary,
 .scene-card.fileless.grid-card.card .scene-card__date,
-.scene-card.fileless.grid-card.card .card-section-title,
+.scene-card.fileless.grid-card.card .TruncatedText,
 .scene-card.fileless.grid-card.card .scene-card__details {
-	color: var(--red);
+	color: var(--red)
 }
 .scene-card.fileless.grid-card.card .minimal.btn.btn-primary:hover,
 .scene-card.fileless.grid-card.card .card-section-title.flex-aligned .TruncatedText:hover {
@@ -663,7 +671,7 @@ html body div#root div.main.container-fluid
 #tasks-panel .btn-secondary:focus,
 #tasks-panel .btn-secondary.focus {
 	color: var(--btn-hover-text);
-	background-color: var(--btn-bg);
+	background-color: var(--btn-hover-bg);
 	border-color: var(--btn-border);
 	box-shadow: 0 0 0 .2rem var(--btn-shadow)
 }
@@ -697,7 +705,7 @@ html body div#root div.main.container-fluid
 /*main container search input/buttons specific*/
 .item-list-container .filtered-list-toolbar.btn-toolbar .clearable-text-field.form-control,
 .item-list-container .filtered-list-toolbar .btn-secondary {
-	background-color: var(--nav-grey-dark) !important;
+	background-color: var(--nav-grey-dark);
 	font-weight: normal	
 }
 .item-list-container .filtered-list-toolbar.btn-toolbar .page-size-selector select.btn-secondary.form-control:hover {
@@ -844,7 +852,9 @@ button.minimal:not(:disabled):not(.disabled).active:focus {
 }
 .clearable-text-field,
 .clearable-text-field:active,
-.clearable-text-field:focus,
+.clearable-text-field:focus {
+  background-color: var(--nav-grey);
+}
 /*sidebar saved filters*/
 .bg-secondary.form-control {
   background-color: var(--nav-grey) !important;
@@ -952,7 +962,11 @@ div.react-select__menu .dropdown-item:hover,
   color: var(--accent);
 	transition: color 0.3s ease-in-out !important
 }
-
+.react-select__option.react-select__option--is-selected {
+	background: none;
+	font-weight: bold;
+	color: var(--accent-transparent) !important
+}
 
 /*______________________________________________________________________________________________________________________________________*/
 
@@ -1050,9 +1064,11 @@ div.react-select__menu .dropdown-item:hover,
   /*color:#f5f8fa;*/
 	transition: color .3s ease-in-out;
 }
+
 .nav-link.active {
 	font-weight:bold
 }
+
 /*.nav-tabs {
   border:none;
   margin:auto;
@@ -1171,7 +1187,7 @@ color: #0c764a !important;
 	color: var(--bright-red) !important;
 	opacity: 1;
 	transition: color .3s ease-in-out;
-	background: var(--nav-grey);
+	/*background: var(--nav-grey);*/
 }
 
 .close:hover,
@@ -1184,6 +1200,38 @@ color: #0c764a !important;
 	background: transparent !important; 
 }
 
+
+.clear-all-button.btn.btn-minimal:focus,
+.react-select__multi-value__remove:focus,
+.tag-item.badge.badge-secondary .btn.btn-secondary:focus,
+.react-select__clear-indicator:focus,
+.close:focus, /*help markdown popup*/
+.remove-criterion-button.btn.btn-minimal:focus,
+.clearable-text-field-clear.btn.btn-secondary:focus,
+.saved-filter-list .dropdown-item-container .delete-button:focus,
+.delete-button.btn.btn-minimal.btn-sm:focus /*sidebar filters*/ {
+	background: transparent !important; 
+	box-shadow: none
+}
+.clear-all-button.btn.btn-minimal:not(:disabled):not(.disabled):active:focus,
+.react-select__multi-value__remove:not(:disabled):not(.disabled):active:focus,
+.tag-item.badge.badge-secondary .btn.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.react-select__clear-indicator:not(:disabled):not(.disabled):active:focus,
+.close:not(:disabled):not(.disabled):active:focus, /*help markdown popup*/
+.remove-criterion-button.btn.btn-minimal:not(:disabled):not(.disabled):active:focus,
+.clearable-text-field-clear.btn.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.saved-filter-list .dropdown-item-container .delete-button:not(:disabled):not(.disabled):active:focus,
+.delete-button.btn.btn-minimal.btn-sm:not(:disabled):not(.disabled):active:focus /*sidebar filters*/ {
+	box-shadow: none
+}
+
+
+/*pagination*/
+a.dropdown-item.active {
+	background: transparent;
+	color: var(--accent);
+	font-weight: bold
+}
 
 
 /*============  Switches-Radio Buttons  ============*/
@@ -1293,18 +1341,151 @@ input[type="range"]::-moz-range-thumb {
 
 
 /*=============================================================================================================================================================
-	 																	SCENES/GALLERIES EDIT PAGES																   
+	 																	DETAIL PAGES																			   
 =============================================================================================================================================================*/
+
+.detail-header {
+	background: var(--nav);
+}
+.main.container-fluid:has(.scene-tabs, .image-tabs, .gallery-tabs, #create-scene-page) {
+	background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
+}
+.gallery-container .filtered-list-toolbar.btn-toolbar {
+	background: var(--nav);
+}
+.detail-header.edit {
+	background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
+}
+#tag-page .detail-header.edit,
+#group-page .detail-header.edit,
+#studio-page .detail-header.edit{
+	height: calc(100vh - 50px);
+}
+.detail-body nav {
+	border-bottom: solid 2px var(--card);
+}
+.sticky.detail-header {
+	background-color: var(--nav-grey-dark);
+}
+.sticky.detail-header .sticky.detail-header-group .group-name:hover,
+.sticky.detail-header .sticky.detail-header-group .studio-name:hover,
+.sticky.detail-header .sticky.detail-header-group .tag-name:hover,
+.sticky.detail-header .sticky.detail-header-group .performer-name:hover {
+	color: var(--accent);
+}
+/*title top of page*/
+.image-header,
+.tag-name,
+.studio-name,
+.performer-name,
+.group-name,
+.gallery-header,
+.scene-header {
+	font-weight: 600;
+}
+#create-scene-page #scene-edit-details .edit-buttons-container {
+	background-color: transparent !important;
+	background-image: none!important;
+}
+/*auto tag and submit to stashdb buttons*/
+.tag-head.col .details-edit.mb-2 .btn.btn-secondary,
+#studio-page.row .studio-head.col .details-edit div button.btn.btn-secondary,
+.performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-primary,
+.performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-secondary {
+	display: none;
+}
+.details-edit.mb-2,
+.details-edit {
+	position: absolute;
+	top: 0rem;
+	right: 0em;
+}
+/*excludes performer page from selectors above. Can't get it to work correctly*/
+#performer-page.row .details-edit.mb-2,
+#performer-page.row .details-edit {
+	position: relative;
+}
+/*restores btn group in movie/studio/performer edit to default position because the previous selector messes it up*/
+.details-edit.col-xl-9.mb-3,
+.details-edit.col-xl-9.mt-3 {
+	position: relative
+}
+/**/
+/*performer page specifically*/
+/*only works for "compact expanded details" in interface settings 
+html body div#root div.main.container-fluid div#performer-page.row div.detail-header div.detail-container div.row div.performer-head.col div.col div.row.row-cols-8 div.details-edit.mb-2 {
+	position: absolute;
+	top: -15.8rem;
+	right: -1em;
+}
+html body div#root div.main.container-fluid div#performer-page.row div.detail-header.collapsed div.detail-container div.row div.performer-head.col div.col div.row.row-cols-8 div.details-edit.mb-2 {
+	position: absolute;
+	top: -11rem;
+	right: -1em;
+}
+/**/
+/*set image/cover etc*/
+.image-input.form-label button.btn.btn-secondary,
+#set-image-popover.fade.show.popover.bs-popover-top div.popover-body {
+	background-color: var(--nav-grey-dark);
+	border:none
+}
+/*cant get this to work for scenes*/
+.image-input.form-label button.btn.btn-secondary:hover {
+	color: var(--accent) !important;
+}
+span.detail-item-value.synopsis {
+	-webkit-line-clamp: 5;
+}
+#performer-page .full-width .detail-item {
+	width: 50%;
+}
+#performer-page .detail-header-image button {
+	padding: 0;
+	border: 0;
+}
+#performer-page .detail-header-image img {
+	margin-bottom: -1rem;
+	transition: .25s ease;
+}
+/*#performer-page .detail-header-image .btn {
+	padding-bottom: 0rem;
+	padding-left: 0rem;
+	padding-right: 0rem;
+}*/
+/*#performer-page .full-width .detail-header-image img {
+	max-width: 18.5rem;
+}*/
+#performer-scraper-popover.dropdown-menu.show {
+	max-height: 850px;
+}
+/*Makes the details/synopsis text area in movie edit bigger*/
+form#group-edit #synopsis {
+	min-height: 37ex;
+}
+/*with  thumbnail border on, performer cards in gallery tab sometimes get edges cut off*/
+.gallery-performers .performer-card-image {
+	height: 22.5rem;
+	width: 100%;
+}
+/*in scene details marker tab create marker "Title" gets box shadow cut off*/ 
+.scene-tabs .form-container.px-3 {
+	padding-top: 3px !important
+}
+
+/*in scene details marker tab create marker "Time/End Time" buttons */
+.duration-input .btn.btn-secondary,
+.duration-input .btn.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.duration-input .btn.btn-secondary:not(:disabled):not(.disabled).active:focus {
+	box-shadow: none
+}edit-buttons
+
 
 /*========== Scenes/Galleries ==========*/
 
 .mr-auto.nav.nav-tabs {
 	margin-bottom:1rem;
 	line-height: .8;
-}
-.nav-link:hover,
-.nav-link:focus {
-	color: var(--accent);
 }
 .image-tabs,
 .tab-content,
@@ -1318,20 +1499,11 @@ input[type="range"]::-moz-range-thumb {
 	display: none;
 }
 /*Margin between tags performer*/
+.row.justify-content-center.image-performers,
+.row.justify-content-center.gallery-performers,
 .row.justify-content-center.scene-performers {
-	margin-top: 1.5rem;
+	margin-top: 1rem;
 }
-/*title top of page*/
-.image-header,
-.tag-name,
-.studio-name,
-.performer-name,
-.group-name,
-.gallery-header,
-.scene-header {
-	font-weight: 600;
-}
-
 /* "Title" text-input form-control box-shadow top border gets cut off */
 #scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
 	margin-bottom: .2rem
@@ -1349,8 +1521,11 @@ span.resolution {
 	border-bottom: none;
 }
 #scene-edit-details .dropdown-divider {
-	border-top-color: var(--nav);
+	border-top-color: var(--nav-grey);
 	margin: 6px;
+}
+.scraper-menu .dropdown-menu .scraper-filter-container .clearable-text-field {
+	background-color: var(--nav-grey);
 }
 /*more than 1 file for scene at file info tab*/
 .scene-file-card.card .card-header,
@@ -1411,130 +1586,92 @@ span.resolution {
 }
 
 
+
 /*=============================================================================================================================================================
-	 																	DETAIL PAGES																			   
+	 																	MARKERS																					   										
 =============================================================================================================================================================*/
 
-.detail-header.edit.full-width,
-.detail-header.edit.collapsed {
-	background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
+.primary-card-body.card-body div hr {
+	border-top: 1px solid var(--nav-grey-dark);
+	margin-left: -25px !important;
+	margin-right: -5px !important;
+	margin-top: 10px !important;
+	margin-bottom: -5px !important;
 }
-#tag-page .detail-header.edit.full-width,
-#tag-page .detail-header.edit.collapsed,
-#group-page .detail-header.edit.full-width,
-#group-page .detail-header.edit.collapsed,
-#studio-page .detail-header.edit.full-width,
-#studio-page .detail-header.edit.collapsed {
-	height: calc(100vh - 50px);
+.primary-card {
+	border-left: 1px solid var(--nav-grey-dark);
+	/*border: 1px solid var(--nav-grey-dark);*/
+	/*background: transparent;*/
+}
+.primary-card h3 {
+	font-size: 1.5rem;
+	font-weight: 500;
+  line-height: 1;
+	z-index: 5; 
+	margin-bottom: 15px	
+}
+.primary-card-body.card-body {
+	margin-top: -.5rem;	
+	z-index: 4;
+	max-height: 15rem;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	scrollbar-width: thin;
+} 
+.primary-card-body .d-flex.align-items-center{
+	margin-left: -1.3rem;
+	margin-bottom: -2px;
+}
+.primary-card-body.card-body .row {
+	margin-left: -28px;
+	margin-top: 5px;
+}
+.primary-card-body.card-body .btn.btn-link {
+	font-size: 1rem;	
+	font-weight: 700;
+		color: var(--sbt-text)
+}
+.primary-card-body.card-body .btn.btn-link:hover {
+	color: var(--accent)
+}
+.primary-card .ml-auto.btn.btn-link {
+	margin-left: 1px !important;
+	font-weight: 500;
+	font-size: 1rem;	
 }
 
-
-.main.container-fluid:has(.scene-tabs, .image-tabs, .gallery-tabs, #create-scene-page) {
-	background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
+/*markers in scene tabs*/
+.wall-item-anchor div.wall-item-text {
+	background: none;
+	/*background: linear-gradient(to top, #00000063 20%, #ffffff12 100%);*/
+	bottom: 5px;
+	filter: drop-shadow(1px 1px 2px #000);
+	color: #fff;
+ 	font-weight: 700;
+  left: 0;
+  text-align: left;
+	transition: .3s ease-in-out
 }
-.gallery-container .filtered-list-toolbar.btn-toolbar {
-	background: transparent;
-}
-
-
-#queue-viewer .queue-controls,
-#scene-edit-details .edit-buttons-container { /*catches element in #create-scene-page*/
-  background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
-  background-attachment: fixed !important;
-}
-
-
-.detail-header {
-	background: var(--nav);
-}
-
-.detail-body nav {
-	border-bottom: solid 2px var(--card);
-}
-.sticky.detail-header {
-	background-color: var(--nav-grey-dark);
-}
-.sticky.detail-header .sticky.detail-header-group .group-name:hover,
-.sticky.detail-header .sticky.detail-header-group .studio-name:hover,
-.sticky.detail-header .sticky.detail-header-group .tag-name:hover,
-.sticky.detail-header .sticky.detail-header-group .performer-name:hover {
-	color: var(--accent);
-}
-/*auto tag and submit to stashdb buttons*/
-.tag-head.col .details-edit.mb-2 .btn.btn-secondary,
-#studio-page.row .studio-head.col .details-edit div button.btn.btn-secondary,
-.performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-primary,
-.performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-secondary {
-	display: none;
-}
-.details-edit.mb-2,
-.details-edit {
-	position: absolute;
-	top: 0rem;
-	right: 0em;
-}
-/*excludes performer page from selectors above. Can't get it to work correctly*/
-#performer-page.row .details-edit.mb-2,
-#performer-page.row .details-edit {
-	position: relative;
-}
-/*restores btn group in movie/studio/performer edit to default position because the previous selector messes it up*/
-.details-edit.col-xl-9.mb-3,
-.details-edit.col-xl-9.mt-3 {
-	position: relative
-}
-/**/
-/*performer page specifically*/
-/*only works for "compact expanded details" in interface settings 
-html body div#root div.main.container-fluid div#performer-page.row div.detail-header div.detail-container div.row div.performer-head.col div.col div.row.row-cols-8 div.details-edit.mb-2 {
-	position: absolute;
-	top: -15.8rem;
-	right: -1em;
-}
-html body div#root div.main.container-fluid div#performer-page.row div.detail-header.collapsed div.detail-container div.row div.performer-head.col div.col div.row.row-cols-8 div.details-edit.mb-2 {
-	position: absolute;
-	top: -11rem;
-	right: -1em;
-}
-/**/
-/*set image/cover etc*/
-.image-input.form-label button.btn.btn-secondary,
-#set-image-popover.fade.show.popover.bs-popover-top div.popover-body {
-	background-color: var(--nav-grey-dark);
-	border:none
-}
-/*cant get this to work for scenes*/
-.image-input.form-label button.btn.btn-secondary:hover {
+.wall-item-text:hover {
 	color: var(--accent) !important;
 }
-span.detail-item-value.synopsis {
-	-webkit-line-clamp: 5;
+.wall .wall-item {
+	margin-bottom: 10px;
 }
-#performer-page .detail-header-image img {
-	margin-bottom: -1.5rem;
+
+
+/*scenes/markers main page*/
+.wall-item-title {
+	transition: .3s ease-in-out	
 }
-/*#performer-page .detail-header-image .btn {
-	padding-bottom: 0rem;
-	padding-left: 0rem;
-	padding-right: 0rem;
-}*/
-#performer-page .full-width .detail-item {
-	width: 50%;
+.scene-wall .wall-item-footer,
+.marker-wall .wall-item-footer {
+	margin-bottom: -10px;
 }
-/*#performer-page .full-width .detail-header-image img {
-	max-width: 18.5rem;
-}*/
-#performer-scraper-popover.dropdown-menu.show {
-	max-height: 850px;
-}
-/*Makes the details/synopsis text area in movie edit bigger*/
-form#group-edit #synopsis {
-	min-height: 37ex;
-}
-/*with  thumbnail border on, performer cards in gallery tab sometimes get edges cut off*/
-.gallery-performers .performer-card-image {
-	height: 22.5rem;
-	width: 100%;
+.scene-wall .wall-item-footer:hover .wall-item-title, 
+.marker-wall .wall-item-footer:hover .wall-item-title {
+	text-decoration: none;
+	color: var(--accent);
 }
 
 
@@ -1553,7 +1690,7 @@ form#group-edit #synopsis {
 .card>hr {
 	display: none;
 }
-.card .card-popovers .minimal.btn.btn-primary{
+/*.card .card-popovers .minimal.btn.btn-primary{
 	font-weight: normal;
 }
 /**/
@@ -1599,7 +1736,7 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom {
 	 																	SCENE/GALLERY CARDS																		
 /*=============================================================================================================================================================*/
 
-	/* moved to Studio Logo Enhancer Styles */
+	/* moved to Scene Card Studio Logo Enhancer Styles css  */
 
 /*=============================================================================================================================================================
 	 																	MOVIE CARDS																				   
@@ -1714,68 +1851,13 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom {
 	 																	STUDIO CARDS																			   
 =============================================================================================================================================================*/
 
-.studio-card .card-popovers .minimal.btn.btn-primary {
-	filter: drop-shadow(0px 0px 3px black);
-}
-.studio-card .btn-group {
-	opacity: 0;
-	transition: all 1s ease-in-out;
-}
-.studio-card:hover .btn-group {
-	opacity: 1;
-}
-.studio-child-studios>a:nth-child(1),
-.studio-parent-studios>a:nth-child(1) {
-	font-weight: 600
-}
-.tag-card .card-section>.tag-parent-tags,
-.studio-card__details>.studio-parent-studios {
-	margin-bottom: -4px;
-	/* space between parent and child */
-}
-#studio-page.row .detail-header.collapsed .detail-container .detail-header-image {
-	background: var(--card);
-}
-.full-width .detail-header-image {
-	height: 100%
-}
-/* 
-.studio-card-image {
- filter: drop-shadow(.1px .1px .1px #ffffffab);
-}*/
-
+/* moved to StudioCardsEnhanced css */
 
 /*=============================================================================================================================================================
-	 																	AG CARDS																				   
+	 																TAG CARDS																				   
 =============================================================================================================================================================*/
 
-.tag-card .btn-group {
-	opacity: 0;
-	transition: all 1s ease-in-out;
-}
-.tag-card:hover .btn-group {
-	opacity: 1;
-}
-.tag-sub-tags a,
-.tag-parent-tags a {
-	font-weight: 600;
-}
-.tag-card.card {
-	padding: 0;
-	height: 210px;
-	width: 350px !important;
-}
-.tag-item.tag-link.badge.badge-secondary {
-	opacity: .8;
-}
-.tag-item.tag-link.badge.badge-secondary:hover {
-	opacity: 1;
-}
-#tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
-#tag-page.row .detail-header .detail-container .detail-header-image .logo {
-    background: var(--card);
-}
-
+/* moved to TagCardsEnhanced css */
 
 /*=============================================================================================================================================================
 	 																	LIST VIEW																				   
@@ -1850,7 +1932,7 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom {
 	border-radius: .25rem
 }
 .progress-bar {
-	/*color: #fff;																++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+	/*color: #fff;												     	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	background-color: var(--accent);
 }
 /*changes color of gear icon when spinning*/
@@ -2340,7 +2422,6 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 .tag-list-row.row .btn.btn-primary.btn-sm.active {
 	background-color: var(--accent);
 	border-color: var(--accent);
-	
 }
 
 

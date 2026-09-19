@@ -6,7 +6,7 @@
 .group-card,
 .gallery-card,
 .scene-card {
-	box-shadow: 0 0 2px 1px var(--tags);
+	box-shadow: 0 0 2px 1px var(--card-outline);
 	transition: box-shadow ease-in-out .3s !important;
 }
 

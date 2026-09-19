@@ -1,9 +1,24 @@
 /*transiitions dont woek for linear-gradients*/
 /*fake it with this*/
-.scene-card:has(.rating-banner) {
-	background-image: linear-gradient(to top, #6d8aa000, #0000);
+.scene-card:has(.rating-banner),
+.studio-card:has(.rating-banner),
+.image.card:has(.rating-banner),
+.gallery-card:has(.rating-banner),
+.group-card:has(.rating-banner),
+.performer-card:has(.rating-banner) {
 	z-index: 1;
 }
+
+.scene-card:has(.rating-banner):hover:after,
+.studio-card:has(.rating-banner):hover:after,
+.image-card:has(.rating-banner):hover:after,
+.gallery-card:has(.rating-banner):hover:after,
+.group-card:has(.rating-banner):hover:after,
+.performer-card:has(.rating-banner):hover:after {
+	opacity: 1;
+}
+
+
 .scene-card:has(.rating-banner):after {
 	position: absolute;
 	right: 0px;
@@ -11,20 +26,11 @@
 	content: '';
 	width: 100%;
 	height: 100%;
-	background-image: linear-gradient(180deg, var(--body) 0%, var(--rating-color) 100%);
+	background-image: linear-gradient(180deg, transparent 0%, var(--rating-color) 100%);
 	/*background-image: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 100%) !important;*/
 	transition: opacity .3s ease-in-out;
 	z-index: -1;
 	opacity: 0;
-}
-.scene-card:has(.rating-banner):hover:after {
-	opacity: 1;
-}
-
-
-.studio-card:has(.rating-banner) {
-	background-image: linear-gradient(to top, #6d8aa000, #0000);
-	z-index: 1;
 }
 .studio-card:has(.rating-banner):after {
 	position: absolute;
@@ -33,20 +39,11 @@
 	content: '';
 	width: 100%;
 	height: 100%;
-	background-image: linear-gradient(180deg, var(--body) 0%, var(--rating-color) 100%);
+	background-image: linear-gradient(180deg, transparent 0%, var(--rating-color) 100%);
 	/*background-image: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 100%) !important;*/
 	transition: opacity .3s ease-in-out;
 	z-index: -1;
 	opacity: 0;
-}
-.studio-card:has(.rating-banner):hover:after {
-	opacity: 1;
-}
-
-.image.card:has(.rating-banner),
-.gallery-card:has(.rating-banner) {
-	background-image: linear-gradient(to top, #6d8aa000, #0000);
-	z-index: 1;
 }
 .image-card:has(.rating-banner):after,
 .gallery-card:has(.rating-banner):after {
@@ -57,23 +54,10 @@
 	width: 100%;
 	height: 100%;
 	/*background-image: linear-gradient(180deg, var(--body) 0%, var(--rating-color) 100%);*/
-	background-image: linear-gradient(180deg, color-mix(in srgb, var(--body) 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 200%) !important;
+	background-image: linear-gradient(180deg, color-mix(in srgb, transparent 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 200%) !important;
 	transition: opacity .3s ease-in-out;
 	z-index: -1;
 	opacity: 0;
-}
-.image-card:has(.rating-banner):hover:after,
-.gallery-card:has(.rating-banner):hover:after {
-	opacity: 1;
-}
-
-
-
-
-
-.group-card:has(.rating-banner) {
-	background-image: linear-gradient(to top, #6d8aa000, #0000);
-	z-index: 1;
 }
 .group-card:has(.rating-banner):after {
 	position: absolute;
@@ -82,20 +66,11 @@
 	content: '';
 	width: 100%;
 	height: 100%;
-	background-image: linear-gradient(180deg, var(--body) 0%, var(--rating-color) 15%);
+	background-image: linear-gradient(180deg, transparent 0%, var(--rating-color) 15%);
 	/*background-image: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 20%) !important;*/
 	transition: opacity .3s ease-in-out;
 	z-index: -1;
 	opacity: 0;
-}
-.group-card:has(.rating-banner):hover:after {
-	opacity: 1;
-}
-
-
-.performer-card:has(.rating-banner) {
-	background-image: linear-gradient(to top, #6d8aa000, #0000);
-	z-index: 1;
 }
 .performer-card:has(.rating-banner):after {
 	position: absolute;
@@ -104,14 +79,11 @@
 	content: '';
 	width: 100%;
 	height: 100%;
-	background-image: linear-gradient(180deg, var(--body) 0%, var(--rating-color) 15%);
+	background-image: linear-gradient(180deg, transparent 0%, var(--rating-color) 15%);
 	/*background-image: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 20%) !important;*/
 	transition: opacity .3s ease-in-out;
 	z-index: -1;
 	opacity: 0;
-}
-.performer-card:has(.rating-banner):hover:after {
-	opacity: 1;
 }
 
 

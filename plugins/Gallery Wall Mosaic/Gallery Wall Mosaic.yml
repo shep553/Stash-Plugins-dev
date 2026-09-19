@@ -1,0 +1,19 @@
+name: Gallery Wall Mosaic
+description: Changes galleries wall view to a mosaic layout
+version: 2.0
+settings:
+  horizontalMasonry:
+    displayName: Horizontal Masonry
+    description: When enabled, arranges images in justified horizontal rows instead of vertical columns.
+    type: BOOLEAN
+  gutterSize:
+    displayName: Margin Size (px)
+    description: Spacing in pixels between covers (default 6).
+    type: STRING
+ui:
+  javascript:
+    - Gallery Wall Mosaic.js
+  css:
+    - Gallery Wall Mosaic.css
+  assets:
+    /: .

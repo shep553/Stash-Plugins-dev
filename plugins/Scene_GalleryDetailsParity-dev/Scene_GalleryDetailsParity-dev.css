@@ -1,0 +1,32 @@
+.form-container.edit-buttons-container.px-3.pt-3.row {
+  background: transparent !important; 
+	margin-right: 0px;
+  margin-left: -1px;
+}
+
+.queue-controls {
+  background: transparent !important; 
+	align-items: center;
+	display: flex;
+	flex: 0 1 auto;
+	justify-content: space-between;
+}
+
+
+.gallery-tabs {
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	max-height: calc(100vh - 4rem);
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+
+.gallery-tabs .tab-content {
+	flex: 1 1 auto;
+	min-width: 430px;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+

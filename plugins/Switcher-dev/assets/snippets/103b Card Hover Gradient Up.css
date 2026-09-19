@@ -1,30 +1,46 @@
-/*transiitions dont woek for linear-gradients*/
+/*transiitions dont work for linear-gradients*/
 /*fake it with this*/
+
 .scene-marker-card,
-.scene-card {
-  background-image: linear-gradient(to top, #6d8aa000, #0000);
-  z-index: 1;
+.scene-card,
+.performer-card,
+.group-card,
+.image-card,
+.gallery-card,
+.tag-card,
+.studio-card {
+   z-index: 1;
 }
+
+.image-card:hover:after,
+.gallery-card:hover:after,
+.tag-card:hover:before,
+.studio-card:hover:before,
+.performer-card:hover:after,
+.group-card:hover:after,
+.scene-marker-card:hover:after,
+.scene-card:hover:after {
+  opacity: 1;
+}
+
+.scene-card.mr-3:hover:after {
+	opacity: 0;
+}
+.performer-card.p-0.m-0.card:hover:after {
+	opacity: 0;
+}
+
+
 .scene-marker-card:after,
 .scene-card:after {
   position: absolute;
   content: '';
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 25%);
+  background-image: linear-gradient(0deg, var(--card-hover) 0%, transparent 40%);
   transition: opacity .3s ease-in-out;
   z-index: -1;
   opacity: 0;
-}
-.scene-marker-card:hover:after,
-.scene-card:hover:after {
-  opacity: 1;
-}
-
-.performer-card,
-.group-card {
-  background-image: linear-gradient(to top, #6d8aa000, #0000);
-  z-index: 1;
 }
 .performer-card:after,
 .group-card:after {
@@ -32,20 +48,10 @@
   content: '';
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 10%);
+  background-image: linear-gradient(0deg, var(--card-hover) 0%, transparent 10%);
   transition: opacity .3s ease-in-out;
   z-index: -1;
   opacity: 0;
-}
-.performer-card:hover:after,
-.group-card:hover:after {
-  opacity: 1;
-}
-
-.image-card,
-.gallery-card {
-  background-image: linear-gradient(to top, #6d8aa000, #0000);
-  z-index: 1;
 }
 .image-card:after,
 .gallery-card:after {
@@ -53,38 +59,23 @@
   content: '';
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 70%);
+  background-image: linear-gradient(0deg, var(--card-hover) 0%, transparent 70%);
   transition: opacity .3s ease-in-out;
   z-index: -1;
   opacity: 0;
 }
-.image-card:hover:after,
-.gallery-card:hover:after {
-  opacity: 1;
-}
-
-
-.tag-card.grid-card.card,
-.studio-card {
-  background-image: linear-gradient(to top, #0000, #0000);
-  z-index: 1;
-}
-.tag-card.grid-card.card:after,
-.studio-card:after {
+.tag-card:before, 
+.studio-card:before {
   position: absolute;
 	right: 0px;
 	top: 0px;
   content: '';
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, var(--card-hover) 0%, var(--body) 100%) !important;
+  background: linear-gradient(0deg, var(--card-hover) 0%, transparent 100%) !important;
   transition: opacity .3s ease-in-out;
   z-index: -1;
   opacity: 0;
-}
-.tag-card.grid-card.card:hover:after,
-.studio-card:hover:after {
-  opacity: 1;
 }
 
 

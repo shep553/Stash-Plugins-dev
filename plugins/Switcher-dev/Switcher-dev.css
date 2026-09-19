@@ -16,7 +16,8 @@
   --ts-text-accent: var(--accent);
   --ts-text-error: var(--red);
   --ts-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  --ts-transition-speed: .3s;
+  --ts-transition-speed: .5s;
+  --ts-transition-speed-fast: .25s;
   --ts-border-radius: 6px;
   --ts-spacing-unit: 8px;
 }
@@ -69,7 +70,7 @@
   color: var(--ts-text-primary) !important;
   font-weight: bold;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__option:hover {
@@ -83,16 +84,18 @@
 }
 
 .theme-switcher__schemes {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height var(--ts-transition-speed) ease-in-out;
+  transition: grid-template-rows var(--ts-transition-speed) ease-in-out;
 }
 
 .theme-switcher__schemes[data-expanded="true"] {
-  max-height: 500px;
+  grid-template-rows: 1fr;
+}
+
+.theme-switcher__schemes > * {
+  min-height: 0;
 }
 
 .theme-switcher__scheme {
@@ -101,7 +104,7 @@
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__scheme:hover {
@@ -119,7 +122,7 @@
    ============================================================================ */
 
 .theme-switcher__section {
-  margin-top: calc(var(--ts-spacing-unit) * 1);
+  margin-top: var(--ts-spacing-unit);
 }
 
 .theme-switcher__section-header {
@@ -133,7 +136,7 @@
   font-weight: 600;
   text-align: center;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__section-header:hover {
@@ -141,29 +144,53 @@
 }
 
 .theme-switcher__section-content {
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height var(--ts-transition-speed) ease-in-out;
+  /* 1. Hidden on close — snap to visible instantly at start of open */
+  visibility: hidden;
+  transition: grid-template-rows var(--ts-transition-speed) ease-in-out,
+              visibility var(--ts-transition-speed) step-end;
 }
 
 .theme-switcher__section-content[data-expanded="true"] {
-  max-height: 1000px;
+  grid-template-rows: 1fr;
+  /* 2. Snap visible immediately so the expand animation plays */
+  visibility: visible;
+  transition: grid-template-rows var(--ts-transition-speed) ease-in-out,
+              visibility var(--ts-transition-speed) step-start;
 }
 
-/* Optional chevron indicator
+.theme-switcher__section-content > * {
+  min-height: 0;
+}
+
+/* 3. Collapse fix: delay the padding snap until the close animation finishes
+      (visibility hides content at that same moment, so there's no visible jump).
+      On open, the [data-expanded="false"] rule is removed and padding restores
+      instantly — fine, because the grid track is still 0fr and clips everything. */
+.theme-switcher__section-content[data-expanded="false"] > * {
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transition: padding 0s var(--ts-transition-speed);
+}
+
+/* Optional chevron indicator — uncomment to enable
 .theme-switcher__section-header::after {
   content: '▼';
   float: right;
   font-size: 0.75rem;
   transform: rotate(-90deg);
   transition: transform var(--ts-transition-speed);
-	margin-top: 3px;
-	margin-left: 5px
+  margin-top: 3px;
+  margin-left: 5px;
 }
 
 .theme-switcher__section-header[data-expanded="true"]::after {
   transform: rotate(0deg);
 }
+*/
 
 
 /* ============================================================================
@@ -171,9 +198,6 @@
    ============================================================================ */
 
 .theme-switcher__colors {
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
-  scrollbar-width: none;
   padding: var(--ts-spacing-unit) 0;
   margin-bottom: -10px;
 }
@@ -184,7 +208,7 @@
   gap: var(--ts-spacing-unit);
   margin-bottom: 6px;
   padding: 2px;
-  transition: background-color 0.3s;
+  transition: background-color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__color-row[data-modified="true"] {
@@ -201,7 +225,7 @@
   font-size: 0.8125rem;
   text-align: center;
   color: var(--ts-text-primary);
-  transition: color 0.3s, font-weight 0.3s;
+  transition: color var(--ts-transition-speed-fast), font-weight var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__color-row[data-modified="true"] .theme-switcher__color-label {
@@ -240,13 +264,11 @@
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__color-reset:hover {
   color: var(--accent);
-  background: transparent;
-  border: none;
 }
 
 /* Pin button — hidden until row is modified, always visible when pinned */
@@ -258,8 +280,7 @@
   cursor: pointer;
   font-size: 13px;
   padding: 0 2px;
-  opacity: 1;
-  transition: opacity 0.15s;
+  transition: opacity var(--ts-transition-speed-fast);
   flex-shrink: 0;
   color: #fff;
 }
@@ -270,13 +291,11 @@
 }
 
 .theme-switcher__color-pin[data-pinned="true"] {
-  opacity: 1;
   filter: drop-shadow(0 0 2px currentColor);
   color: var(--accent);
 }
 
 .theme-switcher__color-pin:hover {
-  opacity: 1;
   color: var(--accent-transparent);
 }
 
@@ -284,8 +303,7 @@
 .theme-switcher__reset-all {
   display: block;
   width: 80%;
-  margin: calc(var(--ts-spacing-unit) * 2) auto calc(var(--ts-spacing-unit) / 2);
-	margin-bottom: 10px;
+  margin: calc(var(--ts-spacing-unit) * 2) auto 10px;
   padding: 6px 0 10px;
   background: var(--nav-grey);
   color: var(--ts-text-primary);
@@ -293,7 +311,7 @@
   border-radius: var(--ts-border-radius);
   font-weight: 600;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__reset-all:hover {
@@ -305,26 +323,23 @@
   display: none !important;
 }
 
-/* optional: visual separator above the color rows when pinned snippets are present */
-.theme-switcher__pinned-snippets:not(:empty) { 
-  margin-top: 10px; 
-	border-top: 1px solid rgba(255,255,255,0.1); 
+/* Visual separator above pinned snippets when present */
+.theme-switcher__pinned-snippets:not(:empty) {
+  margin-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
+
 
 /* ============================================================================
    COLOR GROUPS - Collapsible groups within the color section
    ============================================================================ */
-
-.theme-switcher__rating-colors-group {
-  /* intentionally unstyled — inherits snippet panel layout */
-}
 
 .theme-switcher__rating-colors-header {
   font-weight: bold;
 }
 
 .theme-switcher__rating-colors-panel[data-expanded="true"] {
-  max-height: 500px;
+  grid-template-rows: 1fr;
 }
 
 
@@ -332,16 +347,8 @@
    SNIPPETS - CSS snippet management
    ============================================================================ */
 
-.theme-switcher__snippets {
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
-  scrollbar-width: none;
-  padding: var(--ts-spacing-unit) 0;
-}
-
 .theme-switcher__snippets-list {
-  padding-top: 5px;
-  margin-bottom: -5px;
+  margin-top: 4px;
 }
 
 .theme-switcher__snippet {
@@ -353,13 +360,12 @@
 }
 
 .theme-switcher__snippet-search {
-  flex: 1;
   padding: 6px;
   font-size: 12px;
   border: none;
   background: var(--nav-grey);
   color: inherit;
-  margin: 4px;
+  margin: var(--ts-spacing-unit) 4px 4px;
   border-radius: 5px;
 }
 
@@ -369,73 +375,80 @@
 }
 
 .theme-switcher__snippet-category-header {
-  padding: 2px;
-  padding-left: 5px;
+  padding: 2px 2px 2px 5px;
+  transition: color var(--ts-transition-speed-fast) ease-in-out;
+}
+
+.theme-switcher__snippet-category-header:hover {
+  color: var(--accent);
+  cursor: pointer;
 }
 
 .theme-switcher__snippet-category-name {
   font-weight: bold;
   font-size: 0.875rem;
-  transition: color 0.2s ease-in-out;
   padding: 4px;
 }
 
-.theme-switcher__snippet-category-name:hover {
-  color: var(--accent);
-  cursor: pointer;
-}
-
 .theme-switcher__snippet-category-body {
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height var(--ts-transition-speed) ease-in-out;
-  background: var(--nav-grey-dark);
+  transition: grid-template-rows var(--ts-transition-speed) ease-in-out;
+  background: var(--nav-grey);
   border-radius: 6px;
 }
 
 .theme-switcher__snippet-category-body[data-expanded="true"] {
-  max-height: 999px
+  grid-template-rows: 1fr;
 }
 
+.theme-switcher__snippet-category-body > * {
+  min-height: 0;
+}
 
 /* Snippet header row */
 .theme-switcher__snippet-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px var(--ts-spacing-unit);
-  padding-top: 2px;
+  padding: 2px var(--ts-spacing-unit) 4px;
   margin-left: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__snippet-header:hover {
   background: transparent;
   color: var(--accent);
-  transition: 0.2s ease-in-out;
 }
 
 .theme-switcher__snippet-header:hover .theme-switcher__snippet-name {
   color: var(--accent);
-  transition: 0.2s ease-in-out;
 }
 
 .theme-switcher__snippet-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   flex: 1;
 }
 
 .theme-switcher__snippet-name {
+  max-width: 200px;
   color: var(--ts-text-primary);
-	font-size: 0.950rem;
+  font-size: 0.950rem;
 }
 
 .theme-switcher__snippet-chevron {
-  margin-left: -3px;
-  transition: transform 0.2s;
+  display: inline-block;
+  margin-left: 2px;
+  transition: transform var(--ts-transition-speed-fast);
+  vertical-align: 0;
+}
+
+.theme-switcher__snippet-category-header .theme-switcher__snippet-chevron {
+  vertical-align: -1px;
 }
 
 .theme-switcher__snippet-chevron[data-expanded="true"] {
@@ -448,6 +461,7 @@
   border: none;
   cursor: pointer;
   color: #fff;
+  margin-top: -1px;
   margin-right: -5px;
   margin-left: -10px;
 }
@@ -472,7 +486,7 @@
   border-radius: 5px;
   background: var(--tags);
   cursor: pointer;
-  transition: background 0.25s;
+  transition: background var(--ts-transition-speed-fast);
   flex-shrink: 0;
 }
 
@@ -492,7 +506,7 @@
   height: 10px;
   border-radius: 50%;
   background: #fff;
-  transition: left 0.2s;
+  transition: left var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__toggle[data-active="true"] .theme-switcher__toggle-thumb {
@@ -501,13 +515,18 @@
 
 /* Snippet expandable panel */
 .theme-switcher__snippet-panel {
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height var(--ts-transition-speed) ease-in-out;
+  transition: grid-template-rows var(--ts-transition-speed) ease-in-out;
 }
 
 .theme-switcher__snippet-panel[data-expanded="true"] {
-  max-height: 500px;
+  grid-template-rows: 1fr;
+}
+
+.theme-switcher__snippet-panel > * {
+  min-height: 0;
 }
 
 /* Scope selection panel */
@@ -516,7 +535,7 @@
   flex-direction: column;
   padding: 6px;
   margin: 4px 0;
-  background: var(--nav-grey);
+  background: var(--card);
   border-radius: 4px;
 }
 
@@ -524,27 +543,40 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 25px;
-  padding-left: 5px;
+  padding: 4px 25px 4px 5px;
   margin-bottom: 2px;
 }
 
+.theme-switcher__scope-option:hover {
+  cursor: pointer;
+}
+
+.theme-switcher__scope-option:hover .theme-switcher__scope-checkbox {
+  box-shadow: 0px 0px 0px 3px var(--accent);
+}
+
+.theme-switcher__scope-option:hover .theme-switcher__scope-label {
+  color: var(--accent);
+}
+
 .theme-switcher__scope-option--global {
-	background: var(--nav-grey-dark);
-  /*font-weight: bold;*/
-	box-shadow: 0 0 0px 1px var(--tags);
-  margin-top: 5px;
+  background: var(--card);
+  box-shadow: 0 0 0px 1px var(--nav-grey);
+  margin-top: 8px;
+  margin-bottom: 6px;
 }
 
 .theme-switcher__scope-label {
   color: var(--ts-text-primary);
   font-size: 0.875rem;
   cursor: pointer;
+  transition: color var(--ts-transition-speed-fast) ease-in-out;
 }
 
 .theme-switcher__scope-checkbox {
-  margin-right: -19px;
+  margin-right: -18px;
   cursor: pointer;
+  transition: all var(--ts-transition-speed-fast) ease-in-out;
 }
 
 /* Variables panel */
@@ -552,7 +584,7 @@
   display: flex;
   flex-direction: column;
   padding: 6px 10px;
-  background: var(--nav-grey);
+  background: var(--card);
   border-radius: 4px;
 }
 
@@ -599,7 +631,7 @@
 }
 
 input.theme-switcher__var-input[type="text"] {
-	width: 150px;
+  width: 150px;
 }
 
 
@@ -615,7 +647,7 @@ input.theme-switcher__var-input[type="text"] {
   border-radius: var(--ts-border-radius);
   font-weight: 600;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color var(--ts-transition-speed-fast);
 }
 
 .theme-switcher__disable-all:hover {
@@ -732,7 +764,6 @@ input.theme-switcher__var-input[type="text"] {
 .theme-switcher__divider {
   margin: calc(var(--ts-spacing-unit) * 1.5) 0;
   border: 0;
-  border-top: 0px solid var(--ts-border-color);
 }
 
 
@@ -740,12 +771,13 @@ input.theme-switcher__var-input[type="text"] {
    COLORIS PICKER - Overrides
    ============================================================================ */
 
+/* Note: left/top values are layout-specific — adjust if the panel position changes */
 .clr-picker.clr-left.clr-open {
   background-color: var(--nav-grey-dark);
   opacity: .95;
   z-index: 10000;
   position: fixed !important;
-  left: 97.7rem !important;
+  left: 95rem !important;
   top: 300px !important;
 }
 

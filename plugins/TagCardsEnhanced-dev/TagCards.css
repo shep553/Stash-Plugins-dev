@@ -1,29 +1,99 @@
 
+.tag-card.grid-card.card {
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+}
+.tag-card.grid-card.card .thumbnail-section {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+}
+.tag-card.grid-card.card .thumbnail-section img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+}
+.tag-card.grid-card.card .thumbnail-section img.default-image {
+      width: 80%;
+      height: 90%;
+      margin: 0 auto;
+}
+.tag-card.grid-card.card .card-section {
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%;
+	    padding: 0px 0px 6px 10px;
+		  text-shadow: 1px 1px 2px #000;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+      z-index: 1;
+      transition: max-height .5s ease-in-out;
+}
+.tag-card.grid-card.card .card-section-title,
+.tag-card.grid-card.card .TruncatedText {
+      margin: 0; padding: 0;
+      display: block;
+}
+.tag-card.grid-card.card .card-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity .5s ease-in-out;
+}
+.tag-card.grid-card.card .tag-parent-tags,
+.tag-card.grid-card.card .TruncatedText.tag-description {
+      display: block;
+      position: relative;
+	    z-index: 1;
+      overflow: visible;
+      opacity: 0; transition: opacity .5s ease-in-out;
+}
+.tag-card.grid-card.card .card-popovers.btn-group[data-moved] {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 2;
+}
+  
+/*.tag-card.grid-card.card .card-section-title {
+	margin: -5px 0px 0px 0px;
+	line-height: 1.5;
+}*/
+.tag-card:has(.default-image) .card-section a {
+	margin: -3px 0px 0px 0px;
+}
+
 .tag-card .tag-description + div {
-  margin-top: 0.1rem;
+  margin-top: 0rem;
+}
+.tag-parent-tags {
+  padding-bottom: 3px !important
+}
+
+
+.tag-card .card-popovers.btn-group {
+	top: 4px !important
 }
 .tag-card button.btn.favorite-button{
   padding: 0;
   position: absolute;
   top: 6px;
 }
-.tag-card .card-section {
-  padding: 0px 0px 6px 10px;
-}
-.tag-parent-tags {
-  padding-bottom: 3px !important
-}
-.tag-card .card-popovers.btn-group {
-	top: 3px !important
-}
-html body div#root div.main.container-fluid div.item-list-container div.row.justify-content-center div.tag-card.grid-card.card div.card-section {
-	text-shadow: 1px 1px 2px #000;
-}
+
+
 .tag-card::after {
  	content: "";
  	position: absolute;
  	inset: 0;
- 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, .75));
+ 	background: linear-gradient(to bottom, transparent 25%, rgba(0, 0, 0, .75));
  	opacity: 0;
  	pointer-events: none;
  	transition: opacity 1s ease;
@@ -31,22 +101,45 @@ html body div#root div.main.container-fluid div.item-list-container div.row.just
 .tag-card:hover::after {
  	opacity: 1;
 }
+
+
 /* Smooth filter animation */
 .tag-card {
 	transition: filter 1s ease;
 }
 /* Apply saturation/brightness on hover */
 .tag-card-image {
-	transition: .3s ease-in-out; 
+	transition: 1s ease-in-out; 
 }
 .tag-card:hover .tag-card-image {
  	filter: saturate(120%) brightness(120%);
 }
 
-.tag-popover-card .card-popovers.btn-group {
-	left: 0px !important
-}
 
-/*.tag-card .card-popovers.btn-group {
-	top: 8px !important
-}*/
+
+
+/* originally in CMD.css */
+/*=============================================================================================================================================================
+	 																TAG CARDS																				   
+=============================================================================================================================================================*/
+
+.tag-card .btn-group {
+	opacity: 0;
+	transition: all 1s ease-in-out;
+}
+.tag-card:hover .btn-group {
+	opacity: 1;
+}
+.tag-sub-tags a,
+.tag-parent-tags a {
+	font-weight: 600;
+}
+.tag-card.card {
+	padding: 0;
+	height: 210px;
+	width: 350px !important;
+}
+#tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
+#tag-page.row .detail-header .detail-container .detail-header-image .logo {
+    background: var(--card);
+}

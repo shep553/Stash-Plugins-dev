@@ -354,6 +354,10 @@
         if (card.dataset.studioLogoProcessed) return;
         card.dataset.studioLogoProcessed = "true";
 
+        // Apply blur first — tagger cards have .scene-card-preview but no .card-section,
+        // so this must run before the early-return below.
+        applyBlurredBackground(card);
+
         const section = card.querySelector('.card-section');
         if (!section) return;
 
@@ -427,7 +431,6 @@
         }
 
         processCardPopovers(card, type, titleDate);
-        applyBlurredBackground(card);
     }
 
     function enhanceGroupCard(card) {
@@ -444,6 +447,47 @@
                 // ResizeObserver not supported
             }
         }
+    }
+
+    function enhanceMarkerCard(card) {
+        if (card.dataset.studioLogoProcessed) return;
+        card.dataset.studioLogoProcessed = "true";
+
+        const section = card.querySelector('.card-section');
+        if (!section) return;
+
+        const details = section.querySelector('.scene-marker-card__details');
+        if (!details) return;
+
+        const timeEl = details.querySelector('.scene-marker-card__time');
+        const sceneEl = details.querySelector('.TruncatedText.scene-marker-card__scene');
+        const btnGroup = card.querySelector('.card-popovers.btn-group');
+
+        // Remove the <hr>
+        const hr = btnGroup?.previousElementSibling;
+        if (hr && hr.tagName === 'HR') hr.remove();
+
+        // Lift scene title above the time row
+        if (sceneEl) section.insertBefore(sceneEl, details);
+
+        // Build card-date-row: time | buttons
+        const dateRow = document.createElement('div');
+        dateRow.className = 'card-date-row';
+
+        if (timeEl) dateRow.appendChild(timeEl);
+
+        if (btnGroup) {
+            btnGroup.classList.add('inline-popovers');
+            const sep = document.createElement('span');
+            sep.className = 'card-date-separator';
+            sep.textContent = '|';
+            dateRow.appendChild(sep);
+            dateRow.appendChild(btnGroup);
+        }
+
+        details.replaceWith(dateRow);
+
+        applyBlurredBackground(card);
     }
 
     // =====================================================================
@@ -554,7 +598,7 @@
             enhanceGroupCard(n);
         });
         document.querySelectorAll('.scene-marker-card').forEach(n => {
-            applyBlurredBackground(n);
+            enhanceMarkerCard(n);  // was applyBlurredBackground
         });
         replaceMissingStudioImages();
         replaceStudioPageLogo();
@@ -597,7 +641,7 @@
         });
 
         csLib.PathElementListener('/scenes/markers', '.scene-marker-card', (card) => {
-            applyBlurredBackground(card);
+            enhanceMarkerCard(card);  // was applyBlurredBackground
         });
 
         // Fallback mutation observer for dynamically added content
@@ -616,7 +660,7 @@
                         enhanceGroupCard(node);
                     }
                     if (node.classList?.contains('scene-marker-card')) {
-                        applyBlurredBackground(node);
+                        enhanceMarkerCard(node);  // was applyBlurredBackground
                     }
 
                     if (node.querySelectorAll) {
@@ -627,7 +671,7 @@
                             enhanceSceneOrGallery(n, 'gallery');
                         });
                         node.querySelectorAll('.scene-marker-card').forEach(n => {
-                            applyBlurredBackground(n);
+                            enhanceMarkerCard(n);  // was applyBlurredBackground
                         });
                         node.querySelectorAll('.group-card').forEach(n => {  // ← added
                             enhanceGroupCard(n);

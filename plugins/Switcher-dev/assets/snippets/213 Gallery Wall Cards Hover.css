@@ -1,0 +1,26 @@
+:is(.GalleryWallCard) {
+	&:has(button[class*="star-fill"][title="0.5"]) { --rating-color: var(--rating-color-2); }
+	&:has(button[class*="star-fill"][title="1"])   { --rating-color: var(--rating-color-4); }
+	&:has(button[class*="star-fill"][title="1.5"]) { --rating-color: var(--rating-color-6); }
+	&:has(button[class*="star-fill"][title="2"])   { --rating-color: var(--rating-color-8); }
+	&:has(button[class*="star-fill"][title="2.5"]) { --rating-color: var(--rating-color-10); }
+	&:has(button[class*="star-fill"][title="3"])   { --rating-color: var(--rating-color-12); }
+	&:has(button[class*="star-fill"][title="3.5"]) { --rating-color: var(--rating-color-14); }
+	&:has(button[class*="star-fill"][title="4"])   { --rating-color: var(--rating-color-16); }
+	&:has(button[class*="star-fill"][title="4.5"]) { --rating-color: var(--rating-color-18); }
+	&:has(button[class*="star-fill"][title="5"])   { --rating-color: var(--rating-color-20); }
+}
+
+
+/* Base shape — used for unrated cards, and as the default otherwise */
+.GalleryWallCard.GalleryWallCard-landscape::after,
+.GalleryWallCard.GalleryWallCard-portrait::after {
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 25%, rgba(0, 0, 0, .75));
+}
+
+/* Overridden shape — only when a rating button is present */
+.GalleryWallCard.GalleryWallCard-landscape:has(button[class*="star-fill"][title])::after,
+.GalleryWallCard.GalleryWallCard-portrait:has(button[class*="star-fill"][title])::after {
+	/*background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, var(--rating-color));*/
+	background-image: linear-gradient(0deg, color-mix(in srgb, var(--rating-color) 25%, transparent) 0%, transparent 100%)
+}

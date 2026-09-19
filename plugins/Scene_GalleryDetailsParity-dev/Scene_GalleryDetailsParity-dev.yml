@@ -1,0 +1,10 @@
+name:  Scene_GalleryDetailsParity-dev
+description: Homogenizes Scene & Gallery Details Pages
+version: 1.0
+ui:
+    javascript:
+        -  Scene_GalleryDetailsParity-dev.js
+    css:
+        -  Scene_GalleryDetailsParity-dev.css
+    assets:
+        /: .

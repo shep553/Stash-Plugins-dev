@@ -1,0 +1,79 @@
+
+.performer-card:has(.rating-banner[class*="rating-100-"])
+	.minimal.not-favorite.btn.btn-primary:hover,
+.performer-card:has(.rating-banner[class*="rating-100-"])
+	.minimal.favorite.btn.btn-primary {
+	color: var(--rating-color) !important;
+}
+
+.performer-card:has(.rating-banner[class*="rating-100-"])
+	.minimal.favorite.btn.btn-primary:hover {
+	color: var(--rating-color) !important;
+	opacity: 0.6;
+}
+
+
+
+
+:is(#performer-page.row) {
+	&:has(button[class*="star-fill"][title="0.5"]) { --rating-color: var(--rating-color-2); }
+	&:has(button[class*="star-fill"][title="1"])   { --rating-color: var(--rating-color-4); }
+	&:has(button[class*="star-fill"][title="1.5"]) { --rating-color: var(--rating-color-6); }
+	&:has(button[class*="star-fill"][title="2"])   { --rating-color: var(--rating-color-8); }
+	&:has(button[class*="star-fill"][title="2.5"]) { --rating-color: var(--rating-color-10); }
+	&:has(button[class*="star-fill"][title="3"])   { --rating-color: var(--rating-color-12); }
+	&:has(button[class*="star-fill"][title="3.5"]) { --rating-color: var(--rating-color-14); }
+	&:has(button[class*="star-fill"][title="4"])   { --rating-color: var(--rating-color-16); }
+	&:has(button[class*="star-fill"][title="4.5"]) { --rating-color: var(--rating-color-18); }
+	&:has(button[class*="star-fill"][title="5"])   { --rating-color: var(--rating-color-20); }
+}
+
+
+
+#performer-page.row:has(button[class*="star-fill"][title]:is(
+	[title="0.5"],
+	[title="1"],
+	[title="1.5"],
+	[title="2"],
+	[title="2.5"],
+	[title="3"],
+	[title="3.5"],
+	[title="4"],
+	[title="4.5"],
+	[title="5"]
+)) .minimal.not-favorite.btn.btn-primary:hover,
+#performer-page.row:has(button[class*="star-fill"][title]:is(
+	[title="0.5"],
+	[title="1"],
+	[title="1.5"],
+	[title="2"],
+	[title="2.5"],
+	[title="3"],
+	[title="3.5"],
+	[title="4"],
+	[title="4.5"],
+	[title="5"]
+)) .minimal.favorite.btn.btn-primary {
+	color: var(--rating-color) !important;
+	transition: opacity 1s ease-in-out, color .3s ease-in-out;
+}
+
+#performer-page.row:has(button[class*="star-fill"][title]:is(
+	[title="0.5"],
+	[title="1"],
+	[title="1.5"],
+	[title="2"],
+	[title="2.5"],
+	[title="3"],
+	[title="3.5"],
+	[title="4"],
+	[title="4.5"],
+	[title="5"]
+)) .minimal.favorite.btn.btn-primary:hover {
+	color: var(--rating-color) !important;
+	opacity: 0.6;
+	transition: opacity 1s ease-in-out, color .3s ease-in-out;
+}
+
+
+

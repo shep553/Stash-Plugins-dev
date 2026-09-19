@@ -62,11 +62,16 @@
                 themeItem.setAttribute('data-theme-family', theme.name);
                 optionsList.appendChild(themeItem);
 
-                // Create nested schemes list
-                const schemesList = document.createElement('ul');
+                // Create nested schemes container for Grid track transitions
+                const schemesList = document.createElement('div');
                 schemesList.className = 'theme-switcher__schemes';
                 schemesList.setAttribute('data-theme-family', theme.name);
                 schemesList.setAttribute('data-expanded', 'false');
+
+                const schemesUl = document.createElement('ul');
+                schemesUl.style.listStyle = 'none';
+                schemesUl.style.margin = '0';
+                schemesUl.style.padding = '0';
 
                 theme.schemes.forEach(schemeName => {
                     if (schemeName === theme.name) return; // Skip matching scheme
@@ -77,9 +82,10 @@
                         schemeName
                     );
                     schemeItem.classList.add('theme-switcher__scheme');
-                    schemesList.appendChild(schemeItem);
+                    schemesUl.appendChild(schemeItem);
                 });
 
+                schemesList.appendChild(schemesUl);
                 optionsList.appendChild(schemesList);
 
                 // Theme click handler - apply and toggle schemes
@@ -209,7 +215,7 @@
 
             const resetAllBtn = document.createElement('button');
             resetAllBtn.className = 'theme-switcher__reset-all';
-            resetAllBtn.textContent = 'Reset All Modified';
+            resetAllBtn.textContent = 'Reset Custom Colors';
             resetAllBtn.addEventListener('click', () => EventHandlers.handleResetAllColors());
             colorsWrapper.appendChild(resetAllBtn);
 
@@ -320,18 +326,21 @@
             panel.className = 'theme-switcher__snippet-panel theme-switcher__rating-colors-panel';
             panel.setAttribute('data-expanded', 'false');
 
+            const panelInner = document.createElement('div');
+
             groupDef.vars.forEach(varConfig => {
                 const row = this.createColorRow(varConfig);
                 row.setAttribute('data-scope', groupDef.scope);
-                panel.appendChild(row);
+                panelInner.appendChild(row);
             });
 
             const resetBtn = document.createElement('button');
             resetBtn.className = 'theme-switcher__reset-all theme-switcher__reset-global';
             resetBtn.textContent = groupDef.resetLabel;
             resetBtn.addEventListener('click', () => EventHandlers.handleResetGroup(groupDef.id));
-            panel.appendChild(resetBtn);
+            panelInner.appendChild(resetBtn);
 
+            panel.appendChild(panelInner);
             group.appendChild(panel);
 
             header.addEventListener('click', () => {
@@ -394,6 +403,11 @@
                 const name = nameInput.value.trim();
                 if (!name) return;
                 const saved = await FavoritesManager.save(name);
+                if (saved === 'limit') {
+                    saveBtn.textContent = `Limit reached (${CONFIG.maxFavorites})`;
+                    setTimeout(() => saveBtn.textContent = 'Save', 2000);
+                    return;
+                }
                 if (!saved) {
                     saveBtn.textContent = 'Nothing modified!';
                     setTimeout(() => saveBtn.textContent = 'Save', 2000);
@@ -625,10 +639,13 @@
             body.className = 'theme-switcher__snippet-category-body';
             body.setAttribute('data-expanded', 'false');
 
+            const bodyInner = document.createElement('div');
+
             snippets.forEach(snippet => {
-                body.appendChild(this.createSnippet(snippet));
+                bodyInner.appendChild(this.createSnippet(snippet));
             });
 
+            body.appendChild(bodyInner);
             group.appendChild(body);
 
             header.addEventListener('click', () => {
@@ -749,7 +766,7 @@
                 chevron.className = 'theme-switcher__snippet-chevron';
                 chevron.textContent = '▸';
                 chevron.setAttribute('data-expanded', 'false');
-                info.appendChild(chevron);
+                name.appendChild(chevron);
             }
 
             header.appendChild(info);
@@ -767,16 +784,19 @@
                 panelsContainer.className = 'theme-switcher__snippet-panel';
                 panelsContainer.setAttribute('data-expanded', 'false');
 
+                const panelsInner = document.createElement('div');
+
                 if (hasScopePanel) {
                     const scopePanel = this.createScopePanel(snippet);
-                    panelsContainer.appendChild(scopePanel);
+                    panelsInner.appendChild(scopePanel);
                 }
 
                 if (hasVars) {
                     const varsPanel = this.createVarsPanel(snippet);
-                    panelsContainer.appendChild(varsPanel);
+                    panelsInner.appendChild(varsPanel);
                 }
 
+                panelsContainer.appendChild(panelsInner);
                 container.appendChild(panelsContainer);
 
                 header.addEventListener('click', (e) => {
@@ -1436,14 +1456,13 @@
 
     EventHandlers.setupColorInput();
 
-    const themesPromise = DataLoader.fetchThemes();
-    const colorSchemesPromise = DataLoader.fetchColorSchemes();
+    const themesPromise = DataLoader.fetchAll();
     const snippetsPromise = DataLoader.fetchSnippets();
 
     csLib.waitForElement(".top-nav", async (navbar) => {
         console.log('[Switcher] Navbar found');
 
-        await Promise.all([themesPromise, colorSchemesPromise]);
+        await Promise.all([themesPromise]);
         console.log('[Switcher] Themes and color schemes loaded');
 
         if (!state.themes || state.themes.length === 0) {

@@ -21,7 +21,39 @@ html body div#root div.main.container-fluid div.item-list-container div.row.just
 
 
 
+/* originally in CMD.css */
+/*=============================================================================================================================================================
+	 																	STUDIO CARDS																			   
+=============================================================================================================================================================*/
 
-
+.studio-card .card-popovers .minimal.btn.btn-primary {
+	filter: drop-shadow(0px 0px 3px black);
+}
+.studio-card .btn-group {
+	opacity: 0;
+	transition: all 1s ease-in-out;
+}
+.studio-card:hover .btn-group {
+	opacity: 1;
+}
+.studio-child-studios>a:nth-child(1),
+.studio-parent-studios>a:nth-child(1) {
+	font-weight: 600
+}
+.tag-card .card-section>.tag-parent-tags,
+.studio-card__details>.studio-parent-studios {
+	margin-bottom: -4px;
+	/* space between parent and child */
+}
+#studio-page.row .detail-header.collapsed .detail-container .detail-header-image {
+	background: var(--card);
+}
+#studio-page .full-width .detail-header-image {
+	height: 100%
+}
+/* 
+.studio-card-image {
+ filter: drop-shadow(.1px .1px .1px #ffffffab);
+}*/
 
 

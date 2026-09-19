@@ -1,6 +1,6 @@
 .scene-marker-card,
 .scene-card {
-	background: linear-gradient(0deg, var(--body) 0%, var(--card) 10%) !important;
+	background: linear-gradient(0deg, transparent 0%, var(--card) 20%) !important;
 }
 .gallery-card,
 .tag-card,
@@ -8,16 +8,19 @@
 .image-card,
 .tag-card,
 .studio-card {
-	background: linear-gradient(0deg, var(--body) 0%, var(--card) 100%) !important;
+	background: linear-gradient(0deg, transparent 0%, var(--card) 100%) !important;
 }
 .group-card,
 .performer-card {
-	background: linear-gradient(0deg, var(--body) 0%, var(--card) 5%) !important;
+	background: linear-gradient(0deg, transparent 0%, var(--card) 5%) !important;
 }
 
 /* switcher: global */
 #studio-page.row .detail-header.collapsed .detail-container .detail-header-image,
 #tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
 #tag-page.row .detail-header .detail-container .detail-header-image .logo {
-	background: linear-gradient(0deg, var(--body) 0%, var(--card) 50%) !important;
+	background: linear-gradient(0deg, transparent 0%, var(--card) 30%) !important;
+}
+.TagTagger-tag .tag-card.card {
+	background: transparent !important;
 }

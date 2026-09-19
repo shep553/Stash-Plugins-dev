@@ -14,6 +14,8 @@
 /* switcher: global */
 #studio-page.row .detail-header.collapsed .detail-container .detail-header-image,
 #tag-page.row .detail-header.collapsed .detail-container .detail-header-image .logo,
-#tag-page.row .detail-header .detail-container .detail-header-image .logo {
+#tag-page.row .detail-header .detail-container .detail-header-image .logo,
+.GalleryWallCard-img,
+.wall-item img {
    border-radius: var(--card-radius-size, 0px) !important;
 }   

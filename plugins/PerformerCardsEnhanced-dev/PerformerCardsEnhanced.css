@@ -1,3 +1,14 @@
+/*.scene-tabs .performer-card.zoom-undefined.grid-card.card .thumbnail-section::before {
+	background: linear-gradient(0deg, rgba(255, 0, 0, 0) 0%, var(--performer-bg-top) 100%) !important;
+}
+.scene-tabs .performer-card.zoom-undefined.grid-card.card .thumbnail-section::after {
+	background: linear-gradient(0deg, rgba(255, 0, 0, 0) 0%, var(--rating-color) 100%) !important;
+}
+*/
+
+
+
+
 /* Thumbnail positioning */
 .performer-card .thumbnail-section {
   position: relative;
@@ -163,7 +174,6 @@
 		/*====== Performer card background ======*/
 
 
-/*CHAT GPT simplification*/
 /**//* --- Base overlay build --- */
 .performer-card .thumbnail-section {
   position: relative;
@@ -182,13 +192,13 @@
 /* Base gradient background layer */
 .performer-card .thumbnail-section::before {
   z-index: -101;
-  background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;
+  background: linear-gradient(0deg, var(--performer-bg-bottom) 10%, var(--performer-bg-top)) 100%;
 }
 /* Hover color overlay (controlled via --rating-color variable) */
 .performer-card .thumbnail-section::after {
   z-index: -100;
   opacity: 0;
-  background: linear-gradient(0deg, var(--card) 5%, #0000) var(--rating-color, transparent) 100%;
+  background: linear-gradient(0deg, var(--performer-bg-bottom) 10%, var(--rating-color)) 100%;
   transition: opacity 1s ease-in-out;
 }
 /* Base gradient background layer 
@@ -229,14 +239,14 @@
 /*.performer-select-image-link,*/
 img.performer-image,
 img.performer-image {
-	background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;						/*background for performer img scraper*/
+	  background: linear-gradient(0deg, var(--performer-bg-bottom) 10%, var(--performer-bg-top)) 100%;						/*background for performer img scraper*/
 }
 /*.performer-card.zoom-undefined.grid-card.card {
 	background-color: var(--card);
 }*/
-.performer-card.zoom-undefined.grid-card.card .thumbnail-section:before {
+/*.performer-card.zoom-undefined.grid-card.card .thumbnail-section:before {
 	 background: linear-gradient(0deg, var(--card) 5%, #0000) #bdbdbd 100%;  
-}
+}*/
 .PerformerTagger-performer {
 	padding-bottom: 0px
 }

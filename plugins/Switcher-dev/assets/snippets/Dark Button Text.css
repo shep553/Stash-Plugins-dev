@@ -1,54 +1,15 @@
-/* scope: all 
-#configuration-tabs-tabpane-system .btn-secondary,
-#tasks-panel .btn-secondary,
-.btn.btn-primary,
-.btn-primary, 
-.stash-id-pill,
-.badge-secondary,
-.badge-info {
-	color: var(--nav)
-}
-#theme-switcher-button.btn.btn-primary.minimal.d-flex.align-items-center.h-100:hover,
-.btn.btn-primary:hover, 
-.modifier-option.btn.btn-primary:hover {
-	color: var(--accent)
-}
-.scene-divider .btn.btn-primary,
-.minimal.btn.btn-primary,
-#theme-switcher-button.btn.btn-primary.minimal.d-flex.align-items-center.h-100,
-.nav-utility.minimal.btn-primary,
-.nav-utility .btn.btn-primary,
-.brand-link.btn-primary,
-.modifier-option.btn.btn-primary {
-	color: #fff
-}
-.navbar-nav .nav-link a {
-	color: #ffffffa6 !important;
-}
-.navbar-nav .nav-link a:hover {
-	color: var(--accent) !important;
-}
-.btn-primary:not(:disabled):not(.disabled).active,
-.btn-primary:not(:disabled):not(.disabled):active, 
-.btn-primary:not(:disabled):not(.disabled).active:focus, 
-.btn-primary:not(:disabled):not(.disabled):active:focus {
-	color: var(--accent) !important;
-}
 
-
-.btn-primary.disabled:hover,
-.btn-primary.disabled,
-.btn-primary:disabled {
-		color: var(--nav) !important
-}
-*/
 .stash-id-pill,
 .badge-secondary,
 /*.badge-info,*/
 #configuration-tabs-tabpane-system .btn-secondary,
 #tasks-panel .btn-secondary,
 .btn-primary:disabled,
-.btn-primary {
+.btn-primary
+/*.item-list-container .tag-card.card .card-popovers .minimal.btn.btn-primary,
+.item-list-container .studio-card.card .card-popovers .minimal.btn.btn-primary,
+.item-list-container .performer-card.card .card-popovers .minimal.btn.btn-primary,
+.item-list-container .group-card.card .card-popovers .minimal.btn.btn-primary*/ {	
 	color: var(--nav)
 }
 

@@ -6,6 +6,7 @@
     const PLUGIN_ID = 'theme-switcher';
 
     const CONFIG = {
+        maxFavorites: 4,
         dirs: {
             themes: '/custom/assets/themes/',
             coloris: '/custom/coloris/',
@@ -16,7 +17,6 @@
             colorisJs: '/custom/coloris/coloris.min.js',
             snippetsJson: '/custom/assets/snippets/snippets.json',
             themesJson: '/custom/assets/themes/themes.json',
-            colorSchemesJson: '/custom/assets/themes/color-schemes.json'
         },
         editableVars: [
             { name: "--body", label: "Page Background" },
@@ -91,6 +91,16 @@
                     { name: "--color-nav", label: "Color Nav" },
                     { name: "--color-title", label: "Color Title" },
                     { name: "--color-description", label: "Color Description" }
+                ]
+            },
+            {
+                id: 'performer-card-bg',
+                label: 'Performer Card BG',
+                resetLabel: 'Reset Performer Card BG',
+                scope: 'scheme',
+                vars: [
+                    { name: "--performer-bg-top", label: "Performer Card BG Top" },
+                    { name: "--performer-bg-bottom", label: "Performer Card BG Bottom" }
                 ]
             }
         ]
@@ -1267,37 +1277,36 @@
             }
         }
 
-        static async fetchThemes() {
+        static async fetchAll() {
             const data = await this.fetchJSON(CONFIG.files.themesJson);
             if (!data) {
                 console.error('[Switcher] Failed to load themes.json');
                 return;
             }
 
-            if (Array.isArray(data)) {
-                state.themes = data;
-            } else if (data.themes && Array.isArray(data.themes)) {
-                state.themes = data.themes;
-            } else {
-                console.error('[Switcher] Invalid themes.json format:', data);
+            // _global section (rating color defaults etc.)
+            CONFIG.globalVarDefaults = data._global || {};
+
+            // colorSchemes section
+            const colorSchemes = data.colorSchemes;
+            if (!colorSchemes || typeof colorSchemes !== 'object') {
+                console.error('[Switcher] Invalid or missing colorSchemes in themes.json');
                 return;
             }
+            state.colorSchemes = colorSchemes;
+            console.log('[Switcher] Loaded color schemes for themes:', Object.keys(colorSchemes));
 
-            console.log('[Switcher] Loaded themes:', state.themes);
-        }
-
-        static async fetchColorSchemes() {
-            const data = await this.fetchJSON(CONFIG.files.colorSchemesJson);
-            if (data) {
-                // Pull out the _global section (rating color defaults etc.) before
-                // storing the rest as per-theme color schemes
-                const { _global = {}, ...schemes } = data;
-                CONFIG.globalVarDefaults = _global;
-                state.colorSchemes = schemes;
-                console.log('[Switcher] Loaded color schemes for themes:', Object.keys(schemes));
-            } else {
-                console.error('[Switcher] No color schemes found');
+            // themes section — scheme names are derived from colorSchemes keys,
+            // so no need to maintain a separate schemes[] array in the JSON
+            if (!data.themes || !Array.isArray(data.themes)) {
+                console.error('[Switcher] Invalid or missing themes array in themes.json');
+                return;
             }
+            state.themes = data.themes.map(theme => ({
+                ...theme,
+                schemes: Object.keys(colorSchemes[theme.name] || {})
+            }));
+            console.log('[Switcher] Loaded themes:', state.themes);
         }
 
         static async fetchSnippets() {
@@ -1871,11 +1880,19 @@
                 !Object.keys(globalColors).length &&
                 !Object.keys(snippets).length) return false;
 
+            const index = this.getFavoritesIndex();
+            const isNew = !index.includes(name);
+
+            // Enforce the favorites limit for new entries only — overwriting
+            // an existing favorite by the same name is always allowed.
+            if (isNew && index.length >= CONFIG.maxFavorites) {
+                return 'limit';
+            }
+
             const favorite = { name, colors, globalColors, snippets };
             await storage.set(`favorite-${name}`, favorite);
 
-            const index = this.getFavoritesIndex();
-            if (!index.includes(name)) {
+            if (isNew) {
                 index.push(name);
                 await storage.set('favorites-index', index);
             }

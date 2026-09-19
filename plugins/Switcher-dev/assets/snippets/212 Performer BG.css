@@ -1,0 +1,8 @@
+.performer-card.card .thumbnail-section::before {
+  z-index: -101;
+  background: linear-gradient(0deg, transparent 10%, var(--rating-color)) 100% !important
+}
+
+.main.container-fluid:not(:has(:is(.scene-tabs, .image-tabs, .gallery-tabs, .detail-header) .rating-stars [title="0"])) .performer-card.zoom-undefined.grid-card.card .thumbnail-section::before {
+	background: linear-gradient(0deg,  transparent 10%, var(--rating-color) 100%) !important;
+}

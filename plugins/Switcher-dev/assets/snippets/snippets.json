@@ -5,13 +5,13 @@
     "category": "CARD STRUCTURAL",
     "hasGlobal": true,
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -24,13 +24,13 @@
     "file": "001b Radiused Transparent Cards.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -44,13 +44,13 @@
     "category": "CARD STRUCTURAL",
     "hasGlobal": true,
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -70,18 +70,41 @@
     }
   },
   {
+    "name": "Card Title Length",
+    "file": "003 Card Title Length.css",
+    "category": "CARD STRUCTURAL",
+    "scopes": {
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
+    },
+    "vars": {
+      "--title-length": {
+        "label": "Title Length",
+        "type": "number",
+        "default": 1,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
+    }
+  },
+  {
     "name": "Card Outline",
-    "file": "0003 Card Outline.css",
+    "file": "004 Card Outline.css",
     "category": "CARD STRUCTURAL",
     "hasGlobal": true,
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -91,59 +114,38 @@
   },
   {
     "name": "Card Thumbnail Outline",
-    "file": "0003 Card Thumbnail Outline.css",
+    "file": "005 Card Thumbnail Outline.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Images": ".image-card",
       "Markers": ".scene-marker-card"
     }
   },
   {
-    "name": "Card Title Length",
-    "file": "003 Card Title Length.css",
-    "category": "CARD STRUCTURAL",
-    "scopes": {
-      "Groups": ".item-list-container .group-card",
-      "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
-      "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
-    },
-    "vars": {
-      "--title-length": {
-        "label": "Title Length",
-        "type": "number",
-        "default": 1,
-        "min": 0,
-        "max": 10,
-        "step": 1
-      }
-    }
-  },
-  {
     "name": "Scene Card Inset",
-    "file": "004 Scene Card Inset.css",
+    "file": "006 Scene Card Inset.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
     }
   },
   {
     "name": "Performer Card Size",
-    "file": "006 Performer Card Size.css",
+    "file": "007 Performer Card Size.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
-      "Performers": ".item-list-container .performer-card"
+      "Performers": ".item-list-container .performer-card",
+      "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
+      "Performers (recomendations)": ".recommendations-container .performer-card"
     },
     "vars": {
       "--snippet-performer-card-width": {
@@ -151,7 +153,7 @@
         "type": "number",
         "unit": "px",
         "default": 295,
-        "min": 50,
+        "min": 160,
         "max": 500,
         "step": 5
       }
@@ -159,12 +161,12 @@
   },
   {
     "name": "Card Buttons",
-    "file": "007 Card Buttons.css",
+    "file": "008 Card Buttons.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card"
@@ -172,19 +174,19 @@
   },
   {
     "name": "Studio Position",
-    "file": "008 Studio Position.css",
+    "file": "009 Studio Position.css",
     "category": "CARD STRUCTURAL",
     "hasGlobal": true,
     "scopes": {
       "Scenes": ".item-list-container .scene-card",
-      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card, .recommendations-container .scene-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
     }
   },
   {
     "name": "Remove Description",
-    "file": "009 Remove Description.css",
+    "file": "010 Remove Description.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
       "Scenes": ".scene-card",
@@ -193,7 +195,7 @@
   },
   {
     "name": "Remove Date",
-    "file": "010 Remove Date.css",
+    "file": "011 Remove Date.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
       "Scenes": ".scene-card",
@@ -202,7 +204,7 @@
   },
   {
     "name": "Remove Buttons",
-    "file": "011 Remove Buttons.css",
+    "file": "012 Remove Buttons.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
       "Scenes": ".scene-card",
@@ -211,7 +213,7 @@
   },
   {
     "name": "Remove Studio",
-    "file": "012 Remove Studio.css",
+    "file": "013 Remove Studio.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
       "Scenes": ".scene-card",
@@ -220,7 +222,7 @@
   },
   {
     "name": "Shorten Card",
-    "file": "013 Shorten Card.css",
+    "file": "014 Shorten Card.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
       "Scenes": ".scene-card",
@@ -229,28 +231,28 @@
   },
   {
     "name": "Wide Studio Logo Position",
-    "file": "014 Wide Studio Logo Position.css",
+    "file": "015 Wide Studio Logo Position.css",
     "category": "CARD STRUCTURAL"
   },
   {
     "name": "Wall View",
-    "file": "015 Wall View.css",
+    "file": "016 Wall View.css",
     "category": "CARD STRUCTURAL",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
     }
   },
   {
     "name": "Native Preview",
-    "file": "016 Native Preview.css",
+    "file": "017 Native Preview.css",
     "category": "CARD STRUCTURAL"
   },
   {
     "name": "Scene Specs Overlay",
-    "file": "017 Scene Specs Overlay.css",
+    "file": "018 Scene Specs Overlay.css",
     "category": "CARD STRUCTURAL",
     "all": "body",
     "vars": {
@@ -315,13 +317,13 @@
     "file": "101 Card Hover BG.css",
     "category": "CARD COLORS",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -335,13 +337,13 @@
     "category": "CARD COLORS",
     "hasGlobal": true,
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -354,13 +356,13 @@
     "file": "102b Card Hover Gradient Down.css",
     "category": "CARD COLORS",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -374,13 +376,13 @@
     "category": "CARD COLORS",
     "hasGlobal": true,
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -393,13 +395,13 @@
     "file": "103b Card Hover Gradient Up.css",
     "category": "CARD COLORS",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Tags": ".tag-card",
@@ -412,13 +414,13 @@
     "file": "201a Card Rating BG.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Images": ".image-card"
@@ -429,13 +431,13 @@
     "file": "201b Card Hover Rating BG.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Images": ".image-card"
@@ -446,13 +448,13 @@
     "file": "202a Card BG Rating Gradient Down.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Images": ".image-card"
@@ -463,13 +465,13 @@
     "file": "202b Card Hover BG Rating Gradient Down.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Images": ".image-card"
@@ -480,13 +482,13 @@
     "file": "203a Card BG Rating Gradient Up.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Images": ".image-card"
@@ -497,13 +499,13 @@
     "file": "203b Card Hover BG Rating Gradient Up.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Images": ".image-card"
@@ -513,14 +515,15 @@
     "name": "Thumbnail Border",
     "file": "204 Thumbnail Border.css",
     "category": "RATING",
+    "hasGlobal": true,
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Images": ".image-card"
     }
@@ -530,24 +533,24 @@
     "file": "205 Card Rating Border.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
-      "Performers": ".item-list-container .performer-card",
+      "Performers": ".item-list-container .performer-card, .recommendations-container .performer-card",
       "Performers (sidebar)": ".scene-tabs .performer-card, .gallery-tabs .performer-card, .image-tabs .performer-card",
       "Studios": ".studio-card",
       "Images": ".image-card"
     }
   },
   {
-    "name": "Scene Card Inset",
+    "name": "Scene Card Rating Inset",
     "file": "206 Scene Card Rating Inset.css",
     "category": "RATING",
     "scopes": {
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card"
     }
   },
@@ -556,11 +559,11 @@
     "file": "207 Default Banner Transparent.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
       "Images": ".image-card"
     }
@@ -570,11 +573,11 @@
     "file": "208a Square Banner.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
       "Images": ".image-card"
     }
@@ -584,11 +587,11 @@
     "file": "208b Square Banner Transparent.css",
     "category": "RATING",
     "scopes": {
-      "Groups": ".item-list-container .group-card",
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
       "Groups (sidebar)": ".scene-tabs .group-card",
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
       "Images": ".image-card"
     }
@@ -598,9 +601,9 @@
     "file": "209 Inline Organized Indicator.css",
     "category": "RATING",
     "scopes": {
-      "Scenes": ".item-list-container .scene-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
       "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
-      "Galleries": ".item-list-container .gallery-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
       "Galleries (sidebar)": ".container.scene-galleries .gallery-card"
     }
   },
@@ -611,6 +614,101 @@
     "scopes": {
       "all": "body"
     }
+  },
+  {
+    "name": "Rating Overlay",
+    "file": "211 Rating Overlay.css",
+    "category": "RATING",
+    "scopes": {
+      "Groups": ".item-list-container .group-card, .recommendations-container .group-card",
+      "Groups (sidebar)": ".scene-tabs .group-card",
+      "Scenes": ".item-list-container .scene-card, .recommendations-container .scene-card",
+      "Scenes (sidebar)": ".container.gallery-scenes .scene-card",
+      "Galleries": ".item-list-container .gallery-card, .recommendations-container .gallery-card",
+      "Galleries (sidebar)": ".container.scene-galleries .gallery-card",
+      "Images": ".image-card"
+    },
+    "vars": {
+      "--banner-position-top": {
+        "label": "Position Top",
+        "type": "number",
+        "unit": "px",
+        "default": -10,
+        "min": -100,
+        "max": 100,
+        "step": 1
+      },
+      "--banner-position-left": {
+        "label": "Position Left",
+        "type": "number",
+        "unit": "px",
+        "default": 60,
+        "min": -100,
+        "max": 100,
+        "step": 1
+      },
+      "--banner-padding": {
+        "label": "Padding",
+        "type": "text",
+        "default": "5px 5px "
+      },
+      "--banner-rotate": {
+        "label": "Rotate",
+        "type": "text",
+        "default": "rotate(36deg)"
+      },
+      "--banner-border-radius": {
+        "label": "Border Radius",
+        "type": "number",
+        "unit": "px",
+        "default": 5,
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "--banner-font-size": {
+        "label": "Font Size",
+        "type": "number",
+        "unit": "px",
+        "default": 14,
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "--banner-font-weight": {
+        "label": "Font Weight",
+        "type": "number",
+        "default": 700,
+        "min": 0,
+        "max": 900,
+        "step": 50
+      },
+      "--banner-filter": {
+        "label": "Filter",
+        "type": "text",
+        "default": "drop-shadow(1px 1px 2px #000)"
+      },
+      "--banner-color": {
+        "label": "Color",
+        "type": "color",
+        "default": "var(--nav)"
+      }
+    }
+  },
+  {
+    "name": "Performer BG",
+    "file": "212 Performer BG.css",
+    "category": "RATING"
+  },
+  {
+    "name": "Gallery Wall Cards Hover",
+    "file": "213 Gallery Wall Cards Hover.css",
+    "category": "RATING"
+  },
+    {
+    "name": "Performer Card Favorite Btn",
+    "file": "214 Performer Card Favorite Btn.css",
+    "category": "RATING"
   },
   {
     "name": "Dark Button Text",

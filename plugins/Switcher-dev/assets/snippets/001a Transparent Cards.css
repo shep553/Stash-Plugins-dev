@@ -12,10 +12,10 @@
 	background: transparent !important;
 }
 .performer-card .thumbnail-section::before {
-	background: linear-gradient(0deg, var(--body) 0%, var(--body) 10%, #bdbdbd 100%) !important;
+	background: linear-gradient(0deg, transparent 10%, var(--performer-bg-top) 100% ) transparent 100% !important;
 }
 .performer-card .thumbnail-section::after {
-	background: linear-gradient(0deg, var(--body) 0%, var(--body) 10%, var(--rating-color) 100%) !important;
+	background: linear-gradient(0deg, transparent 10%, var(--rating-color) 100%) transparent 100% !important;
 }
 
 /* switcher: global */

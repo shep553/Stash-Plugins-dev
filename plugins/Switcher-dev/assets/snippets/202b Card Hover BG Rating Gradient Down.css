@@ -1,12 +1,23 @@
-/*transiitions dont woek for linear-gradients*/
+/*transiitions dont work for linear-gradients*/
 /*fake it with this*/
+.performer-card:has(.rating-banner),
+.group-card:has(.rating-banner),
 .scene-card:has(.rating-banner),
 .image-card:has(.rating-banner),
 .gallery-card:has(.rating-banner),
 .studio-card:has(.rating-banner) {
-  background-image: linear-gradient(to top, #6d8aa000, #0000);
   z-index: 1;
 }
+
+.performer-card:has(.rating-banner):hover:after,
+.group-card:has(.rating-banner):hover:after,
+.scene-card:has(.rating-banner):hover:after,
+.image-card:has(.rating-banner):hover:after,
+.gallery-card:has(.rating-banner):hover:after, 
+.studio-card:has(.rating-banner):hover:after {
+  opacity: 1;
+}
+
 .scene-card:has(.rating-banner):after,
 .image-card:has(.rating-banner):after,
 .gallery-card:has(.rating-banner):after,
@@ -17,24 +28,11 @@
   content: '';
   width: 100%;
   height: 100%;
-	background-image: linear-gradient(0deg, var(--body) 0%, var(--rating-color) 100%);
+	background-image: linear-gradient(0deg, transparent 0%, var(--rating-color) 100%);
 	/*background-image: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 100%) !important;*/
   transition: opacity .3s ease-in-out;
   z-index: -1;
   opacity: 0;
-}
-
-.scene-card:has(.rating-banner):hover:after,
-.image-card:has(.rating-banner):hover:after,
-.gallery-card:has(.rating-banner):hover:after, 
-.studio-card:has(.rating-banner):hover:after {
-  opacity: 1;
-}
-
-.performer-card:has(.rating-banner),
-.group-card:has(.rating-banner) {
-  background-image: linear-gradient(to top, #6d8aa000, #0000);
-  z-index: 1;
 }
 .performer-card:has(.rating-banner):after,
 .group-card:has(.rating-banner):after {
@@ -42,15 +40,11 @@
   content: '';
   width: 100%;
   height: 100%;
-	background-image: linear-gradient(0deg, var(--body) 0%, var(--rating-color) 15%);
+	background-image: linear-gradient(0deg, transparent 0%, var(--rating-color) 15%);
   /*background-image: linear-gradient(0deg, color-mix(in srgb, var(--body) 0%, rgba(255, 255, 255, 0)) 0%, var(--rating-color) 20%) !important;*/
   transition: opacity .3s ease-in-out;
   z-index: -1;
   opacity: 0;
-}
-.performer-card:has(.rating-banner):hover:after,
-.group-card:has(.rating-banner):hover:after {
-  opacity: 1;
 }
 
 
