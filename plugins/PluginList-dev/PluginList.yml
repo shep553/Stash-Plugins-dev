@@ -1,0 +1,10 @@
+name:  PluginList-dev
+description: Changes Plugins list in Settings
+version: 1.0
+ui:
+    javascript:
+        -  PluginList.js
+    css:
+        -  PluginList.css
+    assets:
+        /: .
