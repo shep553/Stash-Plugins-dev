@@ -1,23 +1,25 @@
 .studio-card button.btn.favorite-button {
-  padding: 0;
-  position: absolute;
-  right: -10px;
-  top: -12px;
+	padding: 0;
+	position: absolute;
+	right: -10px;
+	top: -12px;
 }
-.card-section.expanded {					/*studios only*/
-    padding-bottom: 0px !important;
+.card-section.expanded {
+	/*studios only*/
+	padding-bottom: 0px !important;
 }
 .studio-card .card-section {
-  padding: 0px 0px 0px 10px !important;
-
+	padding: 0px 0px 0px 10px !important;
 }
-html body div#root div.main.container-fluid div.item-list-container div.row.justify-content-center div.studio-card.zoom-1.grid-card.card div.card-section div.studio-card__details div.studio-parent-studios {
-	padding: 0px 0px 4px 0px !important;
+.studio-card .studio-parent-studios {
+	padding: 0px 0px 4px 0px;
 }
-	
-/*.studio-card .card-popovers.btn-group {
-	top: -12px !important
-}*/
+.studio-card .card-section-title.flex-aligned .TruncatedText {
+	margin-right: 15px !important
+}
+.studio-card:not(:has(.studio-child-studios, .studio-parent-studios)) .card-section {
+	margin-bottom: 3px	
+}
 
 
 
@@ -26,16 +28,10 @@ html body div#root div.main.container-fluid div.item-list-container div.row.just
 	 																	STUDIO CARDS																			   
 =============================================================================================================================================================*/
 
-.studio-card .card-popovers .minimal.btn.btn-primary {
-	filter: drop-shadow(0px 0px 3px black);
+.studio-card.grid-card.card .card-section-title .TruncatedText {
+	-webkit-line-clamp: 1 !important;
 }
-.studio-card .btn-group {
-	opacity: 0;
-	transition: all 1s ease-in-out;
-}
-.studio-card:hover .btn-group {
-	opacity: 1;
-}
+
 .studio-child-studios>a:nth-child(1),
 .studio-parent-studios>a:nth-child(1) {
 	font-weight: 600
@@ -51,9 +47,6 @@ html body div#root div.main.container-fluid div.item-list-container div.row.just
 #studio-page .full-width .detail-header-image {
 	height: 100%
 }
-/* 
 .studio-card-image {
- filter: drop-shadow(.1px .1px .1px #ffffffab);
-}*/
-
-
+	filter: drop-shadow(0px 0px .1px #ffffffab);
+}

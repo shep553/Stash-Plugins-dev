@@ -1,0 +1,35 @@
+:is(.scene-card) {
+	&:has(:is(
+		.rating-banner.rating-100-2,
+		.rating-banner.rating-100-4,
+		.rating-banner.rating-100-6,
+		.rating-banner.rating-100-8,
+		.rating-banner.rating-100-10,
+		.rating-banner.rating-100-12,
+		.rating-banner.rating-100-14,
+		.rating-banner.rating-100-16,
+		.rating-banner.rating-100-18,
+		.rating-banner.rating-100-20
+	)) .scene-specs-overlay {
+		background: var(--overlay-background), transparent ;
+		padding: var(--overlay-padding);
+	}
+}
+
+
+:is(.scene-card) {
+	&:has(:is(
+		.rating-banner.rating-100-2,
+		.rating-banner.rating-100-4,
+		.rating-banner.rating-100-6,
+		.rating-banner.rating-100-8,
+		.rating-banner.rating-100-10,
+		.rating-banner.rating-100-12,
+		.rating-banner.rating-100-14,
+		.rating-banner.rating-100-16,
+		.rating-banner.rating-100-18,
+		.rating-banner.rating-100-20
+	)) .scene-specs-overlay span{
+		color: var(--rating-text-color) !important;
+	}
+}

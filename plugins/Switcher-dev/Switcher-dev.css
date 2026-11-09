@@ -17,6 +17,7 @@
   --ts-text-error: var(--red);
   --ts-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   --ts-transition-speed: .5s;
+	--ts-transition-speed-medium: 1s;
   --ts-transition-speed-fast: .25s;
   --ts-border-radius: 6px;
   --ts-spacing-unit: 8px;
@@ -87,7 +88,7 @@
   display: grid;
   grid-template-rows: 0fr;
   overflow: hidden;
-  transition: grid-template-rows var(--ts-transition-speed) ease-in-out;
+  transition: grid-template-rows var(--ts-transition-speed-medium) ease-in-out;
 }
 
 .theme-switcher__schemes[data-expanded="true"] {
@@ -299,25 +300,6 @@
   color: var(--accent-transparent);
 }
 
-/* Reset all modified button */
-.theme-switcher__reset-all {
-  display: block;
-  width: 80%;
-  margin: calc(var(--ts-spacing-unit) * 2) auto 10px;
-  padding: 6px 0 10px;
-  background: var(--nav-grey);
-  color: var(--ts-text-primary);
-  border: none;
-  border-radius: var(--ts-border-radius);
-  font-weight: 600;
-  cursor: pointer;
-  transition: color var(--ts-transition-speed-fast);
-}
-
-.theme-switcher__reset-all:hover {
-  color: var(--ts-text-error);
-}
-
 /* Separator shown only when snippets are pinned into the color section */
 .theme-switcher__pinned-separator {
   display: none !important;
@@ -331,15 +313,118 @@
 
 
 /* ============================================================================
-   COLOR GROUPS - Collapsible groups within the color section
+   COLLAPSIBLE - Shared header / chevron / body used by snippet categories,
+   individual snippets and color groups.
+   Structure:  header > info > [chevron, title]   +   body > (inner wrapper)
+   State:      data-expanded="true|false" on both the chevron and the body
+   Variants:   header--group, header--category, body--category
+   (Top-level sections and the schemes list use their own components above.)
    ============================================================================ */
 
-.theme-switcher__rating-colors-header {
-  font-weight: bold;
+.theme-switcher__collapsible-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	padding: 2px 2px 2px 5px;
+	margin-left: 4px;
+	cursor: pointer;
+  transition: color var(--ts-transition-speed-fast) ease-in-out,
+              background-color var(--ts-transition-speed-fast);
+	font-weight: bold;
+  font-size: 0.875rem;
 }
 
-.theme-switcher__rating-colors-panel[data-expanded="true"] {
+.theme-switcher__color-group .theme-switcher__collapsible-header--group {
+	text-transform: uppercase;
+}
+
+.theme-switcher__collapsible-header:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.theme-switcher__collapsible-header:hover .theme-switcher__collapsible-title {
+  color: var(--accent);
+}
+
+.theme-switcher__collapsible-info {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.theme-switcher__collapsible-header--category .theme-switcher__collapsible-info {
+  align-items: center;
+}
+
+.theme-switcher__collapsible-title {
+  max-width: 200px;
+  color: var(--ts-text-primary);
+  transition: color var(--ts-transition-speed-fast) ease-in-out;	
+	margin-left: 6px;
+}
+
+.theme-switcher__collapsible-header--category .theme-switcher__collapsible-title {
+  max-width: none;
+  color: var(--ts-text-primary);
+}
+
+.theme-switcher__collapsible-chevron {
+  display: inline-block;
+  transition: transform var(--ts-transition-speed-fast);
+  vertical-align: 0;
+}
+
+.theme-switcher__collapsible-title .theme-switcher__collapsible-chevron {
+	margin-left: 4px;
+}
+
+.theme-switcher__collapsible-chevron[data-expanded="true"] {
+  transform: rotate(90deg);
+}
+
+.theme-switcher__collapsible-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--ts-transition-speed) ease-in-out;
+}
+
+.theme-switcher__collapsible-body[data-expanded="true"] {
   grid-template-rows: 1fr;
+}
+
+.theme-switcher__collapsible-body > * {
+  min-height: 0;
+}
+
+.theme-switcher__collapsible-body--category {
+  background: var(--nav-grey);
+  border-radius: 6px;
+}
+
+
+/* ============================================================================
+   COLOR GROUPS - Group-specific styles (header/body come from COLLAPSIBLE above)
+   ============================================================================ */
+
+/* Reset button at the bottom of each group */
+.theme-switcher__color-group-reset {
+  display: block;
+  width: 80%;
+  margin: calc(var(--ts-spacing-unit) * 2) auto 10px;
+  padding: 6px 0 10px;
+  background: var(--nav-grey);
+  color: var(--ts-text-primary);
+  border: none;
+  border-radius: var(--ts-border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--ts-transition-speed-fast);
+}
+
+.theme-switcher__color-group-reset:hover {
+  color: var(--ts-text-error);
 }
 
 
@@ -372,87 +457,6 @@
 .theme-switcher__snippet-search:focus-visible {
   box-shadow: 0 0 0 1px var(--accent);
   outline: none;
-}
-
-.theme-switcher__snippet-category-header {
-  padding: 2px 2px 2px 5px;
-  transition: color var(--ts-transition-speed-fast) ease-in-out;
-}
-
-.theme-switcher__snippet-category-header:hover {
-  color: var(--accent);
-  cursor: pointer;
-}
-
-.theme-switcher__snippet-category-name {
-  font-weight: bold;
-  font-size: 0.875rem;
-  padding: 4px;
-}
-
-.theme-switcher__snippet-category-body {
-  display: grid;
-  grid-template-rows: 0fr;
-  overflow: hidden;
-  transition: grid-template-rows var(--ts-transition-speed) ease-in-out;
-  background: var(--nav-grey);
-  border-radius: 6px;
-}
-
-.theme-switcher__snippet-category-body[data-expanded="true"] {
-  grid-template-rows: 1fr;
-}
-
-.theme-switcher__snippet-category-body > * {
-  min-height: 0;
-}
-
-/* Snippet header row */
-.theme-switcher__snippet-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2px var(--ts-spacing-unit) 4px;
-  margin-left: 4px;
-  cursor: pointer;
-  transition: background-color var(--ts-transition-speed-fast);
-}
-
-.theme-switcher__snippet-header:hover {
-  background: transparent;
-  color: var(--accent);
-}
-
-.theme-switcher__snippet-header:hover .theme-switcher__snippet-name {
-  color: var(--accent);
-}
-
-.theme-switcher__snippet-info {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  flex: 1;
-}
-
-.theme-switcher__snippet-name {
-  max-width: 200px;
-  color: var(--ts-text-primary);
-  font-size: 0.950rem;
-}
-
-.theme-switcher__snippet-chevron {
-  display: inline-block;
-  margin-left: 2px;
-  transition: transform var(--ts-transition-speed-fast);
-  vertical-align: 0;
-}
-
-.theme-switcher__snippet-category-header .theme-switcher__snippet-chevron {
-  vertical-align: -1px;
-}
-
-.theme-switcher__snippet-chevron[data-expanded="true"] {
-  transform: rotate(90deg);
 }
 
 /* Pin button for snippets */
@@ -513,22 +517,6 @@
   left: 10px;
 }
 
-/* Snippet expandable panel */
-.theme-switcher__snippet-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  overflow: hidden;
-  transition: grid-template-rows var(--ts-transition-speed) ease-in-out;
-}
-
-.theme-switcher__snippet-panel[data-expanded="true"] {
-  grid-template-rows: 1fr;
-}
-
-.theme-switcher__snippet-panel > * {
-  min-height: 0;
-}
-
 /* Scope selection panel */
 .theme-switcher__scope-panel {
   display: flex;
@@ -543,7 +531,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 25px 4px 5px;
+  padding: 4px 20px 4px 5px;
   margin-bottom: 2px;
 }
 
@@ -560,10 +548,8 @@
 }
 
 .theme-switcher__scope-option--global {
-  background: var(--card);
-  box-shadow: 0 0 0px 1px var(--nav-grey);
-  margin-top: 8px;
-  margin-bottom: 6px;
+	border-bottom: 1px solid var(--nav-grey);
+	padding-bottom: 10px; 
 }
 
 .theme-switcher__scope-label {
@@ -669,12 +655,13 @@ input.theme-switcher__var-input[type="text"] {
 .theme-switcher__favorites-name-input {
   flex: 1;
   padding: 6px;
-  font-size: 12px;
+	padding-bottom: 5px;
+	font-size: 12px;
   border: none;
   background: var(--nav-grey);
   color: inherit;
   margin-left: 5px;
-  border-radius: 5px;
+	border-radius: 5px;
 }
 
 .theme-switcher__favorites-name-input:focus-visible {

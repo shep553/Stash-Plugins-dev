@@ -1,0 +1,36 @@
+:is(.scene-card) {
+	&:has(:is(
+		.rating-banner.rating-100-2,
+		.rating-banner.rating-100-4,
+		.rating-banner.rating-100-6,
+		.rating-banner.rating-100-8,
+		.rating-banner.rating-100-10,
+		.rating-banner.rating-100-12,
+		.rating-banner.rating-100-14,
+		.rating-banner.rating-100-16,
+		.rating-banner.rating-100-18,
+		.rating-banner.rating-100-20
+	)) .scene-specs-overlay {
+		background: var(--rating-color, var(--overlay-background));
+		padding: var(--overlay-padding, 0px 3px 2px 3px);
+		text-shadow: none;
+	}
+}
+
+
+:is(.scene-card) {
+	&:has(:is(
+		.rating-banner.rating-100-2,
+		.rating-banner.rating-100-4,
+		.rating-banner.rating-100-6,
+		.rating-banner.rating-100-8,
+		.rating-banner.rating-100-10,
+		.rating-banner.rating-100-12,
+		.rating-banner.rating-100-14,
+		.rating-banner.rating-100-16,
+		.rating-banner.rating-100-18,
+		.rating-banner.rating-100-20
+	)) .scene-specs-overlay span{
+		color: var(--rating-solidbg-color) !important
+	}
+}

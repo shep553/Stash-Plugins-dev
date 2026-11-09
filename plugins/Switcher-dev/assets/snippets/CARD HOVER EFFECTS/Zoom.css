@@ -1,0 +1,53 @@
+.image-card,
+.scene-marker-card,
+.tag-card,
+.studio-card,
+.performer-card,
+.gallery-card,
+.scene-card,
+.group-card {
+	transition: transform ease .5s !important;
+}
+.image-card:hover,
+.scene-marker-card:hover,
+.tag-card:hover,
+.studio-card:hover,
+.performer-card:hover,
+.gallery-card:hover,
+.scene-card:hover,
+.group-card:hover {
+	transform: scale(105%) !important;
+}
+
+.performer-card.zoom-undefined.grid-card.card {
+	transform: scale(95%);
+}
+.performer-card.zoom-undefined.grid-card.card:hover {
+	transform: scale(100%) !important;
+}
+
+
+
+/* switcher: global */
+
+.main.container-fluid:has(.studio-list) .row.justify-content-center,
+.main.container-fluid:has(.gallery-list .performer-card) .row.justify-content-center,
+.main.container-fluid:has(.gallery-list):not(:has(.performer-card)) .row.justify-content-center,
+.main.container-fluid:has(.scene-list .scene-marker-card) .row.justify-content-center,
+.main.container-fluid:has(.scene-list):not(:has(.scene-marker-card)) .row.justify-content-center {
+	margin-right: 0rem;
+	margin-left: 0rem;
+	margin-top: 1rem;
+	gap: 5px;
+}
+.main.container-fluid:has(.image-list) .item-list-container.image-list .row.justify-content-center {
+	margin-top: 1rem;
+	gap: 5px;
+}
+.main.container-fluid:has(.tag-list) .row.row.justify-content-center,
+.main.container-fluid:has(.group-list) .row.justify-content-center {
+	margin-right: -8rem;
+	margin-left: -8rem;
+	margin-top: 1rem;
+	gap: 5px;
+}

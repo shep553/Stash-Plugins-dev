@@ -15,6 +15,34 @@ settings:
     displayName: Blurred Background
     description: Shows a blurred version of the preview image behind the card when the image doesn't fill the full area (e.g. portrait scenes in a landscape card).
     type: BOOLEAN
+  expandTitleScene:
+    displayName: Expand Titles - Scene Cards
+    description: Expand truncated titles on hover for scene cards.
+    type: BOOLEAN
+  expandTitleGallery:
+    displayName: Expand Titles - Gallery Cards
+    description: Expand truncated titles on hover for gallery cards.
+    type: BOOLEAN
+  expandTitleGroup:
+    displayName: Expand Titles - Group Cards
+    description: Expand truncated titles on hover for group cards.
+    type: BOOLEAN
+  scrollTitleScene:
+    displayName: Scroll Titles - Scene Cards
+    description: Scroll truncated titles horizontally on hover instead of expanding (overrides Expand).
+    type: BOOLEAN
+  scrollTitleGallery:
+    displayName: Scroll Titles - Gallery Cards
+    description: Scroll truncated titles horizontally on hover instead of expanding (overrides Expand).
+    type: BOOLEAN
+  scrollTitleGroup:
+    displayName: Scroll Titles - Group Cards
+    description: Scroll truncated titles horizontally on hover instead of expanding (overrides Expand).
+    type: BOOLEAN  
+  scrollTitleStudio:
+    displayName: Scroll Titles - Studio Cards
+    description: Scroll truncated titles horizontally on hover instead of expanding (overrides Expand).
+    type: BOOLEAN    
 ui:
   css:
     - SceneCardStudioLogoEnhancer.css

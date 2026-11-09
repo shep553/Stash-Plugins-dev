@@ -1,0 +1,10 @@
+.image-card .rating-banner,
+.group-card .rating-banner,
+.gallery-card .rating-banner,
+.scene-card .rating-banner {
+	transform: var(--banner-rotate);
+	top: var(--banner-top);
+	left: var(--banner-left);
+	border-radius: var(--banner-radius);
+	filter: var(--banner-filter);
+}

@@ -1,0 +1,53 @@
+.group-card,
+.scene-card,
+.gallery-card,
+.performer-card,
+.studio-card,
+.tag-card,
+.image-card,
+.scene-marker-card {
+	transition: transform var(--slow) var(--ease), box-shadow var(--mid) var(--ease), border-color var(--mid) var(--ease);
+}
+
+.group-card:hover,
+.scene-card:hover,
+.gallery-card:hover,
+.performer-card:hover,
+.studio-card:hover,
+.tag-card:hover,
+.image-card:hover,
+.scene-marker-card:hover {
+	transform: translateY(-7px);
+}
+
+
+/* switcher: global */
+
+:root {
+	--ease: cubic-bezier(0.33, 1, 0.68, 1);
+	--fast: 0.14s;
+	--mid: 0.24s;
+	--slow: 0.36s;
+}
+
+.main.container-fluid:has(.studio-list) .row.justify-content-center,
+.main.container-fluid:has(.gallery-list .performer-card) .row.justify-content-center,
+.main.container-fluid:has(.gallery-list):not(:has(.performer-card)) .row.justify-content-center,
+.main.container-fluid:has(.scene-list .scene-marker-card) .row.justify-content-center,
+.main.container-fluid:has(.scene-list):not(:has(.scene-marker-card)) .row.justify-content-center {
+	margin-right: 0rem;
+	margin-left: 0rem;
+	margin-top: 1rem;
+	gap: 5px;
+}
+.main.container-fluid:has(.image-list) .item-list-container.image-list .row.justify-content-center {
+	margin-top: 1rem;
+	gap: 5px;
+}
+.main.container-fluid:has(.tag-list) .row.row.justify-content-center,
+.main.container-fluid:has(.group-list) .row.justify-content-center {
+	margin-right: -8rem;
+	margin-left: -8rem;
+	margin-top: 1rem;
+	gap: 5px;
+}

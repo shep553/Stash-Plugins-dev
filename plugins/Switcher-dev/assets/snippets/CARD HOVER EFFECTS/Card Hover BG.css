@@ -1,0 +1,38 @@
+.scene-card,
+.scene-marker-card,
+.group-card,
+.studio-card,
+.image-card,
+.gallery-card,
+.performer-card,
+.tag-card {
+  transition: all .3s ease-in-out !important;
+}
+.scene-card:hover,
+.scene-marker-card:hover,
+.group-card:hover,
+.studio-card:hover,
+.image-card:hover,
+.gallery-card:hover,
+.performer-card:hover,
+.tag-card:hover {
+  background: var(--card-hover) !important;
+}
+.tag-card .tag-card-image.default-image {
+  background: transparent !important;
+}
+.tag-card:hover .tag-card-image {
+  background: transparent !important;
+}
+.scene-card:hover .scene-card-preview,
+.group-card:hover .group-card-image,
+.scene-card:hover .scene-card-preview-video,
+.scene-card:hover .scene-card-preview-image,
+.performer-card:hover .performer-card-image,
+.performer-card:hover .thumbnail-section::after,
+.performer-card:hover .thumbnail-section::before,
+.performer-card .thumbnail-section::after,
+.performer-card .thumbnail-section::before {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}

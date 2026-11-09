@@ -1,9 +1,0 @@
-name: DescriptionExpander-dev
-description: Expands scene/gallery descriptions on hover with smooth animation
-version: 2.0
-url: https://github.com/stash-community/stash-plugins
-ui:
-  css:
-    - DetailsDescription.css
-  javascript:
-    - DetailsDescription.js

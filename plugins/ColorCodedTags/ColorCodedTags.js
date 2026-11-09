@@ -234,6 +234,25 @@
     //style(label, { backgroundColor });
   }
 
+  // Tags in the search/filter "includes/excludes" summary badge.
+  // Unlike the other cases, this element holds a label plus a comma-separated
+  // list of multiple tags in a single text node (e.g.
+  // "Tags includes all aa1. Soft Glow, aa1. POV, ad3. Cell"), so each tag's
+  // category code has to be stripped out individually while leaving the
+  // label and comma-separated structure intact.
+  function renameWrapTags(el) {
+    const textNode = [...el.childNodes].find(n => n.nodeType === Node.TEXT_NODE);
+    if (!textNode) return;
+
+    el.title = textNode.textContent;
+    if (CONFIG.showCategoryCode) return;
+
+    const categories = Object.keys(categoryColors).sort((a, b) => b.length - a.length);
+    const tagRegex = new RegExp(`\\b(?:${categories.join("|")})\\d*\\.\\s+([^,[]+)(?:\\[[^\\]]+])?`, "g");
+
+    textNode.textContent = textNode.textContent.replace(tagRegex, (_, name) => name.trim());
+  }
+
   function parseTag(string) {
     const [_, category, realTagName, nameOverride] =
       string.match(/(?:(\w+)(?:[^.]+)\.)\s+([^[]+)(?:\[([^[]+)])?/) ?? [];
@@ -254,6 +273,10 @@
   onElementReady(".TagTagger-header h2", renameTag, script_name);
   onElementReady(".tag-name", renameTag, script_name);
   onElementReady(".TagTagger-details-text .text-input.form-control", renameTag, script_name);
-
+  onElementReady(".wrap-tags.filter-tags span.tag-item.badge.badge-secondary", renameWrapTags, script_name);
+  onElementReady(".react-select__option", renameTag, script_name);
+  onElementReady(".react-select__single-value", renameTag, script_name);
+  
+  
 
 })();

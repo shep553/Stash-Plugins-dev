@@ -1,0 +1,8 @@
+name: MaskDescription-dev
+description: Masks and expands scene/gallery descriptions on hover with smooth animation
+version: 2.0
+ui:
+  css:
+    - MaskDescription.css
+  javascript:
+    - MaskDescription.js

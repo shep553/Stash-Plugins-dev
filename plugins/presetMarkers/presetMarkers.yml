@@ -1,0 +1,15 @@
+name: presetMarkers
+description: A user-configurable list of one-click marker presets (title, primary tag, extra tags). You just supply the timestamp.
+version: 0.1.0
+ui:
+  javascript:
+    - presetMarkers.js
+  css:
+    - presetMarkers.css
+settings:
+  presets:
+    displayName: Marker Presets (JSON)
+    description: >
+      JSON array of presets, e.g.
+      [{"title":"Kiss","primaryTag":"Kissing","tags":["Romantic"]}]
+    type: STRING

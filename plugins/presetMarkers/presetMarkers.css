@@ -1,0 +1,66 @@
+.preset-markers-panel {
+  padding: 0.5rem 0.1rem 2.5rem;
+  border-bottom: 1px solid var(--border-color, #444);
+  margin-bottom: 2rem;
+}
+
+.preset-markers-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.preset-markers-status {
+  margin-top: 0.4rem;
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+.preset-markers-form {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  /*border-top: 1px solid var(--border-color, #444);*/
+  max-width: 420px;
+}
+
+.preset-markers-form .duration-control {
+  font-variant-numeric: tabular-nums;
+}
+
+.preset-markers-form .input-group-append {
+  display: flex;
+}
+
+.preset-markers-form .btn-group-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.preset-markers-form .btn-group-vertical .btn {
+  padding: 0 0.5rem;
+  line-height: 1;
+}
+
+.preset-markers-panel .form-control {
+  background: var(--nav-grey-dark);
+  border: none;
+  color: #fff;
+}
+
+.preset-markers-form .d-flex.gap-2 {
+  gap: 1rem;
+}
+
+.preset-markers-form .d-flex.gap-3 {
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.preset-markers-panel .input-group-append .btn.btn-secondary:focus {
+  box-shadow: none;
+}
+
+.preset-markers-form .input-group-append {
+  display: flex;
+  z-index: 0;
+}

@@ -1,104 +1,4 @@
 
-/*=============================================================================================================================================================
-originally in CMD.css						                                          SCENE/GALLERY CARDS																		   
-=============================================================================================================================================================*/
-
-/*title for galleries with no description stays at top
-.gallery-card.grid-card.card .card-section {
-	margin-top: 5px;
-	margin-bottom: -20px;
-}
-.scene-card.grid-card.card .card-section {
-	margin-bottom: -5px;
-}
-.card-date-row,
-.card-header-row {
-	margin-top: -5px;
-}
-.TruncatedText.gallery-card__description,
-.TruncatedText.scene-card__description {
-	font-size: 13px;
-}
-/*btn-group stays at bottom of card when there is no description
-.gallery-card .card-popovers.btn-group,
-.scene-card .card-popovers.btn-group {
-	margin-top: auto;
-	margin-bottom: 5px;
-}
-*/
-
-
-
-.card-header-row {
-	margin-top: -5px;
-}
-.card-date-row {
-	margin-top: -5px;
-}
-.gallery-card__description,
-.scene-card__description {
-	margin-top: 5px;
-}
-.gallery-card.grid-card.card .card-section {
-	margin-top: 5px;
-	margin-bottom: -15px;
-}
-
-
-/*Make the performer tags in popover take up less width */
-.performer-tag-container {
-	margin-left: -5px;
-	margin-right: -1px;
-	padding-bottom: 0rem;
-	background: transparent;
-}
-#popover.fade.hover-popover-content.show.popover.bs-popover-bottom {
-	border: 3px var(--card-outline) solid;
-}
-/*performer tag names popover*/
-.tag-item.d-block.badge.badge-secondary {
-	padding: .2em .6em 0em .6em;
-	font-weight: 700;
-	border-radius: .25rem;
-}
-#popover .performer-disambiguation {
-	display: none;
-}
-.scene-specs-overlay {
-	filter: drop-shadow(.2px .2px 2px #000);
-	/*background-color: #0000005c;					 
-    /*border-radius: 3px;
-    padding: 0 3px;*/
-}
-.fileless .scene-card-preview-image {
-	background-color: var(--red);
-}
-.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,
-.scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {
-	-webkit-line-clamp: 1 !important;
-}
-.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
-.scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
-	-webkit-line-clamp: 1 !important;
-}
-.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,
-.scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
-.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
-.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
-	-webkit-line-clamp: 3 !important;
-}
-.card .card-section-title .TruncatedText {
-	-webkit-line-clamp: 3 !important;
-}
-.scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
-	-webkit-line-clamp: 1 !important;
-}
-/*removes underline from gallery wall, img title cards*/
-.GalleryWallCard-footer:hover .GalleryWallCard-title {
-	text-decoration: none;
-}
-
-
 /* Studio Logo Enhancer Styles  */
 
 /* Card header layout */
@@ -121,6 +21,9 @@ originally in CMD.css						                                          SCENE/GALLE
   height: 100%;
   object-fit: contain;
 }
+/*.title-date {
+	margin-right: -5px
+}*/
 .image-thumbnail {
   object-position: center;
 }
@@ -161,10 +64,6 @@ originally in CMD.css						                                          SCENE/GALLE
 .placeholder-studio-svg {
   opacity: 0.9;
 }
-.placeholder-studio-svg.logo-square.logo-fat,
-.placeholder-studio-name.logo-square.logo-fat {
-  width: unset;
-}
 .placeholder-studio-name.logo-square.logo-fat {
   margin-top: 1px;
   margin-left: 5px;
@@ -192,19 +91,17 @@ originally in CMD.css						                                          SCENE/GALLE
 .gallery-header-container .studio-logo.placeholder-studio.logo-square {
   margin-top: 1rem;
 }
- 
-html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div div.scene-header-container h1.text-center.studio-logo a img.placeholder-studio-name,
-html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gallery-header-container h1.text-center.studio-logo a img.placeholder-studio-name {
+.scene-tabs .text-center .placeholder-studio-svg,
+.gallery-tabs .text-center .placeholder-studio-svg,
+.scene-tabs .text-center .placeholder-studio-name,
+.gallery-tabs .text-center .placeholder-studio-name {
   width: 200px;
   height: 150px;
-}
-html body div#root div.main.container-fluid div.row div.scene-tabs.order-xl-first.order-last div div.scene-header-container h1.text-center.studio-logo a img.placeholder-studio-svg,
-html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gallery-header-container h1.text-center.studio-logo a img.placeholder-studio-svg {
-  width: 200px;
-  height: 150px;
+	padding-right: 4rem;
+	padding-bottom: 1rem;	
 }
 #studio-page .logo.placeholder-studio-svg {
-  padding-left: 20px;
+  padding-left: 15px;
   padding-top: 10px;
 }
 #studio-page .logo.placeholder-studio-name {
@@ -244,7 +141,6 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
   color: var(--tags);
   font-size: 0.8rem;
 }
-
 
 /* Condensed inline btn-group */
 .scene-card .card-popovers.btn-group.inline-popovers,
@@ -303,7 +199,6 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
   opacity: 0.6;
 }
 
-
 /* Blurred background for scene/marker cards
    object-fit: contain on the image and video is injected by JS only when
    the blurredBackground setting is enabled, so turning it off fully restores
@@ -322,45 +217,230 @@ html body div#root div.main.container-fluid div.row div.gallery-tabs div div.gal
   pointer-events: none;
   user-select: none;
 }
- 
+.scene-card-preview-image {
+	background: rgba(0,0,0,.15)
+}
 
 /* Scene Marker Card — restructured layout */
 .scene-marker-card .card-section-title.flex-aligned {
-    margin-top: -0.2rem;
+  margin-top: -0.2rem;
 }
 .scene-marker-card .TruncatedText.scene-marker-card__scene {
-    font-size: 1rem;
-    margin-bottom: 5px;
+  font-size: 1rem;
+  margin-bottom: 5px;
 }
 .scene-marker-card .card-date-row {
-    display: flex;
-    gap: 0.3rem;
-    flex-wrap: nowrap;
- 	  align-items: center; 
-	  margin-bottom: 10px;
-		margin-top: -4px;
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+  align-items: center; 
+  margin-bottom: 10px;
+  margin-top: -4px;
 }
 .scene-marker-card .card-date-separator {
-    color: var(--tags);
-    font-size: 0.8rem;
-    margin-left: 5px;	
+  color: var(--tags);
+  font-size: 0.8rem;
+  margin-left: 5px;	
 }
 .scene-marker-card .scene-marker-card__time {
-    font-size: 12px;
-    color: var(--tags);
-    white-space: nowrap;
+  font-size: 12px;
+  color: var(--tags);
+  white-space: nowrap;
 }
 .scene-marker-card .card-popovers.btn-group.inline-popovers {
-    margin-left: -2px;
+  margin-left: -2px;
 }
 .scene-marker-card .card-popovers.btn-group.inline-popovers .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0 !important;
-    font-size: 0.7em;
-    line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 !important;
+  font-size: 0.7em;
+  line-height: 1;
 }
 .scene-marker-card .card-popovers.btn-group.inline-popovers .fa-icon {
-    margin-right: 1px !important;
+  margin-right: 1px !important;
 }
 
+.group-card .thumbnail-section {
+  position: relative !important;
+}
+.group-card .btn-group {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0rem;
+  left: 0;
+}
+
+/* ===== Title hover: expand / scroll (timing lives here) ===== */
+:root {
+  --tle-delay: 500ms;        /* dwell before anything starts */
+  --tle-fade: 0ms;         /* fade out/in around the reflow */
+  --tle-grow: 700ms;         /* expand/collapse */
+  --tle-back: 1000ms;         /* scroll back to start */
+  --tle-scroll-speed: 0.06;  /* px per ms */
+  --tle-scroll-min: 800ms;
+	--tle-color: color .3s ease-in-out;
+}
+
+/* :not(#tle) lifts specificity above the :has() line-clamp rules */
+body.title-expand-hover .card .TruncatedText.tle-active:not(#tle) {
+  transition:
+    opacity var(--tle-fade) ease,
+    max-height var(--tle-grow) ease,
+    text-indent var(--tle-back) ease,
+		var(--tle-color);
+}
+/* dwell: the delay applies to opacity only */
+body.title-expand-hover .card .TruncatedText.tle-pending:not(#tle) {
+  opacity: 0;
+  transition-delay: var(--tle-delay), 0s, 0s;
+}
+body.title-expand-hover .card .TruncatedText.tle-fading:not(#tle) {
+  opacity: 0;
+}
+
+/* expand */
+body.title-expand-hover .card .TruncatedText.tle-open:not(#tle) {
+  -webkit-line-clamp: unset !important;
+  max-height: var(--tle-from);
+}
+body.title-expand-hover .card .TruncatedText.tle-open.tle-grown:not(#tle) {
+  max-height: var(--tle-to);
+}
+
+/* scroll */
+body.title-expand-hover .card.lines-actual-1 .TruncatedText.tle-scroll:not(#tle) {
+  -webkit-line-clamp: unset !important;
+  display: block;
+  white-space: nowrap;
+  text-overflow: clip;
+  contain: inline-size;
+  height: var(--tle-h);
+  width: var(--tle-w);
+  --tle-scroll-ms: max(var(--tle-scroll-min), calc(var(--tle-dist) / var(--tle-scroll-speed) * 1ms));
+}
+body.title-expand-hover .card.lines-actual-1 .TruncatedText.tle-scroll.tle-scrolling:not(#tle) {
+  text-indent: calc(var(--tle-dist) * -1px);
+  transition:
+    opacity var(--tle-fade) ease,
+    max-height var(--tle-grow) ease,
+    text-indent var(--tle-scroll-ms) var(--tle-fade) linear,
+		var(--tle-color);
+}
+
+body.title-expand-hover .studio-card.card .TruncatedText.tle-scroll:not(#tle) {
+  -webkit-line-clamp: unset !important;
+  display: block;
+  white-space: nowrap;
+  text-overflow: clip;
+  contain: inline-size;
+  height: var(--tle-h);
+  width: var(--tle-w);
+  --tle-scroll-ms: max(var(--tle-scroll-min), calc(var(--tle-dist) / var(--tle-scroll-speed) * 1ms));
+}
+body.title-expand-hover .studio-card.card .TruncatedText.tle-scroll.tle-scrolling:not(#tle) {
+  text-indent: calc(var(--tle-dist) * -1px);
+  transition:
+    opacity var(--tle-fade) ease,
+    max-height var(--tle-grow) ease,
+    text-indent var(--tle-scroll-ms) var(--tle-fade) linear,
+		var(--tle-color);
+}
+
+
+/*=============================================================================================================================================================
+originally in CMD.css						                                          SCENE/GALLERY CARDS																		   
+=============================================================================================================================================================*/
+
+/*title for galleries with no description stays at top
+.gallery-card.grid-card.card .card-section {
+	margin-top: 5px;
+	margin-bottom: -20px;
+}
+.scene-card.grid-card.card .card-section {
+	margin-bottom: -5px;
+}
+.card-date-row,
+.card-header-row {
+	margin-top: -5px;
+}
+.TruncatedText.gallery-card__description,
+.TruncatedText.scene-card__description {
+	font-size: 13px;
+}
+/*btn-group stays at bottom of card when there is no description
+.gallery-card .card-popovers.btn-group,
+.scene-card .card-popovers.btn-group {
+	margin-top: auto;
+	margin-bottom: 5px;
+}
+*/
+
+.card-header-row {
+	margin-top: -5px;
+}
+.card-date-row {
+	margin-top: -5px;
+}
+.gallery-card__description,
+.scene-card__description {
+	margin-top: 5px;
+}
+.gallery-card.grid-card.card .card-section {
+	margin-top: 5px;
+	margin-bottom: -15px;
+}
+
+/*Make the performer tags in popover take up less width */
+.performer-tag-container {
+	margin-left: -5px;
+	margin-right: -1px;
+	padding-bottom: 0rem;
+	background: transparent;
+}
+#popover.fade.hover-popover-content.show.popover.bs-popover-bottom {
+	border: 3px var(--card-outline) solid;
+}
+/*performer tag names popover*/
+/*.tag-item.d-block.badge.badge-secondary {
+	padding: .2em .6em 0em .6em;
+	font-weight: 700;
+	border-radius: .25rem;
+}*/
+#popover .performer-disambiguation {
+	display: none;
+}
+.scene-specs-overlay {
+	filter: drop-shadow(.2px .2px 2px #000);
+	/*background-color: #0000005c;					 
+  border-radius: 3px;
+  padding: 0 3px;*/
+}
+.fileless .scene-card-preview-image {
+	background-color: var(--red);
+}
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-section-title .TruncatedText,
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-section-title .TruncatedText {
+	-webkit-line-clamp: 1 !important;
+}
+.gallery-card:has(.gallery-card__description):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
+.scene-card:has(.scene-card__description):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
+	-webkit-line-clamp: 1 !important;
+}
+.gallery-card:not(:has(.gallery-card__description)):not(:has(.gallery-card__date)) .card-header-row .card-section-title .TruncatedText,
+.scene-card:not(:has(.scene-card__description)):not(:has(.scene-card__date)) .card-header-row .card-section-title .TruncatedText,
+.gallery-card:not(:has(.gallery-card__description)):has(.gallery-card__date) .card-header-row .card-section-title .TruncatedText,
+.scene-card:not(:has(.scene-card__description)):has(.scene-card__date) .card-header-row .card-section-title .TruncatedText {
+	-webkit-line-clamp: 3 !important;
+}
+.card .card-section-title .TruncatedText {
+	-webkit-line-clamp: 3 !important;
+}
+.scene-card:has(.scene-card__description):has(.scene-card__date):not(:has(.studio-overlay)) .card-section-title .TruncatedText {
+	-webkit-line-clamp: 1 !important;
+}
+/*removes underline from gallery wall, img title cards*/
+.GalleryWallCard-footer:hover .GalleryWallCard-title {
+	text-decoration: none;
+}

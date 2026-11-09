@@ -39,7 +39,7 @@
     ${CARD_SELECTOR} .TruncatedText {
       margin: 0;
       padding: 0;
-      display: block;
+      /*display: block;*/
     }
     ${CARD_SELECTOR} .studio-card__details {
       display: block;
@@ -107,7 +107,7 @@
       if (thumbnail && checkbox && btnGroup && btnGroup.dataset.moved) {
         const thumbRect = thumbnail.getBoundingClientRect();
         const chkRect   = checkbox.getBoundingClientRect();
-        btnGroup.style.top  = `${chkRect.top  - thumbRect.top  - 5}px`;
+        btnGroup.style.top  = `${chkRect.top  - thumbRect.top  - 6}px`;
         btnGroup.style.left = `${chkRect.right - thumbRect.left + CONFIG.buttonLeftOffset}px`;
       }
     }));

@@ -1,0 +1,28 @@
+
+
+.tag-card.card .card-popovers .minimal.btn.btn-primary,
+.studio-card.card .card-popovers .minimal.btn.btn-primary,
+.performer-card.card .card-popovers .minimal.btn.btn-primary,
+.group-card.card .card-popovers .minimal.btn.btn-primary {	
+	color: var(--nav);
+}	
+
+/* switcher: global */
+.stash-id-pill,
+.badge-secondary,
+.badge-info,
+#configuration-tabs-tabpane-system .btn-secondary,
+#tasks-panel .btn-secondary,
+.btn-primary:disabled,
+.btn-primary {	
+	color: var(--nav);
+}
+
+#date-picker-portal .react-datepicker__day--keyboard-selected.react-datepicker__day--today,
+#date-picker-portal .react-datepicker__day--selected {	
+	color: var(--nav) !important
+}
+
+.modifier-option.btn.btn-primary {
+	color: var(--btn-text);
+}

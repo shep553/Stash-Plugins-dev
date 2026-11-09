@@ -140,8 +140,6 @@
 
 }
 
-
-
 /* =============================================================================================================================================================
 	 																	GLOBAL CHANGES																		   	
    ============================================================================================================================================================= */
@@ -156,90 +154,88 @@ div.nav-link[data-rb-event-key="/images"] {	order: -2;}
 div.nav-link[data-rb-event-key="/tags"] { order: -3;}
 
 .top-nav .btn-primary.btn.donate.minimal {
-	display: none;
+  display: none;
 }
 /*Moves the popup when finished editing/deleting etc to bottom right*/
 .toast-container {
-	position: fixed;
-	right: 2rem;
-	bottom: 1rem;
-	top: initial;
-	left: initial;
+  position: fixed;
+  right: 2rem;
+  bottom: 1rem;
+  top: initial;
+  left: initial;
 }
 /* Remove on-hover underline */
 a:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
 
-
-/*======  Tags  =====*/
+/* ======  Tags  ===== */
 
 /*galleries dont have a discrete selector*/
 #popover .group-tag-container .tag-item.badge-secondary,
 #popover .performer-tag-container .tag-item.badge-secondary {
-	background-color: transparent;
-	color: var(--color-title) !important;									
-	font-weight: 700;
-	border-radius: .25rem;
+  background-color: transparent;
+  color: var(--color-title) !important;
+  font-weight: 700;
+  border-radius: .25rem;
 }
 #popover .group-tag-container .tag-item.badge-secondary a:hover,
 #popover .performer-tag-container .tag-item.badge-secondary a:hover {
-	color: var(--accent) !important;									
+  color: var(--accent) !important;
 }
 .tag-item.badge.badge-secondary {
-	background-color: var(--tags);
-	padding: .4em .6em .45em .6em;
-	font-weight: 700;
-	border-radius: .25rem;
+  background-color: var(--tags);
+  padding: .4em .6em .45em .6em;
+  font-weight: 700;
+  border-radius: .25rem;
 }
 .tag-item.tag-link.badge.badge-secondary {
-	opacity: .8;
-	transition: opacity .3s ease-in-out;
+  opacity: .8;
+  transition: opacity .3s ease-in-out;
 }
 .tag-item.tag-link.badge.badge-secondary:hover {
-	opacity: 1;
+  opacity: 1;
 }
-
 
 /* =============================================================================================================================================================
 	 																	GLOBAL COLOR CHANGES																		   	
    ============================================================================================================================================================= */
 
 body {
-	background-color: var(--body);
-	color: var(--color-body) !important
+  background-color: var(--body);
+  color: var(--color-body) !important
 }
 .bg-dark {
-	background-color: var(--nav) !important;
+  background-color: var(--nav) !important;
 }
 .card {
-	background-color: var(--card);
-	transition: background-color 0.3s ease-in-out !important;
+  background-color: var(--card);
+  /*transition: background-color 0.3s ease-in-out !important;*/
 }
 .popover {
-	background-color: var(--card)
+  background-color: var(--card)
 }
 * {
-	scrollbar-color: var(--nav-grey) transparent;
+  scrollbar-color: var(--accent) var(--nav);
+  scrollbar-width: thin;	
 }
 /*main container*/
 ::selection {
-	background-color: rgba(173, 173, 173, .74);
-	color: #fff;
+  background-color: rgba(173, 173, 173, .74);
+  color: #fff;
 }
 /*text boxes/query*/
 textarea::selection,
 input::selection {
-	background-color: rgba(173, 173, 173, .74);
-	color: #fff;													
-}	
+  background-color: rgba(173, 173, 173, .74);
+  color: #fff;
+}
 a {
-	transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 a:hover {
-	color: var(--accent);
+  color: var(--accent);
 }
-
 /*pre,
 code,
 kbd,
@@ -251,59 +247,56 @@ p,
 }													++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 .scene-card.fileless.grid-card.card {
-	background-color: var(--card);
+  background: var(--card);
 }
 .scene-card.fileless.grid-card.card .minimal.btn.btn-primary,
 .scene-card.fileless.grid-card.card .scene-card__date,
 .scene-card.fileless.grid-card.card .TruncatedText,
 .scene-card.fileless.grid-card.card .scene-card__details {
-	color: var(--red)
+  color: var(--red)
 }
 .scene-card.fileless.grid-card.card .minimal.btn.btn-primary:hover,
 .scene-card.fileless.grid-card.card .card-section-title.flex-aligned .TruncatedText:hover {
-	color: var(--bright-red) !important;
+  color: var(--bright-red) !important;
 }
 /* modifies delete file warning text */
 .delete-dialog.alert.alert-danger.text-break p.font-weight-bold {
-	color: var(--red) !important;
+  color: var(--red) !important;
 }
 /* StashDB/ThePornDB ids */
 .stash-id-pill span {
-	background-color: var(--accent);
+  background: var(--accent);
 }
 .stash-id-pill a {
-	background-color: transparent;
+  background: transparent;
 }
 .modal-header,
 .modal-body,
 .modal-footer {
-	background-color: var(--card);
-	border-color: transparent;
+  background: var(--card);
+  border-color: transparent;
 }
 /*eg in performer details number of scenes galleries etc or scrapers count in settings*/
 .badge-info,
 .left-spacing.badge.badge-pill.badge-secondary {
-	background-color: var(--accent);
+  background: var(--accent);
 }
-
-
 .image-tabs .btn.btn-secondary,
 .gallery-tabs .btn.btn-secondary,
 .scene-tabs .btn.btn-secondary {
-	font-weight: normal
+  font-weight: normal
 }
-
 .minimal.collapse-button.btn.btn-primary,
 #settings-menu-container .nav-item a,
 .sidebar .collapse-button,
 .nav-link .btn.btn-primary {
-	color: var(--color-nav) !important;	/*important necessary for sidebar*/
+  color: var(--color-nav) !important;
+  /*important necessary for sidebar*/
 }
-
 .scene-subheader,
 .pre,
 .card .TruncatedText {
-	color:var(--color-description);
+  color:var(--color-description);
 }
 .gallery-card__date,
 .scene-card__date,
@@ -313,12 +306,10 @@ p,
 .performer-head,
 .gallery-header,
 .scene-header,
-.group-name,
+.group-name
 .card-section .card-section-title .TruncatedText {
-	color: var(--color-title);
+  color: var(--color-title);
 }
-
-
 
 /* =============================================================================================================================================================
 	 																	NAVBAR / SIDEBAR																		   	
@@ -326,7 +317,7 @@ p,
 
 /*Groups/Scenes etc buttons*/
 a.minimal {
-	/*color: #ffffffa6;														++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /*color: #ffffffa6;														++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	transition: ease-in-out 0.5s;
 }
 /*can assign different colors to each icon here*/
@@ -339,69 +330,64 @@ svg.svg-inline--fa.fa-image.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl
 svg.svg-inline--fa.fa-film.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path, 
 svg.svg-inline--fa.fa-video.fa-icon.nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path */
 .nav-menu-icon.d-block.d-xl-inline.mb-2.mb-xl-0 path {
-	fill: var(--accent);
+  fill: var(--accent);
 }
-/*for "Random" plugin */
+/**//*for "Random" plugin */
 .custom-menu-item .btn.btn-primary svg.svg-inline--fa.fa-shuffle.fa-icon {
-	color: var(--accent);
+  color: var(--accent);
 }
 @media (max-width: 1199.98px) {
-.custom-menu-item .btn.btn-primary svg.svg-inline--fa.fa-shuffle.fa-icon {
-	height: 100%;
-	max-height: min(10vw,55px);
-	width: 100%;
-	padding-bottom: 8px
-}
+  .custom-menu-item .btn.btn-primary svg.svg-inline--fa.fa-shuffle.fa-icon {
+    height: 100%;
+    max-height: min(10vw,55px);
+    width: 100%;
+    padding-bottom: 8px
+  }
+/**/
 }
 .filtered-list-toolbar .clearable-input-group.search-term-input,
-.sidebar-pane-content .clearable-text-field.form-control,
 .sidebar-pane-content .clearable-text-field.form-control {
-	width: 400px;
+  width: 400px;
 }
 .filtered-list-toolbar {
-	background-color: var(--body)
+  background-color: var(--body)
 }
 .sidebar-pane .sidebar {
-	background: var(--nav);
-	border-right: none;
-	padding-top: 0.8rem;
-	padding-left: 2rem;
-	padding-right: 0.2rem;
-	margin-left: -14px;
+  background: var(--nav);
+  border-right: none;
+  padding-top: 0.8rem;
+  padding-left: 2rem;
+  padding-right: 0.2rem;
+  margin-left: -14px;
 }
 .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button {
-	margin-left: -1.5rem;
-	margin-top: 3px;
+  margin-left: -1.5rem;
+  margin-top: 3px;
 }
-#group-page .sidebar-pane .sidebar,
-#performer-page .sidebar-pane .sidebar,
-#tag-page .sidebar-pane .sidebar,
-#studio-page .sidebar-pane .sidebar {
-	padding-top: 1.4rem;
-	padding-left: 1rem;
-}
-#group-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button,
-#performer-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button,
-#tag-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button,
-#studio-page .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button {
-	margin-left: -.5rem;
+:is(#group-page, #performer-page, #tag-page, #studio-page) {
+  & .sidebar-pane .sidebar {
+    padding-top: 1.4rem;
+    padding-left: 1rem;
+  }
+  & .sidebar-pane:not(.hide-sidebar) .sidebar-toggle-button-container .sidebar-toggle-button {
+    margin-left: -.5rem;
+  }
 }
 .sidebar-section {
-	border-color: var(--card);
+  border-color: var(--card);
 }
 .duration-label-input,
 .age-label-input {
-	background: var(--nav-grey-dark);
+  background: var(--nav-grey-dark);
 }
 .duration-label-input:hover,
 .age-label-input:hover {
-	border-color: var(--accent-transparent);
+  border-color: var(--accent-transparent);
 }
 .duration-label-input:focus,
 .age-label-input:focus {
-	border-color: var(--accent);
+  border-color: var(--accent);
 }
-
 /*toolbar gaps*/
 html body div#root div.main.container-fluid
   :is(
@@ -415,14 +401,15 @@ html body div#root div.main.container-fluid
   .sidebar-pane
   .sidebar-pane-content
   .filtered-list-toolbar.btn-toolbar {
-	margin-top: -4px;
+  margin-top: -4px;
 }
-
 /*sidebar button vertical position*/
-.item-list-container .sidebar-toggle-button-container {
+/*.item-list-container .sidebar-toggle-button-container {
 	top: 10px
+}*/
+.main.container-fluid:not(:has(.detail-body)) .item-list-container .sidebar-toggle-button-container {
+  top: 1px;
 }
-
 :is(
   #group-tabs-tabpane-scenes,
   #group-tabs-tabpane-performers,
@@ -451,7 +438,6 @@ html body div#root div.main.container-fluid
   .filtered-list-toolbar.btn-toolbar {
   margin-top: -10px;
 }
-
 :is(
   #group-tabs-tabpane-scenes,
   #group-tabs-tabpane-performers,
@@ -477,16 +463,15 @@ html body div#root div.main.container-fluid
     .item-list-container.image-list
   )
  .sidebar-toggle-button-container {
-	top: -5px;
+  top: -5px;
 }
 
-
 /*=============================================================================================================================================================
-	 																	RATINB STARS/BANNER																		   
+	 																	RATING STARS / BANNER																		   
 =============================================================================================================================================================*/
 
-/* Change rating banner content */
-:is(.scene-card, .gallery-card, .group-card, .studio-card, .image-card) {
+/* Per-rating color assignments */
+:is(.scene-card, .performer-card, .gallery-card, .group-card, .image-card) {
 	&:has(.rating-banner.rating-100-2)  { --rating-color: var(--rating-color-2); }
 	&:has(.rating-banner.rating-100-4)  { --rating-color: var(--rating-color-4); }
 	&:has(.rating-banner.rating-100-6)  { --rating-color: var(--rating-color-6); }
@@ -498,6 +483,8 @@ html body div#root div.main.container-fluid
 	&:has(.rating-banner.rating-100-18) { --rating-color: var(--rating-color-18); }
 	&:has(.rating-banner.rating-100-20) { --rating-color: var(--rating-color-20); }
 }
+
+/* Change rating banner content */
 .rating-banner { --stars: ""; }
 .rating-100-2  { --stars: "★ 0.5"; }
 .rating-100-4  { --stars: "★ 1"; }
@@ -508,8 +495,52 @@ html body div#root div.main.container-fluid
 .rating-100-14 { --stars: "★ 3.5"; }
 .rating-100-16 { --stars: "★ 4"; }
 .rating-100-18 { --stars: "★ 4.5"; }
-.rating-100-20 { --stars: "★ 5"; 
+.rating-100-20 { --stars: "★ 5"; }
+
+.rating-banner {
+  color: transparent;
+  left: -68px;
+  padding: 2px 65px 4px;
+  transform: rotate(-36deg);
+  background: var(--rating-color);
 }
+:is(.scene-card, .gallery-card, .group-card, .image-card):has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner::after {
+  content: var(--stars);
+  position: absolute;
+  color: var(--rating-solidbg-color);
+  left: 95px
+}
+:is(.scene-card, .gallery-card, .group-card, .image-card):has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner::after {
+  content: var(--stars);
+  position: absolute;
+  color: var(--rating-solidbg-color);
+  left: 90px
+}
+:is(.scene-card, .gallery-card, .group-card, .image-card, .performer-card) {
+	&:has(.rating-banner.rating-100-2)  { --rating-text-color: var(--rating-text-color-2); }
+	&:has(.rating-banner.rating-100-4)  { --rating-text-color: var(--rating-text-color-4); }
+	&:has(.rating-banner.rating-100-6)  { --rating-text-color: var(--rating-text-color-6); }
+	&:has(.rating-banner.rating-100-8)  { --rating-text-color: var(--rating-text-color-8); }
+	&:has(.rating-banner.rating-100-10) { --rating-text-color: var(--rating-text-color-10); }
+	&:has(.rating-banner.rating-100-12) { --rating-text-color: var(--rating-text-color-12); }
+	&:has(.rating-banner.rating-100-14) { --rating-text-color: var(--rating-text-color-14); }
+	&:has(.rating-banner.rating-100-16) { --rating-text-color: var(--rating-text-color-16); }
+	&:has(.rating-banner.rating-100-18) { --rating-text-color: var(--rating-text-color-18); }
+	&:has(.rating-banner.rating-100-20) { --rating-text-color: var(--rating-text-color-20); }
+}
+:is(.scene-card, .gallery-card, .group-card, .image-card, .performer-card) {
+	&:has(.rating-banner.rating-100-2)  { --rating-solidbg-color: var(--rating-solidbg-color-2); }
+	&:has(.rating-banner.rating-100-4)  { --rating-solidbg-color: var(--rating-solidbg-color-4); }
+	&:has(.rating-banner.rating-100-6)  { --rating-solidbg-color: var(--rating-solidbg-color-6); }
+	&:has(.rating-banner.rating-100-8)  { --rating-solidbg-color: var(--rating-solidbg-color-8); }
+	&:has(.rating-banner.rating-100-10) { --rating-solidbg-color: var(--rating-solidbg-color-10); }
+	&:has(.rating-banner.rating-100-12) { --rating-solidbg-color: var(--rating-solidbg-color-12); }
+	&:has(.rating-banner.rating-100-14) { --rating-solidbg-color: var(--rating-solidbg-color-14); }
+	&:has(.rating-banner.rating-100-16) { --rating-solidbg-color: var(--rating-solidbg-color-16); }
+	&:has(.rating-banner.rating-100-18) { --rating-solidbg-color: var(--rating-solidbg-color-18); }
+	&:has(.rating-banner.rating-100-20) { --rating-solidbg-color: var(--rating-solidbg-color-20); }
+}
+/* deprecated 
 :is(.scene-card, .gallery-card, .group-card, .studio-card, .image-card):has(.rating-banner) .rating-banner::after {
 	content: var(--stars);
 	background: var(--rating-color);
@@ -524,17 +555,18 @@ html body div#root div.main.container-fluid
 	background: transparent !important;
 	color: transparent !important;
 }
+*/
+
 .studio-card .rating-banner,
 .tag-card .rating-banner {
-	display: none
+  display: none
 }
-
 /* rating star colors */
 .rating-stars .set,
 .rating-stars .setting,
 .rating-stars .unset,
 .rating-stars .unsetting {
-	color: #fff;
+  color: #fff;
 }
 .rating-stars {
 	&:has([title="0.5"]) .set {color: var(--rating-color-2);}
@@ -548,7 +580,6 @@ html body div#root div.main.container-fluid
 	&:has([title="4.5"]) .set {color: var(--rating-color-18);}
 	&:has([title="5"]) .set {color: var(--rating-color-20);}
 }
-
 /*SceneCardStudioLogoEnhancer blurred background
 .scene-card .rating-banner{
 	z-index: 20
@@ -558,146 +589,140 @@ html body div#root div.main.container-fluid
 	 																	BUTTONS-SWITCHES-INPUTS																	   
 =============================================================================================================================================================*/
 
-
 .btn {
-	border-radius: .4rem;
-	font-weight:bold
+  border-radius: .4rem;
+  font-weight:bold
 }
-
-
-
 .btn-primary {
-	color: var(--btn-text);
-	background-color: var(--btn-bg);
-	border-color: var(--btn-border);
-	transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  border-color: var(--btn-border);
+  transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
 }
 .btn-primary:hover {
-	color: var(--btn-hover-text);
-	background-color: var(--btn-hover-bg);
-	border-color: var(--btn-hover-border)
+  color: var(--btn-hover-text);
+  background-color: var(--btn-hover-bg);
+  border-color: var(--btn-hover-border)
 }
 .btn-primary:focus,
 .btn-primary.focus {
-	color: var(--btn-hover-text);
-	background-color: var(--btn-hover-bg);
-	border-color: var(--btn-hover-border);
-	box-shadow: 0 0 0 .2rem var(--btn-shadow)
+  color: var(--btn-hover-text);
+  background-color: var(--btn-hover-bg);
+  border-color: var(--btn-hover-border);
+  box-shadow: 0 0 0 .2rem var(--btn-shadow)
 }
 /*for "Random" but not sure why it needs this, should be covered by generic .btn-primary rule*/
 .custom-menu-item .btn.btn-primary:focus, 
 .custom-menu-item .btn.btn-primary.focus {
-	box-shadow: none
+  box-shadow: none
 }
 .btn-primary.disabled:hover, /*this line added so button base/text does not change color when disabled*/
 .btn-primary.disabled,
 .btn-primary:disabled {
-	color: var(--btn-text);
-	background-color: var(--btn-bg);
-	border-color: var(--btn-border)
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  border-color: var(--btn-border)
 }
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-	color: var(--btn-hover-text);
-	background-color: var(--btn-hover-bg);
-	border-color: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  background-color: var(--btn-hover-bg);
+  border-color: var(--btn-hover-bg);
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-	box-shadow: 0 0 0 .2rem var(--btn-shadow)
+  box-shadow: 0 0 0 .2rem var(--btn-shadow)
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 .btn-secondary {
-	color: var(--sbtn-text);
-	background-color: var(--sbtn-bg);
-	border-color: var(--sbtn-border);
-	transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
+  color: var(--sbtn-text);
+  background-color: var(--sbtn-bg);
+  border-color: var(--sbtn-border);
+  transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
 }
 .btn-secondary:hover {
-	color: var(--sbtn-hover-text);
-	background-color: var(--sbtn-hover-bg);
-	border-color: var(--sbtn-hover-border);
+  color: var(--sbtn-hover-text);
+  background-color: var(--sbtn-hover-bg);
+  border-color: var(--sbtn-hover-border);
 }
 .btn-secondary:focus,
 .btn-secondary.focus {
-	color: var(--sbtn-hover-text);
-	background-color: var(--sbtn-hover-bg);
-	border-color: var(--sbtn-hover-border);
-	box-shadow: 0 0 0 .2rem var(--sbtn-shadow)
+  color: var(--sbtn-hover-text);
+  background-color: var(--sbtn-hover-bg);
+  border-color: var(--sbtn-hover-border);
+  box-shadow: 0 0 0 .2rem var(--sbtn-shadow)
 }
 .btn-secondary.disabled:hover, /*this line added so button base does not change color when disabled*/
 .btn-secondary.disabled,
 .btn-secondary:disabled {
-	color: var(--sbtn-text);
-	background-color: var(--sbtn-bg);
-	border-color: var(--sbtn-border);
+  color: var(--sbtn-text);
+  background-color: var(--sbtn-bg);
+  border-color: var(--sbtn-border);
 }
 .btn-secondary:not(:disabled):not(.disabled):active,
 .btn-secondary:not(:disabled):not(.disabled).active,
 .show > .btn-secondary.dropdown-toggle {
-	color: var(--sbtn-hover-text);
-	background-color: var(--sbtn-hover-bg);
-	border-color: var(--sbtn-hover-border);
+  color: var(--sbtn-hover-text);
+  background-color: var(--sbtn-hover-bg);
+  border-color: var(--sbtn-hover-border);
 }
 .btn-secondary:not(:disabled):not(.disabled):active:focus,
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-secondary.dropdown-toggle:focus {
-	color: var(--sbtn-hover-text);
-	box-shadow: 0 0 0 .2rem var(--sbtn-shadow)
+  color: var(--sbtn-hover-text);
+  box-shadow: 0 0 0 .2rem var(--sbtn-shadow)
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
   /*settings*/
 #configuration-tabs-tabpane-system .btn-secondary,
 #tasks-panel .btn-secondary {
-	color: var(--btn-text);
-	background-color: var(--btn-bg);
-	border-color: var(--btn-border);
-	font-weight: bold;
-	transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  border-color: var(--btn-border);
+  font-weight: bold;
+  transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
 }
 #configuration-tabs-tabpane-system .btn-secondary:hover,
 #tasks-panel .btn-secondary:hover {
-	color: var(--btn-hover-text);
-	background-color: var(--btn-hover-bg);
-	border-color: var(--btn-hover-border)
+  color: var(--btn-hover-text);
+  background-color: var(--btn-hover-bg);
+  border-color: var(--btn-hover-border)
 }
 #configuration-tabs-tabpane-system .btn-secondary:focus,
 #tasks-panel .btn-secondary:focus,
 #tasks-panel .btn-secondary.focus {
-	color: var(--btn-hover-text);
-	background-color: var(--btn-hover-bg);
-	border-color: var(--btn-border);
-	box-shadow: 0 0 0 .2rem var(--btn-shadow)
+  color: var(--btn-hover-text);
+  background-color: var(--btn-hover-bg);
+  border-color: var(--btn-border);
+  box-shadow: 0 0 0 .2rem var(--btn-shadow)
 }
 #tasks-panel .btn-secondary.disabled:hover, /*this line added so button base does not change color when disabled*/
 #tasks-panel .btn-secondary.disabled,
 #tasks-panel .btn-secondary:disabled {
-	color: var(--btn-text);
-	background-color: var(--btn-bg);
-	border-color: var(--btn-border)
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  border-color: var(--btn-border)
 }
 #tasks-panel .btn-secondary:not(:disabled):not(.disabled):active,
 #tasks-panel .btn-secondary:not(:disabled):not(.disabled).active,
 #tasks-panel .show > .btn-secondary.dropdown-toggle {
-	color: var(--btn-hover-text);
-	background-color: var(--btn-hover-bg);
-	border-color: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  background-color: var(--btn-hover-bg);
+  border-color: var(--btn-hover-bg);
 }
 #tasks-panel .btn-secondary:not(:disabled):not(.disabled):active:focus,
 #tasks-panel .btn-secondary:not(:disabled):not(.disabled).active:focus,
 #tasks-panel .show > .btn-secondary.dropdown-toggle:focus {
-	box-shadow: 0 0 0 .2rem var(--btn-shadow)
+  box-shadow: 0 0 0 .2rem var(--btn-shadow)
 }
 /*download ffmpeg button*/
 #configuration-tabs-tabpane-system .btn-secondary {
-	background-color: var(--btn-bg);
-	border-color: var(--btn-border);
+  background-color: var(--btn-bg);
+  border-color: var(--btn-border);
 }
 
 /*______________________________________________________________________________________________________________________________________*/
@@ -705,89 +730,93 @@ html body div#root div.main.container-fluid
 /*main container search input/buttons specific*/
 .item-list-container .filtered-list-toolbar.btn-toolbar .clearable-text-field.form-control,
 .item-list-container .filtered-list-toolbar .btn-secondary {
-	background-color: var(--nav-grey-dark);
-	font-weight: normal	
+  background-color: var(--nav-grey-dark);
+  font-weight: normal
 }
 .item-list-container .filtered-list-toolbar.btn-toolbar .page-size-selector select.btn-secondary.form-control:hover {
-	color: var(--accent);
-	cursor: pointer
+  color: var(--accent);
+  cursor: pointer
 }
 .item-list-container .filtered-list-toolbar .btn-secondary {
-	border: 1px var(--nav-grey-dark) solid;
+  border: 1px var(--nav-grey-dark) solid;
 }
 .filtered-list-toolbar.btn-toolbar .btn-secondary:focus,
 .filtered-list-toolbar.btn-toolbar .btn-secondary.focus {
-	box-shadow: none;
+  box-shadow: none;
 }
 .filtered-list-toolbar.btn-toolbar .btn-secondary:not(:disabled):not(.disabled):active,
 .filtered-list-toolbar.btn-toolbar .btn-secondary:not(:disabled):not(.disabled).active,
 .filtered-list-toolbar.btn-toolbar .show > .btn-secondary.dropdown-toggle {
-	background: var(--nav-grey-dark);
-	color: var(--accent);
-	border: 1px var(--nav-grey-dark) solid;
+  background: var(--nav-grey-dark);
+  color: var(--accent);
+  border: 1px var(--nav-grey-dark) solid;
 }
 .filtered-list-toolbar.btn-toolbar .btn-secondary:not(:disabled):not(.disabled):active:focus,
 .filtered-list-toolbar.btn-toolbar .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .filtered-list-toolbar.btn-toolbar .show > .btn-secondary.dropdown-toggle:focus {
-	box-shadow: none;
+  box-shadow: none;
 }
 .filtered-list-toolbar.has-selection .minimal.btn.btn-secondary {
-	background: transparent !important;
-	border: none;
+  background: transparent !important;
+  border: none;
 }
 .selected-items-info {
-	border: 1px var(--nav-grey-dark) solid;
+  border: 1px var(--nav-grey-dark) solid;
 }
 .saved-filter-list-menu .set-as-default-button.dropdown-item.btn.btn-secondary.btn-sm:hover {
-	color: var(--accent);
-	background: var(--nav-grey-dark);
+  color: var(--accent);
+  background: var(--nav-grey-dark);
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 .pagination .btn.btn-secondary {
-	/*border-left: 1px solid #202b33;
+  /*border-left: 1px solid #202b33;
 	border-right: 1px solid #202b33;*/
 	border: 1px var(--sbtn-border) solid;
-	padding-left: 10px;
-	padding-right: 10px;
-	transition: color .3s ease-in-out;
-	font-weight: normal	
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: color .3s ease-in-out;
+  font-weight: normal
 }
 .pagination .btn.btn-secondary:focus,
 .pagination .btn.btn-secondary.focus {
-	box-shadow: none !important;
+  box-shadow: none !important;
 }
 .pagination .btn.btn-secondary.disabled,
 .pagination .btn.btn-secondary:disabled {
-	background: transparent;
-	border: 1px transparent solid;
+  background: transparent;
+  border: 1px transparent solid;
 }
 /*background shows through as border between disabled back/forward buttons*/
 .pagination.btn-group > .btn:not(:first-child) {
-	margin-left: 0px;
+  margin-left: 0px;
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 .gallery-divider .btn.btn-primary,
 .scene-divider .btn.btn-primary,
 .scrubber-button.btn.btn-primary {
-	color: #fff;														 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  color: #fff;
+  /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	background-color: transparent;
-	border: none;
-	transition: color .3s ease-in-out
+  border: none;
+  transition: color .3s ease-in-out
 }
 .minimal.btn.btn-primary,
 .minimal.link.btn.btn-primary,
 .btn.btn-minimal,
 button.minimal {
-	transition: color .3s ease-in-out
+  transition: color .3s ease-in-out
 }
 .count-button button.count-icon:hover, 
 .count-button.increment-only button.count-value:hover {
-	color: #fff !important;												/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-}	
+  color: #fff !important;
+  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+}
+label.minimal {
+  background: transparent !important;
+	border:none;
+}
 .minimal.btn.btn-primary:hover,
 .count-button:hover,
 .count-button.increment-only.btn-group:hover button.minimal.count-icon.btn.btn-secondary,
@@ -797,10 +826,9 @@ button.minimal {
 .minimal.link.btn.btn-primary:hover,
 .btn.btn-minimal:hover,
 button.minimal:hover {
-	color: var(--accent) !important;
-	background: transparent !important;
+  color: var(--accent) !important;
+  background: transparent !important;
 }
-
 .minimal.dropdown-toggle.btn.btn-secondary:focus,
 .gallery-divider .btn.btn-primary:focus,
 .scene-divider .btn.btn-primary:focus,
@@ -808,16 +836,18 @@ button.minimal:hover {
 .btn.btn-minimal:focus,
 button.minimal:focus,
 button.minimal.focus {
-	background-color: transparent !important;
-	box-shadow: none;
+  background-color: transparent !important;
+  box-shadow: none;
 }
 .minimal.btn.btn-primary:not(:disabled):not(.disabled):active,
 .minimal.btn.btn-primary:not(:disabled):not(.disabled).active,
 button.minimal:not(:disabled):not(.disabled):active,
 button.minimal:not(:disabled):not(.disabled).active {
-	background-color: transparent !important;
-	color: var(--accent) !important;
+  background-color: transparent !important;
+  color: var(--accent) !important;
 }
+.minimal.btn.btn-secondary:not(.disabled):active:focus,
+.minimal.btn.btn-secondary:not(.disabled).active:focus,
 .minimal.btn.btn-primary:not(.disabled):active:focus,
 .minimal.btn.btn-primary:not(.disabled).active:focus,
 .show > .minimal.dropdown-toggle.btn.btn-secondary,
@@ -827,19 +857,17 @@ button.minimal:not(:disabled):not(.disabled).active {
 .gallery-divider .btn.btn-primary:active:focus, 
 button.minimal:not(:disabled):not(.disabled):active:focus,
 button.minimal:not(:disabled):not(.disabled).active:focus {
-	box-shadow: none;
-	border:none;
-	background-color: transparent;
+  box-shadow: none;
+  border:none;
+  background-color: transparent;
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 .input-control,
 .input-control:focus,
 .input-control:disabled {
-   background-color: var(--nav-grey);
+  background-color: var(--nav-grey);
 }
-
 .input-control:focus,
 .text-input:focus {
   box-shadow:0 0 0 1px var(--accent),0 0 0 1px var(--accent),0 0 1px 3px var(--accent),inset 0 0 0 1px rgba(16,22,26,.3),inset 0 1px 1px rgba(16,22,26,.4);
@@ -861,15 +889,23 @@ button.minimal:not(:disabled):not(.disabled).active:focus {
 }
 .form-control:focus {
   box-shadow:0 0 0 1px var(--accent),0 0 0 1px var(--accent),0 0 1px 3px var(--accent),inset 0 0 0 1px rgba(16,22,26,.3),inset 0 1px 1px rgba(16,22,26,.4);
-	color: var(--color-title);
+  color: var(--color-title);
 }
-
 .form-control:not(:disabled):not(.disabled):active:focus,
 .form-control:not(:disabled):not(.disabled).active:focus,
 .form-control:hover {
-	color: var(--color-title);
+  color: var(--color-title);
+}
+.form-control::placeholder {
+  color: #fff;
+  opacity: .4;
 }
 
+.sort-by-filter-container {
+  background-color: var(--nav-grey-dark) !important;
+	/*padding-top: 6px !important;
+	padding-right: 9px !important;*/
+}
 /*______________________________________________________________________________________________________________________________________*/
 
 /*save filter*/
@@ -878,14 +914,14 @@ button.minimal:not(:disabled):not(.disabled).active:focus {
 	opacity: 1;
 }*/
 .border-secondary {
-	border-color: var(--nav-grey-dark) !important;
+  border-color: var(--nav-grey-dark) !important;
 }
 .bg-secondary {
-	background-color: var(--nav-grey-dark) !important;
+  background-color: var(--nav-grey-dark) !important;
 }
 a.bg-secondary:hover {
-	color: var(--accent) !important;
-	background-color: transparent !important;
+  color: var(--accent) !important;
+  background-color: transparent !important;
 }
 div.dropdown-menu {
   background-color: var(--nav-grey-dark);
@@ -895,18 +931,16 @@ div.dropdown-menu .dropdown-item:focus,
 div.dropdown-menu .dropdown-item:hover {
   background-color: transparent !important;
   color: var(--accent);
-	transition: color 0.3s ease-in-out !important
+  transition: color 0.3s ease-in-out !important
 }
 /*overrrides in save filter*/
 .saved-filter-list-menu .form-control {
-	background: var(--nav-grey) !important;
-	margin-left: 10px;
+  background: var(--nav-grey) !important;
+  margin-left: 10px;
 }
 .saved-filter-list-menu .set-as-default-button.dropdown-item.btn.btn-secondary.btn-sm {
-	background: var(--nav-grey) !important;
+  background: var(--nav-grey) !important;
 }
-
-
 /*______________________________________________________________________________________________________________________________________*/
 
 div.react-select__control {
@@ -914,30 +948,32 @@ div.react-select__control {
   /*border-color:var(--nav-grey-dark);*/
 	border:none;
 }
-.edit-filter-dialog.modal.show .react-select__control {  /*groups in edit filters*/
+.edit-filter-dialog.modal.show .react-select__control {
+  /*groups in edit filters*/
 	background: var(--nav-grey);
-	border-color:var(--nav-grey);
+  border-color:var(--nav-grey);
 }
 .react-select__control--is-focused,
 div.react-select__control:hover {
   border-color: var(--accent);
-	box-shadow:0 0 0 1px var(--accent),0 0 0 1px var(--accent),0 0 1px 2px var(--accent),inset 0 0 0 1px rgba(16,22,26,.3),inset 0 1px 1px rgba(16,22,26,.4) !important;
-	transition: all 0.3s ease-in-out !important
+  box-shadow:0 0 0 1px var(--accent),0 0 0 1px var(--accent),0 0 1px 2px var(--accent),inset 0 0 0 1px rgba(16,22,26,.3),inset 0 1px 1px rgba(16,22,26,.4) !important;
+  transition: all 0.3s ease-in-out !important
 }
 div.react-select__control:hover .react-select__dropdown-indicator {
-	color: var(--accent);
-	transition: all 0.3s ease-in-out !important
+  color: var(--accent);
+  transition: all 0.3s ease-in-out !important
 }
 div.react-select__control .react-select__multi-value {
   background-color: var(--tags);
-/*padding: .4em .6em .45em .6em;
+  /*padding: .4em .6em .45em .6em;
 	font-weight: 700;
 	border-radius: .25rem;*/
 }
 div.react-select__menu {
   background-color: var(--nav-grey-dark);
- /* color:#f5f8fa*/
-}/*
+  /* color:#f5f8fa*/
+}
+/*
 div.react-select__menu .react-select__option,
 div.react-select__menu .dropdown-item,
 div.dropdown-menu .react-select__option,
@@ -957,46 +993,44 @@ div.react-select__menu .dropdown-item:hover,
 .react-select__option--is-focused .group-select-option .group-select-row .group-select-details .group-select-date,
 .react-select__option--is-focused .group-select-option .group-select-row .group-select-details .group-select-studio,
 .react-select__option--is-focused .performer-select-option .performer-select-row .performer-select-details .performer-select-birthdate {
-	/*background-color: var(--accent);*/
+  /*background-color: var(--accent);*/
   background-color: transparent;
   color: var(--accent);
-	transition: color 0.3s ease-in-out !important
+  transition: color 0.3s ease-in-out !important
 }
 .react-select__option.react-select__option--is-selected {
-	background: none;
-	font-weight: bold;
-	color: var(--accent-transparent) !important
+  background: none;
+  font-weight: bold;
+  color: var(--accent-transparent) !important
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 /*edit filters */
 .modifier-option.btn.btn-primary {
-	/*color: #fff;									++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /*color: #fff;									++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	background-color: transparent !important;
-	transition: color .3s ease-in-out
+  transition: color .3s ease-in-out
 }
 .modifier-option.btn.btn-primary:hover {
-	color: var(--accent);
+  color: var(--accent);
 }
 .modifier-option.btn.btn-primary:focus,
 .modifier-option.btn.btn-primary.focus {
-	color: var(--accent);
-	box-shadow: none;
+  color: var(--accent);
+  box-shadow: none;
 }
 .modifier-option.btn.btn-primary:not(:disabled):not(.disabled):active:focus,
 .modifier-option.btn.btn-primary:not(:disabled):not(.disabled).active:focus {
-	box-shadow: none;
+  box-shadow: none;
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 .sidebar-toggle-button-container .sidebar-toggle-button {
-	border-bottom: 1px solid var(--nav-grey);
-	/*border-radius: 0 10px 10px 0;*/
+  border-bottom: 1px solid var(--nav-grey);
+  /*border-radius: 0 10px 10px 0;*/
 	border-right: 1px solid var(--nav-grey);
-	border-top: 1px solid var(--nav-grey);
-	/*margin-left: -15px;
+  border-top: 1px solid var(--nav-grey);
+  /*margin-left: -15px;
 	opacity: .5;
 	position: sticky;
 	top: calc(48.75px + .5rem);
@@ -1004,71 +1038,64 @@ div.react-select__menu .dropdown-item:hover,
 }
 .sidebar-toggle-button-container .sidebar-toggle-button,
 .sidebar-toggle-button-container .sidebar-toggle-button:hover {
-	background: var(--nav-grey) !important;
+  background: var(--nav-grey) !important;
 }
-
 .sidebar-toggle-button.ignore-sidebar-outside-click.minimal.btn.btn-secondary:focus {
-	background: var(--nav-grey)!important;
+  background: var(--nav-grey)!important;
 }
 .sidebar-toggle-button.ignore-sidebar-outside-click.minimal.btn.btn-secondary:not(:disabled):not(.disabled):active,
-.sidebar-toggle-button.ignore-sidebar-outside-click.minimal.btn.btn-secondary:not(:disabled):not(.disabled).active  {
-	border-bottom: 1px solid var(--nav-grey);
-	border-radius: 0 10px 10px 0;
-	border-right: 1px solid var(--nav-grey);
-	border-top: 1px solid var(--nav-grey);
-	background: var(--nav-grey)!important;
+.sidebar-toggle-button.ignore-sidebar-outside-click.minimal.btn.btn-secondary:not(:disabled):not(.disabled).active {
+  border-bottom: 1px solid var(--nav-grey);
+  border-radius: 0 10px 10px 0;
+  border-right: 1px solid var(--nav-grey);
+  border-top: 1px solid var(--nav-grey);
+  background: var(--nav-grey)!important;
 }
-
 .collapse-header:has(.fa-chevron-down) .minimal.collapse-button.btn.btn-primary, /*scraper liat*/
 .sidebar-section:has(.collapse.show) .collapse-button.btn.btn-primary {
-	color: var(--accent-transparent)
+  color: var(--accent-transparent)
 }
-
 .saved-filter-item a:hover,
 .selected-object a,
 .unselected-object a {
-	transition: color .3s ease-in-out
+  transition: color .3s ease-in-out
 }
 .duplicate-sub-option:hover,
 .saved-filter-item a:hover,
 .selected-object a:hover,
 .unselected-object a:hover,
-.unselected-object a:hover .minimal.expand-collapse.btn.btn-primary{
-	background: transparent !important;
-	color: var(--accent) !important;
+.unselected-object a:hover .minimal.expand-collapse.btn.btn-primary {
+  background: transparent !important;
+  color: var(--accent) !important;
 }
 .svg-inline--fa.fa-circle-xmark.fa-icon.fa-fw.include-button {
-	color: var(--red);
+  color: var(--red);
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 /*changelog*/
 .btn.btn-link {
-	transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
 }
 .btn.btn-link:hover {
-	color: var(--accent);
-	text-decoration: none;
+  color: var(--accent);
+  text-decoration: none;
 }
 .btn.btn-link:focus {
-	box-shadow: none;
+  box-shadow: none;
 }
 .btn.btn-link:has(.svg-inline--fa.fa-angle-up.fa-icon.mr-3) {
-	color: var(--accent);
+  color: var(--accent);
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 .nav-link {
   /*color:#f5f8fa;*/
 	transition: color .3s ease-in-out;
 }
-
 .nav-link.active {
-	font-weight:bold
+  font-weight:bold
 }
-
 /*.nav-tabs {
   border:none;
   margin:auto;
@@ -1081,7 +1108,7 @@ div.react-select__menu .dropdown-item:hover,
 .nav-tabs .nav-link.active {
   /*border-bottom:2px solid;*/
   color: var(--accent);
-	border:none;
+  border:none;
 }
 .nav-tabs .nav-link.active:hover {
   /*border-bottom-color:#48aff0;*/
@@ -1089,81 +1116,83 @@ div.react-select__menu .dropdown-item:hover,
   cursor:default
 }
 .nav-tabs .nav-link:hover {
-	color: var(--accent);
+  color: var(--accent);
   /*border-bottom:2px solid white*/
 	border:none;
-	cursor: pointer; /*fixes issue for QuickEdit*/
+  cursor: pointer;
+  /*fixes issue for QuickEdit*/
 }
-
 /*______________________________________________________________________________________________________________________________________*/
-/*============  Organized Button  ============*/
+
+/* ============  Organized Button  ============ */
 
 /*on cards*/
 button.minimal.btn.btn-primary svg.svg-inline--fa.fa-box.fa-icon path,
 /*on scene/galleries detail/edit*/
 button.minimal.organized-button.organized.btn.btn-secondary {
-	color: var(--accent);
-	transition: color .3s ease-in-out
+  color: var(--accent);
+  transition: color .3s ease-in-out
 }
 button.minimal.organized-button.organized.btn.btn-secondary:hover {
-	color: var(--accent-transparent) !important;
+  color: var(--accent-transparent) !important;
 }
-
 /*______________________________________________________________________________________________________________________________________*/
-/*============  Favorite Button  ============*/
+
+/* ============  Favorite Button  ============ */
 
 .minimal.favorite.btn.btn-primary {
-	color: var(--accent) !important;
+  color: var(--accent) !important;
 }
 .card .minimal.favorite.btn.btn-primary {
-	color: var(--accent) !important;
-	opacity: 0;
-	transition: opacity 1s ease-in-out, color .3s ease-in-out;
+  color: var(--accent) !important;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, color .3s ease-in-out;
 }
 .minimal.mousetrap.favorite-button.hide-not-favorite.not-favorite.btn.btn-primary,
 .minimal.mousetrap.favorite-button.hide-not-favorite.favorite.btn.btn-primary,
 .minimal.not-favorite.btn.btn-primary {
-	transition: opacity 1s ease-in-out, color .3s ease-in-out;
+  transition: opacity 1s ease-in-out, color .3s ease-in-out;
 }
 .card:hover .minimal.favorite.btn.btn-primary,
 .card:hover .minimal.not-favorite.btn.btn-primary {
-	opacity: 1;
+  opacity: 1;
 }
 .minimal.favorite.btn.btn-primary:hover {
-	color: var(--accent-transparent) !important;
+  color: var(--accent-transparent) !important;
 }
 .minimal.not-favorite.btn.btn-primary:hover {
-	color: var(--accent) !important;
+  color: var(--accent) !important;
 }
-
 /*______________________________________________________________________________________________________________________________________*/
 
 .btn-danger {
-	transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
+  transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out
 }
 .btn-danger:hover {
-	color: var(--bright-red);
-	background-color: var(--nav) !important;
+  color: var(--bright-red);
+  background-color: var(--nav) !important;
 }
 .btn-danger.disabled:hover,  /*this line added so button base/text does not change color when disabled*/
 .btn-danger.disabled,
 .btn-danger:disabled {
-	color: #fff;												/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  color: #fff;
+  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	background-color:var(--red) !important;
-}	
-
+}
 .btn.btn-success:not(:disabled):not(.disabled):active,
 .btn.btn-success:not(:disabled):not(.disabled).active {
-	background-color: #0c764a;
+  background-color: #0c764a;
   border-color: #0a6b43;
 }
 /*add history dates*/
-.tab-content .add-date-button.btn.btn-minimal.btn-sm:hover {  
-color: #0c764a !important;
+.tab-content .add-date-button.btn.btn-minimal.btn-sm:hover {
+  color: #0c764a !important;
 }
 /*______________________________________________________________________________________________________________________________________*/
-/*============  [X] / [Clear] buttons  ============*/
 
+/* ============  [X] / [Clear] buttons  ============ */
+
+.selected-items-info .minimal.btn.btn-secondary .svg-inline--fa.fa-xmark.fa-icon,
 .clear-all-button.btn.btn-minimal,
 .react-select__multi-value__remove,
 .tag-item.badge.badge-secondary .btn.btn-secondary,
@@ -1173,34 +1202,34 @@ color: #0c764a !important;
 .clearable-text-field-clear.btn.btn-secondary,
 .saved-filter-list .dropdown-item-container .delete-button,
 .delete-button.btn.btn-minimal.btn-sm /*sidebar filters*/ {
-	color: var(--red) !important;
-	opacity: 1;
-	text-shadow: none; /*.close*/
+  color: var(--red) !important;
+  opacity: 1;
+  text-shadow: none;
+  transition: color .3s ease-in-out;
+  /*.close*/
 }
-
+.selected-items-info .minimal.btn.btn-secondary:hover .svg-inline--fa.fa-xmark.fa-icon,
 .tab-content .remove-date-button.btn.btn-minimal.btn-sm:hover, /*remove history dates*/
 .clear-all-button.btn.btn-minimal:hover,
 .remove-criterion-button.btn.btn-minimal:hover,
 .clearable-text-field-clear.btn.btn-secondary:hover,
 .saved-filter-list .dropdown-item-container .delete-button:hover,
-.delete-button.btn.btn-minimal.btn-sm:hover {
-	color: var(--bright-red) !important;
-	opacity: 1;
-	transition: color .3s ease-in-out;
-	/*background: var(--nav-grey);*/
+.delete-button.btn.btn-minimal.btn-sm:hover,
+.Lightbox-footer-center .delete-button.btn.btn-primary:hover {
+  color: var(--bright-red) !important;
+  opacity: 1;
+  transition: color .3s ease-in-out;
+  /*background: var(--nav-grey);*/
 }
-
 .close:hover,
 .react-select__clear-indicator:hover,
 .react-select__multi-value__remove:hover,
 .tag-item.badge.badge-secondary .btn.btn-secondary:hover {
-	color: var(--bright-red) !important;
-	opacity: 1;
-	transition: color .3s ease-in-out;
-	background: transparent !important; 
+  color: var(--bright-red) !important;
+  opacity: 1;
+  transition: color .3s ease-in-out;
+  background: transparent !important;
 }
-
-
 .clear-all-button.btn.btn-minimal:focus,
 .react-select__multi-value__remove:focus,
 .tag-item.badge.badge-secondary .btn.btn-secondary:focus,
@@ -1210,8 +1239,8 @@ color: #0c764a !important;
 .clearable-text-field-clear.btn.btn-secondary:focus,
 .saved-filter-list .dropdown-item-container .delete-button:focus,
 .delete-button.btn.btn-minimal.btn-sm:focus /*sidebar filters*/ {
-	background: transparent !important; 
-	box-shadow: none
+  background: transparent !important;
+  box-shadow: none
 }
 .clear-all-button.btn.btn-minimal:not(:disabled):not(.disabled):active:focus,
 .react-select__multi-value__remove:not(:disabled):not(.disabled):active:focus,
@@ -1222,45 +1251,42 @@ color: #0c764a !important;
 .clearable-text-field-clear.btn.btn-secondary:not(:disabled):not(.disabled):active:focus,
 .saved-filter-list .dropdown-item-container .delete-button:not(:disabled):not(.disabled):active:focus,
 .delete-button.btn.btn-minimal.btn-sm:not(:disabled):not(.disabled):active:focus /*sidebar filters*/ {
-	box-shadow: none
+  box-shadow: none
 }
-
-
 /*pagination*/
 a.dropdown-item.active {
-	background: transparent;
-	color: var(--accent);
-	font-weight: bold
+  background: transparent;
+  color: var(--accent);
+  font-weight: bold
 }
 
-
-/*============  Switches-Radio Buttons  ============*/
+/* ============  Switches-Radio Buttons  ============ */
 
 /*Scenes/Performer grid view selection checkboxes*/
 input[type="checkbox"] {
-	accent-color: var(--accent);
+  accent-color: var(--accent);
 }
 .form-check-input {
-	accent-color: var(--accent);
+  accent-color: var(--accent);
 }
 /*Radio switches*/
 .custom-control-label:before {
-	background-color: var(--nav-grey);
-	border: none;
+  background-color: var(--nav-grey);
+  border: none;
 }
 .custom-control-input:checked~.custom-control-label:before {
-	border-color: var(--accent-transparent);
-	background-color: var(--accent-transparent);
+  border-color: var(--accent-transparent);
+  background-color: var(--accent-transparent);
 }
 .custom-control-input:focus~.custom-control-label:before {
-	box-shadow: 0 0 0 .2rem var(--accent-transparent);
+  box-shadow: 0 0 0 .2rem var(--accent-transparent);
 }
 .custom-control-input:focus:not(:checked)~.custom-control-label:before {
-	border-color: var(--accent-transparent);
+  border-color: var(--accent-transparent);
 }
 .custom-control-input:not(:disabled):active~.custom-control-label:before {
-	background-color: var(--accent);
-	border-color: var(--accent-transparent);
+  background-color: var(--accent);
+  border-color: var(--accent-transparent);
 }
 /*affects circle button inside the radio switch track*/
 /*.custom-switch .custom-control-label:after {
@@ -1273,61 +1299,58 @@ input[type="checkbox"] {
     background-color: var(--50pct_purple);
 }*/
 
-
-/*============  Zoom Slider  ============*/
+/* ============  Zoom Slider  ============ */
 
 /* Remove the default background entirely */
 input[type="range"].zoom-slider {
-	background: none !important;
+  background: none !important;
 }
 /* Firefox left side (filled) */
 input[type="range"].zoom-slider::-moz-range-progress {
-	background: var(--accent-transparent) !important;
-	height: 6px;
-	border-radius: 3px;
+  background: var(--accent-transparent) !important;
+  height: 6px;
+  border-radius: 3px;
 }
 /* Firefox right side (unfilled) */
 input[type="range"].zoom-slider::-moz-range-track {
-	background: var(--nav-grey) !important;
-	height: 6px;
-	border-radius: 3px;
+  background: var(--nav-grey) !important;
+  height: 6px;
+  border-radius: 3px;
 }
 /* Chrome / Safari / Edge track */
 input[type="range"].zoom-slider::-webkit-slider-runnable-track {
-	background: var(--accent) !important;
-	height: 6px;
-	border-radius: 3px;
+  background: var(--accent) !important;
+  height: 6px;
+  border-radius: 3px;
 }
 /* Thumbs */
 input[type="range"].zoom-slider::-moz-range-thumb,
 input[type="range"].zoom-slider::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 14px;
-	height: 14px;
-	background: var(--accent);
-	border-radius: 50%;
-	border: none;
-	cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
 }
 /* Prevent Firefox focus outline jump */
 input[type="range"].zoom-slider::-moz-focus-outer {
-	border: 0;
+  border: 0;
 }
 input[type="range"]::-moz-range-track {
-	background: var(--nav-grey);
+  background: var(--nav-grey);
 }
 input[type="range"]::-moz-range-thumb {
-	background: var(--accent);
+  background: var(--accent);
 }
-
-
 /*"Display fields" in parser tool*/
 #parser-container.col.col-sm-9.mx-auto.card .fa-xmark {
-	color: var(--red);
+  color: var(--red);
 }
 #parser-container.col.col-sm-9.mx-auto.card .fa-check {
-	color: var(--green);
+  color: var(--green);
 }
 /*where does this happen?  -------> filename parser results*/
 .form-control[readonly],
@@ -1335,43 +1358,42 @@ input[type="range"]::-moz-range-thumb {
 .form-control[readonly]:focus,
 .form-control:disabled:hover,
 .form-control[readonly]:hover {
-	background-color: var(--nav-grey-dark);
-	opacity: .55;
+  background-color: var(--nav-grey-dark);
+  opacity: .55;
 }
-
 
 /*=============================================================================================================================================================
 	 																	DETAIL PAGES																			   
 =============================================================================================================================================================*/
 
 .detail-header {
-	background: var(--nav);
+  background: var(--nav);
 }
 .main.container-fluid:has(.scene-tabs, .image-tabs, .gallery-tabs, #create-scene-page) {
-	background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
+  background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
 }
 .gallery-container .filtered-list-toolbar.btn-toolbar {
-	background: var(--nav);
+  background: var(--nav);
 }
 .detail-header.edit {
-	background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
+  background: linear-gradient(0deg, var(--body) 0%, var(--nav) 100%);
 }
 #tag-page .detail-header.edit,
 #group-page .detail-header.edit,
-#studio-page .detail-header.edit{
-	height: calc(100vh - 50px);
+#studio-page .detail-header.edit {
+  height: calc(100vh - 50px);
 }
 .detail-body nav {
-	border-bottom: solid 2px var(--card);
+  border-bottom: solid 2px var(--card);
 }
 .sticky.detail-header {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .sticky.detail-header .sticky.detail-header-group .group-name:hover,
 .sticky.detail-header .sticky.detail-header-group .studio-name:hover,
 .sticky.detail-header .sticky.detail-header-group .tag-name:hover,
 .sticky.detail-header .sticky.detail-header-group .performer-name:hover {
-	color: var(--accent);
+  color: var(--accent);
 }
 /*title top of page*/
 .image-header,
@@ -1381,34 +1403,34 @@ input[type="range"]::-moz-range-thumb {
 .group-name,
 .gallery-header,
 .scene-header {
-	font-weight: 600;
+  font-weight: 600;
 }
 #create-scene-page #scene-edit-details .edit-buttons-container {
-	background-color: transparent !important;
-	background-image: none!important;
+  background-color: transparent !important;
+  background-image: none!important;
 }
 /*auto tag and submit to stashdb buttons*/
 .tag-head.col .details-edit.mb-2 .btn.btn-secondary,
 #studio-page.row .studio-head.col .details-edit div button.btn.btn-secondary,
 .performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-primary,
 .performer-head.col .col .row.row-cols-8 .details-edit.mb-2 div button.btn.btn-secondary {
-	display: none;
+  display: none;
 }
 .details-edit.mb-2,
 .details-edit {
-	position: absolute;
-	top: 0rem;
-	right: 0em;
+  position: absolute;
+  top: 0rem;
+  right: 0em;
 }
 /*excludes performer page from selectors above. Can't get it to work correctly*/
 #performer-page.row .details-edit.mb-2,
 #performer-page.row .details-edit {
-	position: relative;
+  position: relative;
 }
 /*restores btn group in movie/studio/performer edit to default position because the previous selector messes it up*/
 .details-edit.col-xl-9.mb-3,
 .details-edit.col-xl-9.mt-3 {
-	position: relative
+  position: relative
 }
 /**/
 /*performer page specifically*/
@@ -1427,26 +1449,26 @@ html body div#root div.main.container-fluid div#performer-page.row div.detail-he
 /*set image/cover etc*/
 .image-input.form-label button.btn.btn-secondary,
 #set-image-popover.fade.show.popover.bs-popover-top div.popover-body {
-	background-color: var(--nav-grey-dark);
-	border:none
+  background-color: var(--nav-grey-dark);
+  border:none
 }
 /*cant get this to work for scenes*/
 .image-input.form-label button.btn.btn-secondary:hover {
-	color: var(--accent) !important;
+  color: var(--accent) !important;
 }
 span.detail-item-value.synopsis {
-	-webkit-line-clamp: 5;
+  -webkit-line-clamp: 5;
 }
 #performer-page .full-width .detail-item {
-	width: 50%;
+  width: 50%;
 }
 #performer-page .detail-header-image button {
-	padding: 0;
-	border: 0;
+  padding: 0;
+  border: 0;
 }
 #performer-page .detail-header-image img {
-	margin-bottom: -1rem;
-	transition: .25s ease;
+  margin-bottom: -1rem;
+  transition: .25s ease-in-out;
 }
 /*#performer-page .detail-header-image .btn {
 	padding-bottom: 0rem;
@@ -1457,223 +1479,215 @@ span.detail-item-value.synopsis {
 	max-width: 18.5rem;
 }*/
 #performer-scraper-popover.dropdown-menu.show {
-	max-height: 850px;
+  max-height: 850px;
 }
 /*Makes the details/synopsis text area in movie edit bigger*/
 form#group-edit #synopsis {
-	min-height: 37ex;
+  min-height: 37ex;
 }
 /*with  thumbnail border on, performer cards in gallery tab sometimes get edges cut off*/
 .gallery-performers .performer-card-image {
-	height: 22.5rem;
-	width: 100%;
+  height: 22.5rem;
+  width: 100%;
 }
 /*in scene details marker tab create marker "Title" gets box shadow cut off*/ 
 .scene-tabs .form-container.px-3 {
-	padding-top: 3px !important
+  padding-top: 3px !important
 }
-
 /*in scene details marker tab create marker "Time/End Time" buttons */
 .duration-input .btn.btn-secondary,
 .duration-input .btn.btn-secondary:not(:disabled):not(.disabled):active:focus,
 .duration-input .btn.btn-secondary:not(:disabled):not(.disabled).active:focus {
-	box-shadow: none
-}edit-buttons
+  box-shadow: none
+}
+edit-buttons
 
-
-/*========== Scenes/Galleries ==========*/
+/* ========== Scenes/Galleries ========== */
 
 .mr-auto.nav.nav-tabs {
-	margin-bottom:1rem;
-	line-height: .8;
+  margin-bottom:1rem;
+  line-height: .8;
 }
 .image-tabs,
 .tab-content,
 .gallery-tabs {
-	scrollbar-width: none;
+  scrollbar-width: none;
 }
 /*Hides director, updated at/created at lines*/
 .col-9.col-12.scene-details,
 .fade.tab-pane.active.show div.row div.col-12 h6,
 .fade.tab-pane.active.show div.row div.col-12 h6 {
-	display: none;
+  display: none;
 }
 /*Margin between tags performer*/
 .row.justify-content-center.image-performers,
 .row.justify-content-center.gallery-performers,
 .row.justify-content-center.scene-performers {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 /* "Title" text-input form-control box-shadow top border gets cut off */
 #scene-edit-details .form-container.edit-buttons-container.px-3.pt-3.row {
-	margin-bottom: .2rem
+  margin-bottom: .2rem
 }
 /*moves to the left framerate/resolution*/
 span.resolution {
-	margin-right: 1rem;
+  margin-right: 1rem;
 }
 #scene-edit-details .scraper-group.btn-group {
-	margin-right: 15px;
+  margin-right: 15px;
 }
 /*scrape with dropdown*/
 #scene-edit-details .scraper-filter-container {
-	background-color: var(--nav-grey-dark);
-	border-bottom: none;
+  background-color: var(--nav-grey-dark);
+  border-bottom: none;
 }
 #scene-edit-details .dropdown-divider {
-	border-top-color: var(--nav-grey);
-	margin: 6px;
+  border-top-color: var(--nav-grey);
+  margin: 6px;
 }
 .scraper-menu .dropdown-menu .scraper-filter-container .clearable-text-field {
-	background-color: var(--nav-grey);
+  background-color: var(--nav-grey);
 }
 /*more than 1 file for scene at file info tab*/
 .scene-file-card.card .card-header,
 .scene-file-card.card {
-	background: transparent;
-	border: none;
-	box-shadow: none;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
-/*stashdb porndb ids in scene/gallery edit */
-.row.no-gutters {
-	padding:  5px 0 5px 0;
+/* when there are both stashdb and porndb ids in scene/gallery edit */
+#scene-edit-details .row.no-gutters {
+  padding:  5px 0 5px 0;
 }
 
-/*======  Wide Scraper View ======*/
+/* ======  Wide Scraper View ====== */
 
 /*manual url scrape in scene edit page*/
 .modal-dialog.scrape-dialog.modal-lg {
-	max-width: 1024px;
+  max-width: 1024px;
 }
 .modal-dialog.scrape-dialog.modal-lg .offset-lg-3 {
-	margin-left: 15%;
+  margin-left: 15%;
 }
 .modal-dialog.scrape-dialog.modal-lg .col-lg-3 {
-	flex: 0 0 15%;
-	max-width: 15%;
+  flex: 0 0 15%;
+  max-width: 15%;
 }
 .modal-dialog.scrape-dialog.modal-lg .col-lg-9 {
-	flex: 0 0 85%;
-	max-width: 85%;
+  flex: 0 0 85%;
+  max-width: 85%;
 }
 .string-list-input {
-	width: inherit;
+  width: inherit;
 }
 
-
-/*======  Queue Viewer ======*/
+/* ======  Queue Viewer ====== */
 
 #queue-viewer .current {
-	background-color: transparent;
+  background-color: transparent;
 }
 .my-2.current .queue-scene-details,
 #queue-content .my-2.current .queue-scene-studio,
 #queue-content .my-2.current .queue-scene-performers,
 #queue-content .my-2.current .queue-scene-date,
 #queue-content .my-2.current .queue-scene-title {
-	color: var(--accent);
-	transition: ease-in-out all 0s !important;
-	transition-delay: 0s !important;
-	transition-duration: 0s !important;
+  color: var(--accent);
+  transition: ease-in-out all 0s !important;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
 }
 #queue-viewer .my-2 a:hover .queue-scene-title {
-	color: var(--accent);
-	transition: ease-in-out all 0.3s !important;
-	transition-delay: 0s !important;
+  color: var(--accent);
+  transition: ease-in-out all 0.3s !important;
+  transition-delay: 0s !important;
 }
 #queue-viewer {
-	scrollbar-width: auto !important
+  scrollbar-width: auto !important
 }
-
-
 
 /*=============================================================================================================================================================
 	 																	MARKERS																					   										
 =============================================================================================================================================================*/
 
 .primary-card-body.card-body div hr {
-	border-top: 1px solid var(--nav-grey-dark);
-	margin-left: -25px !important;
-	margin-right: -5px !important;
-	margin-top: 10px !important;
-	margin-bottom: -5px !important;
+  border-top: 1px solid var(--nav-grey-dark) !important;
+  margin-left: -25px !important;
+  margin-right: -5px !important;
+  margin-top: 10px !important;
+  margin-bottom: -5px !important;
 }
 .primary-card {
-	border-left: 1px solid var(--nav-grey-dark);
-	/*border: 1px solid var(--nav-grey-dark);*/
+  border-left: 1px solid var(--nav-grey-dark) !important;
+  /*border: 1px solid var(--nav-grey-dark);*/
 	/*background: transparent;*/
 }
 .primary-card h3 {
-	font-size: 1.5rem;
-	font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 500;
   line-height: 1;
-	z-index: 5; 
-	margin-bottom: 15px	
+  z-index: 5;
+  margin-bottom: 15px
 }
 .primary-card-body.card-body {
-	margin-top: -.5rem;	
-	z-index: 4;
-	max-height: 15rem;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	scrollbar-width: thin;
-} 
-.primary-card-body .d-flex.align-items-center{
-	margin-left: -1.3rem;
-	margin-bottom: -2px;
+  margin-top: -.5rem;
+  z-index: 4;
+  max-height: 15rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  scrollbar-width: thin;
+}
+.primary-card-body .d-flex.align-items-center {
+  margin-left: -1.3rem;
+  margin-bottom: -2px;
 }
 .primary-card-body.card-body .row {
-	margin-left: -28px;
-	margin-top: 5px;
+  margin-left: -28px;
+  margin-top: 5px;
 }
 .primary-card-body.card-body .btn.btn-link {
-	font-size: 1rem;	
-	font-weight: 700;
-		color: var(--sbt-text)
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sbt-text)
 }
 .primary-card-body.card-body .btn.btn-link:hover {
-	color: var(--accent)
+  color: var(--accent)
 }
 .primary-card .ml-auto.btn.btn-link {
-	margin-left: 1px !important;
-	font-weight: 500;
-	font-size: 1rem;	
+  margin-left: 1px !important;
+  font-weight: 500;
+  font-size: 1rem;
 }
-
 /*markers in scene tabs*/
 .wall-item-anchor div.wall-item-text {
-	background: none;
-	/*background: linear-gradient(to top, #00000063 20%, #ffffff12 100%);*/
+  background: none;
+  /*background: linear-gradient(to top, #00000063 20%, #ffffff12 100%);*/
 	bottom: 5px;
-	filter: drop-shadow(1px 1px 2px #000);
-	color: #fff;
- 	font-weight: 700;
+  filter: drop-shadow(1px 1px 2px #000);
+  color: #fff;
+  font-weight: 700;
   left: 0;
   text-align: left;
-	transition: .3s ease-in-out
+  transition: .3s ease-in-out
 }
 .wall-item-text:hover {
-	color: var(--accent) !important;
+  color: var(--accent) !important;
 }
 .wall .wall-item {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-
-
 /*scenes/markers main page*/
 .wall-item-title {
-	transition: .3s ease-in-out	
+  transition: .3s ease-in-out
 }
 .scene-wall .wall-item-footer,
 .marker-wall .wall-item-footer {
-	margin-bottom: -10px;
+  margin-bottom: -10px;
 }
 .scene-wall .wall-item-footer:hover .wall-item-title, 
 .marker-wall .wall-item-footer:hover .wall-item-title {
-	text-decoration: none;
-	color: var(--accent);
+  text-decoration: none;
+  color: var(--accent);
 }
-
 
 /*=============================================================================================================================================================
 	 																	CARDS																					   										
@@ -1681,45 +1695,64 @@ span.resolution {
 
 /*Shows up when using lighter colors*/
 .card {
-	box-shadow: none;
+  box-shadow: none;
 }
 /*Outline when selecting card*/
 .grid-card.card:has(input:checked) {
-	box-shadow: 0 0 2px 4px var(--accent);
+  box-shadow: 0 0 2px 4px var(--accent);
 }
 .card>hr {
-	display: none;
+  display: none;
 }
 /*.card .card-popovers .minimal.btn.btn-primary{
 	font-weight: normal;
 }
-/**/
-/*Card titles Hover effect*/
-.card-section-title .TruncatedText {
-	font-weight: bold;
-	font-size: 17px;
-	transition: ease-in-out 0.5s;
-	z-index: 1;
+*/
+.card-popovers.btn-group {
+  filter:drop-shadow(1px 1px 1px black);
 }
-.card-section-title .TruncatedText:hover {
-	color: var(--accent);
-	cursor: pointer
+:is(.group-card, .performer-card, .studio-card, .tag-card) .btn-group {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+:is(.group-card, .performer-card, .studio-card, .tag-card):hover .btn-group {
+  opacity: 1;
+}
+.scene-specs-overlay,
+.grid-card .card-check {
+  transition: opacity .5s ease-in-out !important;
+}
+.grid-card:hover .card-check {
+  opacity: .75;
+}
+.scene-card:hover .scene-specs-overlay {
+  opacity: 0;
+}
+/*Card titles Hover effect*/
+.card .card-section-title .TruncatedText {
+  font-weight: bold;
+  font-size: 17px;
+  transition: color .3s ease-in-out;
+}
+.card .card-section-title .TruncatedText:hover {
+  color: var(--accent);
+  cursor: pointer
 }
 .group-card__date,
 .gallery-card__date,
 .scene-card__date {
-	font-size: 12px;
-}
+  font-size: 12px;
+}*/
 .group-card .card-section-title.flex-aligned {
-	margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 .scene-marker-card .card-section-title.flex-aligned {
-	margin-top: -0.5rem;
+  margin-top: -0.5rem;
 }
 /**removes title from image cards*/
 .image-card .studio-overlay,
 .image-card .TruncatedText {
-	display: none;
+  display: none;
 }
 /*remove tooltips from popover buttons*/
 html body div#scene-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,
@@ -1728,9 +1761,8 @@ html body div#image-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,
 html body div#gallery-count-tooltip.fade.show.tooltip.bs-tooltip-bottom,
 html body div#organised-tooltip.fade.show.tooltip.bs-tooltip-bottom,
 html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom {
-	display: none;
+  display: none;
 }
-
 
 /*=============================================================================================================================================================
 	 																	SCENE/GALLERY CARDS																		
@@ -1742,79 +1774,71 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom {
 	 																	MOVIE CARDS																				   
 =============================================================================================================================================================*/
 
-/* Moves + fades in button group */
+/* Moves + fades in button group 
 .group-card .btn-group {
-	display: flex;
+  display: flex;
   flex-direction: column;
-	position: absolute;
-	bottom: 2.5rem;
-	left: 0rem;
-	opacity: 0;
-	transition: opacity 1s;
-}
-.group-card:hover .btn-group {
-	opacity: 1;
+  position: absolute;
+  bottom: 2.5rem;
+  left: 0rem;
 }
 /* Image wrapper for gradient overlay */
 .group-card-header {
-	position: relative;
-	display: block;
+  position: relative;
+  display: block;
 }
 /* Gradient overlay layer */
 .group-card-header::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, .75));
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 1s ease;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.75));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
 }
 /*Apply overlay when card hovered (NOT just when image hovered) */
 .group-card:hover .group-card-header::after {
-	opacity: 1;
+  opacity: 1;
 }
 /* Smooth filter */
 .group-card-image {
-	transition: filter 1s ease;
+  transition: filter 1s ease-in-out;
 }
 /*Apply saturation when card hovered (NOT just when image hovered) */
 .group-card:hover .group-card-image {
-	filter: saturate(120%) brightness(110%) contrast(120%);
+  filter: saturate(120%) brightness(110%) contrast(120%);
 }
 .group-card__date,
 .group-card__description {
-	display: none;
+  display: none;
 }
 /**/
 /*Tidying up bottom of card*/
 .group-card .card-section {
-	margin-bottom: -1.5rem;
-	/*margin-top: -.2rem*/
+  margin-bottom: -1.5rem;
+  /*margin-top: -.2rem*/
 }
 .group-card .card-section-title .TruncatedText {
-	-webkit-line-clamp: var(--title-length, 1) !important;
+  -webkit-line-clamp: var(--title-length, 1) !important;
 }
 /**//*sidebar and group details*/
 .scene-card .scene-group-scene-number {
-	display: none;
+  display: none;
 }
 .group-card .group-scene-number {
-	display: none;
-	font-size: 13px;
-	position: absolute;
-	bottom: 0.5rem;
-	right: 1.0rem;
+  display: none;
+  font-size: 13px;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1.0rem;
 }
 .item-list-container .group-card .group-card-image {
-	max-height: 305px;
-	overflow: hidden;
+  max-height: 305px;
+  overflow: hidden;
 }
 
-
-/*----------------------- MAKE SNIPPET ----------------------------------*/
-
-/*
+/*----------------------- MAKE SNIPPET ----------------------------------
 .PerformerTagger-performer .performer-card.p-0.m-0.card {
 	background: linear-gradient(0deg, var(--nav-grey-dark) 5%, #0000) #bdbdbd 100%;  
 	transition: background 1s ease-in-out;
@@ -1844,8 +1868,7 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom {
 #performer-page.row .detail-header.edit.collapsed  img.performer:hover {
 	background: linear-gradient(0deg, var(--body) 5%, #0000) rgb(255, 255, 255) 100%;
 }
-/*-------------------------------------------------------------------------*/
-
+-------------------------------------------------------------------------*/
 
 /*=============================================================================================================================================================
 	 																	STUDIO CARDS																			   
@@ -1864,221 +1887,235 @@ html body div#performer-count-tooltip.fade.show.tooltip.bs-tooltip-bottom {
 =============================================================================================================================================================*/
 
 .table.table-striped.table-bordered tbody tr:nth-child(odd) {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .table.table-striped.table-bordered tbody tr:nth-child(even) {
-	background-color: var(--nav-grey);
+  background-color: var(--nav-grey);
 }
 .table.table-striped.table-bordered thead tr th.border-row {
-	background-color: var(--nav)
+  background-color: var(--nav)
 }
 .table-list.scene-table {
-	scrollbar-color: var(--accent-transparent) var(--body);
-	scrollbar-width: thin;
+  scrollbar-color: var(--accent-transparent) var(--body);
+  scrollbar-width: thin;
 }
-.table-list .comma-list.overflowable:hover {
+tbody tr:nth-child(even) td.performers-data ul.comma-list.overflowable:hover,
+tbody tr:nth-child(even) td.tags-data ul.comma-list.overflowable:hover {
+  background: var(--nav-grey);
+  border: 1px solid var(--accent-transparent);
+  /*background: var(--accent);*/
+}
+tbody tr:nth-child(odd) td.performers-data ul.comma-list.overflowable:hover,
+tbody tr:nth-child(odd) td.tags-data ul.comma-list.overflowable:hover {
+  background: var(--nav-grey-dark);
+  border: 1px solid var(--accent-transparent);
+  /*background: var(--red);*/
+}
+/*.table-list .comma-list.overflowable:hover {
 	background: transparent;
 	border: none;
 	box-shadow: none;
-}
+}*/
 .table-list a:hover {
-	color: var(--accent);
+  color: var(--accent);
 }
 .svg-inline--fa.fa-table-columns.fa-icon.column-select:hover {
-	color: var(--accent)
+  color: var(--accent)
+}
+#react-select-2-listbox.css-1vmiv div {
+  background: var(--card)
 }
 .css-1vmiv {
-	background-color: var(--nav);
-	width: 15rem;
+  background-color: var(--nav);
+  width: 15rem;
 }
 .css-11lrfd-option,
 .css-xa9f71-option,
 .css-1a4kl9e-option,
 .css-g4rbeg-option {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .css-11lrfd-option,
 .css-gg1jaf-option {
-	background-color: var(--nav-grey-dark);
-	color: var(--accent);
+  background-color: var(--nav-grey-dark);
+  color: var(--accent);
 }
 /*list view icon and menu top left*/
 .css-1t8bdmy-indicatorContainer {
-	background: var(--nav-grey)
+  background: var(--nav-grey)
 }
-
 
 /*=============================================================================================================================================================
 	 																	SETTINGS																		   		   
 =============================================================================================================================================================*/
 
 #configuration-tabs-tabpane-plugins .setting-group:has(.setting.disabled) .setting {
-	/*color: #ffffffa6 !important;										++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */		
+  /*color: #ffffffa6 !important;										++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */		
 	opacity: .65 !important;
 }
+.setting-group:not(.collapsible) .btn.btn-primary.btn-sm {
+	margin-right: 3rem
+}
 
-/*============  Tasks page  ============*/
+/* ============  Tasks page  ============ */
 
 /*task queue colors*/
 #tasks-panel .tasks-panel-queue {
-	background: var(--body);
+  background: var(--body);
 }
 .job-table.card {
-	height: 11em;
-	background-color: var(--card);
+  height: 11em;
+  background-color: var(--card);
 }
 .progress {
-	background-color: var(--tags);
-	border-radius: .25rem
+  background-color: var(--tags);
+  border-radius: .25rem
 }
 .progress-bar {
-	/*color: #fff;												     	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /*color: #fff;												     	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	background-color: var(--accent);
 }
 /*changes color of gear icon when spinning*/
 svg.svg-inline--fa.fa-gear.fa-spin {
-	color: var(--accent);
+  color: var(--accent);
 }
 /*left menu links*/
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
-	background: none;
-	color: var(--accent);
+  background: none;
+  color: var(--accent);
 }
 /*hover background on left menu*/
 #settings-menu-container .nav-link:hover,
 #settings-menu-container .nav-link:focus,
 #settings-menu-container .nav-link.active {
-	color: var(--accent) !important;
-	background: linear-gradient(90deg, var(--nav-grey-dark), var(--body));
+  color: var(--accent) !important;
+  background: linear-gradient(90deg, var(--nav-grey-dark), var(--body));
 }
 #settings-menu-container .nav-link.active {
-	font-weight: bold;
+  font-weight: bold;
 }
 /*solid lines between options in the cards*/
 .setting-section .setting:not(:last-child),
 .setting-section .setting-group:not(:last-child) {
-	border-bottom: 2px solid var(--nav-grey-dark);
+  border-bottom: 2px solid var(--nav-grey-dark);
 }
 #wall-preview .sub-heading,
 /*tidies up sub-heading only on tasks page*/
 #scene-gen-preview-preset .sub-heading,
 #tasks-panel .sub-heading {
-	margin-right: 2rem;
-	margin-bottom: 10px;
+  margin-right: 2rem;
+  margin-bottom: 10px;
 }
 
-
-/*============  Medata Providers page  ============*/
+/* ============  Medata Providers page  ============ */
 
 /*package manager - parser results*/
 .markdown table thead,
 table.table thead {
-	background-color: var(--nav);
+  background-color: var(--nav);
 }
 /*package manager*/
 .package-manager .package-manager-toolbar {
-	padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 .package-manager-table-container .table .border-row {
-	background-color: var(--nav-grey-dark);
-	height: 5px;
+  background-color: var(--nav-grey-dark);
+  height: 5px;
 }
 .package-manager .package-manager-table-container {
-	max-height: 365px;
-	overflow-y: auto;
+  max-height: 360px;
+  overflow-y: auto;
 }
 .package-manager-table-container {
-	border-radius: 5px;
-	background-color: var(--nav-grey-dark);
+  border-radius: 5px;
+  background-color: var(--nav-grey-dark);
 }
 .package-manager .form-check {
-	padding-left: 1.5rem;
+  padding-left: 1.5rem;
 }
 .package-manager-table-container {
-	scrollbar-color: var(--accent-transparent) var(--card);
-	scrollbar-width: thin;
+  scrollbar-color: var(--accent-transparent) var(--card);
+  scrollbar-width: thin;
 }
 /*scraper tables*/
 .collapse.show table.scraper-table thead tr,
 .collapsing table.scraper-table thead tr {
-	background-color: var(--nav);
+  background-color: var(--nav);
 }
 .markdown table tbody tr:nth-child(1n),
 .scraper-table tr:nth-child(1n) {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .markdown table tbody tr:nth-child(2n),
 .scraper-table tr:nth-child(2n) {
-	background-color: var(--nav-grey);
+  background-color: var(--nav-grey);
 }
 .scraper-table th,
 .scraper-table td {
-	border: none;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-bottom-color: var(--nav-grey);
+  border: none;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--nav-grey);
 }
 /*hovering over scraper-plugin depositories in package manager*/
 .package-source:hover {
-	color: var(--accent);
+  color: var(--accent);
 }
 
-/*============  Duplicate checker  ============*/
+/* ============  Duplicate checker  ============ */
 
 /*scenes per page dropdown menu*/
 .duplicate-checker .w-auto {
-	width: 3.5rem !important;
+  width: 3.5rem !important;
 }
 .duplicate-checker .table-responsive table.duplicate-checker-table.table.table-striped tbody tr.duplicate-group {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .duplicate-checker .table-responsive table.duplicate-checker-table.table.table-striped tbody tr {
-	background-color: var(--nav-grey);
+  background-color: var(--nav-grey);
 }
 .table-striped tr:nth-child(2n+1) td {
-	background: transparent
+  background: transparent
 }
 .duplicate-checker div.table-responsive table.duplicate-checker-table.table.table-striped tbody tr td {
-	padding: 1rem 0.5rem;
+  padding: 1rem 0.5rem;
 }
 #scene-duplicate-checker.col.col-xl-12.mx-auto.card div.duplicate-checker div.table-responsive table.duplicate-checker-table.table.table-striped tbody tr.separator {
-	border-top: none;
+  border-top: none;
 }
 .duplicate-checker form div.form-group small.form-text {
-	padding-top: 0.5rem;
+  padding-top: 0.5rem;
 }
 /*checkbox row below select options button*/
 .duplicate-checker form div.form-group div.row.no-gutters div.form-check {
-	padding-top: 1rem;
-	padding-left: 1.9rem;
+  padding-top: 1rem;
+  padding-left: 1.9rem;
 }
 .duplicate-checker div.d-flex.mt-2.mb-2 h6.mr-auto.align-self-center {
-	color: var(--accent);
+  color: var(--accent);
 }
 .duplicate-checker div.table-responsive table.duplicate-checker-table.table.table-striped tbody tr td {
-	vertical-align: middle
+  vertical-align: middle
 }
 .fa-icon.text-warning {
-	color: var(--bright-red) !important;
+  color: var(--bright-red) !important;
 }
 
-
-/*============  Parser  ============*/
+/* ============  Parser  ============ */
 
 .table thead th {
-	background-color: var(--nav);
-	border-bottom: 1px solid var(--card);
+  background-color: var(--nav);
+  border-bottom: 1px solid var(--card);
 }
 .scene-parser-results {
-	background-color: var(--card);
+  background-color: var(--card);
 }
 
-
-/*============  Changelog  ============*/
+/* ============  Changelog  ============ */
 
 .changelog-version-body {
-	background-color: var(--nav-grey-dark)
+  background-color: var(--nav-grey-dark)
 }
 /*.btn.btn-link svg.svg-inline--fa.fa-angle-down.fa-icon.mr-3 {
 	color: var(--accent)
@@ -2086,15 +2123,14 @@ table.table thead {
 /*help menu stuff. the table colors for markdown are changed together with all the other table stuff */
 .markdown blockquote,
 .markdown pre {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 html body.modal-open div.fade.modal.show div.modal-dialog.modal-dialog-scrollable.manual.modal-xl div.modal-content div.modal-header {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 div.markdown code {
-	background-color: var(--nav-grey);
+  background-color: var(--nav-grey);
 }
-
 
 /*=============================================================================================================================================================
 	 																	EDIT FILTERS																			   
@@ -2103,193 +2139,206 @@ div.markdown code {
 .edit-filter-dialog .modal-footer,
 .edit-filter-dialog .modal-body,
 .edit-filter-dialog .modal-header {
-	background-color: var(--nav);
+  background-color: var(--nav);
 }
 .criterion-list.accordion .card {
-	background-color: var(--nav);
+  background-color: var(--nav);
 }
 /*affects color during close open animation*/
 .criterion-list.accordion .card .collapse.show,
 .criterion-list.accordion .card .collapsing {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .dialog-content.criterion-selected .criterion-list.accordion .card .filter-item-header:focus,
 .dialog-content.criterion-selected .criterion-list.accordion .card .filter-item-header:hover,
 .dialog-content .criterion-list.accordion .card .filter-item-header:hover {
-	box-shadow: inset 0 0 0 .1rem transparent;
-	color: var(--accent);
-	transition: all 0.3s ease-in-out;
+  box-shadow: inset 0 0 0 .1rem transparent;
+  color: var(--accent);
+  transition: all 0.3s ease-in-out;
 }
 .selectable-filter ul .selected-object a:hover,
 .selectable-filter ul .unselected-object a:hover {
-	background: transparent;
-	color: var(--accent);
+  background: transparent;
+  color: var(--accent);
 }
 /*accordion items border*/
 .dialog-content div.criterion-list.accordion div.card button.filter-item-header {
-	border-color: transparent;
-	box-shadow: none;
+  border-color: transparent;
+  box-shadow: none;
 }
 .svg-inline--fa.fa-thumbtack.fa-icon.tilted {
-	color: var(--accent-transparent);
+  color: var(--accent-transparent);
 }
 .svg-inline--fa.fa-thumbtack.fa-icon {
-	color: var(--accent)
+  color: var(--accent)
 }
+.pin-sort-by-button.btn.btn-minimal:hover svg.svg-inline--fa.fa-thumbtack.fa-icon,
 button.pin-criterion-button.btn.btn-minimal:hover svg.svg-inline--fa.fa-thumbtack.fa-icon {
-	color: var(--accent-transparent);
-	transform: rotate(45deg);
+  color: var(--accent-transparent);
+  transform: rotate(45deg);
 }
+.pin-sort-by-button.btn.btn-minimal:hover svg.svg-inline--fa.fa-thumbtack.fa-icon.tilted,
 button.pin-criterion-button.btn.btn-minimal:hover svg.svg-inline--fa.fa-thumbtack.fa-icon.tilted {
-	color: var(--accent);
-	transform: rotate(0deg);  
+  color: var(--accent);
+  transform: rotate(0deg);
+}
+.sort-by-select .dropdown-menu .sort-by-option .pin-sort-by-button {
+	opacity: 0;
+	transition: opacity .3s ease-in-out;
+}
+.sort-by-select .dropdown-menu .sort-by-option:hover .pin-sort-by-button {
+	opacity: 1
 }
 .edit-filter-dialog .criterion-list .card {
-	border: none;
-	box-shadow: none;
-	margin: 0 0 -1px;
-	padding: 0;
+  border: none;
+  box-shadow: none;
+  margin: 0 0 -1px;
+  padding: 0;
 }
 .input-group-append {
-	/*search fields with a date picker*/
+  /*search fields with a date picker*/
 	margin-left: 5px;
 }
 
-
-/*------------------- DATE PICKER ----------------------------*/
+/* ============  Date Picker  ============ */
 
 .react-datepicker__input-container.btn.btn-secondary:not(:disabled):not(.disabled).active,
 .react-datepicker__input-container.btn.btn-secondary:not(:disabled):not(.disabled):active,
 .react-datepicker__input-container button.btn.btn-secondary:focus {
-	color: var(--accent);
-	background-color: var(--nav);
+  color: var(--accent);
+  background-color: var(--nav);
 }
 div.react-datepicker__tab-loop div.react-datepicker-popper div div.react-datepicker {
-	border-color: var(--nav);
+  border-color: var(--nav);
 }
 #date-picker-portal .react-datepicker__header.react-datepicker__header--has-time-select,
 #date-picker-portal .react-datepicker__header.react-datepicker__header--time,
 #date-picker-portal .react-datepicker-time__header,
 div.react-datepicker__tab-loop div.react-datepicker-popper div div.react-datepicker {
-	/*colors extra space for months with extra rows*/
+  /*colors extra space for months with extra rows*/
 	background-color: var(--nav);
 }
 .react-datepicker__month-container,
 .react-datepicker__time-box,
 div.react-datepicker .react-datepicker__header {
-	background-color: var(--card);
+  background-color: var(--card);
+}
+#date-picker-portal .react-datepicker__day--today:hover {
+   color: inherit;
 }
 #date-picker-portal .react-datepicker__day--today {
-	color: var(--accent);
+  color: var(--accent);
 }
 #date-picker-portal .react-datepicker__day:hover {
-	background-color: var(--accent-transparent);
+  background-color: var(--accent-transparent);
 }
 #date-picker-portal .react-datepicker__time-list-item:hover {
-	background-color: var(--accent-transparent);
+  background-color: var(--accent-transparent);
+}
+#date-picker-portal .react-datepicker__day--disabled:hover {
+  background-color: transparent;
 }
 #date-picker-portal .react-datepicker__time-list-item--selected,
 #date-picker-portal .react-datepicker__day--selected,
 #date-picker-portal .react-datepicker__day--keyboard-selected {
-	background-color: var(--accent);
-	color: #fff !important;
+  background-color: var(--accent);
+  color: #fff !important;
 }
 div.react-datepicker__month-dropdown-container.react-datepicker__month-dropdown-container--scroll div.react-datepicker__month-dropdown,
 div.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable {
-	background-color: var(--card);
+  background-color: var(--card);
 }
 .react-datepicker__year-option--selected,
 .react-datepicker__month-option--selected,
 .react-datepicker__month-year-option--selected {
-	color: var(--accent);
+  color: var(--accent);
 }
-
 
 /*=============================================================================================================================================================
 	 																	TAGGER / SCRAPERS																		  
 =============================================================================================================================================================*/
 
 .tagger-container.mx-md-auto .mt-3.search-item {
-	background-color: var(--card);
+  background-color: var(--card);
 }
 .tagger-container.mx-md-auto .mt-3.search-item .pl-0.mt-3.mb-0 .row.mx-0.mt-2.search-result.selected-result.active {
-	/*selected result*/
+  /*selected result*/
 	background-color: var(--nav);
 }
 .mt-3 .search-result {
-	/*other results*/
+  /*other results*/
 	background-color: var(--nav-grey-dark);
 }
 .search-result:hover {
-	background-color: var(--nav-grey);
+  background-color: var(--nav-grey);
 }
 .search-result .performer-select-active .react-select__control,
 .search-result .studio-select-active .react-select__control {
-	/*in tagger when performer or studio is not yet tagged*/
+  /*in tagger when performer or studio is not yet tagged*/
 	background-color: var(--nav-grey);
 }
 .tagger-container.mx-md-auto .btn.btn-secondary {
-	background-color: var(--nav-grey-dark);
-	/*eg tagger when a studio or performer is not tagged*/
+  background-color: var(--nav-grey-dark);
+  /*eg tagger when a studio or performer is not tagged*/
 }
 .tagger-container .react-select__control.css-13cymwt-control {
-	/*makes outline overlap better*/
+  /*makes outline overlap better*/
 	z-index: 9
 }
 .scene-path {
-	/*margin from description to scene path and duration for scene to be scraped in tagger*/
+  /*margin from description to scene path and duration for scene to be scraped in tagger*/
 	margin-top: .5rem;
 }
-/*====== studio/performer tagger changes ======*/
+
+/* ====== studio/performer tagger changes ====== */
+
 .TagTagger .TagTagger-tag,
 .PerformerTagger-performer,
 .StudioTagger-studio {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .StudioTagger-studio .studio-card img {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .TagTagger-box-link.input-group span.input-group-text,
 .PerformerTagger-box-link.input-group span.input-group-text,
 .StudioTagger-box-link.input-group span.input-group-text {
-	background-color: var(--nav-grey-dark);
-	border: 0px;
+  background-color: var(--nav-grey-dark);
+  border: 0px;
 }
 .TagTagger-box-link.input-group .input-group-append .btn.btn-primary,
 .PerformerTagger-box-link.input-group .input-group-append .btn.btn-primary,
 .StudioTagger-box-link.input-group .input-group-append .btn.btn-primary {
-	border-top-left-radius: 0.4rem;
-	border-bottom-left-radius: 0.4rem;
+  border-top-left-radius: 0.4rem;
+  border-bottom-left-radius: 0.4rem;
 }
 .TagTagger-details .tag-card.card {
-	background: transparent
+  background: transparent
 }
 .TagTagger-tag .tag-card img {
-	background-color: transparent;
-	width: 100%; height: 100%;
-	max-height: 100%;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
 }
 .TagTagger-tag .tag-card::before,
 .TagTagger-tag .tag-card::after {
- 	opacity: 0;
+  opacity: 0;
 }
-
 html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom {
-	background-color: var(--nav-grey-dark)
+  background-color: var(--nav-grey-dark)
 }
 /*performer edit "scrape with" results*/
 .mt-3.search-item {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .mt-3.search-item:hover .performer-name {
-	color: var(--accent)
+  color: var(--accent)
 }
 .StudioTagger-studio-search-item.minimal.col-6.btn.btn-link:hover {
-	background: none;
-	color: var(--accent);
+  background: none;
+  color: var(--accent);
 }
-
-
 
 /*=============================================================================================================================================================
 	 																	 VIDEO JS																				   
@@ -2297,149 +2346,154 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 
 .video-js,
 .vjs-tech {
-	background-color: transparent;
+  background-color: transparent;
 }
 .vjs-poster {
-	background-color: transparent;
+  background-color: transparent;
 }
 /*.video-js .vjs-control-bar {
 	font-size: 12px;
 }*/
 .video-js .vjs-control-bar::before {
-	background: transparent;
-	bottom: 0;
-	content: "";
-	height: 10rem;
-	pointer-events: none;
-	position: absolute;
-	width: 100%;
+  background: linear-gradient(0deg,var(--body),#0000)
 }
-.vjs-menu li.vjs-selected,
-.vjs-menu li.vjs-selected:focus,
-.vjs-menu li.vjs-selected:hover,
-.js-focus-visible .vjs-menu li.vjs-selected:hover {
-	background-color: var(--accent);
+.vjs-menu li.vjs-selected {
+  background-color: transparent;
+	color: var(--accent);
 }
 .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
-	background-color: var(--nav-grey-dark);
+  background-color: var(--nav-grey-dark);
 }
 .video-js .vjs-play-progress {
-	background-color: var(--accent);
+  background-color: var(--accent);
 }
 .video-js .vjs-load-progress {
-	background: var(--accent);
+  background: var(--tags);
 }
 .video-js .vjs-load-progress div {
-	/*background: #87725975;*/
-	background: var(--tags)
+	background: var(--accent-transparent)
 }
 .vjs-volume-control.vjs-control.vjs-volume-vertical .vjs-volume-bar.vjs-slider-bar.vjs-slider.vjs-slider-vertical .vjs-volume-level {
-	background-color: var(--accent);
+  background-color: var(--accent);
 }
 .vjs-mute-control.vjs-control.vjs-button.vjs-vol-0,
 .video-js .vjs-control:hover,
 .video-js .vjs-control:focus {
-	text-shadow: none !important;
-	color: var(--accent);
+  text-shadow: none !important;
+  color: var(--accent);
 }
 .vjs-mute-control.vjs-control.vjs-button.vjs-vol-0:hover {
-	color: var(--accent-transparent);
+  color: var(--accent-transparent);
 }
-.vjs-menu-item-text,
-.vjs-menu-item.vjs-source-menu-item {
-	color: #fff;
+.vjs-menu-content {
+  color: #fff;
 }
 .vjs-menu li.vjs-menu-item:focus,
 .vjs-menu li.vjs-menu-item:hover,
 .js-focus-visible .vjs-menu li.vjs-menu-item:hover {
-	background-color: transparent;
-}
-.vjs-menu-item.vjs-source-menu-item.vjs-selected {
-	background-color: var(--accent);
+  background-color: transparent;
 }
 .vjs-menu-item:hover .vjs-menu-item-text {
-	color: var(--accent);
+  color: var(--accent);
 }
-
 #scrubber-forward.scrubber-button.btn.btn-primary,
 #scrubber-back.scrubber-button.btn.btn-primary {
-	background-color: transparent;
-	border: none
+  background-color: transparent;
+  border: none
 }
 #scrubber-position-indicator {
-	background-color: var(--accent-transparent);
+  background-color: var(--accent-transparent);
 }
-
 
 /*=============================================================================================================================================================
 	 																	PLUGINS / SCRIPTS																		   
 =============================================================================================================================================================*/
 
-/*============ Quick Edit ============*/
+/* ============ Quick Edit ============ */
 
 #configModal {
-	background: var(--card);
-	max-width: 69%
+  background: var(--card);
+  max-width: 69%
 }
 #configModal>h3:nth-child(1) {
-	margin-top: -1rem;
-	margin-bottom: 1.5rem
+  margin-top: -1rem;
+  margin-bottom: 1.5rem
 }
 #configModal .minimal {
-	color: var(--red) !important;
+  color: var(--red) !important;
 }
 #configModal .minimal:hover {
-	color: var(--bright-red) !important;
-	background: transparent;
+  color: var(--bright-red) !important;
+  background: transparent;
 }
 #configModal .minimal:focus {
-	box-shadow: none;
+  box-shadow: none;
 }
 #configModalClose.btn.btn-secondary {
-	color: var(--red);
-	margin-top: 1rem !important;
+  color: var(--red);
+  margin-top: 1rem !important;
 }
 #configModalClose.btn.btn-secondary:hover {
-	color: var(--bright-red)
+  color: var(--bright-red)
 }
 .form-control.text-input.col-1.mr-4 {
-	margin-top: 0rem;
-	margin-bottom: 0.5rem;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
 }
 .float-right.mr-5 {
-	margin-right: 2rem !important;
-	margin-top: 1rem !important;
+  margin-right: 2rem !important;
+  margin-top: 1rem !important;
 }
 .card.card-sm {
-	background: var(--nav-grey);
-	box-shadow: 0 0 0 1px var(--nav-grey), 0 0 rgba(16, 22, 26, 0), 0 0 rgba(16, 22, 26, 0);
-	padding: 5px
+  background: var(--nav-grey);
+  box-shadow: 0 0 0 1px var(--nav-grey), 0 0 rgba(16, 22, 26, 0), 0 0 rgba(16, 22, 26, 0);
+  padding: 5px
 }
 #buttons-container .form-group.row {
-	flex-wrap: wrap;
-	margin-left: -16rem;
-	padding-left: 3rem;
+  flex-wrap: wrap;
+  margin-left: -16rem;
+  padding-left: 3rem;
 }
 .mt-2 {
-	margin-bottom: 1rem
+  margin-bottom: 1rem
 }
 .btn-success:not(:disabled):not(.disabled):active:focus,
 .btn-success:not(:disabled):not(.disabled).active:focus,
 .show>.btn-success.dropdown-toggle:focus {
-	box-shadow: none;
+  box-shadow: none;
 }
 .btn-success:not(:disabled):not(.disabled):active,
 .btn-success:not(:disabled):not(.disabled).active,
 .show>.btn-success.dropdown-toggle {
-	/*color: #fff;													++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /*color: #fff;													++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	background-color: var(--accent);
-	border-color: var(--accent);
+  border-color: var(--accent);
 }
 .tag-list-row.row .btn.btn-primary.btn-sm.active {
-	background-color: var(--accent);
-	border-color: var(--accent);
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
+/* ============ Stash Scene Tagger Additions ============ */
+
+.original-scene-details h5 {
+  margin-bottom: 15px !important
+}
+.original-scene-details .TruncatedText {
+  margin-bottom: 15px
+}
+.original-scene-details .scene-addition-row {
+  margin-top: 5px
+}
+.original-scene-details .scene-path {
+  margin-top: 0px
+}
+.original-scene-details .scene-url {
+  color: #48aff0 !important;
+}
+.original-scene-details .scene-url:hover {
+  color: var(--accent) !important;
+}
 
 /*=============================================================================================================================================================
 	 																	MAIN PAGE ANIMATIONS																	   
@@ -2448,30 +2502,30 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 /* "Customize" bottom right of main page */
 .recommendations-container-edit .recommendation-row,
 .recommendations-container-edit .recommendation-row-add {
-	background-color: var(--card)
+  background-color: var(--card)
 }
 /*Target the Specific Slick Tracks to Animate and Include a Pause on Hover*/
 .scene-recommendations .slick-track {
-	animation: scrollLeftToRight 2500s linear infinite;
-	white-space: nowrap;
-	overflow: hidden;
-	animation-play-state: running;
+  animation: scrollLeftToRight 2500s linear infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  animation-play-state: running;
 }
 .gallery-recommendations .slick-track,
 .group-recommendations .slick-track,
 .performer-recommendations .slick-track,
 .studio-recommendations .slick-track {
-	animation: scrollLeftToRight 2000s linear infinite;
-	white-space: nowrap;
-	overflow: hidden;
-	animation-play-state: running;
+  animation: scrollLeftToRight 2000s linear infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  animation-play-state: running;
 }
 .gallery-recommendations .slick-track:hover,
 .group-recommendations .slick-track:hover,
 .scene-recommendations .slick-track:hover,
 .performer-recommendations .slick-track:hover,
 .studio-recommendations .slick-track:hover {
-	animation-play-state: paused;
+  animation-play-state: paused;
 }
 /*Main Page - Blur Other Cards That Are Not Moused Over*/
 .gallery-recommendations .slick-track:hover .gallery-card.card:not(:hover),
@@ -2479,32 +2533,32 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 .scene-recommendations .slick-track:hover .scene-card.card:not(:hover),
 .performer-recommendations .slick-track:hover .performer-card.card:not(:hover),
 .studio-recommendations .slick-track:hover .studio-card.card:not(:hover) {
-	filter: blur(2px);
+  filter: blur(2px);
 }
 /* Animation for Scene, Performer, and Studio Cards on Main Page */
 @keyframes scrollLeftToRight {
-	0%,
+  0%,
 	100% {
-		transform: translateX(0);
-	}
-	50% {
-		transform: translateX(-200%);
-	}
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-200%);
+  }
 }
 /* Hide slick-dots element on Main Page - Less Clutter */
 .slick-dots {
-	display: none !important;
+  display: none !important;
 }
 /*Hide the Prev-Next Arrows on Main Page*/
 .slick-arrow.slick-prev,
 .slick-arrow.slick-next {
-	display: none !important;
-	width: 0 !important;
-	margin: 0 !important;
+  display: none !important;
+  width: 0 !important;
+  margin: 0 !important;
 }
 /* Media query for mobile devices */
 @media only screen and (max-width: 767px) {
-	/* Disable animations and hover effects on mobile */
+  /* Disable animations and hover effects on mobile */
 	.gallery-recommendations .slick-track,
 	.group-recommendations .slick-track,
 	.scene-recommendations .slick-track,
@@ -2515,431 +2569,129 @@ html body div#popover.fade.hover-popover-content.show.popover.bs-popover-bottom 
 	.scene-recommendations .slick-track:hover,
 	.performer-recommendations .slick-track:hover,
 	.studio-recommendations .slick-track:hover {
-		animation: none;
-		animation-play-state: running;
-		/* Ensure animations are not paused on hover on mobile */
-	}
+    animation: none;
+    animation-play-state: running;
+    /* Ensure animations are not paused on hover on mobile */
+  }
 }
 
-
 /*------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
 
 .bs-popover-top>.arrow::after,
 .bs-popover-auto[x-placement^="top"]>.arrow::after,
 /*tiny arrow pointing up from the text input*/
 .bs-popover-bottom>.arrow::after,
 .bs-popover-auto[x-placement^="bottom"]>.arrow::after {
-	/*also in movie or performer edit set image popover*/
+  /*also in movie or performer edit set image popover*/
 	border-bottom-color: var(--tags);
-	border-top-color: var(--tags);
+  border-top-color: var(--tags);
 }
-
-
 /*lightbox options*/
 .Lightbox .fade.popover.show .popover-header {
-	background-color: var(--nav);
-	border-bottom: 1px solid var(--nav-grey);
+  background-color: var(--nav);
+  border-bottom: 1px solid var(--nav-grey);
 }
-
-
-
 html body div#popover.fade.hover-popover-content.show.popover.bs-popover-top div.tag-popover-card div.performer-card.zoom-0.grid-card.card {
-	height: 385px
+  height: 385px
 }
 .hover-scrubber .hover-scrubber-indicator .hover-scrubber-indicator-marker {
-	background-color: var(--accent);
+  background-color: var(--accent);
 }
-
 html body.modal-open div.fade.edit-filter-dialog.modal.show div.modal-dialog div.modal-content div.modal-header div {
-	font-size: x-large;
+  font-size: x-large;
 }
-
+.Lightbox-header-right .btn-link .fa-icon path {
+	transition: fill .3s ease-in-out
+}
+.Lightbox-header-right .btn-link:hover .fa-icon path {
+	fill: var(--accent);
+}
+.Lightbox-header-right .btn-link:hover .fa-xmark.fa-icon path {
+	fill: var(--red);
+}
+.Lightbox-navbutton:hover {
+	transition: filter .3s ease-in-out
+}
+.Lightbox-navbutton .fa-icon path {
+	transition: fill .3s ease-in-out
+}
+.Lightbox-navbutton:hover .fa-icon path {
+	fill: var(--accent);
+}
+.Lightbox-navbutton .fa-icon {
+	transition: opacity .3s ease-in-out
+}
+.Lightbox-navbutton:hover .fa-icon {
+	opacity: 1 !important;
+}
+.Lightbox-nav-selected {
+	box-shadow: 0 0 0 6px var(--accent);
+}
 
 /*============================================================================================================================================================
 	 																	PAGINATION																				   
 =============================================================================================================================================================*/
 
-@media only screen and (min-width: 767px) {
-/* --- Shared button styles --- */
-
-/*.pagination.btn-group button.btn.btn-secondary {
-  height: 34px;
-  padding-top: 2px;
-  margin-top: 1px;
-}*/
-
-.text-muted.paginationIndex.center-text {
-  font-size: 13px;
-}
-
-
-/* ---- Main Pages ---- */
-
-html body div#root div.main.container-fluid
-  :is(
-    .item-list-container.hide-sidebar .sidebar-pane.hide-sidebar,
-    .item-list-container .sidebar-pane
-  )
-  .sidebar-pane-content .pagination-index-container .pagination.btn-group {
-  position: absolute;
-  top: 0.7rem;
-  left: 107rem;
-}
-
-/* paginationIndex: sidebar hidden → visible */
-html body div#root div.main.container-fluid
-  .item-list-container.hide-sidebar
-  .sidebar-pane.hide-sidebar
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  position: absolute;
-  top: 1.2rem;
-  right: 108rem;
-  opacity: 1;
-}
-
-/* image-list right override */
-html body div#root div.main.container-fluid
-  .item-list-container.image-list.hide-sidebar
-  .sidebar-pane.hide-sidebar
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  right: 104rem;
-}
-
-/* paginationIndex: sidebar open → hidden */
-html body div#root div.main.container-fluid
-  .item-list-container
-  .sidebar-pane
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  opacity: 0;
-}
-
-/* paginationIndex position for specific list types (sidebar open) */
-/* moves paginationIndex to the sidebar visible position to prevent gap*/
-html body div#root div.main.container-fluid
-  :is(
-    .item-list-container.group-list,
-    .item-list-container.scene-list,
-    .item-list-container.gallery-list,
-    .item-list-container.studio-list,
-    .item-list-container.tag-list,
-    .item-list-container.image-list
-  )
-  .sidebar-pane
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  position: absolute;
-  top: 0.75rem;
-  right: 108rem;
-}
-
-
-/* ---- Sub-pages (tab panes) ---- */
-
-:is(
-  #group-tabs-tabpane-scenes,
-  #group-tabs-tabpane-performers,
-  #performer-tabs-tabpane-scenes,
-  #performer-tabs-tabpane-galleries,
-  #performer-tabs-tabpane-images,
-  #performer-tabs-tabpane-groups,
-  #performer-tabs-tabpane-appearswith,
-  #studio-tabs-tabpane-scenes,
-  #studio-tabs-tabpane-galleries,
-  #studio-tabs-tabpane-images,
-  #studio-tabs-tabpane-performers,
-  #studio-tabs-tabpane-groups,
-  #studio-tabs-tabpane-childstudios,
-  #tag-tabs-tabpane-scenes
-).fade.tab-pane.active.show
-  :is(
-    .item-list-container.scene-list,
-    .item-list-container.gallery-list,
-    .item-list-container.image-list,
-    .item-list-container.group-list,
-    .item-list-container.studio-list
-  )
-  :is(.sidebar-pane, .sidebar-pane.hide-sidebar)
-  .sidebar-pane-content
-  .pagination-index-container
-  .pagination.btn-group {
-  position: absolute;
-  top: -0.4rem;
-  left: 107rem;
-}
-
-:is(
-  #group-tabs-tabpane-scenes,
-  #group-tabs-tabpane-performers,
-  #performer-tabs-tabpane-scenes,
-  #performer-tabs-tabpane-galleries,
-  #performer-tabs-tabpane-images,
-  #performer-tabs-tabpane-groups,
-  #performer-tabs-tabpane-appearswith,
-  #studio-tabs-tabpane-scenes,
-  #studio-tabs-tabpane-galleries,
-  #studio-tabs-tabpane-images,
-  #studio-tabs-tabpane-performers,
-  #studio-tabs-tabpane-groups,
-  #studio-tabs-tabpane-childstudios,
-  #tag-tabs-tabpane-scenes
-).fade.tab-pane.active.show
-  :is(
-    .item-list-container.scene-list,
-    .item-list-container.gallery-list,
-    .item-list-container.image-list,
-    .item-list-container.group-list,
-    .item-list-container.studio-list
-  )
-  :is(.sidebar-pane, .sidebar-pane.hide-sidebar)
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  position: absolute;
-  top: 0.4rem;
-  right: 108rem;
-}
-
-
-/* ---- Gallery image-list (within tabs) ---- 
-
-
-/*Add*/
-/*gallery-container not expanded*/
-
-.gallery-container .clearable-input-group.search-term-input {
-  width: 190px;
-}
-.gallery-container .filter-container.text-muted.paginationIndex.center-text {
-	opacity: 1 !important;
-	position: absolute; 
-  top: 3.5rem !important;
-  left: 0rem;
-	width: 30rem;
-}	
-.gallery-container .pagination-index-container .pagination.btn-group  {
-	position: absolute; 
-  top: 3rem !important;
-  left: 75rem !important;	
-}
-.gallery-container .sidebar-toggle-button-container {	
-	margin-top: 20px					/*otherwise obsures "Images" button from clicking*/
-}
-.gallery-container .sidebar-toggle-button.ignore-sidebar-outside-click.minimal.btn.btn-secondary {
-	top: 3rem;
-	margin-left: 6px;
-}
-.gallery-container .sidebar-pane .sidebar-pane-content {
-	margin-left: -7px
-}
-.gallery-container .sidebar-pane:not(.hide-sidebar) .filtered-list-toolbar {
-  margin-left: 0px;
-  margin-right: 0;
-}
-.gallery-container .sidebar-pane:not(.hide-sidebar) .filter-tags, 
-.gallery-container .sidebar-pane:not(.hide-sidebar) .pagination-index-container, 
-.gallery-container .sidebar-pane:not(.hide-sidebar) .pagination-footer-container {
-  margin-left: 0px;
-  margin-right: 0;
-}
-
-
-.gallery-container.expanded .sidebar-pane.hide-sidebar .sidebar-pane-content ,
-.gallery-container:not(.expanded) .sidebar-pane.hide-sidebar .sidebar-pane-content {
-	margin-left: 0px !important
-}
-
-
-/*gallery-container expanded*/
-.gallery-container.expanded .pagination-index-container .pagination.btn-group {
-  left: 106rem !important;	
-}
-/*sidebar open*/
-.gallery-container.expanded .filter-container.text-muted.paginationIndex.center-text {
-	left: 20rem
-}
-.gallery-container.expanded .sidebar-pane-content {
-	margin-left: 210px 
-}
-/*sidebar closed*/
-.gallery-container.expanded .sidebar-pane.hide-sidebar .filter-container.text-muted.paginationIndex.center-text {
-	left: 9rem
-}
-.main.container-fluid:has(.sidebar-pane) .gallery-container.expanded .mr-auto.nav.nav-tabs {
-	margin-left: 15.5rem
-}
-.main.container-fluid:has(.sidebar-pane.hide-sidebar) .gallery-container.expanded .mr-auto.nav.nav-tabs {
-	margin-left: 0rem
-}
-
-/*Images*/
-.gallery-container:not(:has(.sidebar-pane-content)) .filter-container.text-muted.paginationIndex.center-text {
-  top: 3.2rem!important;
-  left: 0rem;
-}
-.gallery-container:not(:has(.sidebar-pane-content)) .pagination.btn-group {
-  top: 2.7rem !important;
-  right: 2rem;
-}
-	
-}
-
-
-/*********************************************************************************************************************************************************/
-
-
-@media only screen and (min-width: 1867px) {
-/* --- Shared button styles --- */
-
-/*.pagination.btn-group button.btn.btn-secondary {
-  height: 34px;
-  padding-top: 2px;
-  margin-top: 1px;
-}*/
-
-.text-muted.paginationIndex.center-text {
-  font-size: 13px;
-}
-
-
-/* ---- Main Pages ---- */
-
-html body div#root div.main.container-fluid
-  :is(
-    .item-list-container.hide-sidebar .sidebar-pane.hide-sidebar,
-    .item-list-container .sidebar-pane
-  )
-  .sidebar-pane-content .pagination-index-container .pagination.btn-group {
-  position: absolute;
-  top: 0.7rem;
-  left: 120rem;
-}
-
-/* paginationIndex: sidebar hidden → visible */
-html body div#root div.main.container-fluid
-  .item-list-container.hide-sidebar
-  .sidebar-pane.hide-sidebar
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  position: absolute;
-  top: 1.2rem;
-  right: 120rem;
-  opacity: 1;
-}
-
-/* image-list right override */
-html body div#root div.main.container-fluid
-  .item-list-container.image-list.hide-sidebar
-  .sidebar-pane.hide-sidebar
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  right: 115rem;
-}
-
-/* paginationIndex: sidebar open → hidden */
-html body div#root div.main.container-fluid
-  .item-list-container
-  .sidebar-pane
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  opacity: 0;
-}
-
-/* paginationIndex position for specific list types (sidebar open) */
-/* moves paginationIndex to the sidebar visible position to prevent gap*/
-html body div#root div.main.container-fluid
-  :is(
-    .item-list-container.group-list,
-    .item-list-container.scene-list,
-    .item-list-container.gallery-list,
-    .item-list-container.studio-list,
-    .item-list-container.tag-list,
-    .item-list-container.image-list
-  )
-  .sidebar-pane
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  position: absolute;
-  top: 0.75rem;
-  right: 108rem;
-}
-
-
-/* ---- Sub-pages (tab panes) ---- */
-
-:is(
-  #group-tabs-tabpane-scenes,
-  #group-tabs-tabpane-performers,
-  #performer-tabs-tabpane-scenes,
-  #performer-tabs-tabpane-galleries,
-  #performer-tabs-tabpane-images,
-  #performer-tabs-tabpane-groups,
-  #performer-tabs-tabpane-appearswith,
-  #studio-tabs-tabpane-scenes,
-  #studio-tabs-tabpane-galleries,
-  #studio-tabs-tabpane-images,
-  #studio-tabs-tabpane-performers,
-  #studio-tabs-tabpane-groups,
-  #studio-tabs-tabpane-childstudios,
-  #tag-tabs-tabpane-scenes
-).fade.tab-pane.active.show
-  :is(
-    .item-list-container.scene-list,
-    .item-list-container.gallery-list,
-    .item-list-container.image-list,
-    .item-list-container.group-list,
-    .item-list-container.studio-list
-  )
-  :is(.sidebar-pane, .sidebar-pane.hide-sidebar)
-  .sidebar-pane-content
-  .pagination-index-container
-  .pagination.btn-group {
-  position: absolute;
-  top: -0.4rem;
-  left: 120rem;
-}
-
-:is(
-  #group-tabs-tabpane-scenes,
-  #group-tabs-tabpane-performers,
-  #performer-tabs-tabpane-scenes,
-  #performer-tabs-tabpane-galleries,
-  #performer-tabs-tabpane-images,
-  #performer-tabs-tabpane-groups,
-  #performer-tabs-tabpane-appearswith,
-  #studio-tabs-tabpane-scenes,
-  #studio-tabs-tabpane-galleries,
-  #studio-tabs-tabpane-images,
-  #studio-tabs-tabpane-performers,
-  #studio-tabs-tabpane-groups,
-  #studio-tabs-tabpane-childstudios,
-  #tag-tabs-tabpane-scenes
-).fade.tab-pane.active.show
-  :is(
-    .item-list-container.scene-list,
-    .item-list-container.gallery-list,
-    .item-list-container.image-list,
-    .item-list-container.group-list,
-    .item-list-container.studio-list
-  )
-  :is(.sidebar-pane, .sidebar-pane.hide-sidebar)
-  .sidebar-pane-content
-  .pagination-index-container
-  span.filter-container.text-muted.paginationIndex.center-text {
-  position: absolute;
-  top: 0.4rem;
-  right: 120rem;
-}
+@media (min-width: 992px) {
+  :has(> .filtered-list-toolbar ~ .pagination-index-container) {
+    position: relative;
+    --ps-h: 2.5rem;
+    --ps-side: 11rem;
+  }
+  .filtered-list-toolbar:has(~ .pagination-index-container) {
+    padding-inline: var(--ps-side);
+    justify-content: center;
+    min-height: var(--ps-h);
+  }
+  .filtered-list-toolbar ~ .pagination-index-container {
+    position: absolute;
+    top: 0;
+    left: 8rem;
+    right: 8rem;
+    height: var(--ps-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  .filtered-list-toolbar ~ .pagination-index-container > * {
+    pointer-events: auto;
+    margin: 0;
+  }
+  .main.container-fluid:has(.detail-body) .filtered-list-toolbar ~ .pagination-index-container {
+    margin-top: -.5rem;
+  }
+  .filtered-list-toolbar ~ .pagination-index-container > .pagination {
+    order: 1;
+    margin-left: auto;
+  }
+  .filtered-list-toolbar ~ .pagination-index-container > .paginationIndex {
+    order: -1;
+    margin-right: auto;
+    text-align: left;
+  }
+  .main.container-fluid:not(:has(.hide-sidebar)) .paginationIndex {
+    opacity: 0
+  }
+  .gallery-container .paginationIndex {
+    opacity: 1 !important
+  }
+  .gallery-container .sidebar-pane .paginationIndex {
+    opacity: 0 !important
+  }
+  .gallery-container .pagination-index-container   {
+    left: 0rem;
+    right: 2rem;
+    top: 5px;
+  }
+  .gallery-container .sidebar-pane .pagination-index-container {
+    left: 8rem;
+    right: 2rem;
+    top: 0px;
+  }
+  /* For "Add" function in image list */
+	/*unresolved issues when collapsing the sidebar*/
+	.gallery-container .sidebar-pane:not(.hide-sidebar) > :nth-child(2) {
+    margin-left: 0px;
+  }
 }

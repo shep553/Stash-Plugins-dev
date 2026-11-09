@@ -1,0 +1,38 @@
+.performer-card,
+.scene-marker-card,
+.image-card,
+.tag-card,
+.studio-card,
+.group-card,
+.gallery-card,
+.scene-card {
+	transition: box-shadow ease-in-out .3s;
+	/*transition: border ease-in-out .3s !important;
+	border: 3px solid #f0000000;*/
+}
+
+.performer-card:hover,
+.scene-marker-card:hover,
+.image-card:hover,
+.tag-card:hover,
+.studio-card:hover,
+.group-card:hover,
+.gallery-card:hover,
+.scene-card:hover {
+	box-shadow: 0 0 2px 3px var(--card-outline);
+	/*border: 3px solid var(--card-outline);*/
+}
+
+/*necessary to play nice with Card Hover Rating Outline.css snippet*/
+.performer-card:not(:has(.rating-banner)):hover,
+.scene-marker-card:not(:has(.rating-banner)):hover,
+.image-card:not(:has(.rating-banner)):hover,
+.tag-card:not(:has(.rating-banner)):hover,
+.studio-card:not(:has(.rating-banner)):hover,
+.group-card:not(:has(.rating-banner)):hover,
+.gallery-card:not(:has(.rating-banner)):hover,
+.scene-card:not(:has(.rating-banner)):hover {
+	box-shadow: 0 0 2px 3px var(--card-outline) !important;
+}
+
+

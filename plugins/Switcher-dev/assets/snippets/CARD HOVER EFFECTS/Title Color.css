@@ -1,0 +1,25 @@
+.group-card:hover .card-section-title .TruncatedText,
+.scene-card:hover .card-section-title .TruncatedText,
+.scene-marker-card:hover .card-section-title .TruncatedText,
+.performer-card:hover .card-section-title .TruncatedText,
+.studio-card:hover .card-section-title .TruncatedText,
+.gallery-card:hover .card-section-title .TruncatedText,
+.tag-card:hover .card-section-title .TruncatedText,
+.image-card:hover .card-section-title .TruncatedText {
+	color: var(--accent)
+}
+
+.group-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText,
+.scene-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText,
+.scene-marker-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText,
+.performer-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText,
+.studio-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText,
+.gallery-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText,
+.tag-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText,
+.image-card:not(:has(.rating-banner)):hover .card-section-title .TruncatedText {
+	color: var(--accent)
+}
+
+.scene-card.fileless:hover .card-section-title .TruncatedText {
+	color: var(--red)
+}

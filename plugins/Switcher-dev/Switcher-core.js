@@ -1,1406 +1,1622 @@
 (async () => {
-    // =========================================================================
-    // CONFIGURATION
-    // =========================================================================
+  // =========================================================================
+  // CONFIGURATION
+  // =========================================================================
 
-    const PLUGIN_ID = 'theme-switcher';
+  const PLUGIN_ID = "theme-switcher";
 
-    const CONFIG = {
-        maxFavorites: 4,
-        dirs: {
-            themes: '/custom/assets/themes/',
-            coloris: '/custom/coloris/',
-            snippets: '/custom/assets/snippets/'
-        },
-        files: {
-            colorisCss: '/custom/coloris/coloris.min.css',
-            colorisJs: '/custom/coloris/coloris.min.js',
-            snippetsJson: '/custom/assets/snippets/snippets.json',
-            themesJson: '/custom/assets/themes/themes.json',
-        },
-        editableVars: [
-            { name: "--body", label: "Page Background" },
-            { name: "--card", label: "Card Background" },
-            { name: "--nav", label: "Navbar" },
-            { name: "--nav-grey", label: "Navbar Grey" },
-            { name: "--nav-grey-dark", label: "Navbar Grey (Dark)" },
-            { name: "--tags", label: "Tags/Text Grey" },
-            { name: "--accent", label: "Accent" },
-            { name: "--accent-transparent", label: "Accent Transparent" },
-            { name: "--card-hover", label: "Card Hover" },
-            { name: "--red", label: "Error Red" },
-            { name: "--bright-red", label: "Bright Red" },
-            { name: "--card-outline", label: "Card Outline" }
+  const CONFIG = {
+    maxFavorites: 4,
+    dirs: {
+      themes: "/custom/assets/themes/",
+      coloris: "/custom/coloris/",
+      snippets: "/custom/assets/snippets/",
+    },
+    files: {
+      colorisCss: "/custom/coloris/coloris.min.css",
+      colorisJs: "/custom/coloris/coloris.min.js",
+      snippetsJson: "/custom/assets/snippets/snippets.json",
+      themesJson: "/custom/assets/themes/themes.json",
+    },
+    editableVars: [
+      { name: "--body", label: "Page Background" },
+      { name: "--card", label: "Card Background" },
+      { name: "--nav", label: "Navbar" },
+      { name: "--nav-grey", label: "Navbar Grey" },
+      { name: "--nav-grey-dark", label: "Navbar Grey (Dark)" },
+      { name: "--tags", label: "Tags/Text Grey" },
+      { name: "--accent", label: "Accent" },
+      { name: "--accent-transparent", label: "Accent Transparent" },
+      { name: "--card-hover", label: "Card Hover" },
+      { name: "--red", label: "Error Red" },
+      { name: "--bright-red", label: "Bright Red" },
+      { name: "--card-outline", label: "Card Outline" },
+    ],
+    globalVarGroups: [
+      {
+        id: "rating",
+        label: "Rating Colors",
+        resetLabel: "Reset Rating Colors",
+        scope: "global",
+        vars: [
+          { name: "--rating-color-2", label: "★ 0.5" },
+          { name: "--rating-color-4", label: "★ 1" },
+          { name: "--rating-color-6", label: "★ 1.5" },
+          { name: "--rating-color-8", label: "★ 2" },
+          { name: "--rating-color-10", label: "★ 2.5" },
+          { name: "--rating-color-12", label: "★ 3" },
+          { name: "--rating-color-14", label: "★ 3.5" },
+          { name: "--rating-color-16", label: "★ 4" },
+          { name: "--rating-color-18", label: "★ 4.5" },
+          { name: "--rating-color-20", label: "★ 5" },
         ],
-        globalVarGroups: [
-            {
-                id: 'rating',
-                label: 'Rating Colors',
-                resetLabel: 'Reset Rating Colors',
-                scope: 'global',
-                vars: [
-                    { name: "--rating-color-2", label: "★ 0.5" },
-                    { name: "--rating-color-4", label: "★ 1" },
-                    { name: "--rating-color-6", label: "★ 1.5" },
-                    { name: "--rating-color-8", label: "★ 2" },
-                    { name: "--rating-color-10", label: "★ 2.5" },
-                    { name: "--rating-color-12", label: "★ 3" },
-                    { name: "--rating-color-14", label: "★ 3.5" },
-                    { name: "--rating-color-16", label: "★ 4" },
-                    { name: "--rating-color-18", label: "★ 4.5" },
-                    { name: "--rating-color-20", label: "★ 5" }
-                ]
-            },
-            {
-                id: 'button',
-                label: 'Button Colors',
-                resetLabel: 'Reset Button Colors',
-                scope: 'scheme',
-                vars: [
-                    { name: "--btn-bg", label: "Button Background" },
-                    { name: "--btn-border", label: "Button Border" },
-                    { name: "--btn-text", label: "Button Text" },
-                    { name: "--btn-hover-bg", label: "Button Hover Background" },
-                    { name: "--btn-hover-border", label: "Button Hover Border" },
-                    { name: "--btn-hover-text", label: "Button Hover Text" },
-                    { name: "--btn-shadow", label: "Button Shadow" }
-                ]
-            },
-            {
-                id: 'sbutton',
-                label: 'Secondary Button Colors',
-                resetLabel: 'Reset Secondary Button Colors',
-                scope: 'scheme',
-                vars: [
-                    { name: "--sbtn-bg", label: "Button Background" },
-                    { name: "--sbtn-border", label: "Button Border" },
-                    { name: "--sbtn-text", label: "Button Text" },
-                    { name: "--sbtn-hover-bg", label: "Button Hover Background" },
-                    { name: "--sbtn-hover-border", label: "Button Hover Border" },
-                    { name: "--sbtn-hover-text", label: "Button Hover Text" },
-                    { name: "--sbtn-shadow", label: "Button Shadow" }
-                ]
-            },
-            {
-                id: 'text',
-                label: 'Text Colors',
-                resetLabel: 'Reset Text Colors',
-                scope: 'scheme',
-                vars: [
-                    { name: "--color-body", label: "Color Body" },
-                    { name: "--color-nav", label: "Color Nav" },
-                    { name: "--color-title", label: "Color Title" },
-                    { name: "--color-description", label: "Color Description" }
-                ]
-            },
-            {
-                id: 'performer-card-bg',
-                label: 'Performer Card BG',
-                resetLabel: 'Reset Performer Card BG',
-                scope: 'scheme',
-                vars: [
-                    { name: "--performer-bg-top", label: "Performer Card BG Top" },
-                    { name: "--performer-bg-bottom", label: "Performer Card BG Bottom" }
-                ]
-            }
-        ]
-    };
+      },
+      {
+        id: "ratingtext",
+        label: "Rating Text",
+        resetLabel: "Reset Rating Text",
+        scope: "global",
+        vars: [
+          { name: "--rating-text-color-2", label: "0.5" },
+          { name: "--rating-text-color-4", label: "1" },
+          { name: "--rating-text-color-6", label: "1.5" },
+          { name: "--rating-text-color-8", label: "2" },
+          { name: "--rating-text-color-10", label: "2.5" },
+          { name: "--rating-text-color-12", label: "3" },
+          { name: "--rating-text-color-14", label: "3.5" },
+          { name: "--rating-text-color-16", label: "4" },
+          { name: "--rating-text-color-18", label: "4.5" },
+          { name: "--rating-text-color-20", label: "5" },
+        ],
+      },
+      {
+        id: "ratingsolidbg",
+        label: "Rating Solid BG Text",
+        resetLabel: "Reset Rating Solid BG Text",
+        scope: "global",
+        vars: [
+          { name: "--rating-solidbg-color-2", label: "0.5" },
+          { name: "--rating-solidbg-color-4", label: "1" },
+          { name: "--rating-solidbg-color-6", label: "1.5" },
+          { name: "--rating-solidbg-color-8", label: "2" },
+          { name: "--rating-solidbg-color-10", label: "2.5" },
+          { name: "--rating-solidbg-color-12", label: "3" },
+          { name: "--rating-solidbg-color-14", label: "3.5" },
+          { name: "--rating-solidbg-color-16", label: "4" },
+          { name: "--rating-solidbg-color-18", label: "4.5" },
+          { name: "--rating-solidbg-color-20", label: "5" },
+        ],
+      },
+      {
+        id: "button",
+        label: "Button Colors",
+        resetLabel: "Reset Button Colors",
+        scope: "scheme",
+        vars: [
+          { name: "--btn-bg", label: "Button Background" },
+          { name: "--btn-border", label: "Button Border" },
+          { name: "--btn-text", label: "Button Text" },
+          { name: "--btn-hover-bg", label: "Button Hover Background" },
+          { name: "--btn-hover-border", label: "Button Hover Border" },
+          { name: "--btn-hover-text", label: "Button Hover Text" },
+          { name: "--btn-shadow", label: "Button Shadow" },
+        ],
+      },
+      {
+        id: "sbutton",
+        label: "Secondary Button Colors",
+        resetLabel: "Reset Secondary Button Colors",
+        scope: "scheme",
+        vars: [
+          { name: "--sbtn-bg", label: "Button Background" },
+          { name: "--sbtn-border", label: "Button Border" },
+          { name: "--sbtn-text", label: "Button Text" },
+          { name: "--sbtn-hover-bg", label: "Button Hover Background" },
+          { name: "--sbtn-hover-border", label: "Button Hover Border" },
+          { name: "--sbtn-hover-text", label: "Button Hover Text" },
+          { name: "--sbtn-shadow", label: "Button Shadow" },
+        ],
+      },
+      {
+        id: "text",
+        label: "Text Colors",
+        resetLabel: "Reset Text Colors",
+        scope: "scheme",
+        vars: [
+          { name: "--color-body", label: "Color Body" },
+          { name: "--color-nav", label: "Color Nav" },
+          { name: "--color-title", label: "Color Title" },
+          { name: "--color-description", label: "Color Description" },
+        ],
+      },
+      {
+        id: "performer-card-bg",
+        label: "Performer Card BG",
+        resetLabel: "Reset Performer Card BG",
+        scope: "scheme",
+        vars: [
+          { name: "--performer-bg-top", label: "Performer Card BG Top" },
+          { name: "--performer-bg-bottom", label: "Performer Card BG Bottom" },
+        ],
+      },
+    ],
+  };
 
-    // =========================================================================
-    // STORAGE ABSTRACTION LAYER
-    // =========================================================================
+  // =========================================================================
+  // STORAGE ABSTRACTION LAYER
+  // =========================================================================
 
-    class StorageManager {
-        constructor() {
-            this.config = null;
-            this.pendingSave = null;
-            this.saveDelay = 500;
-        }
-
-        async initialize() {
-            if (window.csLib) {
-                try {
-                    this.config = await csLib.getConfiguration(PLUGIN_ID, {});
-                    console.log('[Switcher] Loaded config from GraphQL:', this.config);
-                    return true;
-                } catch (err) {
-                    console.error('[Switcher] Failed to load GraphQL config:', err);
-                    this.config = {};
-                }
-            } else {
-                this.config = {};
-            }
-            return false;
-        }
-
-        async get(key) {
-            return this.config[key] || null;
-        }
-
-        async set(key, value) {
-            this.config[key] = value;
-            this.scheduleSave();
-        }
-
-        async remove(key) {
-            delete this.config[key];
-            this.scheduleSave();
-        }
-
-        async batchSet(updates) {
-            Object.assign(this.config, updates);
-            this.scheduleSave();
-        }
-
-        async batchRemove(keys) {
-            keys.forEach(key => delete this.config[key]);
-            this.scheduleSave();
-        }
-
-        scheduleSave() {
-            if (this.pendingSave) {
-                clearTimeout(this.pendingSave);
-            }
-
-            this.pendingSave = setTimeout(async () => {
-                try {
-                    await csLib.setConfiguration(PLUGIN_ID, this.config);
-                    console.log('[Switcher] Config saved to GraphQL');
-                } catch (err) {
-                    console.error('[Switcher] Failed to save config:', err);
-                }
-                this.pendingSave = null;
-            }, this.saveDelay);
-        }
-
-        async forceSave() {
-            if (this.pendingSave) {
-                clearTimeout(this.pendingSave);
-                this.pendingSave = null;
-            }
-
-            if (this.config !== null) {
-                try {
-                    await csLib.setConfiguration(PLUGIN_ID, this.config);
-                    console.log('[Switcher] Config force-saved to GraphQL');
-                } catch (err) {
-                    console.error('[Switcher] Failed to force-save config:', err);
-                }
-            }
-        }
-
-        async getKeysMatching(pattern) {
-            return Object.keys(this.config).filter(key => key.includes(pattern));
-        }
+  class StorageManager {
+    constructor() {
+      this.config = null;
+      this.pendingSave = null;
+      this.saveDelay = 500;
     }
 
-    const storage = new StorageManager();
+    async initialize() {
+      if (window.csLib) {
+        try {
+          this.config = await csLib.getConfiguration(PLUGIN_ID, {});
+          console.log("[Switcher] Loaded config from GraphQL:", this.config);
+          return true;
+        } catch (err) {
+          console.error("[Switcher] Failed to load GraphQL config:", err);
+          this.config = {};
+        }
+      } else {
+        this.config = {};
+      }
+      return false;
+    }
 
-    // Intercept Stash's config overwrites and merge our live state in
-    const _originalFetch = window.fetch;
-    window.fetch = async function (...args) {
-        let [resource, config] = args;
+    async get(key) {
+      return this.config[key] || null;
+    }
 
-        if (typeof resource === 'string' && resource.endsWith('/graphql') && config?.body) {
-            try {
-                const body = JSON.parse(config.body);
-                const isConfigurePlugin = body?.query?.includes('configurePlugin') ||
-                    body?.operationName === 'ConfigurePlugin';
-                const targetId = body?.variables?.pluginId || body?.variables?.plugin_id;
+    async set(key, value) {
+      this.config[key] = value;
+      this.scheduleSave();
+    }
 
-                if (isConfigurePlugin && targetId === PLUGIN_ID && storage.config !== null) {
-                    console.log('[Switcher] Intercepting configurePlugin - merging live config');
+    async remove(key) {
+      delete this.config[key];
+      this.scheduleSave();
+    }
 
-                    // Merge: incoming input wins for its keys, but we inject any keys
-                    // that Stash's snapshot is missing
-                    const merged = {
-                        ...body.variables.input,   // Stash's stale snapshot
-                        ...storage.config,          // our live in-memory truth
-                    };
+    async batchSet(updates) {
+      Object.assign(this.config, updates);
+      this.scheduleSave();
+    }
 
-                    const newBody = {
-                        ...body,
-                        variables: {
-                            ...body.variables,
-                            input: merged
-                        }
-                    };
+    async batchRemove(keys) {
+      keys.forEach((key) => delete this.config[key]);
+      this.scheduleSave();
+    }
 
-                    config = { ...config, body: JSON.stringify(newBody) };
-                    console.log('[Switcher] Merged config keys:', Object.keys(merged));
+    scheduleSave() {
+      if (this.pendingSave) {
+        clearTimeout(this.pendingSave);
+      }
+
+      this.pendingSave = setTimeout(async () => {
+        try {
+          await csLib.setConfiguration(PLUGIN_ID, this.config);
+          console.log("[Switcher] Config saved to GraphQL");
+        } catch (err) {
+          console.error("[Switcher] Failed to save config:", err);
+        }
+        this.pendingSave = null;
+      }, this.saveDelay);
+    }
+
+    async forceSave() {
+      if (this.pendingSave) {
+        clearTimeout(this.pendingSave);
+        this.pendingSave = null;
+      }
+
+      if (this.config !== null) {
+        try {
+          await csLib.setConfiguration(PLUGIN_ID, this.config);
+          console.log("[Switcher] Config force-saved to GraphQL");
+        } catch (err) {
+          console.error("[Switcher] Failed to force-save config:", err);
+        }
+      }
+    }
+
+    async getKeysMatching(pattern) {
+      return Object.keys(this.config).filter((key) => key.includes(pattern));
+    }
+  }
+
+  const storage = new StorageManager();
+
+  // Intercept Stash's config overwrites and merge our live state in
+  const _originalFetch = window.fetch;
+  window.fetch = async function (...args) {
+    let [resource, config] = args;
+
+    if (
+      typeof resource === "string" &&
+      resource.endsWith("/graphql") &&
+      config?.body
+    ) {
+      try {
+        const body = JSON.parse(config.body);
+        const isConfigurePlugin =
+          body?.query?.includes("configurePlugin") ||
+          body?.operationName === "ConfigurePlugin";
+        const targetId =
+          body?.variables?.pluginId || body?.variables?.plugin_id;
+
+        if (
+          isConfigurePlugin &&
+          targetId === PLUGIN_ID &&
+          storage.config !== null
+        ) {
+          console.log(
+            "[Switcher] Intercepting configurePlugin - merging live config",
+          );
+
+          // Merge: incoming input wins for its keys, but we inject any keys
+          // that Stash's snapshot is missing
+          const merged = {
+            ...body.variables.input, // Stash's stale snapshot
+            ...storage.config, // our live in-memory truth
+          };
+
+          const newBody = {
+            ...body,
+            variables: {
+              ...body.variables,
+              input: merged,
+            },
+          };
+
+          config = { ...config, body: JSON.stringify(newBody) };
+          console.log("[Switcher] Merged config keys:", Object.keys(merged));
+        }
+      } catch (e) {
+        // JSON parse failed or something unexpected - let it pass through unchanged
+      }
+    }
+
+    return _originalFetch.call(this, resource, config);
+  };
+
+  // =========================================================================
+  // CROSS-TAB SYNC VIA BROADCAST CHANNEL
+  // =========================================================================
+
+  class CrossTabSync {
+    constructor() {
+      this.channel = null;
+      this.enabled = false;
+    }
+
+    initialize() {
+      if (typeof BroadcastChannel === "undefined") {
+        console.log(
+          "[Switcher] BroadcastChannel not supported, cross-tab sync disabled",
+        );
+        return;
+      }
+
+      try {
+        this.channel = new BroadcastChannel("theme-switcher-sync");
+        this.enabled = true;
+
+        this.channel.addEventListener("message", (event) => {
+          this.handleMessage(event.data);
+        });
+
+        console.log("[Switcher] Cross-tab sync enabled");
+      } catch (err) {
+        console.error("[Switcher] Failed to initialize BroadcastChannel:", err);
+      }
+    }
+
+    broadcast(type, data) {
+      if (!this.enabled || !this.channel) return;
+
+      this.channel.postMessage({ type, data });
+    }
+
+    async handleMessage(message) {
+      const { type, data } = message;
+
+      switch (type) {
+        case "theme-change":
+          // Only apply if this is a newer theme change than what we have locally
+          if (data.sequence && data.sequence <= state.themeSequence) {
+            console.log(
+              `[Switcher] Ignoring stale theme sync [seq: ${data.sequence}], current [seq: ${state.themeSequence}]`,
+            );
+            return;
+          }
+
+          // Update our sequence to match
+          if (data.sequence) {
+            state.themeSequence = data.sequence;
+          }
+
+          if (data.theme === "no-theme") {
+            console.log("[Switcher] Syncing no-theme from other tab:", data);
+            ThemeManager.applyNoTheme(true); // fromSync = true
+          } else if (
+            state.currentTheme !== data.theme ||
+            state.currentScheme !== data.scheme
+          ) {
+            console.log("[Switcher] Syncing theme from other tab:", data);
+            ThemeManager.apply(data.theme, data.scheme, true); // fromSync = true
+          }
+          break;
+
+        case "color-var-change":
+          console.log("[Switcher] Syncing color var from other tab:", data);
+
+          if (data.scope === "global") {
+            await state.setGlobalVar(data.varName, data.value);
+          } else {
+            await state.setThemeVar(data.varName, data.value);
+          }
+
+          CSSVariableManager.setVar(data.varName, data.value);
+
+          const colorChangeInput = document.querySelector(
+            `.theme-switcher__color-input[data-var-name='${data.varName}']`,
+          );
+          if (colorChangeInput) {
+            ColorisManager.updateInput(colorChangeInput, data.value);
+            ColorisManager.markModified(colorChangeInput, true);
+          }
+
+          if (data.scope !== "global") {
+            CSSVariableManager.updateDependentGlobalVars(
+              data.varName,
+              data.value,
+            );
+            CSSVariableManager.updateDependentSchemeVars(
+              data.varName,
+              data.value,
+            );
+          }
+
+          if (window.UIManager) {
+            UIManager.refreshAllPinStates();
+          }
+          break;
+
+        case "color-var-reset":
+          console.log(
+            "[Switcher] Syncing color var reset from other tab:",
+            data,
+          );
+
+          if (data.scope === "global") {
+            await state.removeGlobalVar(data.varName);
+            CSSVariableManager.removeVar(data.varName);
+
+            const { value: globalResetValue, isModified: globalResetModified } =
+              CSSVariableManager.resolveDerivedGlobalVar(data.varName);
+            if (globalResetValue) {
+              CSSVariableManager.setVar(data.varName, globalResetValue);
+            }
+            const globalResetInput = document.querySelector(
+              `.theme-switcher__color-input[data-var-name='${data.varName}']`,
+            );
+            if (globalResetInput) {
+              ColorisManager.resetInput(
+                globalResetInput,
+                globalResetValue || "",
+              );
+              ColorisManager.markModified(
+                globalResetInput,
+                globalResetModified,
+              );
+            }
+          } else {
+            await state.removeThemeVar(data.varName);
+
+            const schemeResetVal = CSSVariableManager.resolveValue(
+              data.varName,
+            );
+            if (schemeResetVal) {
+              CSSVariableManager.setVar(data.varName, schemeResetVal);
+            }
+
+            const schemeResetInput = document.querySelector(
+              `.theme-switcher__color-input[data-var-name='${data.varName}']`,
+            );
+            if (schemeResetInput) {
+              ColorisManager.resetInput(schemeResetInput, schemeResetVal || "");
+              const { isModified } = CSSVariableManager.resolveDerivedSchemeVar(
+                data.varName,
+              );
+              ColorisManager.markModified(schemeResetInput, isModified);
+            }
+
+            CSSVariableManager.updateDependentGlobalVars(
+              data.varName,
+              schemeResetVal,
+              true,
+            );
+            CSSVariableManager.updateDependentSchemeVars(
+              data.varName,
+              schemeResetVal,
+              true,
+            );
+          }
+
+          if (window.UIManager) {
+            UIManager.updatePinState(data.varName);
+          }
+          break;
+
+        case "group-reset": {
+          console.log(
+            "[Switcher] Syncing group reset from other tab:",
+            data.groupId,
+          );
+          const group = CONFIG.globalVarGroups.find(
+            (g) => g.id === data.groupId,
+          );
+          if (!group) break;
+
+          if (group.scope === "global") {
+            const keysToRemove = group.vars.map((v) =>
+              state.getKey("cssVar", state.currentTheme, "_global", v.name),
+            );
+            await storage.batchRemove(keysToRemove);
+
+            for (const v of group.vars) {
+              CSSVariableManager.removeVar(v.name);
+              const { value, isModified } =
+                CSSVariableManager.resolveDerivedGlobalVar(v.name);
+              if (value) CSSVariableManager.setVar(v.name, value);
+
+              const input = document.querySelector(
+                `.theme-switcher__color-input[data-var-name='${v.name}']`,
+              );
+              if (input) {
+                ColorisManager.resetInput(input, value || "");
+                ColorisManager.markModified(input, isModified);
+              }
+            }
+          } else {
+            const keysToRemove = group.vars.map((v) =>
+              state.getKey(
+                "cssVar",
+                state.currentTheme,
+                state.currentScheme,
+                v.name,
+              ),
+            );
+            await storage.batchRemove(keysToRemove);
+
+            for (const v of group.vars) {
+              const appliedValue = CSSVariableManager.resolveValue(v.name);
+              if (appliedValue) CSSVariableManager.setVar(v.name, appliedValue);
+
+              const input = document.querySelector(
+                `.theme-switcher__color-input[data-var-name='${v.name}']`,
+              );
+              if (input) {
+                ColorisManager.resetInput(input, appliedValue || "");
+                const { isModified } =
+                  CSSVariableManager.resolveDerivedSchemeVar(v.name);
+                ColorisManager.markModified(input, isModified);
+              }
+
+              if (appliedValue) {
+                CSSVariableManager.updateDependentGlobalVars(
+                  v.name,
+                  appliedValue,
+                  true,
+                );
+                CSSVariableManager.updateDependentSchemeVars(
+                  v.name,
+                  appliedValue,
+                  true,
+                );
+              }
+            }
+          }
+
+          if (window.UIManager) UIManager.refreshAllPinStates();
+          break;
+        }
+
+        case "all-colors-reset":
+          console.log("[Switcher] Syncing all colors reset from other tab");
+
+          const allResetKeys = CONFIG.editableVars.map((v) =>
+            state.getKey(
+              "cssVar",
+              state.currentTheme,
+              state.currentScheme,
+              v.name,
+            ),
+          );
+          await storage.batchRemove(allResetKeys);
+
+          for (const v of CONFIG.editableVars) {
+            const appliedValue = CSSVariableManager.resolveValue(v.name);
+
+            if (appliedValue) {
+              CSSVariableManager.setVar(v.name, appliedValue);
+            }
+
+            const allResetInput = document.querySelector(
+              `.theme-switcher__color-input[data-var-name='${v.name}']`,
+            );
+            if (allResetInput) {
+              ColorisManager.resetInput(allResetInput, appliedValue || "");
+              ColorisManager.markModified(allResetInput, false);
+            }
+
+            if (appliedValue) {
+              CSSVariableManager.updateDependentGlobalVars(
+                v.name,
+                appliedValue,
+                true,
+              );
+              CSSVariableManager.updateDependentSchemeVars(
+                v.name,
+                appliedValue,
+                true,
+              );
+            }
+          }
+
+          if (window.UIManager) {
+            UIManager.refreshAllPinStates();
+            requestAnimationFrame(() => UIManager.applyDropdownStyles());
+          }
+          break;
+
+        case "swatch-pin-change":
+          console.log("[Switcher] Syncing swatch pins from other tab:", data);
+
+          // Update local storage cache so isColorPinned() reads correctly
+          storage.config["coloris-swatches"] = data.swatches;
+
+          // Update the Coloris picker
+          ColorisManager.updateSwatches();
+
+          // Refresh pin button states on all visible color rows
+          if (window.UIManager) {
+            UIManager.refreshAllPinStates();
+          }
+          break;
+
+        case "snippet-pin-change":
+          console.log("[Switcher] Syncing snippet pin from other tab:", data);
+
+          // Update storage cache to match
+          if (data.pinned) {
+            storage.config[`pinned-snippet-${data.snippetName}`] = true;
+          } else {
+            delete storage.config[`pinned-snippet-${data.snippetName}`];
+          }
+
+          // Rebuild the full snippet UI so pin positions update correctly
+          if (window.UIManager) {
+            UIManager.buildSnippetUI();
+          }
+          break;
+
+        case "favorite-applied": {
+          console.log(
+            "[Switcher] Syncing favorite apply from other tab:",
+            data.name,
+          );
+          const fav = data.favorite;
+
+          // Apply scheme colors
+          const favUpdates = {};
+          for (const [varName, value] of Object.entries(fav.colors || {})) {
+            CSSVariableManager.setVar(varName, value);
+            const key = state.getKey(
+              "cssVar",
+              state.currentTheme,
+              state.currentScheme,
+              varName,
+            );
+            favUpdates[key] = value;
+            storage.config[key] = value;
+
+            const input = document.querySelector(
+              `.theme-switcher__color-input[data-var-name='${varName}']`,
+            );
+            if (input) {
+              ColorisManager.updateInput(input, value);
+              ColorisManager.markModified(input, true);
+            }
+
+            CSSVariableManager.updateDependentGlobalVars(varName, value);
+            CSSVariableManager.updateDependentSchemeVars(varName, value);
+          }
+
+          // Apply global colors
+          for (const [varName, value] of Object.entries(
+            fav.globalColors || {},
+          )) {
+            await state.setGlobalVar(varName, value);
+            CSSVariableManager.setVar(varName, value);
+
+            const input = document.querySelector(
+              `.theme-switcher__color-input[data-var-name='${varName}']`,
+            );
+            if (input) {
+              ColorisManager.updateInput(input, value);
+              ColorisManager.markModified(input, true);
+            }
+          }
+
+          // Apply snippets: full replacement
+          await SnippetManager.disableAll();
+
+          for (const raw of state.snippets) {
+            const snippet = SnippetManager.normalizeSnippet(raw);
+            if (!snippet) continue;
+
+            const saved = (fav.snippets || {})[snippet.name];
+            const enabled = saved ? saved.enabled : false;
+            const scopes = saved ? saved.scopes : [];
+            const vars = saved ? saved.vars || {} : {};
+
+            if (enabled) {
+              await SnippetManager.setEnabled(snippet.name, enabled);
+              await SnippetManager.setScopes(snippet.name, scopes);
+              for (const [varName, value] of Object.entries(vars)) {
+                await SnippetManager.setVar(snippet.name, varName, value);
+              }
+            }
+
+            await SnippetManager.apply(snippet, enabled, scopes);
+          }
+
+          if (window.UIManager) {
+            UIManager.refreshAllPinStates();
+            UIManager.buildSnippetUI();
+            requestAnimationFrame(() => UIManager.applyDropdownStyles());
+          }
+          break;
+        }
+
+        case "favorite-change":
+          console.log(
+            "[Switcher] Syncing favorites list from other tab:",
+            data,
+          );
+
+          // Sync storage cache
+          if (data.action === "save" && data.favorite) {
+            storage.config[`favorite-${data.name}`] = data.favorite;
+            const index = storage.config["favorites-index"] || [];
+            if (!index.includes(data.name)) {
+              index.push(data.name);
+              storage.config["favorites-index"] = index;
+            }
+          } else if (data.action === "delete") {
+            delete storage.config[`favorite-${data.name}`];
+            storage.config["favorites-index"] = (
+              storage.config["favorites-index"] || []
+            ).filter((n) => n !== data.name);
+          }
+
+          if (window.UIManager) {
+            UIManager.buildFavoritesUI();
+          }
+          break;
+
+        case "snippet-change":
+          console.log("[Switcher] Syncing snippet from other tab:", data);
+
+          if (
+            data.theme !== state.currentTheme ||
+            data.scheme !== state.currentScheme
+          ) {
+            console.log(
+              "[Switcher] Ignoring snippet change - different theme/scheme",
+            );
+            return;
+          }
+
+          const snippet = state.snippets.find(
+            (s) =>
+              s.name === data.snippetName ||
+              SnippetManager.normalizeSnippet(s)?.name === data.snippetName,
+          );
+
+          if (snippet) {
+            const normalized = SnippetManager.normalizeSnippet(snippet);
+            if (normalized) {
+              await SnippetManager.setEnabled(data.snippetName, data.enabled);
+              await SnippetManager.setScopes(data.snippetName, data.scopes);
+
+              const globalState = data.global ?? true;
+              if (data.global !== undefined) {
+                await SnippetManager.setGlobal(data.snippetName, globalState);
+              }
+
+              SnippetManager.apply(
+                normalized,
+                data.enabled,
+                data.scopes,
+                globalState,
+              );
+
+              const snippetEl = document.querySelector(
+                `.theme-switcher__snippet[data-snippet-id="${data.snippetName}"]`,
+              );
+              if (snippetEl) {
+                const toggle = snippetEl.querySelector(
+                  ".theme-switcher__toggle",
+                );
+                if (toggle) {
+                  toggle.setAttribute("data-active", data.enabled.toString());
                 }
-            } catch (e) {
-                // JSON parse failed or something unexpected - let it pass through unchanged
-            }
-        }
 
-        return _originalFetch.call(this, resource, config);
-    };
+                const checkboxToggle = snippetEl.querySelector(
+                  ".theme-switcher__toggle-checkbox",
+                );
+                if (checkboxToggle) {
+                  checkboxToggle.checked = data.enabled;
+                }
 
-    // =========================================================================
-    // CROSS-TAB SYNC VIA BROADCAST CHANNEL
-    // =========================================================================
-
-    class CrossTabSync {
-        constructor() {
-            this.channel = null;
-            this.enabled = false;
-        }
-
-        initialize() {
-            if (typeof BroadcastChannel === 'undefined') {
-                console.log('[Switcher] BroadcastChannel not supported, cross-tab sync disabled');
-                return;
-            }
-
-            try {
-                this.channel = new BroadcastChannel('theme-switcher-sync');
-                this.enabled = true;
-
-                this.channel.addEventListener('message', (event) => {
-                    this.handleMessage(event.data);
+                // Update scope checkboxes (exclude the global checkbox)
+                const scopeCheckboxes = snippetEl.querySelectorAll(
+                  ".theme-switcher__scope-checkbox:not(.theme-switcher__scope-checkbox--global)",
+                );
+                scopeCheckboxes.forEach((cb) => {
+                  cb.checked = data.scopes.includes(cb.dataset.scope);
                 });
 
-                console.log('[Switcher] Cross-tab sync enabled');
-            } catch (err) {
-                console.error('[Switcher] Failed to initialize BroadcastChannel:', err);
-            }
-        }
-
-        broadcast(type, data) {
-            if (!this.enabled || !this.channel) return;
-
-            this.channel.postMessage({ type, data });
-        }
-
-        async handleMessage(message) {
-            const { type, data } = message;
-
-            switch (type) {
-                case 'theme-change':
-                    // Only apply if this is a newer theme change than what we have locally
-                    if (data.sequence && data.sequence <= state.themeSequence) {
-                        console.log(`[Switcher] Ignoring stale theme sync [seq: ${data.sequence}], current [seq: ${state.themeSequence}]`);
-                        return;
-                    }
-
-                    // Update our sequence to match
-                    if (data.sequence) {
-                        state.themeSequence = data.sequence;
-                    }
-
-                    if (data.theme === 'no-theme') {
-                        console.log('[Switcher] Syncing no-theme from other tab:', data);
-                        ThemeManager.applyNoTheme(true); // fromSync = true
-                    } else if (state.currentTheme !== data.theme || state.currentScheme !== data.scheme) {
-                        console.log('[Switcher] Syncing theme from other tab:', data);
-                        ThemeManager.apply(data.theme, data.scheme, true); // fromSync = true
-                    }
-                    break;
-
-                case 'color-var-change':
-                    console.log('[Switcher] Syncing color var from other tab:', data);
-
-                    if (data.scope === 'global') {
-                        await state.setGlobalVar(data.varName, data.value);
-                    } else {
-                        await state.setThemeVar(data.varName, data.value);
-                    }
-
-                    CSSVariableManager.setVar(data.varName, data.value);
-
-                    const colorChangeInput = document.querySelector(
-                        `.theme-switcher__color-input[data-var-name='${data.varName}']`
-                    );
-                    if (colorChangeInput) {
-                        ColorisManager.updateInput(colorChangeInput, data.value);
-                        ColorisManager.markModified(colorChangeInput, true);
-                    }
-
-                    if (data.scope !== 'global') {
-                        CSSVariableManager.updateDependentGlobalVars(data.varName, data.value);
-                        CSSVariableManager.updateDependentSchemeVars(data.varName, data.value);
-                    }
-
-                    if (window.UIManager) {
-                        UIManager.refreshAllPinStates();
-                    }
-                    break;
-
-                case 'color-var-reset':
-                    console.log('[Switcher] Syncing color var reset from other tab:', data);
-
-                    if (data.scope === 'global') {
-                        await state.removeGlobalVar(data.varName);
-                        CSSVariableManager.removeVar(data.varName);
-
-                        const { value: globalResetValue, isModified: globalResetModified } =
-                            CSSVariableManager.resolveDerivedGlobalVar(data.varName);
-                        if (globalResetValue) {
-                            CSSVariableManager.setVar(data.varName, globalResetValue);
-                        }
-                        const globalResetInput = document.querySelector(
-                            `.theme-switcher__color-input[data-var-name='${data.varName}']`
-                        );
-                        if (globalResetInput) {
-                            ColorisManager.resetInput(globalResetInput, globalResetValue || '');
-                            ColorisManager.markModified(globalResetInput, globalResetModified);
-                        }
-                    } else {
-                        await state.removeThemeVar(data.varName);
-
-                        const schemeResetVal = CSSVariableManager.resolveValue(data.varName);
-                        if (schemeResetVal) {
-                            CSSVariableManager.setVar(data.varName, schemeResetVal);
-                        }
-
-                        const schemeResetInput = document.querySelector(
-                            `.theme-switcher__color-input[data-var-name='${data.varName}']`
-                        );
-                        if (schemeResetInput) {
-                            ColorisManager.resetInput(schemeResetInput, schemeResetVal || '');
-                            const { isModified } =
-                                CSSVariableManager.resolveDerivedSchemeVar(data.varName);
-                            ColorisManager.markModified(schemeResetInput, isModified);
-                        }
-
-                        CSSVariableManager.updateDependentGlobalVars(data.varName, schemeResetVal, true);
-                        CSSVariableManager.updateDependentSchemeVars(data.varName, schemeResetVal, true);
-                    }
-
-                    if (window.UIManager) {
-                        UIManager.updatePinState(data.varName);
-                    }
-                    break;
-
-                case 'group-reset': {
-                    console.log('[Switcher] Syncing group reset from other tab:', data.groupId);
-                    const group = CONFIG.globalVarGroups.find(g => g.id === data.groupId);
-                    if (!group) break;
-
-                    if (group.scope === 'global') {
-                        const keysToRemove = group.vars.map(v =>
-                            state.getKey('cssVar', state.currentTheme, '_global', v.name)
-                        );
-                        await storage.batchRemove(keysToRemove);
-
-                        for (const v of group.vars) {
-                            CSSVariableManager.removeVar(v.name);
-                            const { value, isModified } = CSSVariableManager.resolveDerivedGlobalVar(v.name);
-                            if (value) CSSVariableManager.setVar(v.name, value);
-
-                            const input = document.querySelector(
-                                `.theme-switcher__color-input[data-var-name='${v.name}']`
-                            );
-                            if (input) {
-                                ColorisManager.resetInput(input, value || '');
-                                ColorisManager.markModified(input, isModified);
-                            }
-                        }
-                    } else {
-                        const keysToRemove = group.vars.map(v =>
-                            state.getKey('cssVar', state.currentTheme, state.currentScheme, v.name)
-                        );
-                        await storage.batchRemove(keysToRemove);
-
-                        for (const v of group.vars) {
-                            const appliedValue = CSSVariableManager.resolveValue(v.name);
-                            if (appliedValue) CSSVariableManager.setVar(v.name, appliedValue);
-
-                            const input = document.querySelector(
-                                `.theme-switcher__color-input[data-var-name='${v.name}']`
-                            );
-                            if (input) {
-                                ColorisManager.resetInput(input, appliedValue || '');
-                                const { isModified } = CSSVariableManager.resolveDerivedSchemeVar(v.name);
-                                ColorisManager.markModified(input, isModified);
-                            }
-
-                            if (appliedValue) {
-                                CSSVariableManager.updateDependentGlobalVars(v.name, appliedValue, true);
-                                CSSVariableManager.updateDependentSchemeVars(v.name, appliedValue, true);
-                            }
-                        }
-                    }
-
-                    if (window.UIManager) UIManager.refreshAllPinStates();
-                    break;
+                // Update global checkbox
+                if (data.global !== undefined) {
+                  const globalCheckbox = snippetEl.querySelector(
+                    ".theme-switcher__scope-checkbox--global",
+                  );
+                  if (globalCheckbox) globalCheckbox.checked = globalState;
                 }
-
-                case 'all-colors-reset':
-                    console.log('[Switcher] Syncing all colors reset from other tab');
-
-                    const allResetKeys = CONFIG.editableVars.map(v =>
-                        state.getKey('cssVar', state.currentTheme, state.currentScheme, v.name)
-                    );
-                    await storage.batchRemove(allResetKeys);
-
-                    for (const v of CONFIG.editableVars) {
-                        const appliedValue = CSSVariableManager.resolveValue(v.name);
-
-                        if (appliedValue) {
-                            CSSVariableManager.setVar(v.name, appliedValue);
-                        }
-
-                        const allResetInput = document.querySelector(
-                            `.theme-switcher__color-input[data-var-name='${v.name}']`
-                        );
-                        if (allResetInput) {
-                            ColorisManager.resetInput(allResetInput, appliedValue || '');
-                            ColorisManager.markModified(allResetInput, false);
-                        }
-
-                        if (appliedValue) {
-                            CSSVariableManager.updateDependentGlobalVars(v.name, appliedValue, true);
-                            CSSVariableManager.updateDependentSchemeVars(v.name, appliedValue, true);
-                        }
-                    }
-
-                    if (window.UIManager) {
-                        UIManager.refreshAllPinStates();
-                        requestAnimationFrame(() => UIManager.applyDropdownStyles());
-                    }
-                    break;
-
-                case 'swatch-pin-change':
-                    console.log('[Switcher] Syncing swatch pins from other tab:', data);
-
-                    // Update local storage cache so isColorPinned() reads correctly
-                    storage.config['coloris-swatches'] = data.swatches;
-
-                    // Update the Coloris picker
-                    ColorisManager.updateSwatches();
-
-                    // Refresh pin button states on all visible color rows
-                    if (window.UIManager) {
-                        UIManager.refreshAllPinStates();
-                    }
-                    break;
-
-                case 'snippet-pin-change':
-                    console.log('[Switcher] Syncing snippet pin from other tab:', data);
-
-                    // Update storage cache to match
-                    if (data.pinned) {
-                        storage.config[`pinned-snippet-${data.snippetName}`] = true;
-                    } else {
-                        delete storage.config[`pinned-snippet-${data.snippetName}`];
-                    }
-
-                    // Rebuild the full snippet UI so pin positions update correctly
-                    if (window.UIManager) {
-                        UIManager.buildSnippetUI();
-                    }
-                    break;
-
-                case 'favorite-applied': {
-                    console.log('[Switcher] Syncing favorite apply from other tab:', data.name);
-                    const fav = data.favorite;
-
-                    // Apply scheme colors
-                    const favUpdates = {};
-                    for (const [varName, value] of Object.entries(fav.colors || {})) {
-                        CSSVariableManager.setVar(varName, value);
-                        const key = state.getKey('cssVar', state.currentTheme, state.currentScheme, varName);
-                        favUpdates[key] = value;
-                        storage.config[key] = value;
-
-                        const input = document.querySelector(
-                            `.theme-switcher__color-input[data-var-name='${varName}']`
-                        );
-                        if (input) {
-                            ColorisManager.updateInput(input, value);
-                            ColorisManager.markModified(input, true);
-                        }
-
-                        CSSVariableManager.updateDependentGlobalVars(varName, value);
-                        CSSVariableManager.updateDependentSchemeVars(varName, value);
-                    }
-
-                    // Apply global colors
-                    for (const [varName, value] of Object.entries(fav.globalColors || {})) {
-                        await state.setGlobalVar(varName, value);
-                        CSSVariableManager.setVar(varName, value);
-
-                        const input = document.querySelector(
-                            `.theme-switcher__color-input[data-var-name='${varName}']`
-                        );
-                        if (input) {
-                            ColorisManager.updateInput(input, value);
-                            ColorisManager.markModified(input, true);
-                        }
-                    }
-
-                    // Apply snippets: full replacement
-                    await SnippetManager.disableAll();
-
-                    for (const raw of state.snippets) {
-                        const snippet = SnippetManager.normalizeSnippet(raw);
-                        if (!snippet) continue;
-
-                        const saved = (fav.snippets || {})[snippet.name];
-                        const enabled = saved ? saved.enabled : false;
-                        const scopes = saved ? saved.scopes : [];
-                        const vars = saved ? (saved.vars || {}) : {};
-
-                        if (enabled) {
-                            await SnippetManager.setEnabled(snippet.name, enabled);
-                            await SnippetManager.setScopes(snippet.name, scopes);
-                            for (const [varName, value] of Object.entries(vars)) {
-                                await SnippetManager.setVar(snippet.name, varName, value);
-                            }
-                        }
-
-                        await SnippetManager.apply(snippet, enabled, scopes);
-                    }
-
-                    if (window.UIManager) {
-                        UIManager.refreshAllPinStates();
-                        UIManager.buildSnippetUI();
-                        requestAnimationFrame(() => UIManager.applyDropdownStyles());
-                    }
-                    break;
-                }
-
-                case 'favorite-change':
-                    console.log('[Switcher] Syncing favorites list from other tab:', data);
-
-                    // Sync storage cache
-                    if (data.action === 'save' && data.favorite) {
-                        storage.config[`favorite-${data.name}`] = data.favorite;
-                        const index = storage.config['favorites-index'] || [];
-                        if (!index.includes(data.name)) {
-                            index.push(data.name);
-                            storage.config['favorites-index'] = index;
-                        }
-                    } else if (data.action === 'delete') {
-                        delete storage.config[`favorite-${data.name}`];
-                        storage.config['favorites-index'] = (storage.config['favorites-index'] || [])
-                            .filter(n => n !== data.name);
-                    }
-
-                    if (window.UIManager) {
-                        UIManager.buildFavoritesUI();
-                    }
-                    break;
-
-                case 'snippet-change':
-                    console.log('[Switcher] Syncing snippet from other tab:', data);
-
-                    if (data.theme !== state.currentTheme || data.scheme !== state.currentScheme) {
-                        console.log('[Switcher] Ignoring snippet change - different theme/scheme');
-                        return;
-                    }
-
-                    const snippet = state.snippets.find(s => s.name === data.snippetName ||
-                        SnippetManager.normalizeSnippet(s)?.name === data.snippetName);
-
-                    if (snippet) {
-                        const normalized = SnippetManager.normalizeSnippet(snippet);
-                        if (normalized) {
-                            await SnippetManager.setEnabled(data.snippetName, data.enabled);
-                            await SnippetManager.setScopes(data.snippetName, data.scopes);
-
-                            const globalState = data.global ?? true;
-                            if (data.global !== undefined) {
-                                await SnippetManager.setGlobal(data.snippetName, globalState);
-                            }
-
-                            SnippetManager.apply(normalized, data.enabled, data.scopes, globalState);
-
-                            const snippetEl = document.querySelector(
-                                `.theme-switcher__snippet[data-snippet-id="${data.snippetName}"]`
-                            );
-                            if (snippetEl) {
-                                const toggle = snippetEl.querySelector('.theme-switcher__toggle');
-                                if (toggle) {
-                                    toggle.setAttribute('data-active', data.enabled.toString());
-                                }
-
-                                const checkboxToggle = snippetEl.querySelector('.theme-switcher__toggle-checkbox');
-                                if (checkboxToggle) {
-                                    checkboxToggle.checked = data.enabled;
-                                }
-
-                                // Update scope checkboxes (exclude the global checkbox)
-                                const scopeCheckboxes = snippetEl.querySelectorAll(
-                                    '.theme-switcher__scope-checkbox:not(.theme-switcher__scope-checkbox--global)'
-                                );
-                                scopeCheckboxes.forEach(cb => {
-                                    cb.checked = data.scopes.includes(cb.dataset.scope);
-                                });
-
-                                // Update global checkbox
-                                if (data.global !== undefined) {
-                                    const globalCheckbox = snippetEl.querySelector(
-                                        '.theme-switcher__scope-checkbox--global'
-                                    );
-                                    if (globalCheckbox) globalCheckbox.checked = globalState;
-                                }
-                            }
-                        }
-                    }
-                    break;
-
-
-                case 'all-snippets-disabled':
-                    console.log('[Switcher] Syncing all snippets disabled from other tab');
-
-                    // Call disableAll to properly clear storage and styles
-                    await SnippetManager.disableAll();
-
-                    // Rebuild UI to reflect disabled state
-                    if (window.UIManager) {
-                        UIManager.buildSnippetUI();
-                        UIManager.applyDropdownStyles();
-                    }
-                    break;
-
-                case 'snippet-var-change':
-                    console.log('[Switcher] Syncing snippet var change from other tab:', data);
-                    if (!state.currentTheme || !state.currentScheme) return;
-
-                    // Only apply if we're on the same theme+scheme combination
-                    if (data.theme !== state.currentTheme || data.scheme !== state.currentScheme) {
-                        console.log('[Switcher] Ignoring snippet var change - different theme/scheme');
-                        return;
-                    }
-
-                    // Update storage
-                    await SnippetManager.setVar(data.snippetName, data.varName, data.value);
-
-                    // Apply CSS variable
-                    CSSVariableManager.setVar(data.varName, data.value);
-
-                    // Update UI input if visible
-                    const snippetContainer = document.querySelector(
-                        `.theme-switcher__snippet[data-snippet-id="${data.snippetName}"]`
-                    );
-
-                    if (snippetContainer) {
-                        const varInput = snippetContainer.querySelector(
-                            `.theme-switcher__var-input[data-var-name="${data.varName}"]`
-                        );
-                        const varSelect = snippetContainer.querySelector(
-                            `.theme-switcher__var-select[data-var-name="${data.varName}"]`
-                        );
-
-                        if (varInput && data.meta?.type === 'color') {
-                            ColorisManager.updateInput(varInput, data.value);
-                        } else if (varInput && data.meta) {
-                            const unit = data.meta.unit || '';
-                            varInput.value = data.value.replace(unit, '');
-                        } else if (varSelect) {
-                            varSelect.value = data.value;
-                        }
-                    }
-                    break;
+              }
             }
-        }
+          }
+          break;
 
-        close() {
-            if (this.channel) {
-                this.channel.close();
-                this.enabled = false;
-            }
-        }
-    }
+        case "all-snippets-disabled":
+          console.log(
+            "[Switcher] Syncing all snippets disabled from other tab",
+          );
 
-    const crossTabSync = new CrossTabSync();
+          // Call disableAll to properly clear storage and styles
+          await SnippetManager.disableAll();
 
-    // =========================================================================
-    // STATE MANAGER
-    // =========================================================================
+          // Rebuild UI to reflect disabled state
+          if (window.UIManager) {
+            UIManager.buildSnippetUI();
+            UIManager.applyDropdownStyles();
+          }
+          break;
 
-    class StateManager {
-        constructor() {
-            this.themes = [];
-            this.colorSchemes = {};
-            this.snippets = [];
-            this._currentTheme = null;
-            this._currentScheme = null;
-            this.dropdownOpen = false;
-            this.suppressSave = false;
-            this.saveTimeout = null;
-            this.cachedElements = new Map();
-            this.snippetUpdateTimeouts = new Map();
+        case "snippet-var-change":
+          console.log(
+            "[Switcher] Syncing snippet var change from other tab:",
+            data,
+          );
+          if (!state.currentTheme || !state.currentScheme) return;
 
-            this.listeners = new Map();
+          // Only apply if we're on the same theme+scheme combination
+          if (
+            data.theme !== state.currentTheme ||
+            data.scheme !== state.currentScheme
+          ) {
+            console.log(
+              "[Switcher] Ignoring snippet var change - different theme/scheme",
+            );
+            return;
+          }
 
-            // Sequence tracking to prevent race conditions
-            this.themeSequence = 0;
-        }
+          // Update storage
+          await SnippetManager.setVar(
+            data.snippetName,
+            data.varName,
+            data.value,
+          );
 
-        subscribe(key, callback) {
-            if (!this.listeners.has(key)) {
-                this.listeners.set(key, []);
-            }
-            this.listeners.get(key).push(callback);
-        }
+          // Apply CSS variable
+          CSSVariableManager.setVar(data.varName, data.value);
 
-        notify(key, value) {
-            if (this.listeners.has(key)) {
-                this.listeners.get(key).forEach(callback => {
-                    try {
-                        callback(value);
-                    } catch (error) {
-                        console.error(`[Switcher] Error in listener for ${key}:`, error);
-                    }
-                });
-            }
-        }
+          // Update UI input if visible
+          const snippetContainer = document.querySelector(
+            `.theme-switcher__snippet[data-snippet-id="${data.snippetName}"]`,
+          );
 
-        get currentTheme() {
-            return this._currentTheme;
-        }
-        set currentTheme(value) {
-            if (this._currentTheme !== value) {
-                this._currentTheme = value;
-                this.notify('currentTheme', value);
-            }
-        }
-
-        get currentScheme() {
-            return this._currentScheme;
-        }
-        set currentScheme(value) {
-            if (this._currentScheme !== value) {
-                this._currentScheme = value;
-                this.notify('currentScheme', value);
-            }
-        }
-
-        getKey(type, ...args) {
-            const keyMap = {
-                cssVar: (theme, scheme, varName) => `cssvar-${theme}-${scheme}-${varName}`,
-                snippetEnabled: (theme, scheme, name) => `snippet-enabled-${theme}-${scheme}-${name}`,
-                snippetScopes: (theme, scheme, name) => `snippet-scopes-${theme}-${scheme}-${name}`,
-                snippetVar: (theme, scheme, snippet, varName) => `snippet-var-${theme}-${scheme}-${snippet}-${varName}`,
-                theme: () => 'theme-switcher-active',
-                colorScheme: () => 'theme-switcher-color-scheme'
-            };
-            return keyMap[type]?.(...args) || '';
-        }
-
-        getElement(id, selector) {
-            if (!this.cachedElements.has(id)) {
-                this.cachedElements.set(id, document.querySelector(selector));
-            }
-            return this.cachedElements.get(id);
-        }
-
-        clearElementCache() {
-            this.cachedElements.clear();
-        }
-
-        get(key) {
-            return storage.config[key] || null;
-        }
-
-        async set(key, value) {
-            return storage.set(key, value);
-        }
-
-        async remove(key) {
-            return storage.remove(key);
-        }
-
-        getThemeVar(varName) {
-            if (!this.currentTheme || !this.currentScheme) return null;
-            return this.get(this.getKey('cssVar', this.currentTheme, this.currentScheme, varName));
-        }
-
-        async setThemeVar(varName, value) {
-            if (!this.currentTheme || !this.currentScheme) return;
-            await this.set(this.getKey('cssVar', this.currentTheme, this.currentScheme, varName), value);
-        }
-
-        async removeThemeVar(varName) {
-            if (!this.currentTheme || !this.currentScheme) return;
-            await this.remove(this.getKey('cssVar', this.currentTheme, this.currentScheme, varName));
-        }
-
-        getGlobalVar(varName) {
-            if (!this.currentTheme) return null;
-            return this.get(this.getKey('cssVar', this.currentTheme, '_global', varName));
-        }
-
-        async setGlobalVar(varName, value) {
-            if (!this.currentTheme) return;
-            await this.set(this.getKey('cssVar', this.currentTheme, '_global', varName), value);
-        }
-
-        async removeGlobalVar(varName) {
-            if (!this.currentTheme) return;
-            await this.remove(this.getKey('cssVar', this.currentTheme, '_global', varName));
-        }
-
-        getAvailableSchemes() {
-            const theme = this.themes.find(t => t.name === this.currentTheme);
-            return theme?.schemes || [];
-        }
-
-        getTheme(name) {
-            return this.themes.find(t => t.name === name);
-        }
-    }
-
-    const state = new StateManager();
-
-    // =========================================================================
-    // CSS VARIABLE MANAGER
-    // =========================================================================
-
-    class CSSVariableManager {
-        static setVar(name, value) {
-            document.documentElement.style.setProperty(name, value);
-        }
-
-        static removeVar(name) {
-            document.documentElement.style.removeProperty(name);
-        }
-
-        static getComputedVar(name) {
-            return getComputedStyle(document.documentElement)
-                .getPropertyValue(name)
-                .trim();
-        }
-
-        // Returns { value, isModified } for a scheme var:
-        //   - If the var's scheme default is var(--parent): returns the parent's current
-        //     live value and whether the parent is user-modified
-        //   - Otherwise: returns the scheme default value with isModified: false
-        // Used by reset paths and updateAllColorInputs so derived scheme vars correctly
-        // inherit their parent's modified state.
-        static resolveValue(varName) {
-            const saved = state.getThemeVar(varName);
-            if (saved) return saved;
-
-            if (state.currentTheme && state.currentScheme) {
-                const schemeValue =
-                    state.colorSchemes[state.currentTheme]?.[state.currentScheme]?.[varName];
-                if (schemeValue) {
-                    const varRef = schemeValue.match(/^var\(\s*(--[^,\s)]+)/);
-                    if (varRef) {
-                        return this.getComputedVar(varRef[1]) || '';
-                    }
-                    return schemeValue;
-                }
-            }
-
-            const computed = this.getComputedVar(varName);
-            return computed || '';
-        }
-
-        static resolveGlobalValue(varName) {
-            if (state.currentTheme) {
-                const saved = state.getGlobalVar(varName);
-                if (saved) return saved;
-            }
-            return this.getComputedVar(varName) || "";
-        }
-
-        // Resolves a global var's JSON default to a concrete hex/rgb value.
-        // If the default is a var() reference (e.g. "var(--accent)"), reads the
-        // current computed value of the referenced var — which is always a concrete
-        // hex because editableVars are set from JSON scheme data, never from var() refs.
-        static resolveVarDefault(defaultVal) {
-            if (!defaultVal) return '';
-            const varRef = defaultVal.match(/^var\(\s*(--[^,\s)]+)/);
-            if (varRef) {
-                return this.getComputedVar(varRef[1]) || '';
-            }
-            return defaultVal;
-        }
-
-        static updateDependentGlobalVars(changedVarName, newColor, isReset = false) {
-            const globalVarDefaults = CONFIG.globalVarDefaults || {};
-            const allGlobalVars = CONFIG.globalVarGroups
-                .filter(g => g.scope === 'global')
-                .flatMap(g => g.vars);
-
-            for (const v of allGlobalVars) {
-                if (state.getGlobalVar(v.name)) continue;
-                const defaultVal = globalVarDefaults[v.name];
-                const varRef = defaultVal?.match(/^var\(\s*(--[^,\s)]+)/);
-                if (!varRef || varRef[1] !== changedVarName) continue;
-
-                this.setVar(v.name, newColor);
-
-                if (window.UIManager) {
-                    const input = document.querySelector(
-                        `.theme-switcher__color-input[data-var-name='${v.name}']`
-                    );
-                    if (input) {
-                        ColorisManager.updateInput(input, newColor);
-                        ColorisManager.markModified(input, !isReset);
-                        UIManager.updatePinState(v.name);
-                    }
-                }
-            }
-        }
-
-        static updateDependentSchemeVars(changedVarName, newColor, isReset = false) {
-            if (!state.currentTheme || !state.currentScheme) return;
-            const schemeVars =
-                state.colorSchemes[state.currentTheme]?.[state.currentScheme] || {};
-
-            const allSchemeVars = [
-                ...CONFIG.editableVars,
-                ...CONFIG.globalVarGroups.filter(g => g.scope === 'scheme').flatMap(g => g.vars)
-            ];
-
-            for (const v of allSchemeVars) {
-                if (state.getThemeVar(v.name)) continue;
-                const schemeDefault = schemeVars[v.name];
-                if (!schemeDefault) continue;
-                const varRef = schemeDefault.match(/^var\(\s*(--[^,\s)]+)/);
-                if (!varRef || varRef[1] !== changedVarName) continue;
-
-                this.setVar(v.name, newColor);
-
-                if (window.UIManager) {
-                    const input = document.querySelector(
-                        `.theme-switcher__color-input[data-var-name='${v.name}']`
-                    );
-                    if (input) {
-                        ColorisManager.updateInput(input, newColor);
-                        ColorisManager.markModified(input, !isReset);
-                        UIManager.updatePinState(v.name);
-                    }
-                }
-            }
-        }
-
-        // Returns { value, isModified } for a global var:
-        //   - If the var derives from a parent via var() AND that parent is user-modified:
-        //     returns the parent's current live value with isModified: true
-        //   - Otherwise: resolves from JSON default with isModified: false
-        // Used by all global reset paths so they never incorrectly flatten a derived
-        // var back to its base default while its parent is still modified.
-
-        static resolveDerivedGlobalVar(varName) {
-            const defaultVal = CONFIG.globalVarDefaults?.[varName];
-            const parentRef = defaultVal?.match(/^var\(\s*(--[^,\s)]+)/);
-
-            if (parentRef) {
-                const parentName = parentRef[1];
-                const parentIsModified = !!state.getThemeVar(parentName);
-                if (parentIsModified) {
-                    const parentValue = CSSVariableManager.resolveValue(parentName);
-                    return { value: parentValue, isModified: true };
-                }
-            }
-
-            // No var() reference, or parent is not modified — resolve from JSON default
-            const resolved = CSSVariableManager.resolveVarDefault(defaultVal);
-            return { value: resolved, isModified: false };
-        }
-
-        static resolveDerivedSchemeVar(varName) {
-            if (!state.currentTheme || !state.currentScheme) {
-                return { value: null, isModified: false };
-            }
-
-            const schemeDefault =
-                state.colorSchemes[state.currentTheme]?.[state.currentScheme]?.[varName];
-            if (!schemeDefault) return { value: null, isModified: false };
-
-            const parentRef = schemeDefault.match(/^var\(\s*(--[^,\s)]+)/);
-            if (!parentRef) return { value: schemeDefault, isModified: false };
-
-            const parentName = parentRef[1];
-            const parentIsModified = !!state.getThemeVar(parentName);
-            const parentValue = this.resolveValue(parentName);
-
-            return { value: parentValue, isModified: parentIsModified };
-        }
-
-        static loadAllThemeVars() {
-            const schemeGroupVarNames = new Set(
-                CONFIG.globalVarGroups
-                    .filter(g => g.scope === 'scheme')
-                    .flatMap(g => g.vars.map(v => v.name))
+          if (snippetContainer) {
+            const varInput = snippetContainer.querySelector(
+              `.theme-switcher__var-input[data-var-name="${data.varName}"]`,
+            );
+            const varSelect = snippetContainer.querySelector(
+              `.theme-switcher__var-select[data-var-name="${data.varName}"]`,
             );
 
-            if (state.currentTheme && state.currentScheme) {
-                const schemeVars = state.colorSchemes[state.currentTheme]?.[state.currentScheme];
-                if (schemeVars) {
-                    Object.entries(schemeVars).forEach(([varName, value]) => {
-                        const isEditable = CONFIG.editableVars.some(v => v.name === varName)
-                            || schemeGroupVarNames.has(varName);
-                        if (!isEditable) {
-                            this.setVar(varName, value);
-                        } else {
-                            const resolvedValue = this.resolveValue(varName);
-                            if (resolvedValue) this.setVar(varName, resolvedValue);
-                        }
-                    });
-                }
+            if (varInput && data.meta?.type === "color") {
+              ColorisManager.updateInput(varInput, data.value);
+            } else if (varInput && data.meta) {
+              const unit = data.meta.unit || "";
+              varInput.value = data.value.replace(unit, "");
+            } else if (varSelect) {
+              varSelect.value = data.value;
             }
-
-            for (const v of CONFIG.editableVars) {
-                const value = this.resolveValue(v.name);
-                if (value) this.setVar(v.name, value);
-            }
-
-            for (const group of CONFIG.globalVarGroups) {
-                if (group.scope === 'global') {
-                    for (const v of group.vars) {
-                        this.removeVar(v.name);
-                        const saved = state.getGlobalVar(v.name);
-                        if (saved) {
-                            this.setVar(v.name, saved);
-                        } else {
-                            const defaultVal = CONFIG.globalVarDefaults?.[v.name];
-                            const resolved = this.resolveVarDefault(defaultVal);
-                            if (resolved) this.setVar(v.name, resolved);
-                        }
-                    }
-                } else {
-                    for (const v of group.vars) {
-                        const value = this.resolveValue(v.name);
-                        if (value) this.setVar(v.name, value);
-                    }
-                }
-            }
-        }
-
-        static clearAllThemeVars() {
-            CONFIG.editableVars.forEach(v => this.removeVar(v.name));
-            CONFIG.globalVarGroups.flatMap(g => g.vars).forEach(v => this.removeVar(v.name));
-
-            if (state.currentTheme && state.currentScheme) {
-                const schemeVars = state.colorSchemes[state.currentTheme]?.[state.currentScheme];
-                if (schemeVars) {
-                    Object.keys(schemeVars).forEach(varName => this.removeVar(varName));
-                }
-            }
-        }
+          }
+          break;
+      }
     }
 
-    // =========================================================================
-    // COLORIS MANAGER
-    // =========================================================================
+    close() {
+      if (this.channel) {
+        this.channel.close();
+        this.enabled = false;
+      }
+    }
+  }
 
-    class ColorisManager {
-        static async loadAssets() {
-            if (window.Coloris) return;
+  const crossTabSync = new CrossTabSync();
 
-            return new Promise((resolve, reject) => {
-                const css = document.createElement("link");
-                css.rel = "stylesheet";
-                css.href = CONFIG.files.colorisCss;
-                css.onerror = reject;
+  // =========================================================================
+  // STATE MANAGER
+  // =========================================================================
 
-                css.onload = () => {
-                    const js = document.createElement("script");
-                    js.src = CONFIG.files.colorisJs;
-                    js.onerror = reject;
-                    js.onload = resolve;
-                    document.head.appendChild(js);
-                };
+  class StateManager {
+    constructor() {
+      this.themes = [];
+      this.colorSchemes = {};
+      this.snippets = [];
+      this._currentTheme = null;
+      this._currentScheme = null;
+      this.dropdownOpen = false;
+      this.suppressSave = false;
+      this.saveTimeout = null;
+      this.cachedElements = new Map();
+      this.snippetUpdateTimeouts = new Map();
 
-                document.head.appendChild(css);
-            });
+      this.listeners = new Map();
+
+      // Sequence tracking to prevent race conditions
+      this.themeSequence = 0;
+    }
+
+    subscribe(key, callback) {
+      if (!this.listeners.has(key)) {
+        this.listeners.set(key, []);
+      }
+      this.listeners.get(key).push(callback);
+    }
+
+    notify(key, value) {
+      if (this.listeners.has(key)) {
+        this.listeners.get(key).forEach((callback) => {
+          try {
+            callback(value);
+          } catch (error) {
+            console.error(`[Switcher] Error in listener for ${key}:`, error);
+          }
+        });
+      }
+    }
+
+    get currentTheme() {
+      return this._currentTheme;
+    }
+    set currentTheme(value) {
+      if (this._currentTheme !== value) {
+        this._currentTheme = value;
+        this.notify("currentTheme", value);
+      }
+    }
+
+    get currentScheme() {
+      return this._currentScheme;
+    }
+    set currentScheme(value) {
+      if (this._currentScheme !== value) {
+        this._currentScheme = value;
+        this.notify("currentScheme", value);
+      }
+    }
+
+    getKey(type, ...args) {
+      const keyMap = {
+        cssVar: (theme, scheme, varName) =>
+          `cssvar-${theme}-${scheme}-${varName}`,
+        snippetEnabled: (theme, scheme, name) =>
+          `snippet-enabled-${theme}-${scheme}-${name}`,
+        snippetScopes: (theme, scheme, name) =>
+          `snippet-scopes-${theme}-${scheme}-${name}`,
+        snippetVar: (theme, scheme, snippet, varName) =>
+          `snippet-var-${theme}-${scheme}-${snippet}-${varName}`,
+        theme: () => "theme-switcher-active",
+        colorScheme: () => "theme-switcher-color-scheme",
+      };
+      return keyMap[type]?.(...args) || "";
+    }
+
+    getElement(id, selector) {
+      if (!this.cachedElements.has(id)) {
+        this.cachedElements.set(id, document.querySelector(selector));
+      }
+      return this.cachedElements.get(id);
+    }
+
+    clearElementCache() {
+      this.cachedElements.clear();
+    }
+
+    get(key) {
+      return storage.config[key] || null;
+    }
+
+    async set(key, value) {
+      return storage.set(key, value);
+    }
+
+    async remove(key) {
+      return storage.remove(key);
+    }
+
+    getThemeVar(varName) {
+      if (!this.currentTheme || !this.currentScheme) return null;
+      return this.get(
+        this.getKey("cssVar", this.currentTheme, this.currentScheme, varName),
+      );
+    }
+
+    async setThemeVar(varName, value) {
+      if (!this.currentTheme || !this.currentScheme) return;
+      await this.set(
+        this.getKey("cssVar", this.currentTheme, this.currentScheme, varName),
+        value,
+      );
+    }
+
+    async removeThemeVar(varName) {
+      if (!this.currentTheme || !this.currentScheme) return;
+      await this.remove(
+        this.getKey("cssVar", this.currentTheme, this.currentScheme, varName),
+      );
+    }
+
+    getGlobalVar(varName) {
+      if (!this.currentTheme) return null;
+      return this.get(
+        this.getKey("cssVar", this.currentTheme, "_global", varName),
+      );
+    }
+
+    async setGlobalVar(varName, value) {
+      if (!this.currentTheme) return;
+      await this.set(
+        this.getKey("cssVar", this.currentTheme, "_global", varName),
+        value,
+      );
+    }
+
+    async removeGlobalVar(varName) {
+      if (!this.currentTheme) return;
+      await this.remove(
+        this.getKey("cssVar", this.currentTheme, "_global", varName),
+      );
+    }
+
+    getAvailableSchemes() {
+      const theme = this.themes.find((t) => t.name === this.currentTheme);
+      return theme?.schemes || [];
+    }
+
+    getTheme(name) {
+      return this.themes.find((t) => t.name === name);
+    }
+  }
+
+  const state = new StateManager();
+
+  // =========================================================================
+  // CSS VARIABLE MANAGER
+  // =========================================================================
+
+  class CSSVariableManager {
+    static setVar(name, value) {
+      document.documentElement.style.setProperty(name, value);
+    }
+
+    static removeVar(name) {
+      document.documentElement.style.removeProperty(name);
+    }
+
+    static getComputedVar(name) {
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim();
+    }
+
+    // Returns { value, isModified } for a scheme var:
+    //   - If the var's scheme default is var(--parent): returns the parent's current
+    //     live value and whether the parent is user-modified
+    //   - Otherwise: returns the scheme default value with isModified: false
+    // Used by reset paths and updateAllColorInputs so derived scheme vars correctly
+    // inherit their parent's modified state.
+    static resolveValue(varName) {
+      const saved = state.getThemeVar(varName);
+      if (saved) return saved;
+
+      if (state.currentTheme && state.currentScheme) {
+        const schemeValue =
+          state.colorSchemes[state.currentTheme]?.[state.currentScheme]?.[
+            varName
+          ];
+        if (schemeValue) {
+          const varRef = schemeValue.match(/^var\(\s*(--[^,\s)]+)/);
+          if (varRef) {
+            return this.getComputedVar(varRef[1]) || "";
+          }
+          return schemeValue;
         }
+      }
 
-        static updateSwatches() {
-            if (!window.Coloris) return;
-            const swatches = SwatchPinManager.getAll();
+      const computed = this.getComputedVar(varName);
+      return computed || "";
+    }
 
-            Coloris({ swatches: swatches.length ? swatches : [] });
+    static resolveGlobalValue(varName) {
+      if (state.currentTheme) {
+        const saved = state.getGlobalVar(varName);
+        if (saved) return saved;
+      }
+      return this.getComputedVar(varName) || "";
+    }
 
-            // When empty, Coloris won't clean up its already-rendered swatch nodes
-            if (!swatches.length) {
-                const swatchContainer = document.querySelector('.clr-swatches');
-                if (swatchContainer) swatchContainer.innerHTML = '';
-            }
+    // Resolves a global var's JSON default to a concrete hex/rgb value.
+    // If the default is a var() reference (e.g. "var(--accent)"), reads the
+    // current computed value of the referenced var — which is always a concrete
+    // hex because editableVars are set from JSON scheme data, never from var() refs.
+    static resolveVarDefault(defaultVal) {
+      if (!defaultVal) return "";
+      const varRef = defaultVal.match(/^var\(\s*(--[^,\s)]+)/);
+      if (varRef) {
+        return this.getComputedVar(varRef[1]) || "";
+      }
+      return defaultVal;
+    }
+
+    static updateDependentGlobalVars(
+      changedVarName,
+      newColor,
+      isReset = false,
+    ) {
+      const globalVarDefaults = CONFIG.globalVarDefaults || {};
+      const allGlobalVars = CONFIG.globalVarGroups
+        .filter((g) => g.scope === "global")
+        .flatMap((g) => g.vars);
+
+      for (const v of allGlobalVars) {
+        if (state.getGlobalVar(v.name)) continue;
+        const defaultVal = globalVarDefaults[v.name];
+        const varRef = defaultVal?.match(/^var\(\s*(--[^,\s)]+)/);
+        if (!varRef || varRef[1] !== changedVarName) continue;
+
+        this.setVar(v.name, newColor);
+
+        if (window.UIManager) {
+          const input = document.querySelector(
+            `.theme-switcher__color-input[data-var-name='${v.name}']`,
+          );
+          if (input) {
+            ColorisManager.updateInput(input, newColor);
+            ColorisManager.markModified(input, !isReset);
+            UIManager.updatePinState(v.name);
+          }
         }
+      }
+    }
 
-        static updateInput(input, value) {
-            if (!input) return;
+    static updateDependentSchemeVars(
+      changedVarName,
+      newColor,
+      isReset = false,
+    ) {
+      if (!state.currentTheme || !state.currentScheme) return;
+      const schemeVars =
+        state.colorSchemes[state.currentTheme]?.[state.currentScheme] || {};
 
-            input.value = value;
-            input.style.background = value;
+      const allSchemeVars = [
+        ...CONFIG.editableVars,
+        ...CONFIG.globalVarGroups
+          .filter((g) => g.scope === "scheme")
+          .flatMap((g) => g.vars),
+      ];
 
-            if (window.Coloris?.set) {
-                Coloris.set(input, value);
-            }
+      for (const v of allSchemeVars) {
+        if (state.getThemeVar(v.name)) continue;
+        const schemeDefault = schemeVars[v.name];
+        if (!schemeDefault) continue;
+        const varRef = schemeDefault.match(/^var\(\s*(--[^,\s)]+)/);
+        if (!varRef || varRef[1] !== changedVarName) continue;
 
-            // Update the clr-field wrapper and button. Both field.style.color (CSS
-            // currentColor path) and btn.style.background (inline override path) are
-            // set so the swatch updates correctly regardless of how this Coloris build
-            // controls the button's appearance.
-            const field = input.closest('.clr-field');
-            if (field) {
-                field.style.color = value;
-                //const btn = field.querySelector('button');
-                //if (btn) btn.style.background = value;
-            }
+        this.setVar(v.name, newColor);
+
+        if (window.UIManager) {
+          const input = document.querySelector(
+            `.theme-switcher__color-input[data-var-name='${v.name}']`,
+          );
+          if (input) {
+            ColorisManager.updateInput(input, newColor);
+            ColorisManager.markModified(input, !isReset);
+            UIManager.updatePinState(v.name);
+          }
         }
+      }
+    }
 
-        static resetInput(input, value = "") {
-            if (!input) return;
+    // Returns { value, isModified } for a global var:
+    //   - If the var derives from a parent via var() AND that parent is user-modified:
+    //     returns the parent's current live value with isModified: true
+    //   - Otherwise: resolves from JSON default with isModified: false
+    // Used by all global reset paths so they never incorrectly flatten a derived
+    // var back to its base default while its parent is still modified.
+
+    static resolveDerivedGlobalVar(varName) {
+      const defaultVal = CONFIG.globalVarDefaults?.[varName];
+      const parentRef = defaultVal?.match(/^var\(\s*(--[^,\s)]+)/);
+
+      if (parentRef) {
+        const parentName = parentRef[1];
+        const parentIsModified = !!state.getThemeVar(parentName);
+        if (parentIsModified) {
+          const parentValue = CSSVariableManager.resolveValue(parentName);
+          return { value: parentValue, isModified: true };
+        }
+      }
+
+      // No var() reference, or parent is not modified — resolve from JSON default
+      const resolved = CSSVariableManager.resolveVarDefault(defaultVal);
+      return { value: resolved, isModified: false };
+    }
+
+    static resolveDerivedSchemeVar(varName) {
+      if (!state.currentTheme || !state.currentScheme) {
+        return { value: null, isModified: false };
+      }
+
+      const schemeDefault =
+        state.colorSchemes[state.currentTheme]?.[state.currentScheme]?.[
+          varName
+        ];
+      if (!schemeDefault) return { value: null, isModified: false };
+
+      const parentRef = schemeDefault.match(/^var\(\s*(--[^,\s)]+)/);
+      if (!parentRef) return { value: schemeDefault, isModified: false };
+
+      const parentName = parentRef[1];
+      const parentIsModified = !!state.getThemeVar(parentName);
+      const parentValue = this.resolveValue(parentName);
+
+      return { value: parentValue, isModified: parentIsModified };
+    }
+
+    static loadAllThemeVars() {
+      const schemeGroupVarNames = new Set(
+        CONFIG.globalVarGroups
+          .filter((g) => g.scope === "scheme")
+          .flatMap((g) => g.vars.map((v) => v.name)),
+      );
+
+      if (state.currentTheme && state.currentScheme) {
+        const schemeVars =
+          state.colorSchemes[state.currentTheme]?.[state.currentScheme];
+        if (schemeVars) {
+          Object.entries(schemeVars).forEach(([varName, value]) => {
+            const isEditable =
+              CONFIG.editableVars.some((v) => v.name === varName) ||
+              schemeGroupVarNames.has(varName);
+            if (!isEditable) {
+              this.setVar(varName, value);
+            } else {
+              const resolvedValue = this.resolveValue(varName);
+              if (resolvedValue) this.setVar(varName, resolvedValue);
+            }
+          });
+        }
+      }
+
+      for (const v of CONFIG.editableVars) {
+        const value = this.resolveValue(v.name);
+        if (value) this.setVar(v.name, value);
+      }
+
+      for (const group of CONFIG.globalVarGroups) {
+        if (group.scope === "global") {
+          for (const v of group.vars) {
+            this.removeVar(v.name);
+            const saved = state.getGlobalVar(v.name);
+            if (saved) {
+              this.setVar(v.name, saved);
+            } else {
+              const defaultVal = CONFIG.globalVarDefaults?.[v.name];
+              const resolved = this.resolveVarDefault(defaultVal);
+              if (resolved) this.setVar(v.name, resolved);
+            }
+          }
+        } else {
+          for (const v of group.vars) {
+            const value = this.resolveValue(v.name);
+            if (value) this.setVar(v.name, value);
+          }
+        }
+      }
+    }
+
+    static clearAllThemeVars() {
+      CONFIG.editableVars.forEach((v) => this.removeVar(v.name));
+      CONFIG.globalVarGroups
+        .flatMap((g) => g.vars)
+        .forEach((v) => this.removeVar(v.name));
+
+      if (state.currentTheme && state.currentScheme) {
+        const schemeVars =
+          state.colorSchemes[state.currentTheme]?.[state.currentScheme];
+        if (schemeVars) {
+          Object.keys(schemeVars).forEach((varName) => this.removeVar(varName));
+        }
+      }
+    }
+  }
+
+  // =========================================================================
+  // COLORIS MANAGER
+  // =========================================================================
+
+  class ColorisManager {
+    static async loadAssets() {
+      if (window.Coloris) return;
+
+      return new Promise((resolve, reject) => {
+        const css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = CONFIG.files.colorisCss;
+        css.onerror = reject;
+
+        css.onload = () => {
+          const js = document.createElement("script");
+          js.src = CONFIG.files.colorisJs;
+          js.onerror = reject;
+          js.onload = resolve;
+          document.head.appendChild(js);
+        };
+
+        document.head.appendChild(css);
+      });
+    }
+
+    static updateSwatches() {
+      if (!window.Coloris) return;
+      const swatches = SwatchPinManager.getAll();
+
+      Coloris({ swatches: swatches.length ? swatches : [] });
+
+      // When empty, Coloris won't clean up its already-rendered swatch nodes
+      if (!swatches.length) {
+        const swatchContainer = document.querySelector(".clr-swatches");
+        if (swatchContainer) swatchContainer.innerHTML = "";
+      }
+    }
+
+    static updateInput(input, value) {
+      if (!input) return;
+
+      input.value = value;
+      input.style.background = value;
+
+      if (window.Coloris?.set) {
+        Coloris.set(input, value);
+      }
+
+      // Update the clr-field wrapper and button. Both field.style.color (CSS
+      // currentColor path) and btn.style.background (inline override path) are
+      // set so the swatch updates correctly regardless of how this Coloris build
+      // controls the button's appearance.
+      const field = input.closest(".clr-field");
+      if (field) {
+        field.style.color = value;
+        //const btn = field.querySelector('button');
+        //if (btn) btn.style.background = value;
+      }
+    }
+
+    static resetInput(input, value = "") {
+      if (!input) return;
+
+      const varName = input.dataset.varName;
+
+      if (window.Coloris?.close) {
+        Coloris.close();
+      }
+
+      const field = input.closest(".clr-field");
+      if (field) {
+        const parent = field.parentNode;
+        parent.insertBefore(input, field);
+        field.remove();
+      }
+
+      input.style.cssText = "";
+      input.value = value;
+      input.dataset.varName = varName;
+
+      if (value) {
+        input.style.background = value;
+      } else {
+        input.style.background = "transparent";
+      }
+
+      if (window.Coloris) {
+        Coloris({ el: input });
+
+        // Wait longer for Coloris to create the wrapper and button
+        setTimeout(() => {
+          const field = input.closest(".clr-field");
+          if (field && value) {
+            // Update the wrapper's color style
+            field.style.color = value;
+
+            // Update the button's background
+            //const button = field.querySelector('button');
+            //if (button) {
+            //button.style.background = value;
+            //}
+          }
+        }, 100);
+      }
+    }
+
+    static markModified(input, isModified) {
+      if (!input) return;
+
+      // Find parent row using BEM class
+      const row = input.closest(".theme-switcher__color-row");
+
+      if (row) {
+        row.setAttribute("data-modified", isModified.toString());
+      }
+    }
+
+    static async initialize() {
+      await this.loadAssets();
+
+      if (window.Coloris) {
+        Coloris({
+          el: ".theme-switcher__color-input",
+          inline: false, // Ensures picker is a popup, not inline with input
+          parent: "body", // Attach picker to body element for proper positioning
+          theme: "polaroid",
+          themeMode: "dark",
+          formatToggle: true,
+          alpha: true,
+          swatches: (() => {
+            const s = SwatchPinManager.getAll();
+            return s.length ? s : false;
+          })(),
+
+          // Real-time color updates while dragging/selecting
+          onChange: (color, input) => {
+            if (!input || !input.dataset.varName) return;
 
             const varName = input.dataset.varName;
 
-            if (window.Coloris?.close) {
-                Coloris.close();
-            }
+            CSSVariableManager.setVar(varName, color);
+
+            input.value = color;
+            input.style.background = color;
 
             const field = input.closest(".clr-field");
-            if (field) {
-                const parent = field.parentNode;
-                parent.insertBefore(input, field);
-                field.remove();
+            if (field) field.style.color = color;
+
+            if (window.UIManager) {
+              UIManager.updatePinState(varName);
             }
 
-            input.style.cssText = '';
-            input.value = value;
-            input.dataset.varName = varName;
+            CSSVariableManager.updateDependentGlobalVars(varName, color);
+            CSSVariableManager.updateDependentSchemeVars(varName, color);
 
-            if (value) {
-                input.style.background = value;
-            } else {
-                input.style.background = "transparent";
+            // If this input belongs to a snippet var, keep storage in sync during live drag
+            if (input.dataset.snippet) {
+              SnippetManager.setVar(input.dataset.snippet, varName, color);
             }
 
-            if (window.Coloris) {
-                Coloris({ el: input });
-
-                // Wait longer for Coloris to create the wrapper and button
-                setTimeout(() => {
-                    const field = input.closest('.clr-field');
-                    if (field && value) {
-                        // Update the wrapper's color style
-                        field.style.color = value;
-
-                        // Update the button's background
-                        //const button = field.querySelector('button');
-                        //if (button) {
-                        //button.style.background = value;
-                        //}
-                    }
-                }, 100);
-            }
-        }
-
-        static markModified(input, isModified) {
-            if (!input) return;
-
-            // Find parent row using BEM class
-            const row = input.closest(".theme-switcher__color-row");
-
-            if (row) {
-                row.setAttribute('data-modified', isModified.toString());
-            }
-        }
-
-        static async initialize() {
-            await this.loadAssets();
-
-            if (window.Coloris) {
-                Coloris({
-                    el: ".theme-switcher__color-input",
-                    inline: false,      // Ensures picker is a popup, not inline with input
-                    parent: 'body',     // Attach picker to body element for proper positioning
-                    theme: "polaroid",
-                    themeMode: "dark",
-                    formatToggle: true,
-                    alpha: true,
-                    swatches: (() => {
-                        const s = SwatchPinManager.getAll();
-                        return s.length ? s : false;
-                    })(),
-
-                    // Real-time color updates while dragging/selecting
-                    onChange: (color, input) => {
-                        if (!input || !input.dataset.varName) return;
-
-                        const varName = input.dataset.varName;
-
-                        CSSVariableManager.setVar(varName, color);
-
-                        input.value = color;
-                        input.style.background = color;
-
-                        const field = input.closest('.clr-field');
-                        if (field) field.style.color = color;
-
-                        if (window.UIManager) {
-                            UIManager.updatePinState(varName);
-                        }
-
-                        CSSVariableManager.updateDependentGlobalVars(varName, color);
-                        CSSVariableManager.updateDependentSchemeVars(varName, color);
-
-                        // If this input belongs to a snippet var, keep storage in sync during live drag
-                        if (input.dataset.snippet) {
-                            SnippetManager.setVar(input.dataset.snippet, varName, color);
-                        }
-
-                        // console.log(`[Switcher] Live preview: ${varName} = ${color}`);
-                    }
-                });
-            }
-        }
-
-        static initializeAll() {
-            document.querySelectorAll('.theme-switcher__color-input').forEach(input => {
-                const value = CSSVariableManager.resolveValue(input.dataset.varName);
-                this.updateInput(input, value);
-                this.markModified(input, !!state.getThemeVar(input.dataset.varName));
-            });
-        }
+            // console.log(`[Switcher] Live preview: ${varName} = ${color}`);
+          },
+        });
+      }
     }
 
-    // =========================================================================
-    // DATA LOADER
-    // =========================================================================
+    static initializeAll() {
+      document
+        .querySelectorAll(".theme-switcher__color-input")
+        .forEach((input) => {
+          const value = CSSVariableManager.resolveValue(input.dataset.varName);
+          this.updateInput(input, value);
+          this.markModified(input, !!state.getThemeVar(input.dataset.varName));
+        });
+    }
+  }
 
-    class DataLoader {
-        static async fetchJSON(url) {
-            try {
-                console.log(`[Switcher] Fetching ${url}`);
-                const response = await fetch(url);
-                if (!response.ok) {
-                    console.error(`[Switcher] HTTP ${response.status} for ${url}`);
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                const data = await response.json();
-                console.log(`[Switcher] Successfully loaded ${url}`, data);
-                return data;
-            } catch (err) {
-                console.error(`[Switcher] Failed to fetch ${url}:`, err);
-                return null;
-            }
+  // =========================================================================
+  // DATA LOADER
+  // =========================================================================
+
+  class DataLoader {
+    static async fetchJSON(url) {
+      try {
+        console.log(`[Switcher] Fetching ${url}`);
+        const response = await fetch(url);
+        if (!response.ok) {
+          console.error(`[Switcher] HTTP ${response.status} for ${url}`);
+          throw new Error(`HTTP ${response.status}`);
         }
-
-        static async fetchAll() {
-            const data = await this.fetchJSON(CONFIG.files.themesJson);
-            if (!data) {
-                console.error('[Switcher] Failed to load themes.json');
-                return;
-            }
-
-            // _global section (rating color defaults etc.)
-            CONFIG.globalVarDefaults = data._global || {};
-
-            // colorSchemes section
-            const colorSchemes = data.colorSchemes;
-            if (!colorSchemes || typeof colorSchemes !== 'object') {
-                console.error('[Switcher] Invalid or missing colorSchemes in themes.json');
-                return;
-            }
-            state.colorSchemes = colorSchemes;
-            console.log('[Switcher] Loaded color schemes for themes:', Object.keys(colorSchemes));
-
-            // themes section — scheme names are derived from colorSchemes keys,
-            // so no need to maintain a separate schemes[] array in the JSON
-            if (!data.themes || !Array.isArray(data.themes)) {
-                console.error('[Switcher] Invalid or missing themes array in themes.json');
-                return;
-            }
-            state.themes = data.themes.map(theme => ({
-                ...theme,
-                schemes: Object.keys(colorSchemes[theme.name] || {})
-            }));
-            console.log('[Switcher] Loaded themes:', state.themes);
-        }
-
-        static async fetchSnippets() {
-            const data = await this.fetchJSON(CONFIG.files.snippetsJson);
-            if (!data) {
-                console.warn('[Switcher] No snippets.json found (this is okay if you dont use snippets)');
-                return;
-            }
-
-            if (Array.isArray(data)) {
-                state.snippets = data;
-            } else if (data.snippets && Array.isArray(data.snippets)) {
-                state.snippets = data.snippets;
-            } else {
-                console.warn('[Switcher] Invalid snippets.json format (this is okay if you dont use snippets)');
-                return;
-            }
-
-            console.log('[Switcher] Loaded snippets:', state.snippets.length);
-        }
+        const data = await response.json();
+        console.log(`[Switcher] Successfully loaded ${url}`, data);
+        return data;
+      } catch (err) {
+        console.error(`[Switcher] Failed to fetch ${url}:`, err);
+        return null;
+      }
     }
 
-    // =========================================================================
-    // THEME MANAGER
-    // =========================================================================
+    static async fetchAll() {
+      const data = await this.fetchJSON(CONFIG.files.themesJson);
+      if (!data) {
+        console.error("[Switcher] Failed to load themes.json");
+        return;
+      }
 
-    class ThemeManager {
-        static async apply(themeName, schemeName = null, fromSync = false) {
-            if (!themeName || themeName === "no-theme") {
-                return this.applyNoTheme(fromSync);
-            }
+      // _global section (rating color defaults etc.)
+      CONFIG.globalVarDefaults = data._global || {};
 
-            const theme = state.getTheme(themeName);
-            if (!theme) {
-                console.error(`[Switcher] Theme not found: ${themeName}`);
-                return;
-            }
+      // colorSchemes section
+      const colorSchemes = data.colorSchemes;
+      if (!colorSchemes || typeof colorSchemes !== "object") {
+        console.error(
+          "[Switcher] Invalid or missing colorSchemes in themes.json",
+        );
+        return;
+      }
+      state.colorSchemes = colorSchemes;
+      console.log(
+        "[Switcher] Loaded color schemes for themes:",
+        Object.keys(colorSchemes),
+      );
 
-            if (!schemeName || !theme.schemes.includes(schemeName)) {
-                schemeName = theme.schemes[0];
-            }
+      // themes section — scheme names are derived from colorSchemes keys,
+      // so no need to maintain a separate schemes[] array in the JSON
+      if (!data.themes || !Array.isArray(data.themes)) {
+        console.error(
+          "[Switcher] Invalid or missing themes array in themes.json",
+        );
+        return;
+      }
+      state.themes = data.themes.map((theme) => ({
+        ...theme,
+        schemes: Object.keys(colorSchemes[theme.name] || {}),
+      }));
+      console.log("[Switcher] Loaded themes:", state.themes);
+    }
 
-            // Only increment sequence if this is a local action, not from sync
-            let sequence;
-            if (!fromSync) {
-                sequence = ++state.themeSequence;
-                console.log(`[Switcher] Applying theme: ${themeName} (${schemeName}) [seq: ${sequence}]`);
-            } else {
-                console.log(`[Switcher] Applying theme: ${themeName} (${schemeName}) [from sync]`);
-            }
+    static async fetchSnippets() {
+      const data = await this.fetchJSON(CONFIG.files.snippetsJson);
+      if (!data) {
+        console.warn(
+          "[Switcher] No snippets.json found (this is okay if you dont use snippets)",
+        );
+        return;
+      }
 
-            await state.set(state.getKey('theme'), themeName);
-            await state.set(state.getKey('colorScheme'), schemeName);
+      if (Array.isArray(data)) {
+        state.snippets = data;
+        state.scopePresets = {};
+      } else if (data.snippets && Array.isArray(data.snippets)) {
+        state.snippets = data.snippets;
+        state.scopePresets = data.scopePresets || {};
+      } else {
+        console.warn(
+          "[Switcher] Invalid snippets.json format (this is okay if you dont use snippets)",
+        );
+        return;
+      }
 
-            await this.loadThemeCSS(theme.file);
+      console.log("[Switcher] Loaded snippets:", state.snippets.length);
+    }
+  }
 
-            // Check if a newer theme was requested while we were loading (only for local changes)
-            if (!fromSync && sequence !== state.themeSequence) {
-                console.log(`[Switcher] Skipping theme application [seq: ${sequence}], newer request in progress [seq: ${state.themeSequence}]`);
-                return;
-            }
+  // =========================================================================
+  // THEME MANAGER
+  // =========================================================================
 
-            state.currentTheme = themeName;
-            state.currentScheme = schemeName;
+  class ThemeManager {
+    static async apply(themeName, schemeName = null, fromSync = false) {
+      if (!themeName || themeName === "no-theme") {
+        return this.applyNoTheme(fromSync);
+      }
 
-            CSSVariableManager.loadAllThemeVars();
+      const theme = state.getTheme(themeName);
+      if (!theme) {
+        console.error(`[Switcher] Theme not found: ${themeName}`);
+        return;
+      }
 
-            // Clear all snippet styles from previous theme before loading new ones
-            SnippetManager.clearAllStyles();
-            SnippetManager.loadAll();
+      if (!schemeName || !theme.schemes.includes(schemeName)) {
+        schemeName = theme.schemes[0];
+      }
 
-            // Only broadcast if this was a local action
-            if (!fromSync) {
-                crossTabSync.broadcast('theme-change', {
-                    theme: themeName,
-                    scheme: schemeName,
-                    sequence: sequence
-                });
-            }
+      // Only increment sequence if this is a local action, not from sync
+      let sequence;
+      if (!fromSync) {
+        sequence = ++state.themeSequence;
+        console.log(
+          `[Switcher] Applying theme: ${themeName} (${schemeName}) [seq: ${sequence}]`,
+        );
+      } else {
+        console.log(
+          `[Switcher] Applying theme: ${themeName} (${schemeName}) [from sync]`,
+        );
+      }
 
-            console.log('[Switcher] Theme applied successfully');
-        }
+      await state.set(state.getKey("theme"), themeName);
+      await state.set(state.getKey("colorScheme"), schemeName);
 
-        static async loadThemeCSS(filename) {
-            return new Promise((resolve) => {
-                const oldLink = document.getElementById('theme-switcher-css');
-                const isFromDefault = !oldLink; // Coming from default if no existing theme CSS
+      await this.loadThemeCSS(theme.file);
 
-                let overlay = null;
+      // Check if a newer theme was requested while we were loading (only for local changes)
+      if (!fromSync && sequence !== state.themeSequence) {
+        console.log(
+          `[Switcher] Skipping theme application [seq: ${sequence}], newer request in progress [seq: ${state.themeSequence}]`,
+        );
+        return;
+      }
 
-                // Only add overlay when switching from default
-                if (isFromDefault) {
-                    overlay = document.createElement('div');
-                    overlay.style.cssText = `
+      state.currentTheme = themeName;
+      state.currentScheme = schemeName;
+
+      CSSVariableManager.loadAllThemeVars();
+
+      // Clear all snippet styles from previous theme before loading new ones
+      SnippetManager.clearAllStyles();
+      SnippetManager.loadAll();
+
+      // Only broadcast if this was a local action
+      if (!fromSync) {
+        crossTabSync.broadcast("theme-change", {
+          theme: themeName,
+          scheme: schemeName,
+          sequence: sequence,
+        });
+      }
+
+      console.log("[Switcher] Theme applied successfully");
+    }
+
+    static async loadThemeCSS(filename) {
+      return new Promise((resolve) => {
+        const oldLink = document.getElementById("theme-switcher-css");
+        const isFromDefault = !oldLink; // Coming from default if no existing theme CSS
+
+        let overlay = null;
+
+        // Only add overlay when switching from default
+        if (isFromDefault) {
+          overlay = document.createElement("div");
+          overlay.style.cssText = `
                         position: fixed;
                         top: 0;
                         left: 0;
@@ -1412,910 +1628,1155 @@
                         transition: opacity 0.15s;
                         pointer-events: none;
                     `;
-                    document.body.appendChild(overlay);
-                }
-
-                const link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = `${CONFIG.dirs.themes}${filename}`;
-
-                link.onload = () => {
-                    // Give the browser a moment to apply the new styles
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            // Remove old theme CSS after new one is loaded and applied
-                            if (oldLink && oldLink !== link) {
-                                oldLink.remove();
-                            }
-
-                            // Set ID on new link
-                            link.id = 'theme-switcher-css';
-
-                            // Fade out overlay if it exists
-                            if (overlay) {
-                                overlay.style.opacity = '0';
-                                setTimeout(() => overlay.remove(), 150);
-                            }
-
-                            resolve();
-                        });
-                    });
-                };
-
-                link.onerror = () => {
-                    console.warn('[Switcher] Theme CSS failed to load:', link.href);
-                    if (overlay) overlay.remove();
-                    resolve();
-                };
-
-                document.head.appendChild(link);
-            });
+          document.body.appendChild(overlay);
         }
 
-        static async applyNoTheme(fromSync = false) {
-            // Only increment sequence if this is a local action, not from sync
-            let sequence;
-            if (!fromSync) {
-                sequence = ++state.themeSequence;
-                console.log(`[Switcher] Applying default (no theme) [seq: ${sequence}]`);
-            } else {
-                console.log('[Switcher] Applying default (no theme) [from sync]');
-            }
-
-            const existingLink = document.getElementById('theme-switcher-css');
-            if (existingLink) existingLink.remove();
-
-            CSSVariableManager.clearAllThemeVars();
-
-            // Clear any remaining snippet styles from all themes/schemes
-            SnippetManager.clearAllStyles();
-
-            await state.set(state.getKey('theme'), 'no-theme');
-            await state.remove(state.getKey('colorScheme'));
-
-            state.currentTheme = null;
-            state.currentScheme = null;
-
-            // Only broadcast if this was a local action
-            if (!fromSync) {
-                crossTabSync.broadcast('theme-change', {
-                    theme: 'no-theme',
-                    scheme: null,
-                    sequence: sequence
-                });
-            }
-
-            console.log('[Switcher] Default theme applied');
-        }
-
-        static async switchScheme(schemeName) {
-            if (!state.currentTheme) return;
-            await this.apply(state.currentTheme, schemeName);
-        }
-    }
-
-    // =========================================================================
-    // SNIPPET MANAGER
-    // =========================================================================
-
-    class SnippetManager {
-        static applyVars(snippet) {
-            if (!state.currentTheme || !state.currentScheme || !snippet.vars) return;
-
-            Object.entries(snippet.vars).forEach(([varName, meta]) => {
-                const key = state.getKey('snippetVar', state.currentTheme, state.currentScheme, snippet.name, varName);
-                let value = state.get(key);
-
-                if (!value && meta.default !== undefined) {
-                    value = meta.type === "number"
-                        ? `${meta.default}${meta.unit || ""}`
-                        : meta.default;
-                }
-
-                if (value) {
-                    CSSVariableManager.setVar(varName, value);
-                }
-            });
-        }
-
-        static clearVars(snippet) {
-            if (!snippet.vars) return;
-            Object.keys(snippet.vars).forEach(v => CSSVariableManager.removeVar(v));
-        }
-
-        static clearAllStyles() {
-            // Remove all snippet style elements from any theme/scheme
-            document.querySelectorAll('style[id^="snippet-css-"]').forEach(el => el.remove());
-            console.log('[Switcher] Cleared all snippet styles');
-        }
-
-        // Split CSS into typed segments based on /* switcher: global|scoped */ annotations.
-        // Content before any annotation defaults to 'scoped'.
-        // Fully backward-compatible: files with no annotations return a single scoped segment.
-        static parseAnnotatedCSS(css) {
-            const segments = [];
-            const markerPattern = /\/\*\s*switcher:\s*(global|scoped)\s*\*\//g;
-
-            let lastIndex = 0;
-            let currentType = 'scoped';
-            let match;
-
-            while ((match = markerPattern.exec(css)) !== null) {
-                const chunk = css.substring(lastIndex, match.index).trim();
-                if (chunk) segments.push({ type: currentType, css: chunk });
-                currentType = match[1];
-                lastIndex = match.index + match[0].length;
-            }
-
-            const remaining = css.substring(lastIndex).trim();
-            if (remaining) segments.push({ type: currentType, css: remaining });
-
-            return segments;
-        }
-
-        static transformCardCSS(css, cardClass, scopeSelectors) {
-            const rulePattern = /([^{}]+)\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g;
-
-            let transformed = '';
-            let match;
-            let lastIndex = 0;
-
-            while ((match = rulePattern.exec(css)) !== null) {
-                transformed += css.substring(lastIndex, match.index);
-
-                const [fullMatch, selectorsStr, properties] = match;
-                const selectorList = selectorsStr.split(',').map(s => s.trim());
-
-                const transformedSelectors = selectorList.flatMap(sel => {
-                    const cardMatch = sel.match(new RegExp(`^\\${cardClass}((?:\\.[\\w-]+|:+[^\\s]+)*)\\s*(.*)$`));
-                    if (!cardMatch) return [];
-
-                    const [, chainedAndPseudos, descendants] = cardMatch;
-
-                    return scopeSelectors.map(scopeSel => {
-                        let result = scopeSel + chainedAndPseudos;
-                        if (descendants) result += ' ' + descendants;
-                        return result;
-                    });
-                });
-
-                if (transformedSelectors.length > 0) {
-                    transformed += transformedSelectors.join(',\n') + ' {' + properties + '}';
-                }
-
-                lastIndex = match.index + fullMatch.length;
-            }
-
-            transformed += css.substring(lastIndex);
-            return transformed;
-        }
-
-        static async apply(snippet, enabled, scopes = [], global = true) {
-            if (!state.currentTheme || !state.currentScheme) return;
-
-            const id = `snippet-css-${state.currentTheme}-${state.currentScheme}-${snippet.name}`;
-
-            if (!enabled) {
-                document.querySelectorAll(`style[id="${id}"]`).forEach(el => el.remove());
-                this.clearVars(snippet);
-                // DELETE these lines:
-                // if (snippet.vars && state.currentTheme && state.currentScheme) {
-                //     Object.keys(snippet.vars).forEach(varName => {
-                //         state.remove(state.getKey('snippetVar', state.currentTheme, state.currentScheme, snippet.name, varName));
-                //     });
-                // }
-                return;
-            }
-
-            try {
-                const css = await fetch(`${CONFIG.dirs.snippets}${snippet.file}`).then(r => r.text());
-
-                document.querySelectorAll(`style[id="${id}"]`).forEach(el => el.remove());
-
-                const style = document.createElement("style");
-                style.id = id;
-                document.head.appendChild(style);
-
-                const segments = this.parseAnnotatedCSS(css);
-
-                const globalSegments = segments.filter(s => s.type === 'global');
-                const scopedSegments = segments.filter(s => s.type === 'scoped');
-
-                let output = '';
-
-                // Global segments: emitted once, only when global is enabled
-                if (global) {
-                    const globalCss = globalSegments.map(s => s.css).join('\n');
-                    if (globalCss.trim()) {
-                        output += `/* switcher: global */\n${globalCss}\n`;
-                    }
-                }
-
-                // Scoped segments: emitted once per selected scope through the card transformer
-                output += scopes.map(scopeName => {
-                    const selector = snippet.scopes[scopeName] || "body";
-                    const scopeCss = scopedSegments.map(s => s.css).join('\n');
-
-                    const cardTypeMatch = selector.match(/\.([\w-]+)-card/);
-                    if (!cardTypeMatch) {
-                        return `/* scope: ${scopeName} */\n${scopeCss}`;
-                    }
-
-                    const cardClass = `.${cardTypeMatch[1]}-card`;
-                    const scopeSelectors = selector.split(',').map(s => s.trim());
-                    const transformed = this.transformCardCSS(scopeCss, cardClass, scopeSelectors);
-
-                    return `/* scope: ${scopeName} */\n${transformed}`;
-                }).join('\n');
-
-                style.textContent = output;
-                this.applyVars(snippet);
-            } catch (err) {
-                console.warn("Snippet load error:", err);
-            }
-        }
-
-
-        static getEnabled(name) {
-            if (!state.currentTheme || !state.currentScheme) return false;
-            const value = state.get(state.getKey('snippetEnabled', state.currentTheme, state.currentScheme, name));
-            return value === "1";
-        }
-
-        static getScopes(name) {
-            if (!state.currentTheme || !state.currentScheme) return ["all"];
-            const raw = state.get(state.getKey('snippetScopes', state.currentTheme, state.currentScheme, name));
-            try {
-                return raw ? JSON.parse(raw) : ["all"];
-            } catch (e) {
-                console.error('[Switcher] Error parsing scopes:', e, raw);
-                return ["all"];
-            }
-        }
-
-        static async setEnabled(name, enabled) {
-            if (!state.currentTheme || !state.currentScheme) return;
-            const enabledKey = state.getKey('snippetEnabled', state.currentTheme, state.currentScheme, name);
-            const scopesKey = state.getKey('snippetScopes', state.currentTheme, state.currentScheme, name);
-            if (enabled) {
-                await state.set(enabledKey, "1");
-            } else {
-                // Disabled = no keys needed; absence is equivalent to false/empty
-                await state.remove(enabledKey);
-                await state.remove(scopesKey);
-            }
-        }
-
-        static async setScopes(name, scopes) {
-            if (!state.currentTheme || !state.currentScheme) return;
-            const key = state.getKey('snippetScopes', state.currentTheme, state.currentScheme, name);
-            if (scopes && scopes.length > 0) {
-                await state.set(key, JSON.stringify(scopes));
-            } else {
-                await state.remove(key);
-            }
-        }
-
-        static getGlobal(name) {
-            if (!state.currentTheme || !state.currentScheme) return true;
-            const value = state.get(state.getKey('snippetGlobal', state.currentTheme, state.currentScheme, name));
-            return value !== '0';
-        }
-
-        static async setGlobal(name, enabled) {
-            if (!state.currentTheme || !state.currentScheme) return;
-            const key = state.getKey('snippetGlobal', state.currentTheme, state.currentScheme, name);
-            if (!enabled) {
-                await state.set(key, '0');
-            } else {
-                await state.remove(key); // absence = true (default on)
-            }
-        }
-
-
-        static async setVar(snippetName, varName, value) {
-            if (!state.currentTheme || !state.currentScheme) return;
-            const key = state.getKey('snippetVar', state.currentTheme, state.currentScheme, snippetName, varName);
-            await state.set(key, value);
-        }
-
-        static normalizeSnippet(raw) {
-            if (typeof raw === 'string') {
-                const nameFromFile = raw.replace(/\.css$/i, '').trim();
-                return {
-                    name: nameFromFile,
-                    file: raw,
-                    vars: {},
-                    scopes: { all: "body" },
-                    category: null,
-                    hasGlobal: false
-                };
-            }
-
-            if (raw && typeof raw === 'object') {
-                const name = raw.name || (raw.file ? raw.file.replace(/\.css$/i, '').trim() : 'unnamed');
-                return {
-                    name: name,
-                    file: raw.file || `${name}.css`,
-                    vars: raw.vars || {},
-                    scopes: raw.scopes || { all: "body" },
-                    category: raw.category || null,
-                    hasGlobal: raw.hasGlobal === true
-                };
-            }
-
-            console.warn('[Switcher] Invalid snippet format:', raw);
-            return null;
-        }
-
-
-        static loadAll() {
-            state.snippets.forEach(raw => {
-                const snippet = this.normalizeSnippet(raw);
-
-                if (!snippet) return;
-
-                const enabled = this.getEnabled(snippet.name);
-                const scopes = this.getScopes(snippet.name);
-                const global = this.getGlobal(snippet.name);
-
-                if (state.snippetUpdateTimeouts.has(snippet.name)) {
-                    clearTimeout(state.snippetUpdateTimeouts.get(snippet.name));
-                }
-
-                const timeout = setTimeout(() => {
-                    this.apply(snippet, enabled, scopes, global);
-                    state.snippetUpdateTimeouts.delete(snippet.name);
-                }, 10);
-
-                state.snippetUpdateTimeouts.set(snippet.name, timeout);
-            });
-        }
-
-
-        static async disableAll() {
-            if (!state.currentTheme || !state.currentScheme) return;
-
-            state.snippetUpdateTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
-            state.snippetUpdateTimeouts.clear();
-
-            state.snippets.forEach(raw => {
-                const snippet = this.normalizeSnippet(raw);
-                if (!snippet) return;
-
-                state.remove(state.getKey('snippetEnabled', state.currentTheme, state.currentScheme, snippet.name));
-                state.remove(state.getKey('snippetScopes', state.currentTheme, state.currentScheme, snippet.name));
-                state.remove(state.getKey('snippetGlobal', state.currentTheme, state.currentScheme, snippet.name));
-
-                if (snippet.vars) {
-                    Object.keys(snippet.vars).forEach(varName => {
-                        state.remove(state.getKey('snippetVar', state.currentTheme, state.currentScheme, snippet.name, varName));
-                    });
-                }
-
-                const id = `snippet-css-${state.currentTheme}-${state.currentScheme}-${snippet.name}`;
-                document.querySelectorAll(`style[id="${id}"]`).forEach(el => el.remove());
-
-                this.clearVars(snippet);
-            });
-
-            document.body.offsetHeight;
-
-            console.log('[Switcher] All snippets disabled');
-        }
-
-    }
-
-    // =========================================================================
-    // FAVORITES MANAGER
-    // =========================================================================
-
-    class FavoritesManager {
-        static getFavoritesIndex() {
-            return storage.config['favorites-index'] || [];
-        }
-
-        static getAll() {
-            return this.getFavoritesIndex()
-                .map(name => storage.config[`favorite-${name}`])
-                .filter(Boolean);
-        }
-
-        static async save(name) {
-            // Capture explicitly modified scheme colors (editableVars + scheme-scoped globalVarGroups)
-            const schemeGroupVars = CONFIG.globalVarGroups
-                .filter(g => g.scope === 'scheme')
-                .flatMap(g => g.vars);
-            const colors = {};
-            for (const v of [...CONFIG.editableVars, ...schemeGroupVars]) {
-                const userOverride = state.getThemeVar(v.name);
-                if (userOverride) {
-                    colors[v.name] = userOverride;
-                }
-            }
-
-            // Capture explicitly modified global colors (global-scoped globalVarGroups).
-            // Derived global vars with no user override are omitted — they will
-            // re-derive automatically when their parent scheme var is restored.
-            const globalColors = {};
-            for (const v of CONFIG.globalVarGroups.filter(g => g.scope === 'global').flatMap(g => g.vars)) {
-                const userOverride = state.getGlobalVar(v.name);
-                if (userOverride) {
-                    globalColors[v.name] = userOverride;
-                }
-            }
-
-            // Capture enabled/modified snippets
-            const snippets = {};
-            for (const raw of state.snippets) {
-                const snippet = SnippetManager.normalizeSnippet(raw);
-                if (!snippet) continue;
-
-                const enabled = SnippetManager.getEnabled(snippet.name);
-                const scopes = SnippetManager.getScopes(snippet.name);
-
-                const vars = {};
-                if (snippet.vars) {
-                    for (const [varName, meta] of Object.entries(snippet.vars)) {
-                        const key = state.getKey('snippetVar', state.currentTheme, state.currentScheme, snippet.name, varName);
-                        const saved = state.get(key);
-                        const defaultVal = meta.default !== undefined
-                            ? (meta.type === 'number' ? `${meta.default}${meta.unit || ''}` : String(meta.default))
-                            : null;
-                        if (saved && saved !== defaultVal) {
-                            vars[varName] = saved;
-                        }
-                    }
-                }
-
-                if (enabled) {
-                    const entry = { enabled, scopes };
-                    if (Object.keys(vars).length > 0) entry.vars = vars;
-                    snippets[snippet.name] = entry;
-                }
-            }
-
-            // Nothing to save
-            if (!Object.keys(colors).length &&
-                !Object.keys(globalColors).length &&
-                !Object.keys(snippets).length) return false;
-
-            const index = this.getFavoritesIndex();
-            const isNew = !index.includes(name);
-
-            // Enforce the favorites limit for new entries only — overwriting
-            // an existing favorite by the same name is always allowed.
-            if (isNew && index.length >= CONFIG.maxFavorites) {
-                return 'limit';
-            }
-
-            const favorite = { name, colors, globalColors, snippets };
-            await storage.set(`favorite-${name}`, favorite);
-
-            if (isNew) {
-                index.push(name);
-                await storage.set('favorites-index', index);
-            }
-
-            crossTabSync.broadcast('favorite-change', { action: 'save', name, favorite });
-            return true;
-        }
-
-        static async apply(name) {
-            const favorite = storage.config[`favorite-${name}`];
-            if (!favorite) return;
-
-            // --- Apply scheme colors ---
-            const updates = {};
-            state.suppressSave = true;
-
-            for (const [varName, value] of Object.entries(favorite.colors || {})) {
-                CSSVariableManager.setVar(varName, value);
-                const key = state.getKey('cssVar', state.currentTheme, state.currentScheme, varName);
-                updates[key] = value;
-
-                const input = document.querySelector(
-                    `.theme-switcher__color-input[data-var-name='${varName}']`
-                );
-                if (input) {
-                    ColorisManager.updateInput(input, value);
-                    ColorisManager.markModified(input, true);
-                }
-
-                CSSVariableManager.updateDependentGlobalVars(varName, value);
-                CSSVariableManager.updateDependentSchemeVars(varName, value);
-            }
-
-            state.suppressSave = false;
-            await storage.batchSet(updates);
-
-            // --- Apply global colors ---
-            // Derived global vars not in globalColors are already updated above
-            // via updateDependentGlobalVars. Explicit overrides are applied here,
-            // overriding any derived value set in the scheme colors pass.
-            const globalUpdates = {};
-            for (const [varName, value] of Object.entries(favorite.globalColors || {})) {
-                await state.setGlobalVar(varName, value);
-                CSSVariableManager.setVar(varName, value);
-
-                const input = document.querySelector(
-                    `.theme-switcher__color-input[data-var-name='${varName}']`
-                );
-                if (input) {
-                    ColorisManager.updateInput(input, value);
-                    ColorisManager.markModified(input, true);
-                }
-            }
-
-            if (window.UIManager) {
-                UIManager.refreshAllPinStates();
-            }
-
-            // --- Apply snippets: full replacement ---
-            await SnippetManager.disableAll();
-
-            for (const raw of state.snippets) {
-                const snippet = SnippetManager.normalizeSnippet(raw);
-                if (!snippet) continue;
-
-                const saved = (favorite.snippets || {})[snippet.name];
-                const enabled = saved ? saved.enabled : false;
-                const scopes = saved ? saved.scopes : [];
-                const vars = saved ? (saved.vars || {}) : {};
-
-                if (enabled) {
-                    await SnippetManager.setEnabled(snippet.name, enabled);
-                    await SnippetManager.setScopes(snippet.name, scopes);
-                    for (const [varName, value] of Object.entries(vars)) {
-                        await SnippetManager.setVar(snippet.name, varName, value);
-                    }
-                }
-
-                await SnippetManager.apply(snippet, enabled, scopes);
-            }
-
-            if (window.UIManager) {
-                UIManager.buildSnippetUI();
-                requestAnimationFrame(() => UIManager.applyDropdownStyles());
-            }
-
-            crossTabSync.broadcast('favorite-applied', { name, favorite });
-        }
-
-        static async delete(name) {
-            await storage.remove(`favorite-${name}`);
-            const index = this.getFavoritesIndex().filter(n => n !== name);
-            await storage.set('favorites-index', index);
-            crossTabSync.broadcast('favorite-change', { action: 'delete', name });
-        }
-    }
-
-
-    // =========================================================================
-    // SWATCH PIN MANAGER
-    // =========================================================================
-
-    class SwatchPinManager {
-        static getAll() {
-            return storage.config['coloris-swatches'] || [];
-        }
-
-        static isColorPinned(color) {
-            return this.getAll().includes(color);
-        }
-
-        static async pin(color) {
-            const swatches = this.getAll();
-            if (!swatches.includes(color)) {
-                swatches.push(color);
-                await storage.set('coloris-swatches', swatches);
-                crossTabSync.broadcast('swatch-pin-change', { swatches });
-            }
-        }
-
-        static async unpin(color) {
-            const swatches = this.getAll().filter(c => c !== color);
-            await storage.set('coloris-swatches', swatches);
-            crossTabSync.broadcast('swatch-pin-change', { swatches });
-        }
-    }
-
-    // =========================================================================
-    // UI CONTROLLER - OBSERVER PATTERN
-    // =========================================================================
-
-    class UIController {
-        static initialize() {
-            state.subscribe('currentTheme', (themeName) => this.onThemeChange(themeName));
-            state.subscribe('currentScheme', (schemeName) => this.onSchemeChange(schemeName));
-        }
-
-        static onThemeChange(themeName) {
-            console.log('[Switcher] Theme changed to:', themeName);
-
-            if (!themeName || themeName === 'no-theme') {
-                UIManager.highlightActiveTheme('no-theme');
-                UIManager.hideThemeElements();
-                UIManager.updateButtonLabel('Themes');
-                return;
-            }
-
-            UIManager.highlightActiveTheme(themeName);
-            UIManager.showThemeElements();
-
-            const theme = state.getTheme(themeName);
-            if (theme) {
-                UIManager.updateButtonLabel(theme.label || theme.name);
-
-                if (Object.keys(state.colorSchemes).length > 0) {
-                    CSSVariableManager.loadAllThemeVars();
-                }
-            }
-
-            // Rebuild snippet UI to reflect the new theme's snippet states
-            if (window.UIManager && state.snippets.length > 0) {
-                setTimeout(() => {
-                    UIManager.buildSnippetUI();
-                }, 50);
-            }
-
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = `${CONFIG.dirs.themes}${filename}`;
+
+        link.onload = () => {
+          // Give the browser a moment to apply the new styles
+          requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-                UIManager.applyDropdownStyles();
+              // Remove old theme CSS after new one is loaded and applied
+              if (oldLink && oldLink !== link) {
+                oldLink.remove();
+              }
+
+              // Set ID on new link
+              link.id = "theme-switcher-css";
+
+              // Fade out overlay if it exists
+              if (overlay) {
+                overlay.style.opacity = "0";
+                setTimeout(() => overlay.remove(), 150);
+              }
+
+              resolve();
             });
-        }
+          });
+        };
 
-        static onSchemeChange(schemeName) {
-            console.log('[Switcher] Scheme changed to:', schemeName);
+        link.onerror = () => {
+          console.warn("[Switcher] Theme CSS failed to load:", link.href);
+          if (overlay) overlay.remove();
+          resolve();
+        };
 
-            if (Object.keys(state.colorSchemes).length === 0) {
-                console.log('[Switcher] Color schemes not loaded yet, skipping scheme change');
-                return;
-            }
-
-            CSSVariableManager.loadAllThemeVars();
-
-            // Clear all snippet styles from previous scheme before loading new ones
-            SnippetManager.clearAllStyles();
-            SnippetManager.loadAll();
-
-            UIManager.highlightActiveScheme(schemeName);
-
-            // Rebuild snippet UI to reflect the new scheme's snippet states
-            if (window.UIManager && state.snippets.length > 0) {
-                UIManager.buildSnippetUI();
-            }
-
-            // Update button label to show scheme name
-            if (schemeName) {
-                const displayName = schemeName.charAt(0).toUpperCase() + schemeName.slice(1);
-                UIManager.updateButtonLabel(displayName);
-            }
-
-            setTimeout(() => {
-                UIManager.updateAllColorInputs();
-            }, 50);
-
-            requestAnimationFrame(() => {
-                UIManager.applyDropdownStyles();
-            });
-        }
+        document.head.appendChild(link);
+      });
     }
 
-    // =========================================================================
-    // EVENT HANDLERS
-    // =========================================================================
+    static async applyNoTheme(fromSync = false) {
+      // Only increment sequence if this is a local action, not from sync
+      let sequence;
+      if (!fromSync) {
+        sequence = ++state.themeSequence;
+        console.log(
+          `[Switcher] Applying default (no theme) [seq: ${sequence}]`,
+        );
+      } else {
+        console.log("[Switcher] Applying default (no theme) [from sync]");
+      }
 
-    class EventHandlers {
-        static setupColorInput() {
-            document.addEventListener("change", async (e) => {
-                if (!e.target.matches(".theme-switcher__color-input")) return;
-                if (state.suppressSave) return;
+      const existingLink = document.getElementById("theme-switcher-css");
+      if (existingLink) existingLink.remove();
 
-                const varName = e.target.dataset.varName;
-                const value = e.target.value;
-                const row = e.target.closest('.theme-switcher__color-row');
-                const isGlobal = row?.getAttribute('data-scope') === 'global';
+      CSSVariableManager.clearAllThemeVars();
 
-                CSSVariableManager.setVar(varName, value);
+      // Clear any remaining snippet styles from all themes/schemes
+      SnippetManager.clearAllStyles();
 
-                if (isGlobal) {
-                    await state.setGlobalVar(varName, value);
-                } else {
-                    await state.setThemeVar(varName, value);
-                }
+      await state.set(state.getKey("theme"), "no-theme");
+      await state.remove(state.getKey("colorScheme"));
 
-                ColorisManager.updateInput(e.target, value);
-                ColorisManager.markModified(e.target, true);
+      state.currentTheme = null;
+      state.currentScheme = null;
 
-                if (window.UIManager) {
-                    UIManager.updatePinState(varName);
-                }
+      // Only broadcast if this was a local action
+      if (!fromSync) {
+        crossTabSync.broadcast("theme-change", {
+          theme: "no-theme",
+          scheme: null,
+          sequence: sequence,
+        });
+      }
 
-                if (!isGlobal) {
-                    CSSVariableManager.updateDependentGlobalVars(varName, value);
-                    CSSVariableManager.updateDependentSchemeVars(varName, value);
-                }
+      console.log("[Switcher] Default theme applied");
+    }
 
-                crossTabSync.broadcast('color-var-change', {
-                    varName,
-                    value,
-                    scope: isGlobal ? 'global' : 'scheme'
-                });
+    static async switchScheme(schemeName) {
+      if (!state.currentTheme) return;
+      await this.apply(state.currentTheme, schemeName);
+    }
+  }
 
-                console.log(`[Switcher] CSS var updated: ${varName} = ${value}`);
-            });
+  // =========================================================================
+  // SNIPPET MANAGER
+  // =========================================================================
+
+  class SnippetManager {
+    static applyVars(snippet) {
+      if (!state.currentTheme || !state.currentScheme || !snippet.vars) return;
+
+      Object.entries(snippet.vars).forEach(([varName, meta]) => {
+        const key = state.getKey(
+          "snippetVar",
+          state.currentTheme,
+          state.currentScheme,
+          snippet.name,
+          varName,
+        );
+        let value = state.get(key);
+
+        if (!value && meta.default !== undefined) {
+          value =
+            meta.type === "number"
+              ? `${meta.default}${meta.unit || ""}`
+              : meta.default;
         }
 
+        if (value) {
+          CSSVariableManager.setVar(varName, value);
+        }
+      });
+    }
 
-        static handleResetAllColors() {
-            const resetBtn = document.querySelector('.theme-switcher__reset-all');
-            if (!resetBtn) return;
+    static clearVars(snippet) {
+      if (!snippet.vars) return;
+      Object.keys(snippet.vars).forEach((v) => CSSVariableManager.removeVar(v));
+    }
 
-            (async () => {
-                state.suppressSave = true;
+    static clearAllStyles() {
+      // Remove all snippet style elements from any theme/scheme
+      document
+        .querySelectorAll('style[id^="snippet-css-"]')
+        .forEach((el) => el.remove());
+      console.log("[Switcher] Cleared all snippet styles");
+    }
 
-                const keysToRemove = CONFIG.editableVars.map(v =>
-                    state.getKey('cssVar', state.currentTheme, state.currentScheme, v.name)
-                );
-                await storage.batchRemove(keysToRemove);
+    // Split CSS into typed segments based on /* switcher: global|scoped */ annotations.
+    // Content before any annotation defaults to 'scoped'.
+    // Fully backward-compatible: files with no annotations return a single scoped segment.
+    static parseAnnotatedCSS(css) {
+      const segments = [];
+      const markerPattern = /\/\*\s*switcher:\s*(global|scoped)\s*\*\//g;
 
-                for (const v of CONFIG.editableVars) {
-                    // resolveValue: user override is gone (batchRemove cleared storage.config),
-                    // returns scheme default or computed — resolves var() refs as needed
-                    const appliedValue = CSSVariableManager.resolveValue(v.name);
+      let lastIndex = 0;
+      let currentType = "scoped";
+      let match;
 
-                    if (appliedValue) {
-                        CSSVariableManager.setVar(v.name, appliedValue);
-                    }
+      while ((match = markerPattern.exec(css)) !== null) {
+        const chunk = css.substring(lastIndex, match.index).trim();
+        if (chunk) segments.push({ type: currentType, css: chunk });
+        currentType = match[1];
+        lastIndex = match.index + match[0].length;
+      }
 
-                    const input = document.querySelector(
-                        `.theme-switcher__color-input[data-var-name='${v.name}']`
-                    );
-                    if (input) {
-                        ColorisManager.resetInput(input, appliedValue || '');
-                        ColorisManager.markModified(input, false);
-                    }
+      const remaining = css.substring(lastIndex).trim();
+      if (remaining) segments.push({ type: currentType, css: remaining });
 
-                    if (appliedValue) {
-                        CSSVariableManager.updateDependentGlobalVars(v.name, appliedValue, true);
-                        CSSVariableManager.updateDependentSchemeVars(v.name, appliedValue, true);
-                    }
-                }
+      return segments;
+    }
 
-                state.suppressSave = false;
+    // Splits a selector list on top-level commas only, ignoring commas that
+    // are nested inside parentheses (e.g. the argument list of :has(), :not(), :is()).
+    static splitTopLevel(str, sep = ",") {
+      const result = [];
+      let depth = 0;
+      let current = "";
 
-                if (window.UIManager) {
-                    UIManager.refreshAllPinStates();
-                }
+      for (const ch of str) {
+        if (ch === "(") depth++;
+        else if (ch === ")") depth--;
 
-                requestAnimationFrame(() => UIManager.applyDropdownStyles());
+        if (ch === sep && depth === 0) {
+          result.push(current.trim());
+          current = "";
+        } else {
+          current += ch;
+        }
+      }
+      if (current.trim()) result.push(current.trim());
+      return result;
+    }
 
-                crossTabSync.broadcast('all-colors-reset', {});
-                console.log('[Switcher] All customizations reset');
-            })();
+    // If `sel` starts with cardClass, returns [chainedAndPseudos, descendants]:
+    // chainedAndPseudos is everything attached directly to the card class (classes,
+    // pseudo-classes/elements) including any parenthesized argument lists, stopping
+    // at the first *top-level* whitespace (i.e. not whitespace inside a :has(...) etc.
+    // argument list). descendants is whatever follows via a descendant combinator.
+    static matchCardPrefix(sel, cardClass) {
+      if (!sel.startsWith(cardClass)) return null;
+
+      let depth = 0;
+      let j = cardClass.length;
+
+      while (j < sel.length) {
+        const ch = sel[j];
+        if (depth === 0 && /\s/.test(ch)) break;
+        if (ch === "(") depth++;
+        else if (ch === ")") depth--;
+        j++;
+      }
+
+      return [sel.slice(cardClass.length, j), sel.slice(j).trim()];
+    }
+
+    static transformCardCSS(css, cardClass, scopeSelectors) {
+      const rulePattern = /([^{}]+)\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g;
+
+      let transformed = "";
+      let match;
+      let lastIndex = 0;
+
+      while ((match = rulePattern.exec(css)) !== null) {
+        transformed += css.substring(lastIndex, match.index);
+
+        const [fullMatch, selectorsStr, properties] = match;
+        const selectorList = this.splitTopLevel(selectorsStr);
+
+        const transformedSelectors = selectorList.flatMap((sel) => {
+          const cardMatch = this.matchCardPrefix(sel, cardClass);
+          if (!cardMatch) return [];
+
+          const [chainedAndPseudos, descendants] = cardMatch;
+
+          return scopeSelectors.map((scopeSel) => {
+            let result = scopeSel + chainedAndPseudos;
+            if (descendants) result += " " + descendants;
+            return result;
+          });
+        });
+
+        if (transformedSelectors.length > 0) {
+          transformed +=
+            transformedSelectors.join(",\n") + " {" + properties + "}";
         }
 
-        static handleResetGroup(groupId) {
-            const group = CONFIG.globalVarGroups.find(g => g.id === groupId);
-            if (!group) return;
+        lastIndex = match.index + fullMatch.length;
+      }
 
-            (async () => {
-                state.suppressSave = true;
+      transformed += css.substring(lastIndex);
+      return transformed;
+    }
 
-                if (group.scope === 'global') {
-                    const keysToRemove = group.vars.map(v =>
-                        state.getKey('cssVar', state.currentTheme, '_global', v.name)
-                    );
-                    await storage.batchRemove(keysToRemove);
+    static async apply(snippet, enabled, scopes = [], global = true) {
+      if (!state.currentTheme || !state.currentScheme) return;
 
-                    for (const v of group.vars) {
-                        CSSVariableManager.removeVar(v.name);
-                        const { value, isModified } = CSSVariableManager.resolveDerivedGlobalVar(v.name);
-                        if (value) CSSVariableManager.setVar(v.name, value);
+      const id = `snippet-css-${state.currentTheme}-${state.currentScheme}-${snippet.name}`;
 
-                        const input = document.querySelector(
-                            `.theme-switcher__color-input[data-var-name='${v.name}']`
-                        );
-                        if (input) {
-                            ColorisManager.resetInput(input, value || '');
-                            ColorisManager.markModified(input, isModified);
-                        }
-                    }
-                } else {
-                    const keysToRemove = group.vars.map(v =>
-                        state.getKey('cssVar', state.currentTheme, state.currentScheme, v.name)
-                    );
-                    await storage.batchRemove(keysToRemove);
+      if (!enabled) {
+        document
+          .querySelectorAll(`style[id="${id}"]`)
+          .forEach((el) => el.remove());
+        this.clearVars(snippet);
+        // DELETE these lines:
+        // if (snippet.vars && state.currentTheme && state.currentScheme) {
+        //     Object.keys(snippet.vars).forEach(varName => {
+        //         state.remove(state.getKey('snippetVar', state.currentTheme, state.currentScheme, snippet.name, varName));
+        //     });
+        // }
+        return;
+      }
 
-                    for (const v of group.vars) {
-                        const appliedValue = CSSVariableManager.resolveValue(v.name);
-                        if (appliedValue) CSSVariableManager.setVar(v.name, appliedValue);
+      try {
+        const css = await fetch(`${CONFIG.dirs.snippets}${snippet.file}`).then(
+          (r) => r.text(),
+        );
 
-                        const input = document.querySelector(
-                            `.theme-switcher__color-input[data-var-name='${v.name}']`
-                        );
-                        if (input) {
-                            ColorisManager.resetInput(input, appliedValue || '');
-                            const { isModified } = CSSVariableManager.resolveDerivedSchemeVar(v.name);
-                            ColorisManager.markModified(input, isModified);
-                        }
+        document
+          .querySelectorAll(`style[id="${id}"]`)
+          .forEach((el) => el.remove());
 
-                        if (appliedValue) {
-                            CSSVariableManager.updateDependentGlobalVars(v.name, appliedValue, true);
-                            CSSVariableManager.updateDependentSchemeVars(v.name, appliedValue, true);
-                        }
-                    }
-                }
+        const style = document.createElement("style");
+        style.id = id;
+        document.head.appendChild(style);
 
-                state.suppressSave = false;
+        const segments = this.parseAnnotatedCSS(css);
 
-                if (window.UIManager) UIManager.refreshAllPinStates();
+        const globalSegments = segments.filter((s) => s.type === "global");
+        const scopedSegments = segments.filter((s) => s.type === "scoped");
 
-                crossTabSync.broadcast('group-reset', { groupId, scope: group.scope });
-                console.log(`[Switcher] Group reset: ${groupId}`);
-            })();
+        let output = "";
+
+        // Global segments: emitted once, only when global is enabled
+        if (global) {
+          const globalCss = globalSegments.map((s) => s.css).join("\n");
+          if (globalCss.trim()) {
+            output += `/* switcher: global */\n${globalCss}\n`;
+          }
         }
 
-        static async handleColorReset(varName, input) {
-            const row = input.closest('.theme-switcher__color-row');
-            const isGlobal = row?.getAttribute('data-scope') === 'global';
+        // Scoped segments: emitted once per selected scope through the card transformer
+        output += scopes
+          .map((scopeName) => {
+            const selector = snippet.scopes[scopeName] || "body";
+            const scopeCss = scopedSegments.map((s) => s.css).join("\n");
 
-            if (isGlobal) {
-                await state.removeGlobalVar(varName);
-                CSSVariableManager.removeVar(varName);
-
-                const { value, isModified } = CSSVariableManager.resolveDerivedGlobalVar(varName);
-                if (value) CSSVariableManager.setVar(varName, value);
-                ColorisManager.resetInput(input, value || '');
-                ColorisManager.markModified(input, isModified);
-            } else {
-                if (!state.currentTheme || !state.currentScheme) return;
-
-                await state.removeThemeVar(varName);
-
-                // resolveValue now resolves var() scheme defaults to a concrete hex
-                const resolvedDefault = CSSVariableManager.resolveValue(varName);
-
-                if (resolvedDefault) {
-                    CSSVariableManager.setVar(varName, resolvedDefault);
-                    ColorisManager.resetInput(input, resolvedDefault);
-                    const { isModified } = CSSVariableManager.resolveDerivedSchemeVar(varName);
-                    ColorisManager.markModified(input, isModified);
-                    CSSVariableManager.updateDependentGlobalVars(varName, resolvedDefault, true);
-                    CSSVariableManager.updateDependentSchemeVars(varName, resolvedDefault, true);
-                }
+            const cardTypeMatch = selector.match(/\.([\w-]+)-card/);
+            if (!cardTypeMatch) {
+              return `/* scope: ${scopeName} */\n${scopeCss}`;
             }
 
-            if (window.UIManager) {
-                UIManager.updatePinState(varName);
-            }
+            const cardClass = `.${cardTypeMatch[1]}-card`;
+            const scopeSelectors = this.splitTopLevel(selector);
+            const transformed = this.transformCardCSS(
+              scopeCss,
+              cardClass,
+              scopeSelectors,
+            );
 
-            crossTabSync.broadcast('color-var-reset', {
+            return `/* scope: ${scopeName} */\n${transformed}`;
+          })
+          .join("\n");
+
+        style.textContent = output;
+        this.applyVars(snippet);
+      } catch (err) {
+        console.warn("Snippet load error:", err);
+      }
+    }
+
+    static getEnabled(name) {
+      if (!state.currentTheme || !state.currentScheme) return false;
+      const value = state.get(
+        state.getKey(
+          "snippetEnabled",
+          state.currentTheme,
+          state.currentScheme,
+          name,
+        ),
+      );
+      return value === "1";
+    }
+
+    static getScopes(name) {
+      if (!state.currentTheme || !state.currentScheme) return ["all"];
+      const raw = state.get(
+        state.getKey(
+          "snippetScopes",
+          state.currentTheme,
+          state.currentScheme,
+          name,
+        ),
+      );
+      try {
+        return raw ? JSON.parse(raw) : ["all"];
+      } catch (e) {
+        console.error("[Switcher] Error parsing scopes:", e, raw);
+        return ["all"];
+      }
+    }
+
+    static async setEnabled(name, enabled) {
+      if (!state.currentTheme || !state.currentScheme) return;
+      const enabledKey = state.getKey(
+        "snippetEnabled",
+        state.currentTheme,
+        state.currentScheme,
+        name,
+      );
+      const scopesKey = state.getKey(
+        "snippetScopes",
+        state.currentTheme,
+        state.currentScheme,
+        name,
+      );
+      if (enabled) {
+        await state.set(enabledKey, "1");
+      } else {
+        // Disabled = no keys needed; absence is equivalent to false/empty
+        await state.remove(enabledKey);
+        await state.remove(scopesKey);
+      }
+    }
+
+    static async setScopes(name, scopes) {
+      if (!state.currentTheme || !state.currentScheme) return;
+      const key = state.getKey(
+        "snippetScopes",
+        state.currentTheme,
+        state.currentScheme,
+        name,
+      );
+      if (scopes && scopes.length > 0) {
+        await state.set(key, JSON.stringify(scopes));
+      } else {
+        await state.remove(key);
+      }
+    }
+
+    static getGlobal(name) {
+      if (!state.currentTheme || !state.currentScheme) return true;
+      const value = state.get(
+        state.getKey(
+          "snippetGlobal",
+          state.currentTheme,
+          state.currentScheme,
+          name,
+        ),
+      );
+      return value !== "0";
+    }
+
+    static async setGlobal(name, enabled) {
+      if (!state.currentTheme || !state.currentScheme) return;
+      const key = state.getKey(
+        "snippetGlobal",
+        state.currentTheme,
+        state.currentScheme,
+        name,
+      );
+      if (!enabled) {
+        await state.set(key, "0");
+      } else {
+        await state.remove(key); // absence = true (default on)
+      }
+    }
+
+    static async setVar(snippetName, varName, value) {
+      if (!state.currentTheme || !state.currentScheme) return;
+      const key = state.getKey(
+        "snippetVar",
+        state.currentTheme,
+        state.currentScheme,
+        snippetName,
+        varName,
+      );
+      await state.set(key, value);
+    }
+
+    // File name without folder or .css extension
+    static fileStem(file) {
+      return String(file || "")
+        .split("/")
+        .pop()
+        .replace(/\.css$/i, "")
+        .trim();
+    }
+
+    static normalizeSnippet(raw) {
+      if (typeof raw === "string") {
+        return {
+          name: this.fileStem(raw),
+          displayName: this.fileStem(raw),
+          file: raw,
+          vars: {},
+          scopes: { all: "body" },
+          category: null,
+          hasGlobal: false,
+        };
+      }
+
+      if (raw && typeof raw === "object") {
+        const stemOf = (r) =>
+          (typeof r === "string"
+            ? this.fileStem(r)
+            : r && (r.name || this.fileStem(r.file))) || "unnamed";
+        const baseName = stemOf(raw);
+        // Category: explicit value, else the folder part of "file"
+        const folder =
+          raw.file && raw.file.includes("/")
+            ? raw.file.split("/").slice(0, -1).join("/")
+            : null;
+        const category = raw.category || folder || null;
+        // Same display name in several categories: qualify the internal key so
+        // state, <style> ids and DOM lookups don't collide
+        const isDuplicate =
+          category &&
+          (state.snippets || []).filter((r) => stemOf(r) === baseName).length >
+            1;
+        const name = isDuplicate ? `${category}: ${baseName}` : baseName;
+        // Scopes: inline object, or a string naming an entry in "scopePresets"
+        const scopes =
+          typeof raw.scopes === "string"
+            ? (state.scopePresets || {})[raw.scopes] || { all: "body" }
+            : raw.scopes || { all: "body" };
+        return {
+          name: name,
+          displayName: baseName,
+          file: raw.file || `${name}.css`,
+          vars: raw.vars || {},
+          scopes: scopes,
+          category: category,
+          hasGlobal: raw.hasGlobal === true,
+        };
+      }
+
+      console.warn("[Switcher] Invalid snippet format:", raw);
+      return null;
+    }
+
+    static loadAll() {
+      state.snippets.forEach((raw) => {
+        const snippet = this.normalizeSnippet(raw);
+
+        if (!snippet) return;
+
+        const enabled = this.getEnabled(snippet.name);
+        const scopes = this.getScopes(snippet.name);
+        const global = this.getGlobal(snippet.name);
+
+        if (state.snippetUpdateTimeouts.has(snippet.name)) {
+          clearTimeout(state.snippetUpdateTimeouts.get(snippet.name));
+        }
+
+        const timeout = setTimeout(() => {
+          this.apply(snippet, enabled, scopes, global);
+          state.snippetUpdateTimeouts.delete(snippet.name);
+        }, 10);
+
+        state.snippetUpdateTimeouts.set(snippet.name, timeout);
+      });
+    }
+
+    static async disableAll() {
+      if (!state.currentTheme || !state.currentScheme) return;
+
+      state.snippetUpdateTimeouts.forEach((timeoutId) =>
+        clearTimeout(timeoutId),
+      );
+      state.snippetUpdateTimeouts.clear();
+
+      state.snippets.forEach((raw) => {
+        const snippet = this.normalizeSnippet(raw);
+        if (!snippet) return;
+
+        state.remove(
+          state.getKey(
+            "snippetEnabled",
+            state.currentTheme,
+            state.currentScheme,
+            snippet.name,
+          ),
+        );
+        state.remove(
+          state.getKey(
+            "snippetScopes",
+            state.currentTheme,
+            state.currentScheme,
+            snippet.name,
+          ),
+        );
+        state.remove(
+          state.getKey(
+            "snippetGlobal",
+            state.currentTheme,
+            state.currentScheme,
+            snippet.name,
+          ),
+        );
+
+        if (snippet.vars) {
+          Object.keys(snippet.vars).forEach((varName) => {
+            state.remove(
+              state.getKey(
+                "snippetVar",
+                state.currentTheme,
+                state.currentScheme,
+                snippet.name,
                 varName,
-                scope: isGlobal ? 'global' : 'scheme'
-            });
+              ),
+            );
+          });
         }
 
-        static setupResetButton() {
-            // Already handled in handleResetAllColors
-        }
+        const id = `snippet-css-${state.currentTheme}-${state.currentScheme}-${snippet.name}`;
+        document
+          .querySelectorAll(`style[id="${id}"]`)
+          .forEach((el) => el.remove());
+
+        this.clearVars(snippet);
+      });
+
+      document.body.offsetHeight;
+
+      console.log("[Switcher] All snippets disabled");
+    }
+  }
+
+  // =========================================================================
+  // FAVORITES MANAGER
+  // =========================================================================
+
+  class FavoritesManager {
+    static getFavoritesIndex() {
+      return storage.config["favorites-index"] || [];
     }
 
-    // Export globals for UI file
-    window.ThemeSwitcherCore = {
-        CONFIG,
-        storage,
-        state,
-        CSSVariableManager,
-        ColorisManager,
-        DataLoader,
-        ThemeManager,
-        SnippetManager,
-        FavoritesManager,
-        UIController,
-        EventHandlers,
-        SwatchPinManager,
-        crossTabSync
-    };
+    static getAll() {
+      return this.getFavoritesIndex()
+        .map((name) => storage.config[`favorite-${name}`])
+        .filter(Boolean);
+    }
 
+    static async save(name) {
+      // Capture explicitly modified scheme colors (editableVars + scheme-scoped globalVarGroups)
+      const schemeGroupVars = CONFIG.globalVarGroups
+        .filter((g) => g.scope === "scheme")
+        .flatMap((g) => g.vars);
+      const colors = {};
+      for (const v of [...CONFIG.editableVars, ...schemeGroupVars]) {
+        const userOverride = state.getThemeVar(v.name);
+        if (userOverride) {
+          colors[v.name] = userOverride;
+        }
+      }
+
+      // Capture explicitly modified global colors (global-scoped globalVarGroups).
+      // Derived global vars with no user override are omitted — they will
+      // re-derive automatically when their parent scheme var is restored.
+      const globalColors = {};
+      for (const v of CONFIG.globalVarGroups
+        .filter((g) => g.scope === "global")
+        .flatMap((g) => g.vars)) {
+        const userOverride = state.getGlobalVar(v.name);
+        if (userOverride) {
+          globalColors[v.name] = userOverride;
+        }
+      }
+
+      // Capture enabled/modified snippets
+      const snippets = {};
+      for (const raw of state.snippets) {
+        const snippet = SnippetManager.normalizeSnippet(raw);
+        if (!snippet) continue;
+
+        const enabled = SnippetManager.getEnabled(snippet.name);
+        const scopes = SnippetManager.getScopes(snippet.name);
+
+        const vars = {};
+        if (snippet.vars) {
+          for (const [varName, meta] of Object.entries(snippet.vars)) {
+            const key = state.getKey(
+              "snippetVar",
+              state.currentTheme,
+              state.currentScheme,
+              snippet.name,
+              varName,
+            );
+            const saved = state.get(key);
+            const defaultVal =
+              meta.default !== undefined
+                ? meta.type === "number"
+                  ? `${meta.default}${meta.unit || ""}`
+                  : String(meta.default)
+                : null;
+            if (saved && saved !== defaultVal) {
+              vars[varName] = saved;
+            }
+          }
+        }
+
+        if (enabled) {
+          const entry = { enabled, scopes };
+          if (Object.keys(vars).length > 0) entry.vars = vars;
+          snippets[snippet.name] = entry;
+        }
+      }
+
+      // Nothing to save
+      if (
+        !Object.keys(colors).length &&
+        !Object.keys(globalColors).length &&
+        !Object.keys(snippets).length
+      )
+        return false;
+
+      const index = this.getFavoritesIndex();
+      const isNew = !index.includes(name);
+
+      // Enforce the favorites limit for new entries only — overwriting
+      // an existing favorite by the same name is always allowed.
+      if (isNew && index.length >= CONFIG.maxFavorites) {
+        return "limit";
+      }
+
+      const favorite = { name, colors, globalColors, snippets };
+      await storage.set(`favorite-${name}`, favorite);
+
+      if (isNew) {
+        index.push(name);
+        await storage.set("favorites-index", index);
+      }
+
+      crossTabSync.broadcast("favorite-change", {
+        action: "save",
+        name,
+        favorite,
+      });
+      return true;
+    }
+
+    static async apply(name) {
+      const favorite = storage.config[`favorite-${name}`];
+      if (!favorite) return;
+
+      // --- Apply scheme colors ---
+      const updates = {};
+      state.suppressSave = true;
+
+      for (const [varName, value] of Object.entries(favorite.colors || {})) {
+        CSSVariableManager.setVar(varName, value);
+        const key = state.getKey(
+          "cssVar",
+          state.currentTheme,
+          state.currentScheme,
+          varName,
+        );
+        updates[key] = value;
+
+        const input = document.querySelector(
+          `.theme-switcher__color-input[data-var-name='${varName}']`,
+        );
+        if (input) {
+          ColorisManager.updateInput(input, value);
+          ColorisManager.markModified(input, true);
+        }
+
+        CSSVariableManager.updateDependentGlobalVars(varName, value);
+        CSSVariableManager.updateDependentSchemeVars(varName, value);
+      }
+
+      state.suppressSave = false;
+      await storage.batchSet(updates);
+
+      // --- Apply global colors ---
+      // Derived global vars not in globalColors are already updated above
+      // via updateDependentGlobalVars. Explicit overrides are applied here,
+      // overriding any derived value set in the scheme colors pass.
+      const globalUpdates = {};
+      for (const [varName, value] of Object.entries(
+        favorite.globalColors || {},
+      )) {
+        await state.setGlobalVar(varName, value);
+        CSSVariableManager.setVar(varName, value);
+
+        const input = document.querySelector(
+          `.theme-switcher__color-input[data-var-name='${varName}']`,
+        );
+        if (input) {
+          ColorisManager.updateInput(input, value);
+          ColorisManager.markModified(input, true);
+        }
+      }
+
+      if (window.UIManager) {
+        UIManager.refreshAllPinStates();
+      }
+
+      // --- Apply snippets: full replacement ---
+      await SnippetManager.disableAll();
+
+      for (const raw of state.snippets) {
+        const snippet = SnippetManager.normalizeSnippet(raw);
+        if (!snippet) continue;
+
+        const saved = (favorite.snippets || {})[snippet.name];
+        const enabled = saved ? saved.enabled : false;
+        const scopes = saved ? saved.scopes : [];
+        const vars = saved ? saved.vars || {} : {};
+
+        if (enabled) {
+          await SnippetManager.setEnabled(snippet.name, enabled);
+          await SnippetManager.setScopes(snippet.name, scopes);
+          for (const [varName, value] of Object.entries(vars)) {
+            await SnippetManager.setVar(snippet.name, varName, value);
+          }
+        }
+
+        await SnippetManager.apply(snippet, enabled, scopes);
+      }
+
+      if (window.UIManager) {
+        UIManager.buildSnippetUI();
+        requestAnimationFrame(() => UIManager.applyDropdownStyles());
+      }
+
+      crossTabSync.broadcast("favorite-applied", { name, favorite });
+    }
+
+    static async delete(name) {
+      await storage.remove(`favorite-${name}`);
+      const index = this.getFavoritesIndex().filter((n) => n !== name);
+      await storage.set("favorites-index", index);
+      crossTabSync.broadcast("favorite-change", { action: "delete", name });
+    }
+  }
+
+  // =========================================================================
+  // SWATCH PIN MANAGER
+  // =========================================================================
+
+  class SwatchPinManager {
+    static getAll() {
+      return storage.config["coloris-swatches"] || [];
+    }
+
+    static isColorPinned(color) {
+      return this.getAll().includes(color);
+    }
+
+    static async pin(color) {
+      const swatches = this.getAll();
+      if (!swatches.includes(color)) {
+        swatches.push(color);
+        await storage.set("coloris-swatches", swatches);
+        crossTabSync.broadcast("swatch-pin-change", { swatches });
+      }
+    }
+
+    static async unpin(color) {
+      const swatches = this.getAll().filter((c) => c !== color);
+      await storage.set("coloris-swatches", swatches);
+      crossTabSync.broadcast("swatch-pin-change", { swatches });
+    }
+  }
+
+  // =========================================================================
+  // UI CONTROLLER - OBSERVER PATTERN
+  // =========================================================================
+
+  class UIController {
+    static initialize() {
+      state.subscribe("currentTheme", (themeName) =>
+        this.onThemeChange(themeName),
+      );
+      state.subscribe("currentScheme", (schemeName) =>
+        this.onSchemeChange(schemeName),
+      );
+    }
+
+    static onThemeChange(themeName) {
+      console.log("[Switcher] Theme changed to:", themeName);
+
+      if (!themeName || themeName === "no-theme") {
+        UIManager.highlightActiveTheme("no-theme");
+        UIManager.hideThemeElements();
+        UIManager.updateButtonLabel("Themes");
+        return;
+      }
+
+      UIManager.highlightActiveTheme(themeName);
+      UIManager.showThemeElements();
+
+      const theme = state.getTheme(themeName);
+      if (theme) {
+        UIManager.updateButtonLabel(theme.label || theme.name);
+
+        if (Object.keys(state.colorSchemes).length > 0) {
+          CSSVariableManager.loadAllThemeVars();
+        }
+      }
+
+      // Rebuild snippet UI to reflect the new theme's snippet states
+      if (window.UIManager && state.snippets.length > 0) {
+        setTimeout(() => {
+          UIManager.buildSnippetUI();
+        }, 50);
+      }
+
+      requestAnimationFrame(() => {
+        UIManager.applyDropdownStyles();
+      });
+    }
+
+    static onSchemeChange(schemeName) {
+      console.log("[Switcher] Scheme changed to:", schemeName);
+
+      if (Object.keys(state.colorSchemes).length === 0) {
+        console.log(
+          "[Switcher] Color schemes not loaded yet, skipping scheme change",
+        );
+        return;
+      }
+
+      CSSVariableManager.loadAllThemeVars();
+
+      // Clear all snippet styles from previous scheme before loading new ones
+      SnippetManager.clearAllStyles();
+      SnippetManager.loadAll();
+
+      UIManager.highlightActiveScheme(schemeName);
+
+      // Rebuild snippet UI to reflect the new scheme's snippet states
+      if (window.UIManager && state.snippets.length > 0) {
+        UIManager.buildSnippetUI();
+      }
+
+      // Update button label to show scheme name
+      if (schemeName) {
+        const displayName =
+          schemeName.charAt(0).toUpperCase() + schemeName.slice(1);
+        UIManager.updateButtonLabel(displayName);
+      }
+
+      setTimeout(() => {
+        UIManager.updateAllColorInputs();
+      }, 50);
+
+      requestAnimationFrame(() => {
+        UIManager.applyDropdownStyles();
+      });
+    }
+  }
+
+  // =========================================================================
+  // EVENT HANDLERS
+  // =========================================================================
+
+  class EventHandlers {
+    static setupColorInput() {
+      document.addEventListener("change", async (e) => {
+        if (!e.target.matches(".theme-switcher__color-input")) return;
+        if (state.suppressSave) return;
+
+        const varName = e.target.dataset.varName;
+        const value = e.target.value;
+        const row = e.target.closest(".theme-switcher__color-row");
+        const isGlobal = row?.getAttribute("data-scope") === "global";
+
+        CSSVariableManager.setVar(varName, value);
+
+        if (isGlobal) {
+          await state.setGlobalVar(varName, value);
+        } else {
+          await state.setThemeVar(varName, value);
+        }
+
+        ColorisManager.updateInput(e.target, value);
+        ColorisManager.markModified(e.target, true);
+
+        if (window.UIManager) {
+          UIManager.updatePinState(varName);
+        }
+
+        if (!isGlobal) {
+          CSSVariableManager.updateDependentGlobalVars(varName, value);
+          CSSVariableManager.updateDependentSchemeVars(varName, value);
+        }
+
+        crossTabSync.broadcast("color-var-change", {
+          varName,
+          value,
+          scope: isGlobal ? "global" : "scheme",
+        });
+
+        console.log(`[Switcher] CSS var updated: ${varName} = ${value}`);
+      });
+    }
+
+    static handleResetAllColors() {
+      const resetBtn = document.querySelector(
+        ".theme-switcher__color-group-reset",
+      );
+      if (!resetBtn) return;
+
+      (async () => {
+        state.suppressSave = true;
+
+        const keysToRemove = CONFIG.editableVars.map((v) =>
+          state.getKey(
+            "cssVar",
+            state.currentTheme,
+            state.currentScheme,
+            v.name,
+          ),
+        );
+        await storage.batchRemove(keysToRemove);
+
+        for (const v of CONFIG.editableVars) {
+          // resolveValue: user override is gone (batchRemove cleared storage.config),
+          // returns scheme default or computed — resolves var() refs as needed
+          const appliedValue = CSSVariableManager.resolveValue(v.name);
+
+          if (appliedValue) {
+            CSSVariableManager.setVar(v.name, appliedValue);
+          }
+
+          const input = document.querySelector(
+            `.theme-switcher__color-input[data-var-name='${v.name}']`,
+          );
+          if (input) {
+            ColorisManager.resetInput(input, appliedValue || "");
+            ColorisManager.markModified(input, false);
+          }
+
+          if (appliedValue) {
+            CSSVariableManager.updateDependentGlobalVars(
+              v.name,
+              appliedValue,
+              true,
+            );
+            CSSVariableManager.updateDependentSchemeVars(
+              v.name,
+              appliedValue,
+              true,
+            );
+          }
+        }
+
+        state.suppressSave = false;
+
+        if (window.UIManager) {
+          UIManager.refreshAllPinStates();
+        }
+
+        requestAnimationFrame(() => UIManager.applyDropdownStyles());
+
+        crossTabSync.broadcast("all-colors-reset", {});
+        console.log("[Switcher] All customizations reset");
+      })();
+    }
+
+    static handleResetGroup(groupId) {
+      const group = CONFIG.globalVarGroups.find((g) => g.id === groupId);
+      if (!group) return;
+
+      (async () => {
+        state.suppressSave = true;
+
+        if (group.scope === "global") {
+          const keysToRemove = group.vars.map((v) =>
+            state.getKey("cssVar", state.currentTheme, "_global", v.name),
+          );
+          await storage.batchRemove(keysToRemove);
+
+          for (const v of group.vars) {
+            CSSVariableManager.removeVar(v.name);
+            const { value, isModified } =
+              CSSVariableManager.resolveDerivedGlobalVar(v.name);
+            if (value) CSSVariableManager.setVar(v.name, value);
+
+            const input = document.querySelector(
+              `.theme-switcher__color-input[data-var-name='${v.name}']`,
+            );
+            if (input) {
+              ColorisManager.resetInput(input, value || "");
+              ColorisManager.markModified(input, isModified);
+            }
+          }
+        } else {
+          const keysToRemove = group.vars.map((v) =>
+            state.getKey(
+              "cssVar",
+              state.currentTheme,
+              state.currentScheme,
+              v.name,
+            ),
+          );
+          await storage.batchRemove(keysToRemove);
+
+          for (const v of group.vars) {
+            const appliedValue = CSSVariableManager.resolveValue(v.name);
+            if (appliedValue) CSSVariableManager.setVar(v.name, appliedValue);
+
+            const input = document.querySelector(
+              `.theme-switcher__color-input[data-var-name='${v.name}']`,
+            );
+            if (input) {
+              ColorisManager.resetInput(input, appliedValue || "");
+              const { isModified } = CSSVariableManager.resolveDerivedSchemeVar(
+                v.name,
+              );
+              ColorisManager.markModified(input, isModified);
+            }
+
+            if (appliedValue) {
+              CSSVariableManager.updateDependentGlobalVars(
+                v.name,
+                appliedValue,
+                true,
+              );
+              CSSVariableManager.updateDependentSchemeVars(
+                v.name,
+                appliedValue,
+                true,
+              );
+            }
+          }
+        }
+
+        state.suppressSave = false;
+
+        if (window.UIManager) UIManager.refreshAllPinStates();
+
+        crossTabSync.broadcast("group-reset", { groupId, scope: group.scope });
+        console.log(`[Switcher] Group reset: ${groupId}`);
+      })();
+    }
+
+    static async handleColorReset(varName, input) {
+      const row = input.closest(".theme-switcher__color-row");
+      const isGlobal = row?.getAttribute("data-scope") === "global";
+
+      if (isGlobal) {
+        await state.removeGlobalVar(varName);
+        CSSVariableManager.removeVar(varName);
+
+        const { value, isModified } =
+          CSSVariableManager.resolveDerivedGlobalVar(varName);
+        if (value) CSSVariableManager.setVar(varName, value);
+        ColorisManager.resetInput(input, value || "");
+        ColorisManager.markModified(input, isModified);
+      } else {
+        if (!state.currentTheme || !state.currentScheme) return;
+
+        await state.removeThemeVar(varName);
+
+        // resolveValue now resolves var() scheme defaults to a concrete hex
+        const resolvedDefault = CSSVariableManager.resolveValue(varName);
+
+        if (resolvedDefault) {
+          CSSVariableManager.setVar(varName, resolvedDefault);
+          ColorisManager.resetInput(input, resolvedDefault);
+          const { isModified } =
+            CSSVariableManager.resolveDerivedSchemeVar(varName);
+          ColorisManager.markModified(input, isModified);
+          CSSVariableManager.updateDependentGlobalVars(
+            varName,
+            resolvedDefault,
+            true,
+          );
+          CSSVariableManager.updateDependentSchemeVars(
+            varName,
+            resolvedDefault,
+            true,
+          );
+        }
+      }
+
+      if (window.UIManager) {
+        UIManager.updatePinState(varName);
+      }
+
+      crossTabSync.broadcast("color-var-reset", {
+        varName,
+        scope: isGlobal ? "global" : "scheme",
+      });
+    }
+
+    static setupResetButton() {
+      // Already handled in handleResetAllColors
+    }
+  }
+
+  // Export globals for UI file
+  window.ThemeSwitcherCore = {
+    CONFIG,
+    storage,
+    state,
+    CSSVariableManager,
+    ColorisManager,
+    DataLoader,
+    ThemeManager,
+    SnippetManager,
+    FavoritesManager,
+    UIController,
+    EventHandlers,
+    SwatchPinManager,
+    crossTabSync,
+  };
 })();

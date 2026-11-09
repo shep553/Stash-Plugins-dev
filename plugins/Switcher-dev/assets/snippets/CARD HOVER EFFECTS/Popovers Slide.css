@@ -1,0 +1,77 @@
+.scene-card:hover .scene-specs-overlay {
+	bottom: -1px;
+}
+
+.scene-marker-card:hover .scene-specs-overlay {
+	bottom: -1px;
+}
+
+.group-card .btn-group {
+	transition: all 1s ease !important;
+	bottom: -.5rem !important;
+}
+.group-card:hover .btn-group {
+	bottom: 0rem !important;
+}
+
+.performer-card .btn-group {
+	transition: all 1s ease !important;
+	bottom: -1rem !important;
+}
+.performer-card:hover .btn-group {
+	bottom: 0.2rem !important;
+}
+.performer-card .favorite-button {
+	transition: all 1s ease !important;
+	bottom: -10px !important;
+}
+.performer-card:hover .favorite-button {
+	 bottom: 12px !important;	
+}
+.performer-card .thumbnail-section .fi {
+  position: absolute;
+  top: -10px;
+}
+.performer-card:hover .thumbnail-section .fi {
+  position: absolute;
+  top: 10px;
+	opacity: 1;
+}
+
+.studio-card .btn-group {
+	transition: all 1s ease !important;
+  top: -18px !important;
+}
+.studio-card:hover .btn-group {
+	top: -15px !important;
+}
+.studio-card .favorite-button {
+	transition: all 1s ease !important;
+	top: -18px !important;
+}
+.studio-card:hover .favorite-button {
+	top: -12px !important;	
+}
+
+.tag-card .card-popovers.btn-group  {
+	transition: all 1s ease !important;
+  top: -1px !important;
+}
+.tag-card:hover .btn-group {
+	top: 4px !important;
+}
+.tag-card .favorite-button {
+	transition: all 1s ease !important;
+	top: -1px !important;
+}
+.tag-card:hover .favorite-button {
+	top: 6px !important;	
+}
+
+
+
+/* switcher: global */
+
+.scene-specs-overlay {
+	transition: all 1s ease !important;
+}

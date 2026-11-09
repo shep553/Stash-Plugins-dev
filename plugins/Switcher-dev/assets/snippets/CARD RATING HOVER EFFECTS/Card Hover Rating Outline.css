@@ -1,0 +1,20 @@
+.performer-card,
+.image-card,
+.studio-card,
+.group-card,
+.gallery-card,
+.scene-card {
+	transition: box-shadow ease-in-out .3s;
+	/*transition: border ease-in-out .3s !important;
+	border: 3px solid #f0000000;*/
+}
+
+.performer-card.card:hover,
+.image-card.card:hover,
+.studio-card.card:hover,
+.group-card.card:hover,
+.gallery-card.card:hover,
+.scene-card.card:hover {
+	box-shadow: 0 0 2px 3px var(--rating-color);
+	/*border: 3px solid var(--card-outline);*/
+}

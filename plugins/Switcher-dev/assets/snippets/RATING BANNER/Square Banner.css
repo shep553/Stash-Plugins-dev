@@ -1,0 +1,135 @@
+.gallery-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.gallery-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+.group-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.group-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+.image-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.image-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+.scene-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.scene-card:has(.rating-100-4, .rating-100-8, .rating-100-12, .rating-100-16, .rating-100-20) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+
+
+
+.gallery-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.gallery-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+.group-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.group-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+.image-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.image-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+.scene-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner {
+	color: transparent;
+	left: 10px;
+	top: 10px;
+	padding: 0px 0px 2px 0px;
+	transform: rotate(0deg);
+	background: var(--rating-color);
+	filter: drop-shadow(1px 1px 2px #000);
+	text-transform: unset;
+}
+.scene-card:has(.rating-100-2, .rating-100-6, .rating-100-10, .rating-100-14, .rating-100-18) .rating-banner::after {
+	content: var(--stars);
+	position: absolute;
+	color: var(--rating-solidbg-color);
+	left: 22px
+}
+
+
+
+
